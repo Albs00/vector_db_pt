@@ -79,6 +79,11 @@ def format_qa_single_report(
         lines.append(f"  • Configurazione     : {'Monosplit' if q_ctx.get('is_monosplit') else ('Multisplit' if q_ctx.get('is_multisplit') else 'Singola/Generale')}")
         lines.append(f"  • Tipologia Esplicita: {q_ctx.get('explicit_tipologia') or 'Nessuna (no hard filter)'}")
         lines.append(f"  • Tipologia Probabile: {q_ctx.get('probable_tipologia') or 'Non determinata'}")
+        lines.append(f"  • Fase Richiesta     : {q_ctx.get('phase') or 'Non specificata'}")
+        if q_ctx.get("feature_wifi"):
+            lines.append(f"  • Feature Wi-Fi      : {q_ctx.get('feature_wifi')}")
+        req_fam_key = qa_info.get("requested_family_key")
+        lines.append(f"  • Family Key Req     : {req_fam_key if req_fam_key is not None else 'null'}")
         lines.append(f"  • Reliable Anchor    : {q_ctx.get('has_reliable_anchor', False)}")
 
     exact_cands = qa_info.get("exact_token_candidates", [])
@@ -106,27 +111,35 @@ def format_qa_single_report(
     else:
         for slot_id, cands in pools.items():
             lines.append(f"\n[SLOT: {slot_id.upper()}] - Totale candidati: {len(cands)}")
-            lines.append(f"{'#':<3} {'CODICE PT':<10} {'MFG CODE':<18} {'MATCH TYPE':<24} {'TIER':<6} {'SCORE':<7} {'RELATION TYPE & STRENGTH':<32} {'PAG.':<6} {'NOME CATALOGO'}")
-            lines.append("-" * 125)
+            lines.append(f"{'#':<3} {'CODICE PT':<10} {'MFG CODE':<16} {'FAMILY KEY':<24} {'F.MATCH':<8} {'TIER':<6} {'SCORE':<7} {'RELATION TYPE':<24} {'PAG.':<5} {'NOME CATALOGO'}")
+            lines.append("-" * 145)
 
             for rank_idx, c in enumerate(cands[:5], 1):
                 pt_code = str(c.get("code") or "")
-                mfg = str(c.get("mfg_code") or "-")[:16]
-                mtype = str(c.get("match_type") or "DISCOVERY")[:22]
-                tier = f"T{c.get('evidence_tier', 5)}"
+                mfg = str(c.get("mfg_code") or "-")[:15]
+                fam_key = str(c.get("family_key") or "-")[:23]
+                fam_match = str(c.get("family_match") or c.get("table_family_match") or "-")[:7]
+                tier = f"T{c.get('evidence_tier', 9)}"
                 score = f"{c.get('score', 0.0):.1f}"
 
                 rel_meta = c.get("relation_evidence")
+                rel_evs = c.get("relation_evidences") or []
                 if rel_meta:
                     rel_str = f"{rel_meta.get('relation_type')} ({rel_meta.get('relation_strength')})"
+                    if len(rel_evs) > 1:
+                        rel_str += f" [+{len(rel_evs)-1}]"
+                elif rel_evs:
+                    rel_str = f"{rel_evs[0].get('relation_type')}"
+                    if len(rel_evs) > 1:
+                        rel_str += f" [+{len(rel_evs)-1}]"
                 else:
                     rel_str = "-"
-                rel_str = rel_str[:30]
+                rel_str = rel_str[:23]
 
                 pag = str(c.get("primary_page") or "-")[:4]
                 name = str(c.get("name") or "")[:40]
 
-                lines.append(f"{rank_idx:<3} {pt_code:<10} {mfg:<18} {mtype:<24} {tier:<6} {score:<7} {rel_str:<32} {pag:<6} {name}")
+                lines.append(f"{rank_idx:<3} {pt_code:<10} {mfg:<16} {fam_key:<24} {fam_match:<8} {tier:<6} {score:<7} {rel_str:<24} {pag:<5} {name}")
 
     # 3. BOM CANDIDATA COMPLETA
     lines.append(subsep)
@@ -168,6 +181,7 @@ def format_qa_single_report(
 
         ident_meta = item.get("identity_evidence") or {}
         rel_meta = item.get("relation_evidence") or {}
+        rel_evs = item.get("relation_evidences") or []
 
         ident_desc = f"Tier {tier} [{ident_meta.get('match_type', 'N/D')}]"
         if rel_meta:
@@ -177,8 +191,13 @@ def format_qa_single_report(
 
         lines.append(f"  • {role_lbl:<22}: PT {pt_code} | MFG: {mfg}")
         lines.append(f"    Nome Catalogo       : {name}")
+        lines.append(f"    Slot Naturale       : {item.get('slot_id', '-')}")
+        lines.append(f"    Family Context      : Key: {item.get('family_key', '-')}, Match: {item.get('family_match', '-')}, Family: {item.get('catalog_family', '-')}")
         lines.append(f"    Identity Evidence   : {ident_desc}")
         lines.append(f"    Relation Evidence   : {rel_desc}")
+        if rel_evs and len(rel_evs) > 1:
+            rel_summary = ", ".join(f"{r.get('relation_type')} (src:{r.get('source_code')})" for r in rel_evs)
+            lines.append(f"    Relation Evidences  : {rel_summary}")
         lines.append(f"    Score Complessivo   : {score}")
         lines.append("")
 

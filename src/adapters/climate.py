@@ -19,14 +19,25 @@ from typing import Dict, Any, List, Optional, Tuple, Set
 from src.adapters.base import BaseCategoryAdapter
 from src.core.relation_types import TypedRelation, RelationType
 from src.core.candidate_pool import SlotConfig
+from src.core.catalog_table_context import CatalogTableContextIndex
 from build_full_ac_matrix import extract_btu_and_kw
 
 
+def capacity_kw_for_btu(btu: int) -> float:
+    """Restituisce la potenza nominale in kW commerciale corrispondente alla taglia BTU."""
+    mapping = {
+        7000: 2.0, 9000: 2.6, 12000: 3.5, 15000: 4.2, 18000: 5.0,
+        21000: 6.0, 24000: 7.0, 28000: 8.0, 30000: 8.5, 36000: 10.0,
+        42000: 12.0, 48000: 14.0, 55000: 15.0, 60000: 16.0
+    }
+    return mapping.get(btu, round(btu / 3412.14, 1))
+
+
 def extract_split_capacities(query: str) -> List[int]:
-    """Estrae le capacità BTU richieste per le unità interne multisplit (es. 9+12 -> [9000, 12000], 7+15 -> [7000, 15000])."""
+    """Estrae le capacità BTU richieste per le unità interne multisplit (es. 9+12 -> [9000, 12000]) o monosplit."""
     q_u = query.upper()
     m = re.search(
-        r'\b(\d{1,2}|7000|9000|12000|15000|18000|21000|24000)\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000)(?:\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000))?(?:\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000))?(?:\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000))?\b',
+        r'\b(\d{1,2}|7000|9000|12000|15000|18000|21000|24000|28000|30000|36000|42000|48000|55000|60000)\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000|28000|30000|36000|42000|48000|55000|60000)(?:\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000|28000|30000|36000|42000|48000|55000|60000))?(?:\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000|28000|30000|36000|42000|48000|55000|60000))?(?:\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000|28000|30000|36000|42000|48000|55000|60000))?\b',
         q_u
     )
     if m:
@@ -38,9 +49,15 @@ def extract_split_capacities(query: str) -> List[int]:
                     val *= 1000
                 capacities.append(val)
         return capacities
-    m_single = re.search(r'\b(7000|9000|12000|15000|18000|21000|24000)\s*BTU\b', q_u)
+    m_single = re.search(r'\b(7000|9000|12000|15000|18000|21000|24000|28000|30000|36000|42000|48000|55000|60000)\s*BTU\b', q_u)
     if m_single:
         return [int(m_single.group(1))]
+    m_single_gen = re.search(r'\b(\d{1,2}(?:\.000|000)?)\s*BTU\b', q_u)
+    if m_single_gen:
+        val = int(m_single_gen.group(1).replace('.', ''))
+        if val < 100:
+            val *= 1000
+        return [val]
     return []
 
 
@@ -64,7 +81,8 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
     def __init__(
         self,
         ac_master_path: Optional[str] = None,
-        pdf_specs_path: Optional[str] = None
+        pdf_specs_path: Optional[str] = None,
+        table_context_index: Optional[CatalogTableContextIndex] = None,
     ):
         self._ac_master_uis: Dict[str, Any] = {}
         self._ac_master_ues: Dict[str, Any] = {}
@@ -72,6 +90,15 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         self._dynamic_capacity_class_map: Dict[Tuple[str, str], int] = {}
         self._series_vocab: List[str] = []
         self._series_aliases: Dict[str, List[str]] = {}
+        self._table_context_index = table_context_index
+        self._pdf_table_pairs_ui_to_ue: Dict[str, List[Dict[str, Any]]] = collections.defaultdict(list)
+        self._pdf_table_pairs_ue_to_ui: Dict[str, List[Dict[str, Any]]] = collections.defaultdict(list)
+
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        if ac_master_path is None:
+            default_master = os.path.join(base_dir, "Knowledge", "climatizzatori_compatibilita_master.json")
+            if os.path.exists(default_master):
+                ac_master_path = default_master
 
         if ac_master_path and os.path.exists(ac_master_path):
             try:
@@ -89,8 +116,141 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             except Exception:
                 pass
 
+        if self._table_context_index is None:
+            default_ctx = os.path.join(base_dir, "Knowledge", "catalog_table_context.json")
+            if os.path.exists(default_ctx):
+                self._table_context_index = CatalogTableContextIndex(default_ctx)
+
         self._init_dynamic_capacity_classes()
         self._init_dynamic_series_vocabulary()
+        self._init_pdf_table_pairings()
+
+    def _extract_commercial_sizes(self, code: str, ctx: Dict[str, Any]) -> Set[str]:
+        """Estrae i token di taglia/classe commerciale (kW, BTU, sigla modello) per match di tabella PDF."""
+        sizes: Set[str] = set()
+        master_rec = self._ac_master_uis.get(code) or self._ac_master_ues.get(code) or {}
+
+        # 1. Da potenza nominale kW
+        kw = master_rec.get("potenza_nominale_kw")
+        if kw:
+            try:
+                f_kw = float(kw)
+                s_kw = str(round(f_kw, 1))
+                sizes.add(s_kw)
+                sizes.add(s_kw.replace(".", ""))
+                sizes.add(str(int(round(f_kw * 10))))
+            except Exception:
+                pass
+
+        # 2. Da taglia BTU
+        btu = master_rec.get("taglia_btu")
+        if btu:
+            sizes.add(str(btu))
+            btu_map = {
+                7000: {"20", "21", "25", "2.0", "2.1", "200"},
+                9000: {"25", "26", "2.5", "2.6", "025", "026", "250", "260"},
+                12000: {"35", "3.5", "035", "350"},
+                15000: {"42", "4.2", "45", "4.5"},
+                18000: {"50", "52", "53", "5.0", "5.2", "5.3", "050", "052", "500", "520", "530"},
+                21000: {"60", "6.0"},
+                24000: {"70", "71", "7.0", "7.1", "070", "071", "700", "710"},
+                28000: {"80", "8.0"},
+                30000: {"85", "8.5"},
+                36000: {"100", "10.0", "105"},
+                42000: {"120", "125", "12.0", "12.5"},
+                48000: {"140", "14.0"},
+                55000: {"150", "15.0"},
+                60000: {"160", "16.0"},
+            }
+            if btu in btu_map:
+                sizes.update(btu_map[btu])
+
+        raw_text = (ctx.get("model") or "") + " " + (master_rec.get("name") or "")
+
+        # Pulizia stopword / pattern serie per evitare falsi match numerici (es. CL3000i, CL7000i, R32)
+        cleaned = re.sub(r"\bCL(?:IMATE)?\s*\d{4}[iI]?\b", " ", raw_text, flags=re.IGNORECASE)
+        cleaned = re.sub(r"\bCL\d{4}[iI]?\b", " ", cleaned, flags=re.IGNORECASE)
+        cleaned = re.sub(r"\b(?:U\.I\.|U\.E\.|UI|UE|OPTIONAL)\b", " ", cleaned, flags=re.IGNORECASE)
+        cleaned = re.sub(r"\bR32\b|\bR-32\b|\bR410A\b|\bINVERTER\b", " ", cleaned, flags=re.IGNORECASE)
+
+        # Estrazione token taglia commerciale (2 o 3 cifre, es. 26WE, 350W, AC026, S24EQ)
+        for m in re.finditer(r"\b(\d{2,3})\s*(?:WE|W|E|K|VG|NSK|RX|U|IU|OU)?\b", cleaned):
+            token = m.group(1)
+            sizes.add(token)
+            if len(token) == 3 and token.startswith("0"):
+                sizes.add(token[1:])
+
+        return sizes
+
+    def _init_pdf_table_pairings(self) -> None:
+        """
+        Estrae le coppie commerciali esplicite UI <-> UE presenti nella stessa tabella/blocco PDF.
+        Regola:
+        1. Stessa tabella_id
+        2. Stessa pagina
+        3. Stesso gruppo prodotto (brand coerente)
+        4. Stessa classe/taglia commerciale (intersezione taglie non vuota)
+        Genera relazioni di tipo PDF_TABLE_PAIRING_VERIFIED.
+        """
+        if not self._table_context_index or not getattr(self._table_context_index, "_contexts", None):
+            return
+
+        raw_contexts = self._table_context_index._contexts
+        tables: Dict[Tuple[str, int], List[Dict[str, Any]]] = collections.defaultdict(list)
+
+        def add_table_entry(tid: Optional[str], page: Optional[int], brand: Optional[str], family: Optional[str], c_code: str, c_ctx: Dict[str, Any]):
+            if not tid or not page:
+                return
+            m_name = (c_ctx.get("model") or "").upper()
+            if "OPTIONAL" in m_name or "CHIAVETTA" in m_name or "COMANDO" in m_name:
+                return
+            is_ui = c_code in self._ac_master_uis or m_name.startswith("U.I.") or "UNITA INTERNA" in m_name
+            is_ue = c_code in self._ac_master_ues or m_name.startswith("U.E.") or "UNITA ESTERNA" in m_name or "MOTOCONDENSANTE" in m_name
+            if not (is_ui or is_ue):
+                return
+            c_sizes = self._extract_commercial_sizes(c_code, c_ctx)
+            tables[(tid, int(page))].append({
+                "code": c_code,
+                "is_ui": is_ui,
+                "is_ue": is_ue,
+                "sizes": c_sizes,
+                "brand": (brand or "").strip().upper(),
+                "family": family,
+                "model": c_ctx.get("model"),
+                "table_id": tid,
+                "page": int(page)
+            })
+
+        for code, ctx in raw_contexts.items():
+            add_table_entry(ctx.get("table_id"), ctx.get("page"), ctx.get("brand"), ctx.get("catalog_family"), code, ctx)
+            for alt in ctx.get("alternate_table_contexts") or []:
+                add_table_entry(alt.get("table_id"), alt.get("page"), alt.get("brand") or ctx.get("brand"), alt.get("catalog_family") or ctx.get("catalog_family"), code, ctx)
+
+        for (tid, page), items in tables.items():
+            uis_in_t = [x for x in items if x["is_ui"]]
+            ues_in_t = [x for x in items if x["is_ue"]]
+            if not uis_in_t or not ues_in_t:
+                continue
+
+            for ui in uis_in_t:
+                for ue in ues_in_t:
+                    if ui["brand"] and ue["brand"] and ui["brand"] != ue["brand"]:
+                        continue
+                    common = ui["sizes"].intersection(ue["sizes"])
+                    if common:
+                        rep_size = sorted(list(common), key=lambda x: (len(x), x), reverse=True)[0]
+                        pair_meta = {
+                            "table_id": tid,
+                            "page": page,
+                            "brand": ui["brand"] or ue["brand"],
+                            "family": ui["family"] or ue["family"],
+                            "commercial_size": rep_size,
+                            "confidence": 0.99
+                        }
+                        if not any(p["target_code"] == ue["code"] for p in self._pdf_table_pairs_ui_to_ue[ui["code"]]):
+                            self._pdf_table_pairs_ui_to_ue[ui["code"]].append({**pair_meta, "target_code": ue["code"]})
+                        if not any(p["target_code"] == ui["code"] for p in self._pdf_table_pairs_ue_to_ui[ue["code"]]):
+                            self._pdf_table_pairs_ue_to_ui[ue["code"]].append({**pair_meta, "target_code": ui["code"]})
 
     def _init_dynamic_capacity_classes(self) -> None:
         """Costruisce dinamicamente la mappa brand + capacity_class -> BTU dal master con voto a maggioranza."""
@@ -124,12 +284,15 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         STOPWORDS = {
             'COMMERCIALE', 'SERIE COMMERCIALE', 'MONO SPLIT', 'MULTI SPLIT',
             'CANALIZZATO', 'CASSETTA', 'PAVIMENTO', 'CONSOLE', 'COLONNA', 'SOFFITTO',
-            'R32', 'R410A', 'INVERTER', 'WHITE', 'BLACK', 'SILVER', 'MATT', 'WIFI',
+            'R32', 'R-32', 'R410A', 'INVERTER', 'WHITE', 'BLACK', 'SILVER', 'MATT',
+            'WIFI', 'WI-FI',
             'PARETE', 'LIGHT COMMERCIAL', 'SUPER MATCH',
             'SPLIT', 'DUAL', 'TRIAL', 'QUADRI', 'PENTA', 'MULTI', 'MONO',
             'CLIMATIZZATORE', 'CONDIZIONATORE', 'CLIMATIZZATORI', 'CONDIZIONATORI',
             'GAS', 'SERIE', 'GAMMA', 'LINEA', 'CLASSE', 'UNITA', 'ESTERNA', 'INTERNA',
-            'MOTOCONDENSANTE', 'SISTEMA', 'UNITA ESTERNA', 'UNITA INTERNA'
+            'MOTOCONDENSANTE', 'SISTEMA', 'UNITA ESTERNA', 'UNITA INTERNA',
+            'TRIFASE', 'MONOFASE', '400V', '230V', 'TRIF', 'MONOF', 'TRIFASE T', 'MONOFASE M',
+            'OPTIONAL', 'COMANDO', 'COMANDO INCLUSO', 'INCLUSO', 'A++', 'A+', 'A+++', 'BTU'
         }
 
         self._series_aliases = {
@@ -272,6 +435,20 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             conf = max(conf, 0.85)
             evidences.append(f"matched_clima_keywords:{','.join(matched_kw[:3])}")
 
+        # 2.5 Segnale di serie / famiglia clima nota (es. Astra, Expert, Elegance, ecc.)
+        q_up = query.upper()
+        if self._table_context_index and detected_brand:
+            family_request = self._table_context_index.analyze_query(query, detected_brand)
+            if family_request.get("requested_family_key"):
+                conf = max(conf, 0.90)
+                evidences.append(f"matched_table_family:{family_request['requested_family_key']}")
+
+        for s in self._series_vocab:
+            if len(s) >= 4 and re.search(r'\b' + re.escape(s) + r'\b', q_up):
+                conf = max(conf, 0.85)
+                evidences.append(f"matched_clima_series:{s}")
+                break
+
         # 3. Brand prior: debole priorità aggiuntiva (max 0.10)
         if detected_brand and detected_brand.upper() in ["DAIKIN", "MITSUBISHI", "PANASONIC", "HAIER", "HISENSE", "MIDEA", "SAMSUNG", "TOSHIBA"]:
             conf = min(1.0, conf + 0.05)
@@ -344,13 +521,26 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
                 probable_tipologia = "PARETE"
 
         # Rilevamento serie/famiglia richiesta dal vocabolario canonico
+        TECHNICAL_TOKENS = {
+            "WIFI", "WI-FI", "R32", "R-32", "R410A", "INVERTER", "BTU",
+            "CLASSE", "A++", "A+", "A+++", "OPTIONAL", "COMANDO",
+            "COMANDO INCLUSO", "INCLUSO", "TRIFASE", "MONOFASE", "400V", "230V",
+            "TRIF", "MONOF", "TRIFASE T", "MONOFASE M"
+        }
+        technical_norms = {re.sub(r'[^A-Z0-9]', '', t) for t in TECHNICAL_TOKENS}
+
         requested_series = None
         matched_series = []
         for term in self._series_vocab:
             if re.search(r'\b' + re.escape(term) + r'\b', q_u):
-                matched_series.append(term)
+                norm_t = re.sub(r'[^A-Z0-9]', '', term)
+                if term not in TECHNICAL_TOKENS and norm_t not in technical_norms:
+                    matched_series.append(term)
         for canon, alts in self._series_aliases.items():
             if canon in matched_series:
+                continue
+            norm_c = re.sub(r'[^A-Z0-9]', '', canon)
+            if canon in TECHNICAL_TOKENS or norm_c in technical_norms:
                 continue
             for a in alts:
                 if re.search(r'\b' + re.escape(a) + r'\b', q_u):
@@ -367,11 +557,32 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
                 requested_color = col
                 break
 
+        # Rilevamento attributi tecnici / feature (NON possono mai creare family)
+        phase = None
+        if re.search(r'\b(TRIFASE|TRIF|400V)\b', q_u):
+            phase = "TRIFASE"
+        elif re.search(r'\b(MONOFASE|MONOF|230V)\b', q_u):
+            phase = "MONOFASE"
+
+        feature_wifi = bool(re.search(r'\b(WI-?FI)\b', q_u))
+        feature_inverter = bool(re.search(r'\bINVERTER\b', q_u))
+        feature_r32 = bool(re.search(r'\b(R-?32)\b', q_u))
+        feature_optional = bool(re.search(r'\bOPTIONAL\b', q_u))
+        feature_comando = bool(re.search(r'\bCOMANDO\b', q_u))
+
         return {
             "query_text": query,
             "requested_btus": btus,
             "requested_series": requested_series,
             "requested_color": requested_color,
+            "phase": phase,
+            "feature_wifi": feature_wifi,
+            "feature_inverter": feature_inverter,
+            "feature_r32": feature_r32,
+            "feature_optional": feature_optional,
+            "feature_comando": feature_comando,
+            "is_trifase": phase == "TRIFASE",
+            "is_monofase": phase == "MONOFASE",
             "is_multisplit": is_multi,
             "is_monosplit": is_mono,
             "is_ue_only": is_ue_only,
@@ -383,6 +594,30 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
 
     def evaluate_series_match(self, item: Dict[str, Any], query_context: Dict[str, Any]) -> str:
         req_ser = query_context.get("requested_series")
+        req_key = str(query_context.get("requested_family_key") or "").strip()
+        req_brand = str(query_context.get("requested_brand") or "").strip().upper()
+        item_brand = str(item.get("brand") or "").strip().upper()
+        candidate_keys = CatalogTableContextIndex.candidate_family_keys(item)
+
+        if req_key and req_key in candidate_keys:
+            item["_series_match_source"] = "PDF_LAYOUT"
+            item["_table_family_match"] = "exact"
+            item["_table_family_evidence"] = "TABLE_FAMILY_EXACT"
+            item["_matched_table_family_key"] = req_key
+            return "exact"
+
+        if (
+            req_key
+            and req_brand
+            and item_brand == req_brand
+            and candidate_keys
+            and item.get("table_source") == "PDF_LAYOUT"
+        ):
+            item["_series_match_source"] = "PDF_LAYOUT"
+            item["_table_family_match"] = "mismatch"
+            item["_table_family_evidence"] = "TABLE_FAMILY_MISMATCH"
+            return "mismatch"
+
         if not req_ser:
             return "none"
 
@@ -391,29 +626,48 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         item_fam = (item.get("famiglia_catalogo") or "").upper()
         item_name = (item.get("name") or "").upper()
 
-        # Check exact
-        if re.search(r'\b' + re.escape(req_u) + r'\b', item_name) or req_u in item_ser or req_u in item_fam:
+        # Compatibility master is the second family source. It may fill a
+        # missing PDF context, but never replace one.
+        if req_u in item_ser or req_u in item_fam:
+            item["_series_match_source"] = "COMPATIBILITY_MASTER"
             return "exact"
 
-        # Check aliases
         req_aliases = self._series_aliases.get(req_u, [])
-        for a in req_aliases:
-            if re.search(r'\b' + re.escape(a) + r'\b', item_name) or a in item_ser or a in item_fam:
+        for alias in req_aliases:
+            if alias in item_ser or alias in item_fam:
+                item["_series_match_source"] = "COMPATIBILITY_MASTER"
                 return "alias"
 
-        # Check mismatch
+        # Name is deliberately the last fallback and never creates a table tier.
+        if re.search(r'\b' + re.escape(req_u) + r'\b', item_name):
+            item["_series_match_source"] = "PRODUCT_NAME"
+            return "exact"
+
+        for alias in req_aliases:
+            if re.search(r'\b' + re.escape(alias) + r'\b', item_name):
+                item["_series_match_source"] = "PRODUCT_NAME"
+                return "alias"
+
+        # Family mismatches are meaningful only inside the requested brand.
+        if req_brand and item_brand and req_brand != item_brand:
+            return "none"
+
         for canon, alts in self._series_aliases.items():
             if canon == req_u or canon in req_aliases:
                 continue
-            all_alt_terms = [canon] + alts
-            for alt_t in all_alt_terms:
+            for alt_t in [canon] + alts:
                 if re.search(r'\b' + re.escape(alt_t) + r'\b', item_name):
+                    item["_series_match_source"] = "PRODUCT_NAME"
                     return "mismatch"
 
-        for t in ['ASTRA', 'SIDERA', 'EXPERT', 'FLEXIS', 'ELEGANCE', 'XTREME PRO', 'BREEZELESS', 'HI COMFORT', 'EASY SMART', 'AIR MASTER', 'RZ2GT', 'PERFERA', 'EMURA', 'STYLISH', 'SENSIRA', 'COMFORA', 'WINDFREE']:
-            if t == req_u or t in req_aliases:
+        for term in ['ASTRA', 'SIDERA', 'EXPERT', 'FLEXIS', 'ELEGANCE', 'XTREME PRO', 'BREEZELESS', 'HI COMFORT', 'EASY SMART', 'AIR MASTER', 'RZ2GT', 'PERFERA', 'EMURA', 'STYLISH', 'SENSIRA', 'COMFORA', 'WINDFREE']:
+            if term == req_u or term in req_aliases:
                 continue
-            if re.search(r'\b' + re.escape(t) + r'\b', item_name) or t in item_ser or t in item_fam:
+            if term in item_ser or term in item_fam:
+                item["_series_match_source"] = "COMPATIBILITY_MASTER"
+                return "mismatch"
+            if re.search(r'\b' + re.escape(term) + r'\b', item_name):
+                item["_series_match_source"] = "PRODUCT_NAME"
                 return "mismatch"
 
         return "none"
@@ -421,17 +675,21 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
     def assign_slot(self, item: Dict[str, Any], query_context: Dict[str, Any]) -> str:
         self.enrich_item(item)
         if item.get("is_accessory"):
-            return "slot_accessory"
-        if item.get("is_ue"):
-            return "slot_ue"
-        if item.get("is_ui"):
+            slot_id = "slot_accessory"
+        elif item.get("is_ue"):
+            slot_id = "slot_ue"
+        elif item.get("is_ui"):
             btu = item.get("taglia_btu")
             if btu:
-                return f"slot_ui_{btu}"
-            return "slot_ui"
-        if item.get("is_monoblocco_sue"):
-            return "slot_monoblocco"
-        return "slot_clima_general"
+                slot_id = f"slot_ui_{btu}"
+            else:
+                slot_id = "slot_ui"
+        elif item.get("is_monoblocco_sue"):
+            slot_id = "slot_monoblocco"
+        else:
+            slot_id = "slot_clima_general"
+        item["slot_id"] = slot_id
+        return slot_id
 
     def compute_domain_boost(self, item: Dict[str, Any], query_context: Dict[str, Any]) -> float:
         self.enrich_item(item)
@@ -486,12 +744,40 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             self.enrich_item(item)
 
             # CASO 1: Anchor è UE
-            if item.get("is_ue") and code in self._ac_master_ues:
-                compat_uis = self._ac_master_ues[code].get("unita_interne_compatibili", [])
+            if item.get("is_ue") and (code in self._ac_master_ues or code in self._pdf_table_pairs_ue_to_ui):
+                seen_ui_codes = set()
+                # 1. Priorità massima: coppie commerciali esplicite da tabella PDF (PDF_TABLE_PAIRING_VERIFIED)
+                for pair in self._pdf_table_pairs_ue_to_ui.get(code, []):
+                    ui_c = str(pair.get("target_code") or "")
+                    if not ui_c:
+                        continue
+                    ui_rec = self._ac_master_uis.get(ui_c) or lookup_dict.get(ui_c) or {}
+                    ui_btu = ui_rec.get("taglia_btu")
+                    if requested_btus and ui_btu and ui_btu not in requested_btus:
+                        continue
+                    seen_ui_codes.add(ui_c)
+                    relations.append(TypedRelation(
+                        source_code=code,
+                        target_code=ui_c,
+                        relation_type=RelationType.PDF_TABLE_PAIRING_VERIFIED,
+                        provenance=f"catalog_table_context.json:table_id={pair.get('table_id')}[p.{pair.get('page')}]",
+                        target_role="UI",
+                        evidence={
+                            "ue_code": code,
+                            "ui_code": ui_c,
+                            "table_id": pair.get("table_id"),
+                            "page": pair.get("page"),
+                            "brand": pair.get("brand"),
+                            "taglia_commerciale": pair.get("commercial_size"),
+                        },
+                        confidence=0.99
+                    ))
+
+                compat_uis = self._ac_master_ues.get(code, {}).get("unita_interne_compatibili", [])
                 filtered_uis = []
                 for ui_info in compat_uis:
                     ui_code = ui_info.get("code") or ui_info.get("codice_pt")
-                    if not ui_code:
+                    if not ui_code or ui_code in seen_ui_codes:
                         continue
 
                     ui_btu = ui_info.get("taglia_btu")
@@ -550,79 +836,310 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
                     ))
 
             # CASO 2: Anchor è UI
-            elif item.get("is_ui") and code in self._ac_master_uis:
-                ui_meta = self._ac_master_uis[code]
+            elif item.get("is_ui") and (code in self._ac_master_uis or code in self._pdf_table_pairs_ui_to_ue):
+                ui_meta = self._ac_master_uis.get(code, {})
 
-                # 2.A: PAIRED_WITH_VERIFIED da kit_commerciali_inclusi
-                found_kit = False
-                kits = ui_meta.get("kit_commerciali_inclusi", [])
-                if is_mono and kits:
-                    for k in kits:
-                        ue_c = k.get("unita_esterna_codice")
-                        if ue_c:
+                candidate_ue_records: Dict[str, Tuple[Dict[str, Any], bool, bool, Optional[Dict[str, Any]], Optional[Dict[str, Any]]]] = {}
+
+                # 1. Da coppie commerciali esplicite da tabella PDF (PDF_TABLE_PAIRING_VERIFIED)
+                for pair in self._pdf_table_pairs_ui_to_ue.get(code, []):
+                    ue_c = str(pair.get("target_code") or "")
+                    if ue_c:
+                        ue_rec = dict(self._ac_master_ues.get(ue_c) or lookup_dict.get(ue_c) or {})
+                        if self._table_context_index and "catalog_family" not in ue_rec:
+                            ue_ctx = self._table_context_index.get(ue_c)
+                            if ue_ctx:
+                                ue_rec.update(ue_ctx)
+                        candidate_ue_records[ue_c] = (ue_rec, True, False, None, pair)
+
+                # 2. Da kit_commerciali_inclusi (kit espliciti dichiarati a catalogo)
+                for k in ui_meta.get("kit_commerciali_inclusi", []):
+                    ue_c = str(k.get("unita_esterna_codice") or "")
+                    if ue_c:
+                        ue_rec = dict(self._ac_master_ues.get(ue_c) or lookup_dict.get(ue_c) or {})
+                        if self._table_context_index and "catalog_family" not in ue_rec:
+                            ue_ctx = self._table_context_index.get(ue_c)
+                            if ue_ctx:
+                                ue_rec.update(ue_ctx)
+                        if ue_c not in candidate_ue_records:
+                            candidate_ue_records[ue_c] = (ue_rec, False, True, k, None)
+                        else:
+                            old = candidate_ue_records[ue_c]
+                            candidate_ue_records[ue_c] = (old[0], old[1], True, k, old[4])
+
+                # 3. Da unita_esterne_compatibili (layout / tabella compatibilità)
+                for ue_info in ui_meta.get("unita_esterne_compatibili", []):
+                    ue_c = str(ue_info.get("code") or ue_info.get("codice_pt") or "")
+                    if ue_c and ue_c not in candidate_ue_records:
+                        ue_rec = dict(self._ac_master_ues.get(ue_c) or lookup_dict.get(ue_c) or ue_info)
+                        if self._table_context_index and "catalog_family" not in ue_rec:
+                            ue_ctx = self._table_context_index.get(ue_c)
+                            if ue_ctx:
+                                ue_rec.update(ue_ctx)
+                        candidate_ue_records[ue_c] = (ue_rec, False, False, None, None)
+
+                # Valuta ogni UE candidata con le priorità discriminanti
+                scored_candidates = []
+                for ue_c, (ue_rec, from_pdf_table, from_kit, k_data, pair_info) in candidate_ue_records.items():
+                    c_score = self.score_ue_for_ui_anchor(ue_rec, item, ctx)
+                    if from_pdf_table:
+                        c_score += 50.0  # priorità massima: PDF_TABLE_PAIRING_VERIFIED
+                    elif from_kit:
+                        c_score += 25.0  # priorità 2: kit esplicito dichiarato dal catalogo
+                    else:
+                        c_score += 10.0  # priorità 3: compatibilità master
+                    scored_candidates.append((c_score, ue_c, ue_rec, from_pdf_table, from_kit, k_data, pair_info))
+
+                scored_candidates.sort(key=lambda x: x[0], reverse=True)
+
+                if is_mono and scored_candidates:
+                    top_score, top_ue_c, top_ue_rec, top_from_pdf, top_from_kit, top_k, top_pair = scored_candidates[0]
+                    if top_score > 0:
+                        if top_from_pdf and top_pair:
+                            # PDF_TABLE_PAIRING_VERIFIED: coppia commerciale esplicita da tabella PDF
                             relations.append(TypedRelation(
                                 source_code=code,
-                                target_code=ue_c,
-                                relation_type=RelationType.PAIRED_WITH_VERIFIED,
-                                provenance=f"climatizzatori_compatibilita_master.json:kit_commerciali_inclusi[id_kit={k.get('id_kit')}]",
+                                target_code=top_ue_c,
+                                relation_type=RelationType.PDF_TABLE_PAIRING_VERIFIED,
+                                provenance=f"catalog_table_context.json:table_id={top_pair.get('table_id')}[p.{top_pair.get('page')}]",
                                 target_role="UE",
                                 evidence={
                                     "ui_code": code,
-                                    "ue_code": ue_c,
-                                    "id_kit": k.get("id_kit"),
-                                    "nome_kit": k.get("nome_kit")
+                                    "ue_code": top_ue_c,
+                                    "table_id": top_pair.get("table_id"),
+                                    "page": top_pair.get("page"),
+                                    "brand": top_pair.get("brand"),
+                                    "taglia_commerciale": top_pair.get("commercial_size"),
+                                    "discriminant_score": top_score
+                                },
+                                confidence=0.99
+                            ))
+                        elif top_from_kit and top_k and top_k.get("id_kit"):
+                            # PAIRED_WITH_VERIFIED: solo kit/coppie esplicitamente dichiarate dal catalogo
+                            relations.append(TypedRelation(
+                                source_code=code,
+                                target_code=top_ue_c,
+                                relation_type=RelationType.PAIRED_WITH_VERIFIED,
+                                provenance=f"climatizzatori_compatibilita_master.json:kit_commerciali_inclusi[id_kit={top_k.get('id_kit')}]",
+                                target_role="UE",
+                                evidence={
+                                    "ui_code": code,
+                                    "ue_code": top_ue_c,
+                                    "id_kit": top_k.get("id_kit"),
+                                    "nome_kit": top_k.get("nome_kit"),
+                                    "discriminant_score": top_score
                                 },
                                 confidence=0.95
                             ))
-                            found_kit = True
-                            break
-
-                # 2.B: PAIRED_WITH_DERIVED per monosplit dedicato 1-a-1 senza kit esplicito
-                compat_ues = ui_meta.get("unita_esterne_compatibili", [])
-                if is_mono and not found_kit and compat_ues:
-                    mono_ues = [
-                        ue for ue in compat_ues
-                        if ue.get("tipo_sistema") == "Mono-Split" or ue.get("ports") == 1
-                    ]
-                    if len(mono_ues) >= 1:
-                        target_ue = mono_ues[0]
-                        ue_code = target_ue.get("code") or target_ue.get("codice_pt")
-                        if ue_code:
+                        else:
+                            # PAIRED_WITH_DERIVED: UI anchor -> UE derivata da tabella compatibilità/layout
                             relations.append(TypedRelation(
                                 source_code=code,
-                                target_code=ue_code,
+                                target_code=top_ue_c,
                                 relation_type=RelationType.PAIRED_WITH_DERIVED,
                                 provenance="climatizzatori_compatibilita_master.json:unita_interne.unita_esterne_compatibili[monosplit_derived]",
                                 target_role="UE",
                                 evidence={
                                     "ui_code": code,
-                                    "ue_code": ue_code,
+                                    "ue_code": top_ue_c,
                                     "tipo_sistema": "Mono-Split",
-                                    "serie": target_ue.get("serie") or target_ue.get("famiglia_catalogo")
+                                    "serie": top_ue_rec.get("serie") or top_ue_rec.get("famiglia_catalogo"),
+                                    "discriminant_score": top_score
                                 },
-                                confidence=0.85
+                                confidence=0.90
                             ))
 
-                # 2.C: COMPATIBLE_WITH per tutte le altre unità esterne (multisplit / alternative)
-                for ue_info in compat_ues:
-                    ue_code = ue_info.get("code") or ue_info.get("codice_pt")
-                    if ue_code:
+                        # Altre UE compatibili: COMPATIBLE_WITH
+                        for sc, oth_ue_c, oth_ue_rec, _, _, _, _ in scored_candidates[1:]:
+                            if sc > -30:
+                                relations.append(TypedRelation(
+                                    source_code=code,
+                                    target_code=oth_ue_c,
+                                    relation_type=RelationType.COMPATIBLE_WITH,
+                                    provenance="climatizzatori_compatibilita_master.json:unita_interne.unita_esterne_compatibili",
+                                    target_role="UE",
+                                    evidence={
+                                        "ui_code": code,
+                                        "ue_code": oth_ue_c,
+                                        "discriminant_score": sc
+                                    },
+                                    confidence=0.60
+                                ))
+                else:
+                    for sc, ue_c, ue_rec, _, _, _, _ in scored_candidates:
                         relations.append(TypedRelation(
                             source_code=code,
-                            target_code=ue_code,
+                            target_code=ue_c,
                             relation_type=RelationType.COMPATIBLE_WITH,
                             provenance="climatizzatori_compatibilita_master.json:unita_interne.unita_esterne_compatibili",
                             target_role="UE",
                             evidence={
                                 "ui_code": code,
-                                "ue_code": ue_code,
-                                "porte_attacchi": ue_info.get("porte_attacchi"),
-                                "tipo_sistema": ue_info.get("tipo_sistema")
+                                "ue_code": ue_c,
+                                "discriminant_score": sc
                             },
                             confidence=0.70
                         ))
 
         return relations
+
+    def select_ui_anchors(
+        self,
+        candidates: Any,
+        query_context: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
+        """
+        Seleziona candidati UI con forte evidenza di identità da utilizzare come anchor
+        per relation expansion inversa (UI -> UE) quando non è presente una UE anchor nella query.
+        """
+        target_brand = (query_context.get("detected_brand") or "").strip().upper()
+        requested_btus = query_context.get("requested_btus", [])
+        explicit_tipologia = query_context.get("explicit_tipologia")
+        requested_key = query_context.get("requested_family_key")
+        q_u = (query_context.get("query_text") or "").upper()
+
+        scored_uis: List[Tuple[float, Dict[str, Any]]] = []
+        for it in candidates:
+            code = str(it.get("code") or "")
+            if not (it.get("is_ui") or code in self._ac_master_uis or code in self._pdf_table_pairs_ui_to_ue):
+                continue
+            item_brand = (it.get("brand") or "").strip().upper()
+            if target_brand and item_brand and target_brand != item_brand:
+                continue
+
+            score = 0.0
+            btu = it.get("taglia_btu")
+            if requested_btus and btu and btu in requested_btus:
+                score += 50.0
+
+            it_tipo = (it.get("tipologia") or "").upper()
+            it_name = (it.get("name") or "").upper()
+            if explicit_tipologia:
+                if (
+                    it_tipo == explicit_tipologia or
+                    (explicit_tipologia == "CANALIZZATO" and "CANALIZZ" in it_name) or
+                    (explicit_tipologia == "CASSETTA" and "CASSETT" in it_name) or
+                    (explicit_tipologia == "PAVIMENTO" and ("PAVIMENTO" in it_name or "CONSOL" in it_name)) or
+                    (explicit_tipologia == "PARETE" and "PARETE" in it_name) or
+                    (explicit_tipologia == "SOFFITTO" and "SOFFITTO" in it_name)
+                ):
+                    score += 40.0
+
+            cand_keys = CatalogTableContextIndex.candidate_family_keys(it)
+            if requested_key and requested_key in cand_keys:
+                score += 30.0
+
+            mfg = (it.get("mfg_code") or "").upper()
+            model_tokens = re.findall(r'[A-Z0-9]{3,}', q_u)
+            matched_toks = 0
+            for tok in model_tokens:
+                if tok in ("CLIMATIZZATORE", "CONDIZIONATORE", "INVERTER", "MONOSPLIT", "TRIFASE", "MONOFASE", "OPTIONAL", "BOSCH", "DAIKIN", "MITSUBISHI", "MIDEA", "HAIER", "BAXI", "SAMSUNG", "PANASONIC", "BTU"):
+                    continue
+                if tok in it_name or tok in mfg:
+                    matched_toks += 1
+            if matched_toks > 0:
+                score += min(matched_toks * 15.0, 45.0)
+
+            # Penalità per mismatch di colore (es. NERO quando non richiesto)
+            if any(c in it_name for c in ("NERO", "NER", "BLACK")) and not any(c in q_u for c in ("NERO", "BLACK", "NER")):
+                score -= 20.0
+
+            if it.get("table_source") == "PDF_LAYOUT":
+                score += 10.0
+
+            if score >= 60.0:
+                scored_uis.append((score, it))
+
+        scored_uis.sort(key=lambda x: (x[0], float(x[1].get("_relevance_score") or 0.0)), reverse=True)
+        if not scored_uis:
+            return []
+
+        if query_context.get("is_multisplit") and len(requested_btus) > 1:
+            selected_by_btu = {}
+            for sc, it in scored_uis:
+                b = it.get("taglia_btu")
+                if b and b not in selected_by_btu:
+                    it["_is_ui_anchor"] = True
+                    selected_by_btu[b] = it
+            return list(selected_by_btu.values())
+
+        best = scored_uis[0][1]
+        best["_is_ui_anchor"] = True
+        return [best]
+
+    def score_ue_for_ui_anchor(
+        self,
+        ue_item: Dict[str, Any],
+        ui_item: Dict[str, Any],
+        query_context: Dict[str, Any]
+    ) -> float:
+        """
+        Calcola il punteggio di selezione della UE a partire da una UI anchor
+        seguendo rigidamente l'ordine di priorità:
+        1. Stessa tabella PDF
+        2. Stesso family_key
+        3. Stessa capacità commerciale (kW <-> BTU)
+        4. Stessa classe modello
+        5. Stessa fase elettrica
+        6. Compatibilità master
+        """
+        score = 0.0
+
+        # 1. Stessa tabella PDF
+        ui_page = ui_item.get("table_page") or (ui_item.get("table_context") or {}).get("page") or ui_item.get("primary_page")
+        ue_page = ue_item.get("table_page") or (ue_item.get("table_context") or {}).get("page") or ue_item.get("primary_page")
+        ui_tid = ui_item.get("table_id") or (ui_item.get("table_context") or {}).get("table_id")
+        ue_tid = ue_item.get("table_id") or (ue_item.get("table_context") or {}).get("table_id")
+        if ui_tid and ue_tid and ui_tid == ue_tid:
+            score += 100.0
+        elif ui_page and ue_page and int(ui_page) == int(ue_page):
+            score += 80.0
+
+        # 2. Stesso family_key
+        ui_fk = ui_item.get("family_key")
+        ue_fk = ue_item.get("family_key")
+        if ui_fk and ue_fk and ui_fk == ue_fk:
+            score += 60.0
+        elif (ui_item.get("catalog_family") or "").strip().upper() == (ue_item.get("catalog_family") or "").strip().upper() and (ui_item.get("catalog_family") or "").strip():
+            score += 40.0
+
+        # 3. Stessa capacità commerciale
+        ui_btu = ui_item.get("taglia_btu")
+        ue_kw = float(ue_item.get("potenza_nominale_kw") or ue_item.get("potenza_kw") or ue_item.get("taglia_kw") or 0.0)
+        if ui_btu and ue_kw > 0.0:
+            expected_kw = capacity_kw_for_btu(ui_btu)
+            diff = abs(ue_kw - expected_kw)
+            if diff <= 1.5:
+                score += 50.0
+            elif diff <= 3.0:
+                score += 10.0
+            else:
+                score -= 100.0
+
+        # 4. Stessa classe modello
+        ui_name = (ui_item.get("name") or ui_item.get("nome") or "").upper()
+        ue_name = (ue_item.get("name") or ue_item.get("nome") or "").upper()
+        ui_tags = set(re.findall(r'(?:RZ2G[A-Z]+|LSG[A-Z]+|[A-Z]{2,})(\d{2,3})\b', ui_name))
+        ue_tags = set(re.findall(r'(?:RZ2G[A-Z]+|LSG[A-Z]+|[A-Z]{2,})(\d{2,3})\b', ue_name))
+        common_tags = ui_tags.intersection(ue_tags) - {'32', '410'}
+        if common_tags:
+            score += 40.0
+
+        # 5. Stessa fase elettrica
+        req_phase = query_context.get("phase")
+        is_ue_trifase = bool(re.search(r'(?:\bT\b|TRIFASE|400V)', ue_name))
+        if req_phase == "TRIFASE":
+            if is_ue_trifase:
+                score += 30.0
+            else:
+                score -= 80.0
+        elif req_phase == "MONOFASE":
+            if not is_ue_trifase:
+                score += 30.0
+            else:
+                score -= 80.0
+
+        return score
 
     def get_slot_quotas(self, query_context: Dict[str, Any], limit: int) -> List[SlotConfig]:
         configs: List[SlotConfig] = []
@@ -664,6 +1181,8 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
 
     def enrich_item(self, item: Dict[str, Any]) -> None:
         """Arricchisce l'articolo clima con tag UE/UI/BTU/KW e accessori."""
+        if self._table_context_index is not None:
+            self._table_context_index.enrich_item(item)
         if "_ac_enriched" in item:
             return
         item["_ac_enriched"] = True
@@ -672,6 +1191,16 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         name = (item.get("name") or "").upper()
         mfg = (item.get("mfg_code") or "").upper()
         cat = (item.get("category_path") or "").upper()
+
+        # Product-name detection is only the last fallback. The PDF context
+        # and the compatibility master below have higher priority.
+        if self._table_context_index is not None and not item.get("catalog_family"):
+            for family in self._series_vocab:
+                if re.search(r'\b' + re.escape(family) + r'\b', name):
+                    self._table_context_index.apply_family_fallback(
+                        item, family, "PRODUCT_NAME", priority=4
+                    )
+                    break
 
         # 0. Accessori e ricambi
         is_accessory = (
@@ -705,6 +1234,13 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             item["max_ui_collegabili"] = ue_meta.get("max_ui_collegabili")
             item["tipo_sistema"] = ue_meta.get("tipo_sistema")
             item["famiglia_catalogo"] = ue_meta.get("famiglia_catalogo")
+            if self._table_context_index is not None:
+                self._table_context_index.apply_family_fallback(
+                    item,
+                    ue_meta.get("famiglia_catalogo") or ue_meta.get("serie"),
+                    "COMPATIBILITY_MASTER",
+                    priority=2,
+                )
             item["serie"] = ue_meta.get("serie")
             item["refrigerante"] = ue_meta.get("refrigerante")
             item["primary_page"] = ue_meta.get("primary_page") or ue_meta.get("pagina_catalogo")
@@ -749,6 +1285,13 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             item["tag_btu_display"] = ui_meta.get("tag_btu_display")
             item["taglia_btu"] = ui_meta.get("taglia_btu")
             item["famiglia_catalogo"] = ui_meta.get("famiglia_catalogo")
+            if self._table_context_index is not None:
+                self._table_context_index.apply_family_fallback(
+                    item,
+                    ui_meta.get("famiglia_catalogo") or ui_meta.get("serie"),
+                    "COMPATIBILITY_MASTER",
+                    priority=2,
+                )
             item["serie"] = ui_meta.get("serie")
             item["tipologia"] = ui_meta.get("tipologia")
             item["tipo_sistema"] = ui_meta.get("tipo_sistema")

@@ -61,14 +61,14 @@ class CandidatePoolManager:
     def sort_pools(self) -> None:
         """
         Ordina ciascun pool applicando la precedenza strutturale degli Evidence Tiers:
-        1. _evidence_tier (crescente: 1 prima di 5)
+        1. _evidence_tier (crescente: 1 prima di 9)
         2. -_tier_score (decrescente: punteggi più alti prima all'interno dello stesso tier)
         Preserva l'ordine naturale di inserimento come terzo criterio stabile.
         """
         for slot_id, pool in self._pools.items():
             pool.sort(
                 key=lambda x: (
-                    x.get("_evidence_tier", 5),
+                    x.get("_evidence_tier", 9),
                     -x.get("_tier_score", 0.0)
                 )
             )
@@ -173,7 +173,7 @@ class CandidatePoolManager:
             # Ordina i rimanenti per evidence tier e tier score
             remaining_items.sort(
                 key=lambda x: (
-                    x.get("_evidence_tier", 5),
+                    x.get("_evidence_tier", 9),
                     -x.get("_tier_score", 0.0)
                 )
             )

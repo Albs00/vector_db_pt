@@ -34,6 +34,7 @@ scratch/
 # Large binary files (catalogs, Excel)
 *.pdf
 *.xlsx
+/catalog_table_context.json
 
 # Knowledge base (large JSON, LanceDB, catalogs - too big for GitHub)
 Knowledge/

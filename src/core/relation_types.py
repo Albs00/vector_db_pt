@@ -28,6 +28,8 @@ from dataclasses import dataclass, field
 
 
 class RelationType(str, Enum):
+    PDF_TABLE_PAIRING_VERIFIED = "PDF_TABLE_PAIRING_VERIFIED"
+    KIT_PAIRING_VERIFIED = "KIT_PAIRING_VERIFIED"
     PAIRED_WITH_VERIFIED = "PAIRED_WITH_VERIFIED"
     PAIRED_WITH_DERIVED = "PAIRED_WITH_DERIVED"
     PAIRED_WITH = "PAIRED_WITH"  # Retro-compatibilità
@@ -101,7 +103,9 @@ class TypedRelationExpander:
         """
         def _rel_priority(rel: TypedRelation) -> Tuple[int, float]:
             rt = rel.relation_type
-            if rt == RelationType.PAIRED_WITH_VERIFIED or rt == RelationType.PAIRED_WITH:
+            if rt == RelationType.PDF_TABLE_PAIRING_VERIFIED:
+                prio = 0
+            elif rt in (RelationType.KIT_PAIRING_VERIFIED, RelationType.PAIRED_WITH_VERIFIED, RelationType.PAIRED_WITH):
                 prio = 1
             elif rt == RelationType.PAIRED_WITH_DERIVED:
                 prio = 2
@@ -125,12 +129,59 @@ class TypedRelationExpander:
                 if max_expansions_per_anchor is not None and count >= max_expansions_per_anchor:
                     break
                 tgt_code = r.target_code
-                if tgt_code not in merged_candidates:
+                rel_type_val = r.relation_type.value if hasattr(r.relation_type, "value") else str(r.relation_type)
+                rel_entry = {
+                    "relation_type": rel_type_val,
+                    "source_code": anchor,
+                    "target_code": tgt_code,
+                    "provenance": r.provenance,
+                    "evidence": r.evidence,
+                    "confidence": float(r.confidence or 0.0),
+                    "target_role": r.target_role,
+                }
+
+                if tgt_code in merged_candidates:
+                    existing_item = merged_candidates[tgt_code]
+                    existing_item["_is_relation_candidate"] = True
+                    # Inizializza o arricchisce la lista di relation_evidences
+                    if "_relation_evidences" not in existing_item:
+                        existing_item["_relation_evidences"] = []
+                    existing_pairs = {(e.get("relation_type"), e.get("source_code")) for e in existing_item["_relation_evidences"]}
+                    if (rel_type_val, anchor) not in existing_pairs:
+                        existing_item["_relation_evidences"].append(rel_entry)
+
+                    def _prio_val(r_name: Optional[str]) -> int:
+                        if not r_name:
+                            return 999
+                        if r_name == RelationType.PDF_TABLE_PAIRING_VERIFIED:
+                            return 0
+                        if r_name in (RelationType.KIT_PAIRING_VERIFIED, RelationType.PAIRED_WITH_VERIFIED, RelationType.PAIRED_WITH):
+                            return 1
+                        if r_name == RelationType.PAIRED_WITH_DERIVED:
+                            return 2
+                        if r_name in (RelationType.REQUIRES, RelationType.INCLUDES, RelationType.KIT_COMPONENT):
+                            return 3
+                        return 4
+
+                    # Aggiorna scalar solo se non presente o se nuova relazione è prioritaria
+                    if not existing_item.get("_relation_type") or _prio_val(rel_type_val) < _prio_val(existing_item.get("_relation_type")):
+                        existing_item["_relation_type"] = rel_type_val
+                        existing_item["_relation_source"] = anchor
+                        existing_item["_relation_provenance"] = r.provenance
+                        existing_item["_relation_evidence"] = r.evidence
+                        existing_item["_relation_confidence"] = r.confidence
+
+                    if r.target_role and not existing_item.get("_inferred_role"):
+                        existing_item["_inferred_role"] = r.target_role
+                    if existing_item not in expanded:
+                        expanded.append(existing_item)
+                else:
                     tgt_item = lookup_dict.get(tgt_code)
                     if tgt_item:
                         item_copy = dict(tgt_item)
                         item_copy["_is_relation_candidate"] = True
-                        item_copy["_relation_type"] = r.relation_type.value if hasattr(r.relation_type, "value") else str(r.relation_type)
+                        item_copy["_relation_evidences"] = [rel_entry]
+                        item_copy["_relation_type"] = rel_type_val
                         item_copy["_relation_source"] = anchor
                         item_copy["_relation_provenance"] = r.provenance
                         item_copy["_relation_evidence"] = r.evidence

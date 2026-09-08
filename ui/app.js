@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Tech / Compatibility Modal Elements
   const techModal = document.getElementById("tech-modal");
   const techModalBrand = document.getElementById("tech-modal-brand");
+  const techModalFamily = document.getElementById("tech-modal-family");
   const techModalBtu = document.getElementById("tech-modal-btu");
   const techModalPtPill = document.getElementById("tech-modal-pt-pill");
   const techModalPtVal = document.getElementById("tech-modal-pt-val");
@@ -416,6 +417,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalUnits = item.total_units_count != null ? item.total_units_count : singleUnits.length;
     const totalAccessories = item.total_accessories_count || 0;
 
+    const matchedTableContext = item.matched_table_context || null;
+    const primaryTableContext = item.table_context || null;
+    const displayedTableContext = matchedTableContext || primaryTableContext || {};
+    const displayedFamily = displayedTableContext.catalog_family || item.catalog_family || "";
+    const displayedFamilyKey = displayedTableContext.family_key || item.family_key || "";
+    const displayedTableTitle = displayedTableContext.table_title || item.table_title || displayedFamily;
+    const displayedTablePage = displayedTableContext.page || item.table_page || "";
+    const displayedTableSource = displayedTableContext.source || item.table_source || "";
+    const primaryFamily = (primaryTableContext && primaryTableContext.catalog_family) || item.catalog_family || "";
+    const isAlternateTableMatch = Boolean(
+      matchedTableContext && primaryFamily && displayedFamily && primaryFamily !== displayedFamily
+    );
+    const familyConflict = primaryTableContext && primaryTableContext.family_conflict;
+    const tableContextHtml = displayedFamily ? `
+      <div class="family-context-panel ${isAlternateTableMatch ? 'alternate-match' : ''}">
+        <div class="family-context-heading">
+          <span class="family-context-label">Famiglia commerciale PDF</span>
+          ${item.table_family_match === 'exact' ? '<span class="family-match-badge">Match tabella</span>' : ''}
+        </div>
+        <div class="family-context-main" title="${escapeHtml(displayedTableTitle)}">${escapeHtml(displayedFamily)}</div>
+        <div class="family-context-meta">
+          ${displayedFamilyKey ? `<code>${escapeHtml(displayedFamilyKey)}</code>` : ''}
+          ${displayedTablePage ? `<span>Pagina ${escapeHtml(displayedTablePage)}</span>` : ''}
+          ${displayedTableSource ? `<span>${escapeHtml(displayedTableSource)}</span>` : ''}
+        </div>
+        ${isAlternateTableMatch ? `
+          <div class="family-context-note">Contesto primario: ${escapeHtml(primaryFamily)}</div>
+        ` : ''}
+        ${familyConflict ? `
+          <div class="family-conflict-note">Conflitto nome/tabella segnalato</div>
+        ` : ''}
+      </div>
+    ` : '';
+
     const isUe = item.is_ue || item.tipo_unita === "UE";
     const isUi = item.is_ui || item.tipo_unita === "UI";
     const unitLabel = isUe ? "❄️ UI Compatibili" : (isUi ? "🏢 UE Compatibili" : (item.product_type === "INDOOR_UNIT" ? "🏢 UE Abbinabili" : "❄️ UI Abbinabili"));
@@ -432,6 +467,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <h3 class="product-name">${escapeHtml(item.name || "Articolo senza nome")}</h3>
         <p class="category-path" title="${escapeHtml(item.category || '')}">${escapeHtml(item.category || "Generale")}</p>
+
+        ${tableContextHtml}
 
         <div class="codes-group">
           <div class="code-pill copy-btn" data-copy="${escapeHtml(item.code || '')}" title="Clicca per copiare">
@@ -535,6 +572,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Header info
     techModalBrand.textContent = item.brand || "PUGLIA TERMICA";
+    const modalTableContext = item.matched_table_context || item.table_context || {};
+    const modalFamily = modalTableContext.catalog_family || item.catalog_family || "";
+    const modalFamilyKey = modalTableContext.family_key || item.family_key || "";
+    const modalTablePage = modalTableContext.page || item.table_page || "";
+    const modalTableSource = modalTableContext.source || item.table_source || "";
+    if (modalFamily) {
+      techModalFamily.style.display = "inline-flex";
+      techModalFamily.textContent = `Famiglia PDF: ${modalFamily}`;
+      techModalFamily.title = [modalFamilyKey, modalTablePage ? `Pagina ${modalTablePage}` : "", modalTableSource]
+        .filter(Boolean)
+        .join(" · ");
+    } else {
+      techModalFamily.style.display = "none";
+      techModalFamily.textContent = "";
+      techModalFamily.title = "";
+    }
     techModalTitle.textContent = item.name || "Articolo";
     techModalPtVal.textContent = item.code || "-";
     techModalPtPill.setAttribute("data-copy", item.code || "");
@@ -1107,7 +1160,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function escapeHtml(str) {
-    if (!str) return "";
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    if (str === null || str === undefined) return "";
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 });

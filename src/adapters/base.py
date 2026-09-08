@@ -96,3 +96,15 @@ class BaseCategoryAdapter(ABC):
         Arricchisce l'articolo con attributi e metadati di categoria.
         """
         pass
+
+    def select_ui_anchors(
+        self,
+        candidates: Any,
+        query_context: Dict[str, Any]
+    ) -> List[Dict[str, Any]]:
+        """
+        Seleziona candidati unità interna con forte evidenza identitaria da utilizzare
+        come anchor per espansione inversa (UI -> UE) se nessuna UE anchor è presente.
+        """
+        return []
+

@@ -39,6 +39,10 @@ from src.core.candidate_pool import CandidatePoolManager
 from src.core.relation_types import TypedRelation, RelationType, TypedRelationExpander
 from src.core.evidence_reranker import GenericEvidenceReranker, EvidenceTier
 from src.core.category_router import CategoryRouter, DomainCandidate
+from src.core.catalog_table_context import (
+    CatalogTableContextIndex,
+    normalize_family_key_part,
+)
 
 # Category Adapters
 from src.adapters.climate import ClimateCategoryAdapter, extract_split_capacities
@@ -57,6 +61,7 @@ BOILER_SPECS_PATH = os.path.join(BASE_DIR, "Knowledge", "catalog_pdf_boiler_spec
 HEATER_SPECS_PATH = os.path.join(BASE_DIR, "Knowledge", "catalog_pdf_water_heater_specs.json")
 FANCOIL_SPECS_PATH = os.path.join(BASE_DIR, "Knowledge", "catalog_pdf_fancoil_specs.json")
 HEATPUMP_SPECS_PATH = os.path.join(BASE_DIR, "Knowledge", "catalog_pdf_heatpump_specs.json")
+CATALOG_TABLE_CONTEXT_PATH = os.path.join(BASE_DIR, "Knowledge", "catalog_table_context.json")
 if not os.path.exists(MASTER_CATALOG_PATH):
     MASTER_CATALOG_PATH = os.path.join(os.path.dirname(BASE_DIR), "Knowledge", "unified_catalog_master.json")
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
@@ -212,6 +217,7 @@ class CatalogSearchEngine:
         self._brand_detector: Optional[DynamicBrandDetector] = None
         self._evidence_reranker = GenericEvidenceReranker()
         self._relation_expander = TypedRelationExpander()
+        self._catalog_table_context: Optional[CatalogTableContextIndex] = None
 
         # Adapters e Router
         self._climate_adapter: Optional[ClimateCategoryAdapter] = None
@@ -229,6 +235,9 @@ class CatalogSearchEngine:
         self._heatpump_specs = None
 
     def _ensure_initialized(self):
+        if self._catalog_table_context is None:
+            self._catalog_table_context = CatalogTableContextIndex(CATALOG_TABLE_CONTEXT_PATH)
+
         if self._lookup is None:
             if os.path.exists(self.lookup_path):
                 with open(self.lookup_path, "r", encoding="utf-8") as f:
@@ -259,7 +268,8 @@ class CatalogSearchEngine:
         if self._climate_adapter is None:
             self._climate_adapter = ClimateCategoryAdapter(
                 ac_master_path=AC_MASTER_PATH,
-                pdf_specs_path=PDF_SPECS_PATH
+                pdf_specs_path=PDF_SPECS_PATH,
+                table_context_index=self._catalog_table_context,
             )
             self._ac_master_uis = self._climate_adapter._ac_master_uis
             self._ac_master_ues = self._climate_adapter._ac_master_ues
@@ -332,6 +342,13 @@ class CatalogSearchEngine:
     def _enrich_item_ac_tags(self, item: Dict[str, Any]):
         self._ensure_initialized()
         self._climate_adapter.enrich_item(item)
+
+    def _enrich_candidate(self, item: Dict[str, Any], adapter=None) -> None:
+        """Attach table context before any category-specific enrichment."""
+        if self._catalog_table_context is not None:
+            self._catalog_table_context.enrich_item(item)
+        if adapter is not None:
+            adapter.enrich_item(item)
 
     def _search_master_retry(
         self,
@@ -437,7 +454,7 @@ class CatalogSearchEngine:
         if single_exact_match and len(raw_model_tokens) <= 1 and len(clean_q.split()) <= 2:
             elapsed = time.time() - t0
             item = dict(single_exact_match)
-            self._climate_adapter.enrich_item(item)
+            self._enrich_candidate(item, self._climate_adapter)
             if include_accessories:
                 rel = self._acc_engine.get_relations(item)
                 item["product_type"] = rel["product_type"]
@@ -493,6 +510,32 @@ class CatalogSearchEngine:
         adapter = primary_domain.adapter
         query_context = adapter.extract_query_context(query)
         query_context["detected_brand"] = target_brand
+        family_request = self._catalog_table_context.analyze_query(
+            query,
+            target_brand,
+            fallback_family=query_context.get("requested_series"),
+        )
+        gen_family_key = family_request.get("requested_family_key")
+        if gen_family_key:
+            brand_norm = normalize_family_key_part(target_brand)
+            brand_families = (
+                self._catalog_table_context._families_by_brand.get(brand_norm, [])
+                if hasattr(self._catalog_table_context, "_families_by_brand")
+                else []
+            )
+            has_codes = bool(self._catalog_table_context.codes_for_family_key(gen_family_key))
+            req_family = family_request.get("requested_family")
+            is_valid_brand_family = bool(req_family and req_family in brand_families)
+
+            if not has_codes and not is_valid_brand_family:
+                family_request["requested_family_key"] = None
+                family_request["requested_family"] = None
+
+        query_context.update(family_request)
+        if family_request.get("requested_family") and not query_context.get("requested_series"):
+            query_context["requested_series"] = family_request["requested_family"]
+        elif not family_request.get("requested_family_key"):
+            query_context["requested_series"] = None
         target_category = category or primary_domain.category_filter
 
         fts_query = expand_technical_query(query)
@@ -539,28 +582,55 @@ class CatalogSearchEngine:
             category_filter=target_category
         )
 
+        # Structured retrieval from PDF table membership. This makes the
+        # commercial family searchable even when the product name conflicts
+        # with the table title or omits it entirely.
+        table_family_results = []
+        requested_family_key = query_context.get("requested_family_key")
+        if requested_family_key:
+            for code in self._catalog_table_context.codes_for_family_key(requested_family_key):
+                source_item = self._lookup.get(code)
+                if source_item:
+                    family_item = dict(source_item)
+                    family_item["_is_table_family_candidate"] = True
+                    family_item["_relevance_score"] = max(
+                        float(family_item.get("_relevance_score") or 0.0), 40.0
+                    )
+                    table_family_results.append(family_item)
+
         # STADIO 5.5: CANDIDATE MERGE & CATEGORY HYGIENE
         merged_candidates: Dict[str, Dict[str, Any]] = {}
 
         # 1. Exact token matches
         for it in exact_token_candidates:
+            self._enrich_candidate(it, adapter)
             if adapter.filter_candidate(it, query_context):
                 merged_candidates[it['code']] = it
 
         # 2. Near model candidates
         for it in near_model_candidates:
+            self._enrich_candidate(it, adapter)
             c = it['code']
             if c not in merged_candidates and adapter.filter_candidate(it, query_context):
                 merged_candidates[c] = it
 
-        # 3. LanceDB results
+        # 3. Exact table-family membership
+        for it in table_family_results:
+            self._enrich_candidate(it, adapter)
+            c = it['code']
+            if c not in merged_candidates and adapter.filter_candidate(it, query_context):
+                merged_candidates[c] = it
+
+        # 4. LanceDB results
         for r in raw_results:
+            self._enrich_candidate(r, adapter)
             c = r['code']
             if c not in merged_candidates and adapter.filter_candidate(r, query_context):
                 merged_candidates[c] = dict(r)
 
-        # 4. Master retry results
+        # 5. Master retry results
         for r in master_results:
+            self._enrich_candidate(r, adapter)
             c = r['code']
             if adapter.filter_candidate(r, query_context):
                 if c not in merged_candidates:
@@ -577,6 +647,13 @@ class CatalogSearchEngine:
             it for it in merged_candidates.values()
             if it.get('_is_exact_token_match') or it.get('_is_near_model_candidate')
         ]
+        # Inversa: se non abbiamo ancora anchor UE, selezioniamo UI con forte evidenza identitaria
+        has_ue_anchor = any(it.get('is_ue') for it in anchor_items)
+        if not has_ue_anchor and hasattr(adapter, "select_ui_anchors"):
+            ui_anchors = adapter.select_ui_anchors(merged_candidates.values(), query_context)
+            if ui_anchors:
+                anchor_items.extend(ui_anchors)
+
         if anchor_items:
             relations = adapter.expand_relations(anchor_items, self._lookup, query_context=query_context)
             for rel in relations:
@@ -590,6 +667,7 @@ class CatalogSearchEngine:
                 max_expansions_per_anchor=50
             )
             for exp_it in expanded:
+                self._enrich_candidate(exp_it, adapter)
                 if not adapter.filter_candidate(exp_it, query_context):
                     merged_candidates.pop(exp_it['code'], None)
 
@@ -606,6 +684,7 @@ class CatalogSearchEngine:
 
         for c_code, it in list(merged_candidates.items()):
             slot_id = adapter.assign_slot(it, query_context)
+            it["slot_id"] = slot_id
             domain_boost = adapter.compute_domain_boost(it, query_context)
 
             is_unique_exact = True
@@ -636,7 +715,12 @@ class CatalogSearchEngine:
             it.get("_is_exact_token_match") and not it.get("_is_near_model_candidate")
             for it in merged_candidates.values()
         ) or any(
-            getattr(r, "relation_type", None) in (RelationType.PAIRED_WITH_VERIFIED, RelationType.PAIRED_WITH_DERIVED)
+            getattr(r, "relation_type", None) in (
+                RelationType.PDF_TABLE_PAIRING_VERIFIED,
+                RelationType.KIT_PAIRING_VERIFIED,
+                RelationType.PAIRED_WITH_VERIFIED,
+                RelationType.PAIRED_WITH_DERIVED
+            )
             for r in relations
         )
         query_context["has_reliable_anchor"] = has_reliable_anchor
@@ -647,7 +731,7 @@ class CatalogSearchEngine:
 
         formatted_results = []
         for r in top_candidates:
-            adapter.enrich_item(r)
+            self._enrich_candidate(r, adapter)
             if include_accessories:
                 rel = self._acc_engine.get_relations(r)
                 item_variants = rel.get("variants", [])
@@ -682,7 +766,7 @@ class CatalogSearchEngine:
                 "primary_page": r.get("primary_page"),
                 "catalog_pages": r.get("catalog_pages"),
                 "score": round(r.get("_final_score", 0.0), 4),
-                "evidence_tier": r.get("_evidence_tier", 5),
+                "evidence_tier": r.get("_evidence_tier", 9),
                 "tier_score": round(r.get("_tier_score", 0.0), 4),
                 "product_type": p_type,
                 "variants": item_variants,
@@ -694,9 +778,31 @@ class CatalogSearchEngine:
                 "total_accessories_count": total_acc,
                 "page_accessories": flat_accs[:8]
             }
+            for key in [
+                "catalog_family", "family_key", "table_title", "table_id",
+                "table_page", "table_section_title", "table_source",
+                "table_confidence", "table_context",
+            ]:
+                if key in r:
+                    res_item[key] = r[key]
+
+            evidence_tags = []
+            f_match = r.get("family_match") or r.get("_table_family_match")
+            if f_match == "exact":
+                evidence_tags.extend(["CATALOG_FAMILY_MATCH", "CATALOG_FAMILY_EXACT"])
+            elif f_match == "mismatch":
+                evidence_tags.append("CATALOG_FAMILY_MISMATCH")
+            res_item["evidence_tags"] = evidence_tags
+            res_item["slot_id"] = r.get("slot_id")
+            res_item["family_match"] = f_match or "none"
+            res_item["family_evidence"] = r.get("family_evidence") or r.get("_table_family_evidence")
+            res_item["table_family_match"] = f_match or "none"
+            res_item["matched_table_family_key"] = r.get("_matched_table_family_key")
+            res_item["matched_table_context"] = r.get("_matched_table_context")
             # Metadati di slot e tracciabilità separata di identità e relazione
             res_item["identity_evidence"] = r.get("_identity_evidence")
             res_item["relation_evidence"] = r.get("_relation_evidence_meta")
+            res_item["relation_evidences"] = r.get("relation_evidences") or r.get("_relation_evidences") or []
             res_item["relation_strength"] = r.get("_relation_strength")
             res_item["match_type"] = r.get("_exact_match_type") or ("NEAR_MODEL" if r.get("_is_near_model_candidate") else "DISCOVERY")
             if "_relation_provenance" in r:
@@ -719,16 +825,26 @@ class CatalogSearchEngine:
                     "name": c.get("name"),
                     "brand": c.get("brand"),
                     "mfg_code": c.get("mfg_code"),
+                    "slot_id": s_id,
                     "match_type": c.get("_exact_match_type") or ("NEAR_MODEL" if c.get("_is_near_model_candidate") else "DISCOVERY"),
                     "identity_evidence": c.get("_identity_evidence"),
                     "relation_evidence": c.get("_relation_evidence_meta"),
+                    "relation_evidences": c.get("relation_evidences") or c.get("_relation_evidences") or [],
                     "relation_strength": c.get("_relation_strength"),
-                    "evidence_tier": c.get("_evidence_tier", 5),
+                    "evidence_tier": c.get("_evidence_tier", 9),
                     "tier_score": round(c.get("_tier_score", 0.0), 4),
                     "score": round(c.get("_final_score", 0.0), 4),
                     "relation_type": c.get("_relation_type"),
                     "relation_provenance": c.get("_relation_provenance"),
                     "primary_page": c.get("primary_page"),
+                    "catalog_family": c.get("catalog_family"),
+                    "family_key": c.get("family_key"),
+                    "family_match": c.get("family_match") or c.get("_table_family_match", "none"),
+                    "family_evidence": c.get("family_evidence") or c.get("_table_family_evidence"),
+                    "table_title": c.get("table_title"),
+                    "table_page": c.get("table_page"),
+                    "table_source": c.get("table_source"),
+                    "table_context": c.get("table_context"),
                     "is_ui": c.get("is_ui", False),
                     "is_ue": c.get("is_ue", False),
                     "taglia_btu": c.get("taglia_btu")
@@ -744,6 +860,10 @@ class CatalogSearchEngine:
         query_analysis_data = {
             "query_context": query_context,
             "target_brand": target_brand,
+            "phase": query_context.get("phase"),
+            "requested_brand": query_context.get("requested_brand"),
+            "requested_family": query_context.get("requested_family"),
+            "requested_family_key": query_context.get("requested_family_key"),
             "domain_candidates": [d.adapter.name for d in domain_candidates] if domain_candidates else [],
             "exact_token_candidates": [
                 {"code": str(it.get("code")), "mfg_code": it.get("mfg_code"), "match_type": it.get("_exact_match_type")}
