@@ -13,6 +13,7 @@ Incapsula:
 import re
 import json
 import os
+import collections
 from typing import Dict, Any, List, Optional, Tuple, Set
 
 from src.adapters.base import BaseCategoryAdapter
@@ -22,10 +23,10 @@ from build_full_ac_matrix import extract_btu_and_kw
 
 
 def extract_split_capacities(query: str) -> List[int]:
-    """Estrae le capacità BTU richieste per le unità interne multisplit (es. 9+12 -> [9000, 12000])."""
+    """Estrae le capacità BTU richieste per le unità interne multisplit (es. 9+12 -> [9000, 12000], 7+15 -> [7000, 15000])."""
     q_u = query.upper()
     m = re.search(
-        r'\b(\d{1,2}|7000|9000|12000|18000|21000|24000)\s*\+\s*(\d{1,2}|7000|9000|12000|18000|21000|24000)(?:\s*\+\s*(\d{1,2}|7000|9000|12000|18000|21000|24000))?(?:\s*\+\s*(\d{1,2}|7000|9000|12000|18000|21000|24000))?(?:\s*\+\s*(\d{1,2}|7000|9000|12000|18000|21000|24000))?\b',
+        r'\b(\d{1,2}|7000|9000|12000|15000|18000|21000|24000)\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000)(?:\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000))?(?:\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000))?(?:\s*\+\s*(\d{1,2}|7000|9000|12000|15000|18000|21000|24000))?\b',
         q_u
     )
     if m:
@@ -37,7 +38,7 @@ def extract_split_capacities(query: str) -> List[int]:
                     val *= 1000
                 capacities.append(val)
         return capacities
-    m_single = re.search(r'\b(7000|9000|12000|18000|21000|24000)\s*BTU\b', q_u)
+    m_single = re.search(r'\b(7000|9000|12000|15000|18000|21000|24000)\s*BTU\b', q_u)
     if m_single:
         return [int(m_single.group(1))]
     return []
@@ -68,6 +69,9 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         self._ac_master_uis: Dict[str, Any] = {}
         self._ac_master_ues: Dict[str, Any] = {}
         self._pdf_specs: Dict[str, Any] = {}
+        self._dynamic_capacity_class_map: Dict[Tuple[str, str], int] = {}
+        self._series_vocab: List[str] = []
+        self._series_aliases: Dict[str, List[str]] = {}
 
         if ac_master_path and os.path.exists(ac_master_path):
             try:
@@ -85,6 +89,97 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             except Exception:
                 pass
 
+        self._init_dynamic_capacity_classes()
+        self._init_dynamic_series_vocabulary()
+
+    def _init_dynamic_capacity_classes(self) -> None:
+        """Costruisce dinamicamente la mappa brand + capacity_class -> BTU dal master con voto a maggioranza."""
+        raw_counts: Dict[Tuple[str, str], Dict[int, int]] = collections.defaultdict(lambda: collections.defaultdict(int))
+        for c, ui in self._ac_master_uis.items():
+            brand = str(ui.get("brand") or "").strip().upper()
+            btu = ui.get("taglia_btu")
+            if not brand or not btu:
+                continue
+            name = str(ui.get("name") or "").upper()
+            mfg = str(ui.get("mfg_code") or "").upper()
+            combined = f"{name} {mfg}"
+
+            digits_found = re.findall(
+                r'(?:AS|AD|AF|JSGNW|MHGNW|LSGND|FTX[A-Z]|MSZ-[A-Z]+|CS-[A-Z]+|ALYA-|ELEGANCE\s*|XTREME\s*PRO\s*|HI\s*COMFORT\s*)(\d{2})',
+                combined
+            )
+            if not digits_found:
+                digits_found = re.findall(r'\b[A-Z]{1,4}(\d{2})[A-Z0-9\-]*\b', combined)
+
+            for d in set(digits_found):
+                raw_counts[(brand, d)][btu] += 1
+
+        self._dynamic_capacity_class_map = {}
+        for key, btu_counts in raw_counts.items():
+            best_btu = max(btu_counts, key=btu_counts.get)
+            self._dynamic_capacity_class_map[key] = best_btu
+
+    def _init_dynamic_series_vocabulary(self) -> None:
+        """Costruisce dinamicamente il vocabolario canonico delle serie/famiglie dal compatibility master."""
+        STOPWORDS = {
+            'COMMERCIALE', 'SERIE COMMERCIALE', 'MONO SPLIT', 'MULTI SPLIT',
+            'CANALIZZATO', 'CASSETTA', 'PAVIMENTO', 'CONSOLE', 'COLONNA', 'SOFFITTO',
+            'R32', 'R410A', 'INVERTER', 'WHITE', 'BLACK', 'SILVER', 'MATT', 'WIFI',
+            'PARETE', 'LIGHT COMMERCIAL', 'SUPER MATCH',
+            'SPLIT', 'DUAL', 'TRIAL', 'QUADRI', 'PENTA', 'MULTI', 'MONO',
+            'CLIMATIZZATORE', 'CONDIZIONATORE', 'CLIMATIZZATORI', 'CONDIZIONATORI',
+            'GAS', 'SERIE', 'GAMMA', 'LINEA', 'CLASSE', 'UNITA', 'ESTERNA', 'INTERNA',
+            'MOTOCONDENSANTE', 'SISTEMA', 'UNITA ESTERNA', 'UNITA INTERNA'
+        }
+
+        self._series_aliases = {
+            "HI COMFORT": ["HI-COMFORT", "HICOMFORT"],
+            "EASY SMART": ["EASY-SMART"],
+            "ELEGANCE": ["EVOL/ELEG", "ELEG"],
+            "XTREME PRO": ["XTREME", "XTREME-PRO"],
+            "BREEZELESS": ["BREEZELESS+", "BREEZELESS E"],
+            "FLEXIS PLUS": ["FLEXIS"],
+            "EXPERT": ["EXPERT NORDIC"],
+            "RZ2GT": ["LIGHTCOMM RZ2GT", "RZ2GND"]
+        }
+
+        raw_terms = set()
+        for d in [self._ac_master_uis, self._ac_master_ues]:
+            for c, it in d.items():
+                for fld in ['serie', 'famiglia_catalogo']:
+                    val = it.get(fld)
+                    if val and isinstance(val, str):
+                        raw_terms.add(val.strip())
+                        for part in re.split(r'[/()]', val):
+                            cp = part.strip()
+                            if len(cp) >= 3:
+                                raw_terms.add(cp)
+                name = it.get('name') or ''
+                words = [w for w in re.findall(r'[A-Z0-9\+\-]+', name) if len(w) >= 4]
+                for w in words:
+                    if w not in STOPWORDS and not any(w.startswith(p) for p in ['MULTI', 'COMM', 'ATT', '1U', '2U', '3U', '4U', '5U']):
+                        raw_terms.add(w)
+
+        for k in self._series_aliases.keys():
+            raw_terms.add(k)
+
+        filtered_vocab = set()
+        for t in raw_terms:
+            tu = t.strip().upper()
+            if not tu or len(tu) < 3 or tu in STOPWORDS:
+                continue
+            if tu.isdigit():
+                continue
+            if re.fullmatch(r'\d+[A-Z]?', tu) or re.fullmatch(r'\d+\+\d+', tu) or re.fullmatch(r'\d+BTU', tu) or re.fullmatch(r'\d+KW', tu):
+                continue
+            filtered_vocab.add(tu)
+
+        self._series_vocab = sorted(
+            filtered_vocab,
+            key=len,
+            reverse=True
+        )
+
     @property
     def name(self) -> str:
         return "CLIMA"
@@ -92,25 +187,60 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
     def get_catalog_label_extractors(self) -> List[Any]:
         """
         Restituisce estrattori di sigle modello commerciali da catalogo specifici per il clima.
-        Estrae ad esempio sigle Bosch 5000M direttamente dai nomi a catalogo.
+        Estrae sigle commerciali direttamente dai nomi a catalogo per tutti i brand.
         """
-        def extract_bosch_labels(item: Dict[str, Any]) -> List[Dict[str, Any]]:
-            brand = str(item.get("brand") or "").upper()
-            if brand != "BOSCH":
-                return []
-            name = str(item.get("name") or "")
-            m = re.search(r'\b(5000M\s*\d+/\d+\s*E)\b', name, re.IGNORECASE)
-            if m:
-                raw_lbl = m.group(1).strip()
-                return [{
-                    "raw_label": raw_lbl,
-                    "brand": brand,
-                    "source_field": "name",
-                    "provenance": "unified_catalog_master.name"
-                }]
-            return []
+        patterns = [
+            # Bosch
+            r'\b(5000M\s*\d+/\d+\s*E)\b',
+            # Haier UEs e UIs
+            r'\b([1-5]U\d{2}[A-Z0-9\-\/]+)\b',
+            r'\b(A[SDF]\d{2}[A-Z0-9\-\/]+)\b',
+            # Baxi UEs e UIs
+            r'\b(LSGT\d{2,3}-[1-5][A-Z0-9]*)\b',
+            r'\b(LSGND\d{2,3}-[A-Z0-9]+)\b',
+            r'\b([JM]SGNW\d{2})\b',
+            r'\b(RZ2G[A-Z0-9\-\/]+)\b',
+            # Midea UEs e UIs
+            r'\b(M[2-5]O[A-Z0-9\-\/]+)\b',
+            r'\b(MO[A-Z0-9\-\/]+U-[0-9]+[A-Z0-9\-]*)\b',
+            r'\b([A-Z0-9]+-[0-9]+(?:IU|OU|HFN[0-9\-Q]*))\b',
+            # Daikin
+            r'\b([2-5]MXM\d{2}[A-Z0-9]*)\b',
+            r'\b([FR]TX[A-Z]\d{2}[A-Z0-9]*)\b',
+            # Mitsubishi
+            r'\b(M[XSU]Z-[A-Z0-9\-\/]+)\b',
+            # Panasonic
+            r'\b(C[US]-[0-9A-Z\-\/]+)\b',
+            # Hisense
+            r'\b([2-5]AMW\d{2}[A-Z0-9]*)\b',
+            r'\b([A-Z]{2}\d{2}[A-Z0-9]{3,})\b',
+            # Samsung
+            r'\b(AJ\d{3}[A-Z0-9]*)\b'
+        ]
+        compiled_regexes = [re.compile(p, re.IGNORECASE) for p in patterns]
 
-        return [extract_bosch_labels]
+        def extract_ac_labels(item: Dict[str, Any]) -> List[Dict[str, Any]]:
+            brand = str(item.get("brand") or "").strip().upper()
+            name = str(item.get("name") or "")
+            labels = []
+            seen = set()
+
+            for rx in compiled_regexes:
+                for m in rx.finditer(name):
+                    raw_lbl = m.group(1).strip()
+                    norm = re.sub(r'[^a-zA-Z0-9]', '', raw_lbl).lower()
+                    if norm and norm not in seen:
+                        seen.add(norm)
+                        labels.append({
+                            "raw_label": raw_lbl,
+                            "normalized_label": norm,
+                            "brand": brand,
+                            "source_field": "name",
+                            "provenance": "unified_catalog_master.name"
+                        })
+            return labels
+
+        return [extract_ac_labels]
 
     def evaluate_domain_confidence(
         self,
@@ -213,9 +343,35 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             ]):
                 probable_tipologia = "PARETE"
 
+        # Rilevamento serie/famiglia richiesta dal vocabolario canonico
+        requested_series = None
+        matched_series = []
+        for term in self._series_vocab:
+            if re.search(r'\b' + re.escape(term) + r'\b', q_u):
+                matched_series.append(term)
+        for canon, alts in self._series_aliases.items():
+            if canon in matched_series:
+                continue
+            for a in alts:
+                if re.search(r'\b' + re.escape(a) + r'\b', q_u):
+                    matched_series.append(canon)
+                    break
+        if matched_series:
+            matched_series.sort(key=len, reverse=True)
+            requested_series = matched_series[0]
+
+        # Rilevamento colore
+        requested_color = None
+        for col in ["NERO", "BLACK", "BIANCO", "WHITE", "BCO", "SILVER", "GRIGIO"]:
+            if re.search(r'\b' + col + r'\b', q_u):
+                requested_color = col
+                break
+
         return {
             "query_text": query,
             "requested_btus": btus,
+            "requested_series": requested_series,
+            "requested_color": requested_color,
             "is_multisplit": is_multi,
             "is_monosplit": is_mono,
             "is_ue_only": is_ue_only,
@@ -224,6 +380,43 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             "probable_tipologia": probable_tipologia,
             "is_machine_query": True
         }
+
+    def evaluate_series_match(self, item: Dict[str, Any], query_context: Dict[str, Any]) -> str:
+        req_ser = query_context.get("requested_series")
+        if not req_ser:
+            return "none"
+
+        req_u = req_ser.upper()
+        item_ser = (item.get("serie") or "").upper()
+        item_fam = (item.get("famiglia_catalogo") or "").upper()
+        item_name = (item.get("name") or "").upper()
+
+        # Check exact
+        if re.search(r'\b' + re.escape(req_u) + r'\b', item_name) or req_u in item_ser or req_u in item_fam:
+            return "exact"
+
+        # Check aliases
+        req_aliases = self._series_aliases.get(req_u, [])
+        for a in req_aliases:
+            if re.search(r'\b' + re.escape(a) + r'\b', item_name) or a in item_ser or a in item_fam:
+                return "alias"
+
+        # Check mismatch
+        for canon, alts in self._series_aliases.items():
+            if canon == req_u or canon in req_aliases:
+                continue
+            all_alt_terms = [canon] + alts
+            for alt_t in all_alt_terms:
+                if re.search(r'\b' + re.escape(alt_t) + r'\b', item_name):
+                    return "mismatch"
+
+        for t in ['ASTRA', 'SIDERA', 'EXPERT', 'FLEXIS', 'ELEGANCE', 'XTREME PRO', 'BREEZELESS', 'HI COMFORT', 'EASY SMART', 'AIR MASTER', 'RZ2GT', 'PERFERA', 'EMURA', 'STYLISH', 'SENSIRA', 'COMFORA', 'WINDFREE']:
+            if t == req_u or t in req_aliases:
+                continue
+            if re.search(r'\b' + re.escape(t) + r'\b', item_name) or t in item_ser or t in item_fam:
+                return "mismatch"
+
+        return "none"
 
     def assign_slot(self, item: Dict[str, Any], query_context: Dict[str, Any]) -> str:
         self.enrich_item(item)
@@ -252,6 +445,26 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         # Boost per UE se la query è specificamente per UE
         if query_context.get("is_ue_only") and item.get("is_ue"):
             boost += 15.0
+
+        # Calcola e registra _series_match
+        series_match = self.evaluate_series_match(item, query_context)
+        item["_series_match"] = series_match
+
+        if series_match in ("exact", "alias"):
+            boost += 30.0
+        elif series_match == "mismatch":
+            boost -= 50.0
+
+        # Colore
+        req_color = query_context.get("requested_color")
+        if req_color:
+            name_u = (item.get("name") or "").upper()
+            if req_color in name_u:
+                item["_color_match"] = True
+                boost += 15.0
+            elif any(c in name_u for c in ["NERO", "BLACK", "BIANCO", "WHITE", "BCO", "SILVER"]):
+                item["_color_mismatch"] = True
+                boost -= 20.0
 
         return boost
 
@@ -514,7 +727,12 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             item["taglia_btu"] = None
             kw_val = self._pdf_specs.get(code, {}).get("kw") if (self._pdf_specs and code in self._pdf_specs) else None
             if not kw_val:
-                _, kw_val = extract_btu_and_kw(name, mfg)
+                m_kw = re.search(r'\b(\d+[\.,]?\d*)\s*KW\b', name)
+                if m_kw:
+                    try:
+                        kw_val = float(m_kw.group(1).replace(',', '.'))
+                    except Exception:
+                        pass
             if kw_val:
                 item["taglia_kw"] = kw_val
                 item["tag_kw"] = f"{kw_val} kW"
@@ -560,7 +778,25 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             return
 
         if any(k in name for k in ["UI ", "UNITA INTERNA", "UNITA' INTERNA", "CLIMATIZZ", "SPLIT"]):
-            btu_val, kw_val = extract_btu_and_kw(name, mfg)
+            # 3. Mappatura dinamica capacity class derivata dal catalogo
+            brand = (item.get("brand") or "").strip().upper()
+            combined = f"{name} {mfg}"
+            digits_found = re.findall(r'(?:AS|AD|AF|JSGNW|MHGNW|LSGND|FTX[A-Z]|MSZ-[A-Z]+|CS-[A-Z]+|ALYA-|ELEGANCE\s*|XTREME\s*PRO\s*|HI\s*COMFORT\s*)(\d{2})', combined)
+            if not digits_found:
+                digits_found = re.findall(r'\b[A-Z]{1,4}(\d{2})[A-Z0-9\-]*\b', combined)
+
+            btu_val = None
+            for d in digits_found:
+                if (brand, d) in self._dynamic_capacity_class_map:
+                    btu_val = self._dynamic_capacity_class_map[(brand, d)]
+                    break
+
+            # 4. Fallback: taglia BTU letterale esplicita nel testo
+            if not btu_val:
+                m_btu = re.search(r'\b(7\.?000|9\.?000|12\.?000|15\.?000|18\.?000|21\.?000|24\.?000)\s*(?:BTU)?\b', combined)
+                if m_btu:
+                    btu_val = int(m_btu.group(1).replace('.', ''))
+
             if btu_val:
                 item["tipo_unita"] = "UI"
                 item["is_ui"] = True
@@ -569,4 +805,14 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
                 item["tag_btu_display"] = f"{btu_val} BTU"
                 item["taglia_btu"] = btu_val
                 item["taglia_kw"] = None
+                return
+
+            # 5. Classi commerciali / grandi potenze (senza invenzione arbitraria di BTU)
+            m_comm = re.search(r'\b(100|105|120|125|140|160|200|250)\b', combined)
+            if m_comm:
+                item["tipo_unita"] = "UI"
+                item["is_ui"] = True
+                item["is_ue"] = False
+                item["classe_commerciale"] = m_comm.group(1)
+                item["taglia_btu"] = None
                 return

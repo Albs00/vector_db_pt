@@ -252,17 +252,18 @@ class ExactTokenParser:
                             c_it["_detected_label_brand"] = lbl_brand
                             exact_matches.append(c_it)
                     else:
-                        if pt_code not in seen_exact_codes and pt_code not in seen_near_codes:
-                            seen_near_codes.add(pt_code)
+                        # Non univoco: exact match ambiguo (Tier 2)
+                        if pt_code not in seen_exact_codes:
+                            seen_exact_codes.add(pt_code)
                             c_it = dict(it)
-                            c_it["_is_near_model_candidate"] = True
+                            c_it["_is_exact_token_match"] = True
                             c_it["_exact_match_type"] = MatchType.AMBIGUOUS_CATALOG_MODEL_LABEL.value
                             c_it["_matched_token"] = orig_lbl
                             c_it["_provenance"] = provenance_src
                             c_it["_catalog_model_label"] = orig_lbl
                             c_it["_is_unique_catalog_label"] = False
                             c_it["_detected_label_brand"] = lbl_brand
-                            near_model_candidates.append(c_it)
+                            exact_matches.append(c_it)
 
         for raw_tok in raw_tokens:
             tok_lower = raw_tok.lower()
@@ -345,18 +346,18 @@ class ExactTokenParser:
                             c_it["_detected_label_brand"] = lbl_brand
                             exact_matches.append(c_it)
                     else:
-                        # Non univoco: candidate set da disambiguare, NON exact winner!
-                        if pt_code not in seen_exact_codes and pt_code not in seen_near_codes:
-                            seen_near_codes.add(pt_code)
+                        # Non univoco: exact match ambiguo da disambiguare (Tier 2)
+                        if pt_code not in seen_exact_codes:
+                            seen_exact_codes.add(pt_code)
                             c_it = dict(it)
-                            c_it["_is_near_model_candidate"] = True
+                            c_it["_is_exact_token_match"] = True
                             c_it["_exact_match_type"] = MatchType.AMBIGUOUS_CATALOG_MODEL_LABEL.value
                             c_it["_matched_token"] = raw_tok
                             c_it["_provenance"] = provenance_src
                             c_it["_catalog_model_label"] = orig_lbl
                             c_it["_is_unique_catalog_label"] = False
                             c_it["_detected_label_brand"] = lbl_brand
-                            near_model_candidates.append(c_it)
+                            exact_matches.append(c_it)
                 found_norm = True
 
             if found_norm:

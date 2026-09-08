@@ -492,6 +492,7 @@ class CatalogSearchEngine:
         primary_domain = domain_candidates[0]
         adapter = primary_domain.adapter
         query_context = adapter.extract_query_context(query)
+        query_context["detected_brand"] = target_brand
         target_category = category or primary_domain.category_filter
 
         fts_query = expand_technical_query(query)
@@ -623,7 +624,8 @@ class CatalogSearchEngine:
                 detected_brand=target_brand,
                 domain_boost=domain_boost,
                 is_unique_exact=is_unique_exact,
-                is_machine_query=query_context.get("is_machine_query", False)
+                is_machine_query=query_context.get("is_machine_query", False),
+                query_context=query_context
             )
             pool_manager.add_candidate(slot_id, it)
 
@@ -632,7 +634,7 @@ class CatalogSearchEngine:
         # (La riserva è ammessa solo per EXACT_PT, EXACT_MFG, EXACT_CATALOG_MODEL_LABEL univoco o kit verified/derived)
         has_reliable_anchor = any(
             it.get("_is_exact_token_match") and not it.get("_is_near_model_candidate")
-            for it in exact_token_candidates
+            for it in merged_candidates.values()
         ) or any(
             getattr(r, "relation_type", None) in (RelationType.PAIRED_WITH_VERIFIED, RelationType.PAIRED_WITH_DERIVED)
             for r in relations

@@ -33,11 +33,14 @@ GENERIC_STOP_WORDS = {
 
 
 class EvidenceTier(IntEnum):
-    TIER_1_UNIQUE_EXACT = 1
-    TIER_2_AMBIGUOUS_EXACT = 2
-    TIER_3_NEAR_MODEL_OR_STRONG = 3
-    TIER_4_TYPED_RELATION = 4
-    TIER_5_BROAD_DISCOVERY = 5
+    TIER_1_UNIQUE_EXACT = 1          # Exact PT, MPN, o unique exact catalog label
+    TIER_2_AMBIGUOUS_EXACT = 2       # Exact PT/MPN o catalog label ambiguo
+    TIER_3_NEAR_MODEL_OR_STRONG = 3  # Near model sintetico o prefisso/revisione
+    TIER_4_TYPED_RELATION = 4        # Kit certificato PAIRED_WITH_VERIFIED da tabella PT
+    TIER_5_EXACT_CATALOG_BUNDLE = 5  # Brand + Serie/Famiglia + Taglia BTU (+ eventuale Colore)
+    TIER_6_STRONG_CATALOG_SPEC = 6   # Brand + Taglia BTU oppure Brand + Serie/Famiglia
+    TIER_7_COMPATIBLE_RELATION = 7   # Candidati da relazione COMPATIBLE_WITH
+    TIER_8_BROAD_DISCOVERY = 8       # Ricerca semantica/BM25 generica
 
 
 class GenericEvidenceReranker:
@@ -48,7 +51,8 @@ class GenericEvidenceReranker:
     def assign_evidence_tier(
         self,
         item: Dict[str, Any],
-        is_unique_exact: bool = True
+        is_unique_exact: bool = True,
+        query_context: Optional[Dict[str, Any]] = None
     ) -> EvidenceTier:
         """Determina il livello strutturale di evidenza del candidato."""
         if item.get("_is_exact_token_match"):
@@ -64,9 +68,33 @@ class GenericEvidenceReranker:
         if rel_type in ("PAIRED_WITH_VERIFIED", "PAIRED_WITH"):
             return EvidenceTier.TIER_4_TYPED_RELATION
 
-        # PAIRED_WITH_DERIVED e COMPATIBLE_WITH NON trasformano l'identity tier in Tier 4!
-        # Restano nel proprio tier naturale (TIER_5_BROAD_DISCOVERY per discovery).
-        return EvidenceTier.TIER_5_BROAD_DISCOVERY
+        # Mismatch esplicito di serie: mai promuovere a Tier elevati
+        series_match = item.get("_series_match", "none")
+        if series_match == "mismatch":
+            return EvidenceTier.TIER_8_BROAD_DISCOVERY
+
+        ctx = query_context or {}
+        requested_btus = ctx.get("requested_btus", [])
+        target_brand = (ctx.get("detected_brand") or "").strip().upper()
+        item_brand = (item.get("brand") or "").strip().upper()
+        brand_match = bool(target_brand and item_brand and (target_brand == item_brand or target_brand in item_brand))
+
+        item_btu = item.get("taglia_btu")
+        capacity_match = bool(requested_btus and item_btu and item_btu in requested_btus)
+
+        # Tier 5: Brand + Serie/Famiglia + Taglia BTU
+        if brand_match and series_match in ("exact", "alias") and (not requested_btus or capacity_match):
+            return EvidenceTier.TIER_5_EXACT_CATALOG_BUNDLE
+
+        # Tier 6: Brand + Taglia BTU, oppure Brand + Serie/Famiglia
+        if brand_match and (capacity_match or series_match in ("exact", "alias")):
+            return EvidenceTier.TIER_6_STRONG_CATALOG_SPEC
+
+        # Tier 7: Candidato espanso da relazione COMPATIBLE_WITH
+        if item.get("_is_relation_candidate") and rel_type == "COMPATIBLE_WITH":
+            return EvidenceTier.TIER_7_COMPATIBLE_RELATION
+
+        return EvidenceTier.TIER_8_BROAD_DISCOVERY
 
     def compute_tier_score(
         self,
@@ -128,6 +156,18 @@ class GenericEvidenceReranker:
             score += rel_boost
         item["_computed_relation_boost"] = rel_boost
 
+        # Serie e variante: boost per esatta o forte penalità per mismatch
+        series_match = item.get("_series_match", "none")
+        if series_match in ("exact", "alias"):
+            score += 30.0
+        elif series_match == "mismatch":
+            score -= 50.0
+
+        if item.get("_color_match"):
+            score += 15.0
+        elif item.get("_color_mismatch"):
+            score -= 20.0
+
         if is_machine_query and item.get("is_accessory"):
             score -= 30.0
 
@@ -140,14 +180,19 @@ class GenericEvidenceReranker:
         detected_brand: Optional[str] = None,
         domain_boost: float = 0.0,
         is_unique_exact: bool = True,
-        is_machine_query: bool = False
+        is_machine_query: bool = False,
+        query_context: Optional[Dict[str, Any]] = None
     ) -> Tuple[int, float]:
         """
         Assegna il tier di evidenza e il relativo punteggio.
         Restituisce la tupla di ordinamento (tier, tier_score) separando formalmente
         Identity Evidence e Relation Evidence.
         """
-        tier = self.assign_evidence_tier(item, is_unique_exact=is_unique_exact)
+        tier = self.assign_evidence_tier(
+            item,
+            is_unique_exact=is_unique_exact,
+            query_context=query_context
+        )
         tier_score = self.compute_tier_score(
             item=item,
             query_tokens=query_tokens,
@@ -165,7 +210,8 @@ class GenericEvidenceReranker:
             "match_type": item.get("_exact_match_type") or ("NEAR_MODEL" if item.get("_is_near_model_candidate") else "DISCOVERY"),
             "matched_token": item.get("_matched_token"),
             "is_exact": bool(item.get("_is_exact_token_match")),
-            "is_unique": bool(item.get("_is_unique_catalog_label", is_unique_exact))
+            "is_unique": bool(item.get("_is_unique_catalog_label", is_unique_exact)),
+            "series_match": item.get("_series_match", "none")
         }
 
         if item.get("_is_relation_candidate"):
@@ -185,14 +231,15 @@ class GenericEvidenceReranker:
             item["_relation_evidence_meta"] = None
             item["_relation_strength"] = None
 
-        # Calcola uno score normalizzato complessivo per la visualizzazione all'utente
-        # Tier 1: 1000+, Tier 2: 500+, Tier 3: 200+, Tier 4: 100+, Tier 5: <100
         tier_offsets = {
             EvidenceTier.TIER_1_UNIQUE_EXACT: 1000.0,
             EvidenceTier.TIER_2_AMBIGUOUS_EXACT: 500.0,
-            EvidenceTier.TIER_3_NEAR_MODEL_OR_STRONG: 200.0,
-            EvidenceTier.TIER_4_TYPED_RELATION: 100.0,
-            EvidenceTier.TIER_5_BROAD_DISCOVERY: 0.0
+            EvidenceTier.TIER_3_NEAR_MODEL_OR_STRONG: 300.0,
+            EvidenceTier.TIER_4_TYPED_RELATION: 200.0,
+            EvidenceTier.TIER_5_EXACT_CATALOG_BUNDLE: 150.0,
+            EvidenceTier.TIER_6_STRONG_CATALOG_SPEC: 100.0,
+            EvidenceTier.TIER_7_COMPATIBLE_RELATION: 50.0,
+            EvidenceTier.TIER_8_BROAD_DISCOVERY: 0.0
         }
         item["_final_score"] = tier_offsets[tier] + tier_score
         return int(tier), tier_score
