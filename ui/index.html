@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Puglia Termica 2026 - AI Catalog Explorer & Hybrid Search</title>
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow -->
+  <div class="bg-glow top-left"></div>
+  <div class="bg-glow bottom-right"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="brand-group">
+        <div class="logo-badge">PT</div>
+        <div>
+          <h1 class="app-title">Puglia Termica <span class="gradient-text">2026</span></h1>
+          <p class="app-subtitle">AI Hybrid Vector Search & Real-Time Catalog Engine</p>
+        </div>
+      </div>
+      <div class="system-status-badges">
+        <span class="status-pill green"><span class="dot"></span> LanceDB: 32.232 Vettori</span>
+        <span class="status-pill cyan"><span class="dot"></span> O(1) Lookup: 125.559 Codici</span>
+        <span class="status-pill purple"><span class="dot"></span> PDF 960MB On-Demand</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <!-- Search Section -->
+    <section class="search-section card glass">
+      <div class="search-bar-wrapper">
+        <div class="search-icon">🔍</div>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Cerca per codice PT, codice MPN produttore, o descrizioni tecniche (es. 'caldaia ferroli 28 kw', 'daikin stylish', '50042371')..."
+          autocomplete="off"
+        />
+        <button id="clear-btn" class="clear-btn" title="Cancella query" style="display: none;">✕</button>
+        <button id="search-btn" class="btn-primary">
+          <span>Cerca</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+
+      <!-- Quick Preset Chips -->
+      <div class="preset-chips-container">
+        <span class="preset-label">Query Rapide di Test:</span>
+        <div class="chips-list">
+          <button class="chip" data-query="50202676">💧 Scaldabagno Pegaso 11L</button>
+          <button class="chip" data-query="50002238">❄️ Ventilconvettore Jolly Top</button>
+          <button class="chip" data-query="50121113">🌱 Pompa di Calore 16 kW</button>
+          <button class="chip" data-query="caldaia condensazione ferroli 28 kw">🔥 Caldaia Ferroli 28 kW</button>
+          <button class="chip" data-query="scaldabagno gas 11 litri metano">💧 Scaldabagno 11 L Metano</button>
+          <button class="chip" data-query="ventilconvettore fancoil 2 kw">❄️ Fancoil 2 kW</button>
+          <button class="chip" data-query="daikin stylish 12000 btu">❄️ Daikin Stylish 12000 BTU</button>
+          <button class="chip" data-query="pompa DAB autoclave">💧 Pompa DAB Autoclave</button>
+        </div>
+      </div>
+
+      <!-- Filters Toolbar -->
+      <div class="filters-toolbar">
+        <div class="filter-item">
+          <label for="brand-filter">Marchio:</label>
+          <select id="brand-filter" class="filter-select">
+            <option value="ALL">Tutti i Marchi (Auto-detect)</option>
+            <option value="DAB">DAB PUMPS</option>
+            <option value="FERROLI">FERROLI</option>
+            <option value="DAIKIN">DAIKIN</option>
+            <option value="ARISTON">ARISTON</option>
+            <option value="IMMERGAS">IMMERGAS</option>
+            <option value="BAXI">BAXI</option>
+            <option value="BOSCH">BOSCH</option>
+            <option value="CALEFFI">CALEFFI</option>
+            <option value="ELBI">ELBI</option>
+            <option value="CORDIVARI">CORDIVARI</option>
+            <option value="GEBERIT">GEBERIT</option>
+            <option value="AERMEC">AERMEC</option>
+            <option value="VALSIR">VALSIR</option>
+            <option value="FONDITAL">FONDITAL</option>
+            <option value="POLYMAXACCIAI">POLYMAXACCIAI</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <label for="category-filter">Macro Categoria:</label>
+          <select id="category-filter" class="filter-select">
+            <option value="ALL">Tutte le Categorie</option>
+            <option value="RISCALDAMENTO">RISCALDAMENTO</option>
+            <option value="CONDIZIONAMENTO">CONDIZIONAMENTO</option>
+            <option value="IDRICA">IDRICA</option>
+            <option value="SANITARI">SANITARI</option>
+            <option value="TUBI E RACCORDI">TUBI E RACCORDI</option>
+            <option value="FUMISTERIA">FUMISTERIA</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <label for="limit-select">Risultati:</label>
+          <select id="limit-select" class="filter-select">
+            <option value="5">5 articoli</option>
+            <option value="10" selected>10 articoli</option>
+            <option value="20">20 articoli</option>
+            <option value="50">50 articoli</option>
+          </select>
+        </div>
+
+        <div class="filter-item checkbox-item">
+          <label class="toggle-switch">
+            <input type="checkbox" id="catalog-only-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+          <span class="toggle-label" title="Filtra solo gli articoli illustrati nel PDF cartaceo">Solo a Catalogo PDF</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Query Diagnostic & Feedback Bar -->
+    <section id="diagnostic-bar" class="diagnostic-bar" style="display: none;">
+      <div class="diagnostic-left">
+        <span id="match-badge" class="match-badge">SHORT-CIRCUIT</span>
+        <span id="detected-brand-badge" class="detected-brand-badge" style="display: none;"></span>
+        <span class="query-summary">Query: <strong id="query-echo"></strong></span>
+      </div>
+      <div class="diagnostic-right">
+        <span class="diag-metric">⚡ Latenza: <strong id="latency-val">0 ms</strong></span>
+        <span class="diag-metric">📦 Trovati: <strong id="count-val">0</strong></span>
+      </div>
+    </section>
+
+    <!-- Results Area -->
+    <section id="results-section" class="results-section">
+      <!-- Initial Empty State -->
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">📖</div>
+        <h3>Esplora il Catalogo Tecnico Puglia Termica 2026</h3>
+        <p>Digita un codice o una descrizione tecnica sopra, oppure clicca su una delle <strong>Query Rapide</strong> per avviare il test.</p>
+        <div class="empty-features">
+          <div class="feature-item">
+            <span class="feature-icon">⚡</span>
+            <div>
+              <strong>Codici Istantanei (&lt;5ms)</strong>
+              <p>Short-circuit diretto su 125.559 codici PT e codici fornitore MPN.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🧠</span>
+            <div>
+              <strong>Ricerca Ibrida Avanzata</strong>
+              <p>Vettori densi FastEmbed + Tantivy BM25 per comprendere taglie e modelli.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📄</span>
+            <div>
+              <strong>PDF 960MB On-Demand</strong>
+              <p>Visualizza ad alta risoluzione la pagina cartacea originale in tempo reale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading Skeleton -->
+      <div id="loading-state" class="loading-state" style="display: none;">
+        <div class="spinner"></div>
+        <p>Interrogazione database vettoriale e ricerca ibrida in corso...</p>
+      </div>
+
+      <!-- Results Grid -->
+      <div id="results-grid" class="results-grid" style="display: none;"></div>
+    </section>
+  </main>
+
+  <!-- PDF Page Viewer Modal -->
+  <div id="pdf-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-container glass">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-icon">📄</span>
+          <div>
+            <h2 id="modal-title">Pagina Catalogo <span id="modal-page-num">0</span></h2>
+            <p id="modal-subtitle">Catalogo Ufficiale Puglia Termica 2026 (CAT2600_CATALOGO_2026-V4pdf.pdf)</p>
+          </div>
+        </div>
+        <div class="modal-header-actions">
+          <div class="zoom-controls">
+            <button id="zoom-out-btn" class="icon-btn" title="Riduci Zoom">−</button>
+            <span id="zoom-level">100%</span>
+            <button id="zoom-in-btn" class="icon-btn" title="Aumenta Zoom">+</button>
+            <button id="zoom-fit-btn" class="icon-btn" title="Adatta allo Schermo">⛶</button>
+          </div>
+          <div class="page-nav-controls">
+            <button id="prev-page-btn" class="icon-btn" title="Pagina Precedente">◀</button>
+            <span id="page-indicator">Pag. 0</span>
+            <button id="next-page-btn" class="icon-btn" title="Pagina Successiva">▶</button>
+          </div>
+          <button id="modal-close-btn" class="close-btn" title="Chiudi (Esc)">✕</button>
+        </div>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <!-- Image Viewport -->
+        <div id="image-viewport" class="image-viewport">
+          <div id="image-spinner" class="image-spinner">
+            <div class="spinner"></div>
+            <p>Rendering ad alta definizione in corso dal PDF (960MB)...</p>
+          </div>
+          <img id="pdf-page-img" class="pdf-page-img" alt="Pagina Catalogo" style="display: none;" />
+        </div>
+
+        <!-- Sidebar: Products on this page -->
+        <aside class="modal-sidebar">
+          <div class="sidebar-header">
+            <h3>Prodotti a Pagina <span id="sidebar-page-num">0</span></h3>
+            <span id="sidebar-count" class="badge-count">0 articoli</span>
+          </div>
+          <div id="sidebar-products-list" class="sidebar-products-list">
+            <!-- Products injected via JS -->
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compatibility, Kits & Accessories Modal Panel -->
+  <div id="tech-modal" class="modal-overlay" style="display: none;">
+    <div class="tech-modal-container glass">
+      <!-- Modal Header -->
+      <div class="tech-modal-header">
+        <div class="tech-modal-title-group">
+          <div class="tech-modal-badges">
+            <span id="tech-modal-brand" class="brand-badge">MARCHIO</span>
+            <span id="tech-modal-btu" class="btu-tag" style="display: none;">-</span>
+            <div id="tech-modal-pt-pill" class="code-pill copy-btn" title="Clicca per copiare">
+              <span class="code-label">PT:</span>
+              <span id="tech-modal-pt-val" class="code-val">-</span>
+              <span class="copy-icon">📋</span>
+            </div>
+            <div id="tech-modal-mfg-pill" class="code-pill copy-btn" title="Clicca per copiare" style="display: none;">
+              <span class="code-label">MPN:</span>
+              <span id="tech-modal-mfg-val" class="code-val">-</span>
+              <span class="copy-icon">📋</span>
+            </div>
+          </div>
+          <h2 id="tech-modal-title" class="tech-modal-title">Titolo Prodotto</h2>
+          <div class="tech-modal-meta">
+            <div class="price-item">
+              <span class="price-label">Listino:</span>
+              <span id="tech-modal-gross" class="price-gross-val">-</span>
+            </div>
+            <div class="price-item">
+              <span class="price-label">Netto Riservato:</span>
+              <span id="tech-modal-net" class="price-net-val">-</span>
+            </div>
+            <button id="tech-modal-view-pdf-btn" class="btn-view-page small-page-btn" style="display: none;">📖 Apri nel PDF</button>
+          </div>
+        </div>
+        <button id="tech-modal-close-btn" class="close-btn" title="Chiudi (Esc)">✕</button>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="tech-modal-tabs">
+        <button id="tech-tab-btn-kits" class="tech-tab-btn" data-tab="kits">
+          <span>🧩 Kit Compatibili</span>
+          <span id="tech-tab-count-kits" class="tab-badge">0</span>
+        </button>
+        <button id="tech-tab-btn-accessories" class="tech-tab-btn" data-tab="accessories">
+          <span>📦 Accessori Tecnici</span>
+          <span id="tech-tab-count-acc" class="tab-badge">0</span>
+        </button>
+        <button id="tech-tab-btn-units" class="tech-tab-btn" data-tab="units">
+          <span id="tech-tab-label-units">❄️ Unità Abbinabili</span>
+          <span id="tech-tab-count-units" class="tab-badge">0</span>
+        </button>
+        <button id="tech-tab-btn-variants" class="tech-tab-btn" data-tab="variants">
+          <span>🔄 Altre Taglie</span>
+          <span id="tech-tab-count-variants" class="tab-badge">0</span>
+        </button>
+      </div>
+
+      <!-- Tab Body -->
+      <div class="tech-modal-body">
+        <!-- 1. Kits Pane -->
+        <div id="tech-pane-kits" class="tech-pane" style="display: none;">
+          <div id="tech-kits-list" class="tech-kits-grid"></div>
+        </div>
+
+        <!-- 2. Accessories Pane -->
+        <div id="tech-pane-accessories" class="tech-pane" style="display: none;">
+          <div class="acc-toolbar">
+            <div id="acc-category-pills" class="acc-category-pills"></div>
+            <div class="acc-search-box">
+              <input type="text" id="acc-search-filter" class="acc-filter-input" placeholder="🔍 Cerca tra gli accessori (es. fumi, curva, wifi, dima)..." />
+            </div>
+          </div>
+          <div id="tech-accessories-list" class="tech-accessories-list"></div>
+        </div>
+
+        <!-- 3. Units Pane -->
+        <div id="tech-pane-units" class="tech-pane" style="display: none;">
+          <div id="tech-units-list" class="tech-units-grid"></div>
+        </div>
+
+        <!-- 4. Variants Pane -->
+        <div id="tech-pane-variants" class="tech-pane" style="display: none;">
+          <div id="tech-variants-list" class="tech-variants-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

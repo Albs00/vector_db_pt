@@ -1,0 +1,49 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Database files
+*.db
+
+# Scratch / temp
+scratch/
+
+# Large binary files (catalogs, Excel)
+*.pdf
+*.xlsx
+
+# Knowledge base (large JSON, LanceDB, catalogs - too big for GitHub)
+Knowledge/
+
+# Outputs (generated data)
+outputs/
+
+# Agents / Gemini
+.agents/
+.gemini/
+
+# Walkthrough (auto-generated)
+walkthrough/

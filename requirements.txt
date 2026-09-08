@@ -1,0 +1,7 @@
+# Puglia Termica 2026 - AI Catalog Search Requirements
+lancedb>=0.17.0
+fastembed>=0.4.0
+tantivy>=0.22.0
+pymupdf>=1.24.0
+pillow>=10.0.0
+openpyxl>=3.1.0
