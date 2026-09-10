@@ -1,0 +1,1209 @@
+{
+  "generated_at": "2026-09-10T10:21:59+0200",
+  "mode": "SAFE_PREVIEW_V3_4_MODEL_REFERENCE_TYPE_FIX",
+  "incremental_from": "catalog_component_relations_safe_preview_v3_3.json",
+  "input_sha256": {
+    "catalog_component_relations_safe_preview_v3_3.json": "06918352b510285fe5310a09f54e65ffdd382815200c572e621adc099c0a5f57",
+    "catalog_component_relations_safe_preview_v3_3_report.json": "1b348e00c771dd2f827f64b8cc983ebb853a44e24eda46bb816920846ff2dc32",
+    "Knowledge\\catalog_component_relations.json": "39f4c074293b05fdca7a4ee15fc6df37ba09f590ab9dac50476d640017693780",
+    "Knowledge\\catalog_annotations.json": "bf1aaf55f3fe0759132893ebbb84038c7f413bc8136a128f3d19f1759157edc6",
+    "Knowledge\\catalog_table_context.json": "2b168759e2641a42e348b7b9bf530ff40a1512205bc4c742abc2928dd7ee977b",
+    "Knowledge\\climatizzatori_compatibilita_master.json": "cee170555d584228e73a97b8595d26a74a7b4277e8cfb7a6aea62e3f5553450f",
+    "Knowledge\\unified_catalog_master.json": "a068805d468e9def62c2457fe648ea9bd5105fef02b4fab4eea9fa76e24ca47f"
+  },
+  "v3_3_total_records": 859,
+  "v3_4_total_records": 859,
+  "model_reference_type_distribution": {
+    "ACCESSORY_MODEL": 521,
+    "COMPATIBLE_PRODUCT_MODEL": 3,
+    "UNKNOWN": 335
+  },
+  "converted_to_model_scoped_count": 3,
+  "converted_to_model_scoped_semantics": "Relations already narrowed by V3.3 exact compatible-product references; V3.4 adds type metadata and does not change scope.",
+  "scope_changes_applied_by_v3_4": 0,
+  "accessory_model_examples": {
+    "requested_limit": 20,
+    "available_count": 521,
+    "returned_count": 20,
+    "records": [
+      {
+        "page": 468,
+        "table_id": "PDF_P0468_B64A03CF65",
+        "product_title": "gsi low",
+        "family_key": "DAIKIN_GSI_LOW",
+        "pt": "99648671",
+        "accessory_model": "BRP069B45",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "U.I. FTXC25D",
+          "U.I. FTXC35D"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 469,
+        "table_id": "PDF_P0469_81BEEE854B",
+        "product_title": "URURU SARARA",
+        "family_key": "DAIKIN_URURU_SARARA",
+        "pt": "99638580",
+        "accessory_model": "BRP069B42",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "U.I. FTXZ25N",
+          "U.I. FTXZ35N",
+          "U.I. FTXZ50N"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 470,
+        "table_id": "PDF_P0470_32B4C6D762",
+        "product_title": "SENSIRA",
+        "family_key": "DAIKIN_SENSIRA",
+        "pt": "99648671",
+        "accessory_model": "BRP069B45",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "CTXF20f",
+          "CTXF25f",
+          "CTXF35f"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 472,
+        "table_id": "PDF_P0472_3C9936C5C1",
+        "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+        "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+        "pt": "50132676",
+        "accessory_model": "BRP069C81",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FNA25A9",
+          "FNA35A9",
+          "FNA50A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 472,
+        "table_id": "PDF_P0472_3C9936C5C1",
+        "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+        "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+        "pt": "50413652",
+        "accessory_model": "BRC1H52W7",
+        "component_type": "COMANDO A FILO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FNA25A9",
+          "FNA35A9",
+          "FNA50A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 472,
+        "table_id": "PDF_P0472_3C9936C5C1",
+        "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+        "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+        "pt": "99843199",
+        "accessory_model": "BRC1H52W",
+        "component_type": "COMANDO A FILO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FNA25A9",
+          "FNA35A9",
+          "FNA50A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 472,
+        "table_id": "PDF_P0472_3C9936C5C1",
+        "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+        "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+        "pt": "99848064",
+        "accessory_model": "BRC1H52S",
+        "component_type": "COMANDO A FILO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FNA25A9",
+          "FNA35A9",
+          "FNA50A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 472,
+        "table_id": "PDF_P0472_3C9936C5C1",
+        "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+        "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+        "pt": "99848071",
+        "accessory_model": "BRC1H52K",
+        "component_type": "COMANDO A FILO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FNA25A9",
+          "FNA35A9",
+          "FNA50A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 473,
+        "table_id": "PDF_P0473_270CCADE18",
+        "product_title": "canalizzata DC FBA-A (9)",
+        "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+        "pt": "50132676",
+        "accessory_model": "BRP069C81",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FBA35A9",
+          "FBA50A9",
+          "FBA60A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 473,
+        "table_id": "PDF_P0473_84E198812D",
+        "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+        "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+        "pt": "50132676",
+        "accessory_model": "BRP069C81",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FFA25A9",
+          "FFA35A9",
+          "FFA50A9",
+          "FFA60A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 473,
+        "table_id": "PDF_P0473_84E198812D",
+        "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+        "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+        "pt": "99718244",
+        "accessory_model": "BRC7F530S - silver",
+        "component_type": "COMANDO",
+        "attachment_target": "CASSETTE_UI",
+        "applies_to_models": [
+          "FFA25A9",
+          "FFA35A9",
+          "FFA50A9",
+          "FFA60A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 473,
+        "table_id": "PDF_P0473_84E198812D",
+        "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+        "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+        "pt": "99718251",
+        "accessory_model": "BRC7F530W - bianco",
+        "component_type": "COMANDO",
+        "attachment_target": "CASSETTE_UI",
+        "applies_to_models": [
+          "FFA25A9",
+          "FFA35A9",
+          "FFA50A9",
+          "FFA60A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 473,
+        "table_id": "PDF_P0473_84E198812D",
+        "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+        "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+        "pt": "99718268",
+        "accessory_model": "BYFQ60CS",
+        "component_type": "GRIGLIA",
+        "attachment_target": "CASSETTE_UI",
+        "applies_to_models": [
+          "FFA25A9",
+          "FFA35A9",
+          "FFA50A9",
+          "FFA60A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 473,
+        "table_id": "PDF_P0473_84E198812D",
+        "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+        "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+        "pt": "99718275",
+        "accessory_model": "BYFQ60CW",
+        "component_type": "GRIGLIA",
+        "attachment_target": "CASSETTE_UI",
+        "applies_to_models": [
+          "FFA25A9",
+          "FFA35A9",
+          "FFA50A9",
+          "FFA60A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 473,
+        "table_id": "PDF_P0473_8FE1DA8388",
+        "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+        "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+        "pt": "50132676",
+        "accessory_model": "BRP069C81",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FHA35A9",
+          "FHA50A9",
+          "FHA60A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 473,
+        "table_id": "PDF_P0473_8FE1DA8388",
+        "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+        "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+        "pt": "99791483",
+        "accessory_model": "BRC7GA53-9",
+        "component_type": "COMANDO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FHA35A9",
+          "FHA50A9",
+          "FHA60A9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 473,
+        "table_id": "PDF_P0473_CA481DB6FB",
+        "product_title": "canalizzata ULTRA PIATTA FDXM-F9",
+        "family_key": "DAIKIN_CANALIZZATA_ULTRA_PIATTA_FDXM_F9",
+        "pt": "50132676",
+        "accessory_model": "BRP069C81",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FDXM25F9",
+          "FDXM35F9",
+          "FDXM50F9",
+          "FDXM60F9"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 474,
+        "table_id": "PDF_P0474_88C75EBCDD",
+        "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+        "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+        "pt": "50132690",
+        "accessory_model": "BRP069C82",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "UI",
+        "applies_to_models": [
+          "FCAG35B",
+          "FCAG50B",
+          "FCAG60B"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 474,
+        "table_id": "PDF_P0474_88C75EBCDD",
+        "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+        "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+        "pt": "99761073",
+        "accessory_model": "EWHAR1",
+        "component_type": "CAVO",
+        "attachment_target": "CASSETTE_UI",
+        "applies_to_models": [
+          "FCAG35B",
+          "FCAG50B",
+          "FCAG60B"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      },
+      {
+        "page": 474,
+        "table_id": "PDF_P0474_88C75EBCDD",
+        "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+        "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+        "pt": "99718312",
+        "accessory_model": "BRC7FA532F- Stand/Autop",
+        "component_type": "COMANDO",
+        "attachment_target": "CASSETTE_UI",
+        "applies_to_models": [
+          "FCAG35B",
+          "FCAG50B",
+          "FCAG60B"
+        ],
+        "scope_type": "TABLE_WIDE",
+        "model_reference_type": "ACCESSORY_MODEL",
+        "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+        "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+        "accessory_model_reference": []
+      }
+    ]
+  },
+  "compatible_product_model_examples": {
+    "requested_limit": 20,
+    "available_count": 3,
+    "returned_count": 3,
+    "records": [
+      {
+        "page": 563,
+        "table_id": "PDF_P0563_C17CE33993",
+        "product_title": "CASSETTA A 1 VIA",
+        "family_key": "HAIER_CASSETTA_A_1_VIA",
+        "pt": "50370139",
+        "accessory_model": "AB25S2SA1FA - AB35S2SA1FA",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "CASSETTE_UI",
+        "applies_to_models": [
+          "U.I. AB25S2SA1FA(H)",
+          "U.I. AB35S2SA1FA(H)"
+        ],
+        "scope_type": "MODEL_SCOPED",
+        "model_reference_type": "COMPATIBLE_PRODUCT_MODEL",
+        "model_reference_type_reason": "EXACT_PRODUCT_MODEL_REFERENCES_RESOLVED_IN_V3_3",
+        "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+        "accessory_model_reference": [
+          "AB25S2SA1FA",
+          "AB35S2SA1FA"
+        ]
+      },
+      {
+        "page": 563,
+        "table_id": "PDF_P0563_C17CE33993",
+        "product_title": "CASSETTA A 1 VIA",
+        "family_key": "HAIER_CASSETTA_A_1_VIA",
+        "pt": "50370160",
+        "accessory_model": "AB50S2SA1FA - AB71S2SA1FA",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "CASSETTE_UI",
+        "applies_to_models": [
+          "AB71S2SA1FA(H)",
+          "U.I. AB50S2SA1FA(H)"
+        ],
+        "scope_type": "MODEL_SCOPED",
+        "model_reference_type": "COMPATIBLE_PRODUCT_MODEL",
+        "model_reference_type_reason": "EXACT_PRODUCT_MODEL_REFERENCES_RESOLVED_IN_V3_3",
+        "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+        "accessory_model_reference": [
+          "AB50S2SA1FA",
+          "AB71S2SA1FA"
+        ]
+      },
+      {
+        "page": 567,
+        "table_id": "PDF_P0567_BDA221FF11",
+        "product_title": "CASSETTA A 1 VIA",
+        "family_key": "HAIER_CASSETTA_A_1_VIA",
+        "pt": "50370160",
+        "accessory_model": "AB50S2SA1FA - AB71S2SA1FA",
+        "component_type": "ACCESSORIO",
+        "attachment_target": "CASSETTE_UI",
+        "applies_to_models": [
+          "AB71S2SA1FA(H)"
+        ],
+        "scope_type": "MODEL_SCOPED",
+        "model_reference_type": "COMPATIBLE_PRODUCT_MODEL",
+        "model_reference_type_reason": "EXACT_PRODUCT_MODEL_REFERENCES_RESOLVED_IN_V3_3",
+        "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+        "accessory_model_reference": [
+          "AB50S2SA1FA",
+          "AB71S2SA1FA"
+        ]
+      }
+    ],
+    "note": "Only three distinct retained relations contain explicit compatible-product model lists; no examples are duplicated or fabricated."
+  },
+  "protected_relation_change_violations": [],
+  "regression_results": {
+    "01_haier_50370139_compatible_product_models": {
+      "actual": [
+        {
+          "page": 563,
+          "table_id": "PDF_P0563_C17CE33993",
+          "product_title": "CASSETTA A 1 VIA",
+          "family_key": "HAIER_CASSETTA_A_1_VIA",
+          "pt": "50370139",
+          "accessory_model": "AB25S2SA1FA - AB35S2SA1FA",
+          "component_type": "ACCESSORIO",
+          "attachment_target": "CASSETTE_UI",
+          "applies_to_models": [
+            "U.I. AB25S2SA1FA(H)",
+            "U.I. AB35S2SA1FA(H)"
+          ],
+          "scope_type": "MODEL_SCOPED",
+          "model_reference_type": "COMPATIBLE_PRODUCT_MODEL",
+          "model_reference_type_reason": "EXACT_PRODUCT_MODEL_REFERENCES_RESOLVED_IN_V3_3",
+          "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+          "accessory_model_reference": [
+            "AB25S2SA1FA",
+            "AB35S2SA1FA"
+          ]
+        }
+      ],
+      "PASS": true
+    },
+    "02_haier_50370160_compatible_product_models": {
+      "actual": [
+        {
+          "page": 563,
+          "table_id": "PDF_P0563_C17CE33993",
+          "product_title": "CASSETTA A 1 VIA",
+          "family_key": "HAIER_CASSETTA_A_1_VIA",
+          "pt": "50370160",
+          "accessory_model": "AB50S2SA1FA - AB71S2SA1FA",
+          "component_type": "ACCESSORIO",
+          "attachment_target": "CASSETTE_UI",
+          "applies_to_models": [
+            "AB71S2SA1FA(H)",
+            "U.I. AB50S2SA1FA(H)"
+          ],
+          "scope_type": "MODEL_SCOPED",
+          "model_reference_type": "COMPATIBLE_PRODUCT_MODEL",
+          "model_reference_type_reason": "EXACT_PRODUCT_MODEL_REFERENCES_RESOLVED_IN_V3_3",
+          "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+          "accessory_model_reference": [
+            "AB50S2SA1FA",
+            "AB71S2SA1FA"
+          ]
+        },
+        {
+          "page": 567,
+          "table_id": "PDF_P0567_BDA221FF11",
+          "product_title": "CASSETTA A 1 VIA",
+          "family_key": "HAIER_CASSETTA_A_1_VIA",
+          "pt": "50370160",
+          "accessory_model": "AB50S2SA1FA - AB71S2SA1FA",
+          "component_type": "ACCESSORIO",
+          "attachment_target": "CASSETTE_UI",
+          "applies_to_models": [
+            "AB71S2SA1FA(H)"
+          ],
+          "scope_type": "MODEL_SCOPED",
+          "model_reference_type": "COMPATIBLE_PRODUCT_MODEL",
+          "model_reference_type_reason": "EXACT_PRODUCT_MODEL_REFERENCES_RESOLVED_IN_V3_3",
+          "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+          "accessory_model_reference": [
+            "AB50S2SA1FA",
+            "AB71S2SA1FA"
+          ]
+        }
+      ],
+      "PASS": true
+    },
+    "03_daikin_grid_codes_are_accessory_models": {
+      "models": {
+        "BYFQ60CS": [
+          {
+            "page": 473,
+            "table_id": "PDF_P0473_84E198812D",
+            "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+            "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+            "pt": "99718268",
+            "accessory_model": "BYFQ60CS",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FFA25A9",
+              "FFA35A9",
+              "FFA50A9",
+              "FFA60A9"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 477,
+            "table_id": "PDF_P0477_5FE7C570D4",
+            "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+            "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+            "pt": "99718268",
+            "accessory_model": "BYFQ60CS",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FFA25A9",
+              "FFA35A9",
+              "FFA50A9",
+              "FFA60A9"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 479,
+            "table_id": "PDF_P0479_E80BCAA4FD",
+            "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+            "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+            "pt": "99718268",
+            "accessory_model": "BYFQ60CS",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FFA35A9",
+              "FFA50A9",
+              "FFA60A9"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          }
+        ],
+        "BYFQ60CW": [
+          {
+            "page": 473,
+            "table_id": "PDF_P0473_84E198812D",
+            "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+            "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+            "pt": "99718275",
+            "accessory_model": "BYFQ60CW",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FFA25A9",
+              "FFA35A9",
+              "FFA50A9",
+              "FFA60A9"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 477,
+            "table_id": "PDF_P0477_5FE7C570D4",
+            "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+            "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+            "pt": "99718275",
+            "accessory_model": "BYFQ60CW",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FFA25A9",
+              "FFA35A9",
+              "FFA50A9",
+              "FFA60A9"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 479,
+            "table_id": "PDF_P0479_E80BCAA4FD",
+            "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+            "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+            "pt": "99718275",
+            "accessory_model": "BYFQ60CW",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FFA35A9",
+              "FFA50A9",
+              "FFA60A9"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          }
+        ],
+        "BYCQ140E": [
+          {
+            "page": 474,
+            "table_id": "PDF_P0474_88C75EBCDD",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99759964",
+            "accessory_model": "BYCQ140E",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FCAG35B",
+              "FCAG50B",
+              "FCAG60B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 477,
+            "table_id": "PDF_P0477_38A9E71F5B",
+            "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99759964",
+            "accessory_model": "BYCQ140E",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FCAG35B",
+              "FCAG50B",
+              "FCAG60B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 479,
+            "table_id": "PDF_P0479_D517980039",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99759964",
+            "accessory_model": "BYCQ140E",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FCAG35B",
+              "FCAG50B",
+              "FCAG60B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 481,
+            "table_id": "PDF_P0481_F8FD9D34C3",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99759964",
+            "accessory_model": "BYCQ140E",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. FCAG100B",
+              "U.I. FCAG125B",
+              "U.I. FCAG140B",
+              "U.I. FCAG71B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 484,
+            "table_id": "PDF_P0484_AA718837D5",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99759964",
+            "accessory_model": "BYCQ140E",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. FCAG100B",
+              "U.I. FCAG125B",
+              "U.I. FCAG140B",
+              "U.I. FCAG71B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 487,
+            "table_id": "PDF_P0487_DFA38B58F6",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99759964",
+            "accessory_model": "BYCQ140E",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. FCAG100B",
+              "U.I. FCAG125B",
+              "U.I. FCAG140B",
+              "U.I. FCAG71B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          }
+        ],
+        "BYCQ140EP": [
+          {
+            "page": 474,
+            "table_id": "PDF_P0474_88C75EBCDD",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761035",
+            "accessory_model": "BYCQ140EP",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FCAG35B",
+              "FCAG50B",
+              "FCAG60B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 477,
+            "table_id": "PDF_P0477_38A9E71F5B",
+            "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761035",
+            "accessory_model": "BYCQ140EP",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FCAG35B",
+              "FCAG50B",
+              "FCAG60B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 479,
+            "table_id": "PDF_P0479_D517980039",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761035",
+            "accessory_model": "BYCQ140EP",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FCAG35B",
+              "FCAG50B",
+              "FCAG60B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 481,
+            "table_id": "PDF_P0481_F8FD9D34C3",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761035",
+            "accessory_model": "BYCQ140EP",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. FCAG100B",
+              "U.I. FCAG125B",
+              "U.I. FCAG140B",
+              "U.I. FCAG71B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 484,
+            "table_id": "PDF_P0484_AA718837D5",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761035",
+            "accessory_model": "BYCQ140EP",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. FCAG100B",
+              "U.I. FCAG125B",
+              "U.I. FCAG140B",
+              "U.I. FCAG71B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 487,
+            "table_id": "PDF_P0487_DFA38B58F6",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761035",
+            "accessory_model": "BYCQ140EP",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. FCAG100B",
+              "U.I. FCAG125B",
+              "U.I. FCAG140B",
+              "U.I. FCAG71B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          }
+        ],
+        "BYCQ140EPB": [
+          {
+            "page": 474,
+            "table_id": "PDF_P0474_88C75EBCDD",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761042",
+            "accessory_model": "BYCQ140EPB",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FCAG35B",
+              "FCAG50B",
+              "FCAG60B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 477,
+            "table_id": "PDF_P0477_38A9E71F5B",
+            "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761042",
+            "accessory_model": "BYCQ140EPB",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FCAG35B",
+              "FCAG50B",
+              "FCAG60B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 479,
+            "table_id": "PDF_P0479_D517980039",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761042",
+            "accessory_model": "BYCQ140EPB",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "FCAG35B",
+              "FCAG50B",
+              "FCAG60B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 481,
+            "table_id": "PDF_P0481_F8FD9D34C3",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761042",
+            "accessory_model": "BYCQ140EPB",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. FCAG100B",
+              "U.I. FCAG125B",
+              "U.I. FCAG140B",
+              "U.I. FCAG71B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 484,
+            "table_id": "PDF_P0484_AA718837D5",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761042",
+            "accessory_model": "BYCQ140EPB",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. FCAG100B",
+              "U.I. FCAG125B",
+              "U.I. FCAG140B",
+              "U.I. FCAG71B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 487,
+            "table_id": "PDF_P0487_DFA38B58F6",
+            "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+            "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+            "pt": "99761042",
+            "accessory_model": "BYCQ140EPB",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. FCAG100B",
+              "U.I. FCAG125B",
+              "U.I. FCAG140B",
+              "U.I. FCAG71B"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          }
+        ]
+      },
+      "PASS": true
+    },
+    "04_aermec_grid_codes_are_accessory_models": {
+      "models": {
+        "GLG40": [
+          {
+            "page": 621,
+            "table_id": "PDF_P0621_9B9D9A9355",
+            "product_title": "CASSETTA MPG_C 90x90",
+            "family_key": "AERMEC_CASSETTA_MPG_C_90X90",
+            "pt": "99794507",
+            "accessory_model": "GLG40",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "MPG700C"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 622,
+            "table_id": "PDF_P0622_423A7E75F6",
+            "product_title": "CASSETTA LPG C 90x90",
+            "family_key": "AERMEC_CASSETTA_LPG_C_90X90",
+            "pt": "99794507",
+            "accessory_model": "GLG40",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. LPG1000C",
+              "U.I. LPG1200C",
+              "U.I. LPG1400C",
+              "U.I. LPG1600C",
+              "U.I. LPG700C",
+              "U.I. LPG850C"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          }
+        ],
+        "GLG40S": [
+          {
+            "page": 621,
+            "table_id": "PDF_P0621_FFA84CD57D",
+            "product_title": "CASSETTA MPG_CS 60x60",
+            "family_key": "AERMEC_CASSETTA_MPG_CS_60X60",
+            "pt": "99794583",
+            "accessory_model": "GLG40S",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "MPG350CS",
+              "MPG500CS"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          },
+          {
+            "page": 622,
+            "table_id": "PDF_P0622_047FBBFB69",
+            "product_title": "CASSETTA LPG C 60x60",
+            "family_key": "AERMEC_CASSETTA_LPG_C_60X60",
+            "pt": "99794583",
+            "accessory_model": "GLG40S",
+            "component_type": "GRIGLIA",
+            "attachment_target": "CASSETTE_UI",
+            "applies_to_models": [
+              "U.I. LPG350CS",
+              "U.I. LPG500CS"
+            ],
+            "scope_type": "TABLE_WIDE",
+            "model_reference_type": "ACCESSORY_MODEL",
+            "model_reference_type_reason": "PT_CODED_CLIMATE_ACCESSORY_ROW_MODEL",
+            "scope_resolution_reason": "TABLE_WIDE_NO_MODEL_LIMIT",
+            "accessory_model_reference": []
+          }
+        ]
+      },
+      "PASS": true
+    },
+    "05_no_accessory_code_used_as_compatible_product_model": {
+      "type_violations": [],
+      "applies_to_models_violations": [],
+      "PASS": true
+    },
+    "06_compatible_product_models_require_exact_match": {
+      "compatible_record_count": 3,
+      "violations": [],
+      "PASS": true
+    },
+    "07_v3_3_regressions_preserved": {
+      "prior_failures": [],
+      "PASS": true
+    },
+    "08_no_protected_relation_field_changed": {
+      "protected_change_count": 0,
+      "PASS": true
+    }
+  },
+  "production_ready_conditions": {
+    "v3_3_was_production_ready": true,
+    "record_count_unchanged": true,
+    "zero_protected_relation_changes": true,
+    "all_v3_4_regressions_pass": true
+  },
+  "production_ready": true,
+  "elapsed_seconds": 0.33
+}

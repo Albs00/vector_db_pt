@@ -76,7 +76,12 @@ def format_qa_single_report(
     if q_ctx:
         btus = q_ctx.get("requested_btus", [])
         lines.append(f"  • BTU Richiesti      : {btus if btus else 'Non specificati'}")
-        lines.append(f"  • Configurazione     : {'Monosplit' if q_ctx.get('is_monosplit') else ('Multisplit' if q_ctx.get('is_multisplit') else 'Singola/Generale')}")
+        p_scope = search_res.get("product_scope") or q_ctx.get("product_scope")
+        lines.append(f"  • Product Scope      : {p_scope or 'N/D'}")
+        lines.append(f"  • Configurazione     : {'Monosplit' if q_ctx.get('is_monosplit') else ('Multisplit' if q_ctx.get('is_multisplit') else ('UI Only' if q_ctx.get('is_ui_only') else ('UE Only' if q_ctx.get('is_ue_only') else 'Singola/Generale')))}")
+        c_status = search_res.get("compatibility_status") or qa_info.get("compatibility_status")
+        if c_status:
+            lines.append(f"  • Compatibility Stat : {c_status}")
         lines.append(f"  • Tipologia Esplicita: {q_ctx.get('explicit_tipologia') or 'Nessuna (no hard filter)'}")
         lines.append(f"  • Tipologia Probabile: {q_ctx.get('probable_tipologia') or 'Non determinata'}")
         lines.append(f"  • Fase Richiesta     : {q_ctx.get('phase') or 'Non specificata'}")
@@ -146,28 +151,30 @@ def format_qa_single_report(
     lines.append("3. BOM CANDIDATA RECUPERATA")
     lines.append(subsep)
 
-    # Identifica i componenti primari per ciascun ruolo richiesto
+    # Identifica i componenti primari della BOM dal motore o fallback
     bom_items = []
-    # 1. Unità Esterna
-    ue_cands = pools.get("slot_ue", [])
-    if ue_cands:
-        bom_items.append(("UE (Motore Esterno)", ue_cands[0]))
-
-    # 2. Unità Interne per ciascuna taglia richiesta
-    if q_ctx and q_ctx.get("requested_btus"):
-        for btu in q_ctx.get("requested_btus"):
-            slot_name = f"slot_ui_{btu}"
-            ui_cands = pools.get(slot_name, pools.get("slot_ui", []))
-            if ui_cands:
-                bom_items.append((f"UI {btu} BTU", ui_cands[0]))
+    engine_bom = search_res.get("bom")
+    if engine_bom:
+        for it in engine_bom:
+            role_lbl = it.get("role_label") or it.get("role") or "Componente BOM"
+            bom_items.append((role_lbl, it))
     else:
-        # Fallback slot UI generico
-        ui_cands = pools.get("slot_ui", [])
-        if ui_cands:
-            bom_items.append(("UI (Unità Interna)", ui_cands[0]))
+        # Fallback slot-based
+        ue_cands = pools.get("slot_ue", [])
+        if ue_cands:
+            bom_items.append(("UE (Motore Esterno)", ue_cands[0]))
+        if q_ctx and q_ctx.get("requested_btus"):
+            for btu in q_ctx.get("requested_btus"):
+                slot_name = f"slot_ui_{btu}"
+                ui_cands = pools.get(slot_name, pools.get("slot_ui", []))
+                if ui_cands:
+                    bom_items.append((f"UI {btu} BTU", ui_cands[0]))
+        else:
+            ui_cands = pools.get("slot_ui", [])
+            if ui_cands:
+                bom_items.append(("UI (Unità Interna)", ui_cands[0]))
 
     if not bom_items:
-        # Fallback dai risultati ordinati Top 2
         results = search_res.get("results", [])
         for idx, r in enumerate(results[:2], 1):
             bom_items.append((f"Candidato #{idx}", r))
@@ -200,6 +207,103 @@ def format_qa_single_report(
             lines.append(f"    Relation Evidences  : {rel_summary}")
         lines.append(f"    Score Complessivo   : {score}")
         lines.append("")
+
+    # 4. INFORMAZIONI DI COMPATIBILITÀ (Separate dalla BOM)
+    lines.append(subsep)
+    lines.append("4. INFORMAZIONI DI COMPATIBILITÀ (Separate dalla BOM)")
+    lines.append(subsep)
+    lines.append(f"  • Product Scope        : {search_res.get('product_scope') or 'N/D'}")
+    lines.append(f"  • Compatibility Status : {search_res.get('compatibility_status') or 'NOT_APPLICABLE'}")
+
+    compat_evidence = search_res.get("compatibility_evidence") or {}
+    rel_type = compat_evidence.get("relation_type")
+    lines.append(f"  • Relation Type        : {rel_type or 'Nessuna / Non applicabile'}")
+    lines.append(f"  • Source / Provenance  : {compat_evidence.get('provenance') or '-'}")
+    if compat_evidence.get("confidence") is not None:
+        lines.append(f"  • Confidence           : {compat_evidence.get('confidence')}")
+
+    connected_comps = compat_evidence.get("connected_components") or compat_evidence.get("componenti_collegati") or []
+    if connected_comps:
+        lines.append(f"  • Componenti Collegati ({len(connected_comps)}):")
+        for cc in connected_comps:
+            pt_c = cc.get("code") or "-"
+            mfg_c = cc.get("mfg_code") or "-"
+            role_c = cc.get("role") or "-"
+            name_c = cc.get("name") or "-"
+            note_c = f" [{cc.get('note')}]" if cc.get("note") else ""
+            lines.append(f"      - PT: {pt_c} | MFG: {mfg_c} | Ruolo: {role_c} | Nome: {name_c}{note_c}")
+    else:
+        lines.append("  • Componenti Collegati : Nessun componente collegato")
+    lines.append("")
+
+    # 5. COMPONENT RELATIONS (separate sia dalla compatibilità UI/UE sia dalla BOM)
+    lines.append(subsep)
+    lines.append("5. INFORMAZIONI COMPONENTI / ACCESSORI")
+    lines.append(subsep)
+    component_relations = search_res.get("component_relations") or []
+    component_products = search_res.get("component_relation_products") or []
+    lines.append(
+        f"  • Lookup Status         : "
+        f"{search_res.get('component_relation_lookup_status') or 'NOT_APPLICABLE'}"
+    )
+    lines.append(
+        f"  • Source                : "
+        f"{search_res.get('component_relation_source') or 'catalog_component_relations_v3_4'}"
+    )
+    if component_products:
+        lines.append(f"  • Product Context ({len(component_products)}):")
+        for product in component_products:
+            lines.append(
+                "      - PT: {pt} | MFG: {mfg} | Ruolo: {role} | "
+                "Table: {table} | Family: {family} | Nome: {name}".format(
+                    pt=product.get("code") or "-",
+                    mfg=product.get("mfg_code") or product.get("model") or "-",
+                    role=product.get("role") or ("UI" if product.get("is_ui") else ("UE" if product.get("is_ue") else "-")),
+                    table=product.get("table_id") or "-",
+                    family=product.get("family_key") or "-",
+                    name=product.get("name") or product.get("catalog_family") or "-",
+                )
+            )
+    else:
+        lines.append("  • Product Context       : Nessun prodotto clima identificato")
+
+    if component_relations:
+        lines.append(f"  • Component Relations ({len(component_relations)}):")
+        for relation in component_relations:
+            component = relation.get("component") or {}
+            accessories = relation.get("accessories") or []
+            if accessories:
+                for accessory in accessories:
+                    lines.append(
+                        f"      - PT {accessory.get('pt') or '-'} | "
+                        f"Modello: {accessory.get('model') or '-'}"
+                    )
+                    lines.append(f"        Tipo    : {component.get('type') or '-'}")
+                    lines.append(
+                        f"        Intent  : {component.get('relation_intent') or '-'}"
+                    )
+                    lines.append(
+                        f"        Target  : {relation.get('attachment_target') or '-'}"
+                    )
+                    applies = relation.get("applies_to_models") or []
+                    lines.append(
+                        f"        Applies : {', '.join(str(model) for model in applies) if applies else '-'}"
+                    )
+                    lines.append(
+                        f"        Lookup  : {relation.get('lookup_strategy') or '-'}"
+                    )
+                    lines.append("        Source  : catalog_component_relations_v3_4")
+            else:
+                lines.append(
+                    f"      - Nessun PT separato | Tipo: {component.get('type') or '-'} | "
+                    f"Intent: {component.get('relation_intent') or '-'} | "
+                    f"Target: {relation.get('attachment_target') or '-'}"
+                )
+                if relation.get("raw_text"):
+                    lines.append(f"        Nota    : {relation.get('raw_text')}")
+    else:
+        lines.append("  • Component Relations  : Nessuna relazione componente/accessorio")
+    lines.append("")
 
     lines.append(sep)
     return "\n".join(lines)
@@ -253,23 +357,25 @@ def run_batch_qa(engine: CatalogSearchEngine, input_file: str, output_file: str)
         pools = res.get("candidate_pools", {})
         q_ctx = res.get("query_analysis", {}).get("query_context", {})
 
-        # Estrai BOM candidata
-        ue_item = pools.get("slot_ue", [{}])[0] if pools.get("slot_ue") else {}
-        btus = q_ctx.get("requested_btus", [])
+        # Estrai BOM candidata direttamente dal motore
+        bom = res.get("bom", [])
+        ue_item = next((it for it in bom if it.get("role") == "UE" or it.get("is_ue")), {})
+        ui_items = [it for it in bom if it.get("role") == "UI" or it.get("is_ui")]
 
-        ui_items = []
-        if btus:
-            for b in btus:
-                cands = pools.get(f"slot_ui_{b}", pools.get("slot_ui", []))
-                if cands:
-                    ui_items.append(cands[0])
-        else:
-            if pools.get("slot_ui"):
-                ui_items.append(pools["slot_ui"][0])
+        compat_ev = res.get("compatibility_evidence") or {}
 
         rec = dict(r)
         rec["RETRIEVAL_BRAND"] = res.get("detected_brand")
         rec["RETRIEVAL_MATCH_TYPE"] = res.get("match_type")
+        rec["PRODUCT_SCOPE"] = res.get("product_scope")
+        rec["COMPATIBILITY_STATUS"] = res.get("compatibility_status")
+        rec["COMPATIBILITY_RELATION"] = compat_ev.get("relation_type")
+        rec["COMPATIBILITY_PROVENANCE"] = compat_ev.get("provenance")
+        rec["COMPONENT_RELATION_LOOKUP_STATUS"] = res.get("component_relation_lookup_status")
+        rec["COMPONENT_RELATION_SOURCE"] = res.get("component_relation_source")
+        rec["COMPONENT_RELATIONS_JSON"] = json.dumps(
+            res.get("component_relations") or [], ensure_ascii=False
+        )
         rec["CANDIDATE_UE_PT"] = ue_item.get("code")
         rec["CANDIDATE_UE_MFG"] = ue_item.get("mfg_code")
         rec["CANDIDATE_UE_NAME"] = ue_item.get("name")

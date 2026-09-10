@@ -43,6 +43,7 @@ from src.core.catalog_table_context import (
     CatalogTableContextIndex,
     normalize_family_key_part,
 )
+from src.core.component_relations import ClimateComponentRelationIndex
 
 # Category Adapters
 from src.adapters.climate import ClimateCategoryAdapter, extract_split_capacities
@@ -62,6 +63,9 @@ HEATER_SPECS_PATH = os.path.join(BASE_DIR, "Knowledge", "catalog_pdf_water_heate
 FANCOIL_SPECS_PATH = os.path.join(BASE_DIR, "Knowledge", "catalog_pdf_fancoil_specs.json")
 HEATPUMP_SPECS_PATH = os.path.join(BASE_DIR, "Knowledge", "catalog_pdf_heatpump_specs.json")
 CATALOG_TABLE_CONTEXT_PATH = os.path.join(BASE_DIR, "Knowledge", "catalog_table_context.json")
+COMPONENT_RELATIONS_V34_PATH = os.path.join(
+    BASE_DIR, "catalog_component_relations_safe_preview_v3_4.json"
+)
 if not os.path.exists(MASTER_CATALOG_PATH):
     MASTER_CATALOG_PATH = os.path.join(os.path.dirname(BASE_DIR), "Knowledge", "unified_catalog_master.json")
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
@@ -184,7 +188,742 @@ def compute_field_boost(item: Dict[str, Any], query_tokens: List[str], requested
     if item.get('is_ui') and requested_btus and item.get('taglia_btu') in requested_btus:
         domain_boost += 25.0
     _, tier_score = reranker.evaluate_candidate(item, query_tokens, domain_boost=domain_boost)
-    return item.get("_final_score", 0.0)
+    return tier_score
+
+def find_explicit_included_components(
+    query: str,
+    candidate_pools: Dict[str, List[Dict[str, Any]]],
+    query_context: Dict[str, Any],
+    product_scope: Optional[str] = None,
+    exact_token_candidates: Optional[List[Dict[str, Any]]] = None,
+    near_model_candidates: Optional[List[Dict[str, Any]]] = None
+) -> List[Dict[str, Any]]:
+    """
+    Identifica componenti fisici esplicitamente menzionati nel titolo del prodotto venduto:
+    - il suo manufacturer model/code è esplicitamente presente nella query;
+    - il match è univoco e forte;
+    - il componente è descritto come parte del prodotto venduto;
+    - non è dichiarato opzionale.
+
+    Evidence ammesse per auto-inclusione:
+    - UNIQUE EXACT / EXACT_RAW / EXACT_CATALOG_MODEL_LABEL / EXACT_PT / EXACT_MFG
+    - near-model SOLO quando la differenza deriva da normalizzazione non semantica
+      del modello, ad esempio: 4MWXM52A(9) -> 4MWXM52A9
+
+    NON includere automaticamente:
+    - accessori solo scoperti semanticamente;
+    - accessori opzionali non fisicamente inclusi;
+    - candidati generici del slot_accessory;
+    - componenti che non hanno un modello/riferimento esplicito nella query.
+    """
+    if not query:
+        return []
+
+    q_raw = query.strip()
+    raw_tokens = re.findall(r'[A-Za-z0-9]+(?:[\(\)\-\/\.][A-Za-z0-9]+)+|[A-Za-z0-9]{3,}', q_raw)
+
+    # Raccoglie tutti i candidati potenziali da pool ed exact tokens
+    candidate_map: Dict[str, Dict[str, Any]] = {}
+    if exact_token_candidates:
+        for it in exact_token_candidates:
+            c = str(it.get("code") or "")
+            if c:
+                candidate_map[c] = it
+    if near_model_candidates:
+        for it in near_model_candidates:
+            c = str(it.get("code") or "")
+            if c and c not in candidate_map:
+                candidate_map[c] = it
+
+    for s_id, cands in candidate_pools.items():
+        for it in cands:
+            c = str(it.get("code") or "")
+            if c:
+                if c not in candidate_map:
+                    candidate_map[c] = it
+                else:
+                    for k in ("evidence_tier", "identity_evidence", "is_ui", "is_ue", "taglia_btu"):
+                        if k in it and k not in candidate_map[c]:
+                            candidate_map[c][k] = it[k]
+
+    explicit_items = []
+    seen_codes = set()
+
+    for code, cand in candidate_map.items():
+        tier = cand.get("evidence_tier", 9)
+        ident_ev = cand.get("identity_evidence") or {}
+        match_type = ident_ev.get("match_type") or cand.get("_exact_match_type") or ""
+
+        # Verifica evidence ammessa (Tier 1, Tier 2, o Tier 3 near-model con non-semantic norm)
+        is_tier_1_2 = (
+            tier in (1, 2) or
+            cand.get("_is_exact_token_match") or
+            match_type in ("EXACT_RAW", "EXACT_NORMALIZED", "EXACT_CATALOG_MODEL_LABEL", "EXACT_PT", "EXACT_MFG", "UNIQUE EXACT")
+        )
+        is_tier_3 = (
+            tier == 3 or
+            cand.get("_is_near_model_candidate") or
+            match_type == "NEAR_MODEL_CANDIDATE"
+        )
+
+        if not (is_tier_1_2 or is_tier_3):
+            continue
+
+        mfg = str(cand.get("mfg_code") or "").strip()
+        matched_token = None
+        matched_pos = 9999
+
+        # Verifica presenza esplicita di mfg_code nella query
+        if mfg:
+            norm_mfg = normalize_token(mfg)
+            if len(norm_mfg) >= 4:
+                for tok in raw_tokens:
+                    norm_tok = normalize_token(tok)
+                    if norm_tok == norm_mfg:
+                        matched_token = tok
+                        matched_pos = q_raw.find(tok)
+                        break
+
+        # Verifica presenza esplicita di codice PT a 8 cifre
+        if not matched_token and len(code) == 8 and code.isdigit():
+            m_pt = re.search(r'\b' + re.escape(code) + r'\b', q_raw)
+            if m_pt:
+                matched_token = code
+                matched_pos = m_pt.start()
+
+        if not matched_token:
+            continue
+
+        # Verifica se il componente è dichiarato opzionale nel titolo
+        # es: "BRP069B45 optional", "optional BRP069B45", "con comando ... (optional)"
+        opt_pattern = rf'(?:{re.escape(matched_token)}\s*(?:\([^)]*\))?\s*(?:optional|opzionale|non\s+inclus[oai]|esclus[oai])\b|\b(?:optional|opzionale|non\s+inclus[oai]|esclus[oai])\s*(?:\([^)]*\))?\s*{re.escape(matched_token)})'
+        if re.search(opt_pattern, q_raw, re.I):
+            continue
+
+        # Rispetta i vincoli di product_scope per UI_ONLY ed UE_ONLY
+        if product_scope == "UI_ONLY" and cand.get("is_ue"):
+            continue
+        if product_scope == "UE_ONLY" and cand.get("is_ui"):
+            continue
+
+        if code in seen_codes:
+            continue
+        seen_codes.add(code)
+
+        cand_copy = dict(cand)
+        cand_copy["_matched_query_pos"] = matched_pos
+
+        if cand_copy.get("is_ue"):
+            cand_copy["role"] = "UE"
+            cand_copy["role_label"] = "UE (Motore Esterno)"
+        elif cand_copy.get("is_ui"):
+            btu = cand_copy.get("taglia_btu")
+            cand_copy["role"] = "UI"
+            cand_copy["role_label"] = f"UI {btu} BTU" if btu else "UI (Unità Interna)"
+        else:
+            name_u = (cand_copy.get("name") or "").upper()
+            if any(w in name_u for w in ["ACCUMULO", "SERBATOIO", "BOLLITORE", "DHW", "TANK"]):
+                cand_copy["role"] = "ACCUMULO"
+                cand_copy["role_label"] = "Serbatoio A.C.S. / Accumulo"
+            elif any(w in name_u for w in ["HYDROBOX", "HYDROTANK", "MODULO IDRONICO"]):
+                cand_copy["role"] = "HYDROBOX"
+                cand_copy["role_label"] = "Modulo Idronico / Hydrobox"
+            elif any(w in name_u for w in ["PANNELLO", "GRIGLIA"]):
+                cand_copy["role"] = "PANNELLO"
+                cand_copy["role_label"] = "Pannello / Griglia"
+            elif any(w in name_u for w in ["COMANDO", "CONTROLLER", "TERMOSTATO"]):
+                cand_copy["role"] = "COMANDO"
+                cand_copy["role_label"] = "Comando / Controllo"
+            else:
+                cand_copy["role"] = "INCLUDED_COMPONENT"
+                cand_copy["role_label"] = "Componente Fisico Incluso"
+
+        explicit_items.append(cand_copy)
+
+    # Ordina per apparizione naturale nel titolo
+    explicit_items.sort(key=lambda x: x.get("_matched_query_pos", 9999))
+    return explicit_items
+
+
+def assemble_bom(
+    product_scope: Optional[str],
+    candidate_pools: Dict[str, List[Dict[str, Any]]],
+    query_context: Dict[str, Any],
+    formatted_results: List[Dict[str, Any]],
+    query: str = "",
+    exact_token_candidates: Optional[List[Dict[str, Any]]] = None,
+    near_model_candidates: Optional[List[Dict[str, Any]]] = None
+) -> List[Dict[str, Any]]:
+    """
+    Assembla la distinta base (BOM) candidata in base alle regole di product_scope ed
+    include componenti fisici esplicitamente presenti nella query (es. accumuli, serbatoi, ecc.):
+    - Fase 1: explicit_included_components
+    - Fase 2: topology_required_components
+    BOM finale: explicit_included_components + topology_required_components
+    Evita duplicazioni accidentali dello stesso codice tra le due fasi, ma preserva
+    la molteplicità reale di UI multisplit (es. 9+9+9).
+    """
+    explicit_components = find_explicit_included_components(
+        query=query,
+        candidate_pools=candidate_pools,
+        query_context=query_context,
+        product_scope=product_scope,
+        exact_token_candidates=exact_token_candidates,
+        near_model_candidates=near_model_candidates
+    )
+
+    bom: List[Dict[str, Any]] = []
+    seen_bom_codes = set()
+
+    for exp_c in explicit_components:
+        c_code = str(exp_c.get("code") or "")
+        if c_code not in seen_bom_codes:
+            seen_bom_codes.add(c_code)
+            bom.append(exp_c)
+
+    has_ue_in_bom = any(it.get("role") == "UE" or it.get("is_ue") for it in bom)
+    has_ui_in_bom = any(it.get("role") == "UI" or it.get("is_ui") for it in bom)
+    btus = query_context.get("requested_btus", [])
+
+    if product_scope == "UI_ONLY":
+        if not has_ui_in_bom:
+            if btus:
+                for btu in btus:
+                    cands = candidate_pools.get(f"slot_ui_{btu}", candidate_pools.get("slot_ui", []))
+                    if cands and str(cands[0].get("code") or "") not in seen_bom_codes:
+                        cand = dict(cands[0])
+                        cand["role"] = "UI"
+                        cand["role_label"] = f"UI {btu} BTU"
+                        bom.append(cand)
+                        seen_bom_codes.add(str(cand.get("code") or ""))
+            else:
+                cands = candidate_pools.get("slot_ui", [])
+                if cands and str(cands[0].get("code") or "") not in seen_bom_codes:
+                    cand = dict(cands[0])
+                    cand["role"] = "UI"
+                    cand["role_label"] = "UI (Unità Interna)"
+                    bom.append(cand)
+                    seen_bom_codes.add(str(cand.get("code") or ""))
+                elif formatted_results:
+                    ui_cands = [r for r in formatted_results if r.get("is_ui")]
+                    if ui_cands and str(ui_cands[0].get("code") or "") not in seen_bom_codes:
+                        cand = dict(ui_cands[0])
+                        cand["role"] = "UI"
+                        cand["role_label"] = "UI (Unità Interna)"
+                        bom.append(cand)
+                        seen_bom_codes.add(str(cand.get("code") or ""))
+
+    elif product_scope == "UE_ONLY":
+        if not has_ue_in_bom:
+            ue_cands = candidate_pools.get("slot_ue", [])
+            if ue_cands and str(ue_cands[0].get("code") or "") not in seen_bom_codes:
+                cand = dict(ue_cands[0])
+                cand["role"] = "UE"
+                cand["role_label"] = "UE (Motore Esterno)"
+                bom.append(cand)
+                seen_bom_codes.add(str(cand.get("code") or ""))
+            elif formatted_results:
+                ue_res = [r for r in formatted_results if r.get("is_ue")]
+                if ue_res and str(ue_res[0].get("code") or "") not in seen_bom_codes:
+                    cand = dict(ue_res[0])
+                    cand["role"] = "UE"
+                    cand["role_label"] = "UE (Motore Esterno)"
+                    bom.append(cand)
+                    seen_bom_codes.add(str(cand.get("code") or ""))
+
+    elif product_scope == "MONOSPLIT":
+        # UE:
+        if not has_ue_in_bom:
+            ue_cands = candidate_pools.get("slot_ue", [])
+            if ue_cands and str(ue_cands[0].get("code") or "") not in seen_bom_codes:
+                cand = dict(ue_cands[0])
+                cand["role"] = "UE"
+                cand["role_label"] = "UE (Motore Esterno)"
+                bom.insert(0, cand)
+                seen_bom_codes.add(str(cand.get("code") or ""))
+
+        # UI:
+        if not has_ui_in_bom:
+            if btus:
+                for btu in btus:
+                    cands = candidate_pools.get(f"slot_ui_{btu}", candidate_pools.get("slot_ui", []))
+                    if cands and str(cands[0].get("code") or "") not in seen_bom_codes:
+                        cand = dict(cands[0])
+                        cand["role"] = "UI"
+                        cand["role_label"] = f"UI {btu} BTU"
+                        bom.append(cand)
+                        seen_bom_codes.add(str(cand.get("code") or ""))
+            else:
+                cands = candidate_pools.get("slot_ui", [])
+                if cands and str(cands[0].get("code") or "") not in seen_bom_codes:
+                    cand = dict(cands[0])
+                    cand["role"] = "UI"
+                    cand["role_label"] = "UI (Unità Interna)"
+                    bom.append(cand)
+                    seen_bom_codes.add(str(cand.get("code") or ""))
+
+    elif product_scope == "MULTISPLIT":
+        # UE:
+        if not has_ue_in_bom:
+            ue_cands = candidate_pools.get("slot_ue", [])
+            if ue_cands and str(ue_cands[0].get("code") or "") not in seen_bom_codes:
+                cand = dict(ue_cands[0])
+                cand["role"] = "UE"
+                cand["role_label"] = "UE (Motore Esterno)"
+                bom.insert(0, cand)
+                seen_bom_codes.add(str(cand.get("code") or ""))
+
+        # UIs for MULTISPLIT:
+        # Aggiunge UIs solo se richieste taglie BTU (preservando molteplicità per 9+9+9)
+        if btus:
+            for btu in btus:
+                cands = candidate_pools.get(f"slot_ui_{btu}", candidate_pools.get("slot_ui", []))
+                if cands:
+                    cand = dict(cands[0])
+                    cand["role"] = "UI"
+                    cand["role_label"] = f"UI {btu} BTU"
+                    bom.append(cand)
+
+    else:
+        if not bom and formatted_results:
+            cand = dict(formatted_results[0])
+            cand["role"] = "PRIMARY"
+            cand["role_label"] = "Prodotto Primario"
+            bom.append(cand)
+
+    return bom
+
+
+def check_multisplit_combination_verified(ue_rec: Dict[str, Any], uis_in_bom: List[Dict[str, Any]]) -> bool:
+    if not ue_rec:
+        return False
+    comb_list = ue_rec.get("combinazioni_ammesse") or ue_rec.get("combinazioni_ammesse_taglie") or []
+    if not comb_list:
+        return False
+
+    btu_to_tokens = {
+        7000: {"20", "21", "2.0", "7"},
+        9000: {"25", "26", "2.5", "2.6", "9"},
+        12000: {"35", "3.5", "12"},
+        15000: {"42", "45", "4.2", "4.5", "15"},
+        18000: {"50", "52", "53", "5.0", "18"},
+        21000: {"60", "6.0", "21"},
+        24000: {"70", "71", "7.0", "24"},
+    }
+
+    ui_btus = [it.get("taglia_btu") for it in uis_in_bom if it.get("taglia_btu")]
+    if len(ui_btus) != len(uis_in_bom):
+        return False
+
+    max_ports = ue_rec.get("porte_attacchi") or ue_rec.get("max_ui_collegabili") or 99
+    if len(uis_in_bom) > max_ports:
+        return False
+
+    for comb_str in comb_list:
+        parts = [p.strip() for p in re.split(r'[+\s,]+', comb_str) if p.strip()]
+        if len(parts) != len(ui_btus):
+            continue
+        matched_indices = set()
+        for part in parts:
+            found_idx = None
+            for idx, b in enumerate(ui_btus):
+                if idx not in matched_indices:
+                    toks = btu_to_tokens.get(b, {str(b)})
+                    if part in toks:
+                        found_idx = idx
+                        break
+            if found_idx is not None:
+                matched_indices.add(found_idx)
+            else:
+                break
+        if len(matched_indices) == len(ui_btus):
+            return True
+
+    return False
+
+
+def compute_compatibility_info(
+    product_scope: Optional[str],
+    adapter_name: str,
+    bom: List[Dict[str, Any]],
+    candidate_pools: Dict[str, List[Dict[str, Any]]],
+    relations: List[Any],
+    query_context: Dict[str, Any],
+    adapter: Any = None,
+    lookup_dict: Optional[Dict[str, Any]] = None
+) -> Tuple[str, Dict[str, Any]]:
+    """
+    Calcola compatibility_status (VERIFIED | NOT_VERIFIED | NOT_APPLICABLE)
+    e compatibility_evidence (relation_type, provenance, confidence, source_code, target_code, connected_components, relation_evidences).
+    """
+    if adapter_name != "CLIMA" or not product_scope or product_scope == "GENERAL":
+        return "NOT_APPLICABLE", {
+            "relation_type": None,
+            "provenance": None,
+            "source": None,
+            "confidence": None,
+            "source_code": None,
+            "target_code": None,
+            "connected_components": [],
+            "componenti_collegati": [],
+            "relation_evidences": []
+        }
+
+    rel_dicts = [r.to_dict() if hasattr(r, "to_dict") else dict(r) for r in relations]
+
+    ue_in_bom = next((it for it in bom if it.get("role") == "UE" or it.get("is_ue")), None)
+    uis_in_bom = [it for it in bom if it.get("role") == "UI" or it.get("is_ui")]
+
+    if product_scope == "MONOSPLIT":
+        if ue_in_bom and uis_in_bom:
+            ue_code = str(ue_in_bom.get("code") or "")
+            ui_code = str(uis_in_bom[0].get("code") or "")
+            source_code = ue_code
+            target_code = ui_code
+
+            matching_rels = [
+                r for r in rel_dicts
+                if (str(r.get("source_code")) == ue_code and str(r.get("target_code")) == ui_code) or
+                   (str(r.get("source_code")) == ui_code and str(r.get("target_code")) == ue_code)
+            ]
+
+            if adapter and hasattr(adapter, "_pdf_table_pairs_ui_to_ue"):
+                for p in adapter._pdf_table_pairs_ui_to_ue.get(ui_code, []):
+                    if str(p.get("target_code") or "") == ue_code:
+                        matching_rels.append({
+                            "source_code": ui_code,
+                            "target_code": ue_code,
+                            "relation_type": "PDF_TABLE_PAIRING_VERIFIED",
+                            "provenance": f"catalog_table_context.json:table_id={p.get('table_id')}[p.{p.get('page')}]",
+                            "confidence": float(p.get("confidence") or 0.99)
+                        })
+
+            all_pair_evs = list(matching_rels)
+            for ev in ue_in_bom.get("relation_evidences", []):
+                if str(ev.get("source_code")) == ui_code or str(ev.get("target_code")) == ui_code:
+                    all_pair_evs.append(ev)
+            for ev in uis_in_bom[0].get("relation_evidences", []):
+                if str(ev.get("source_code")) == ue_code or str(ev.get("target_code")) == ue_code:
+                    all_pair_evs.append(ev)
+
+            verified_rel = next(
+                (r for r in all_pair_evs if r.get("relation_type") in ("PDF_TABLE_PAIRING_VERIFIED", "KIT_PAIRING_VERIFIED", "PAIRED_WITH_VERIFIED")),
+                None
+            )
+
+            connected = [
+                {"code": ue_code, "mfg_code": ue_in_bom.get("mfg_code"), "name": ue_in_bom.get("name"), "role": "UE"},
+                {"code": ui_code, "mfg_code": uis_in_bom[0].get("mfg_code"), "name": uis_in_bom[0].get("name"), "role": "UI"}
+            ]
+
+            if verified_rel:
+                status = "VERIFIED"
+                rel_type = verified_rel.get("relation_type")
+                prov = verified_rel.get("provenance")
+                conf = float(verified_rel.get("confidence") or 0.99)
+            elif all_pair_evs:
+                status = "NOT_VERIFIED"
+                rel_type = all_pair_evs[0].get("relation_type")
+                prov = all_pair_evs[0].get("provenance")
+                conf = float(all_pair_evs[0].get("confidence") or 0.70)
+            else:
+                status = "NOT_VERIFIED"
+                rel_type = None
+                prov = None
+                conf = None
+
+            evidence = {
+                "relation_type": rel_type,
+                "provenance": prov,
+                "source": prov,
+                "confidence": conf,
+                "source_code": source_code,
+                "target_code": target_code,
+                "connected_components": connected,
+                "componenti_collegati": connected,
+                "relation_evidences": all_pair_evs
+            }
+            return status, evidence
+        else:
+            return "NOT_VERIFIED", {
+                "relation_type": None,
+                "provenance": None,
+                "source": None,
+                "confidence": None,
+                "source_code": None,
+                "target_code": None,
+                "connected_components": [],
+                "componenti_collegati": [],
+                "relation_evidences": []
+            }
+
+    elif product_scope == "MULTISPLIT":
+        if ue_in_bom and uis_in_bom:
+            ue_code = str(ue_in_bom.get("code") or "")
+            source_code = ue_code
+            target_code = [str(ui.get("code") or "") for ui in uis_in_bom]
+            connected = [{"code": ue_code, "mfg_code": ue_in_bom.get("mfg_code"), "name": ue_in_bom.get("name"), "role": "UE"}]
+            for ui in uis_in_bom:
+                connected.append({
+                    "code": ui.get("code"),
+                    "mfg_code": ui.get("mfg_code"),
+                    "name": ui.get("name"),
+                    "taglia_btu": ui.get("taglia_btu"),
+                    "role": "UI"
+                })
+
+            all_pairwise_compat = True
+            all_pair_evs = []
+            for ui in uis_in_bom:
+                ui_code = str(ui.get("code") or "")
+                matching = [
+                    r for r in rel_dicts
+                    if (str(r.get("source_code")) == ue_code and str(r.get("target_code")) == ui_code) or
+                       (str(r.get("source_code")) == ui_code and str(r.get("target_code")) == ue_code)
+                ]
+                for ev in ui.get("relation_evidences", []):
+                    if str(ev.get("source_code")) == ue_code or str(ev.get("target_code")) == ue_code:
+                        matching.append(ev)
+                if matching:
+                    all_pair_evs.extend(matching)
+                else:
+                    all_pairwise_compat = False
+
+            ue_master_rec = {}
+            if adapter and hasattr(adapter, "_ac_master_ues"):
+                ue_master_rec = adapter._ac_master_ues.get(ue_code) or {}
+            elif lookup_dict:
+                ue_master_rec = lookup_dict.get(ue_code) or {}
+
+            comb_verified = False
+            if all_pairwise_compat and ue_master_rec:
+                comb_verified = check_multisplit_combination_verified(ue_master_rec, uis_in_bom)
+
+            status = "VERIFIED" if comb_verified else "NOT_VERIFIED"
+            evidence = {
+                "relation_type": "COMPATIBLE_WITH",
+                "provenance": "climatizzatori_compatibilita_master.json:unita_esterne.unita_interne_compatibili",
+                "source": "climatizzatori_compatibilita_master.json:unita_esterne.unita_interne_compatibili",
+                "confidence": 0.85,
+                "source_code": source_code,
+                "target_code": target_code,
+                "connected_components": connected,
+                "componenti_collegati": connected,
+                "relation_evidences": all_pair_evs
+            }
+            return status, evidence
+        else:
+            connected = [
+                {
+                    "code": str(it.get("code") or ""),
+                    "mfg_code": it.get("mfg_code"),
+                    "name": it.get("name"),
+                    "role": it.get("role") or ("UE" if it.get("is_ue") else "ACCUMULO")
+                }
+                for it in bom
+            ]
+            return "NOT_VERIFIED", {
+                "relation_type": "COMPATIBLE_WITH" if ue_in_bom else None,
+                "provenance": "climatizzatori_compatibilita_master.json:unita_esterne" if ue_in_bom else None,
+                "source": "climatizzatori_compatibilita_master.json:unita_esterne" if ue_in_bom else None,
+                "confidence": 0.85 if ue_in_bom else None,
+                "source_code": str(ue_in_bom.get("code")) if ue_in_bom else None,
+                "target_code": [str(it.get("code")) for it in bom if it != ue_in_bom],
+                "connected_components": connected,
+                "componenti_collegati": connected,
+                "relation_evidences": []
+            }
+
+    elif product_scope == "UI_ONLY":
+        if uis_in_bom:
+            ui_item = uis_in_bom[0]
+            ui_code = str(ui_item.get("code") or "")
+            source_code = ui_code
+            target_code = None
+            status = "NOT_VERIFIED"
+            rel_type = None
+            prov = None
+            conf = None
+
+            if adapter and hasattr(adapter, "_pdf_table_pairs_ui_to_ue"):
+                pdf_pairs = adapter._pdf_table_pairs_ui_to_ue.get(ui_code, [])
+                if pdf_pairs:
+                    pair = pdf_pairs[0]
+                    target_code = str(pair.get("target_code") or "")
+                    rel_type = "PDF_TABLE_PAIRING_VERIFIED"
+                    prov = f"catalog_table_context.json:table_id={pair.get('table_id')}[p.{pair.get('page')}]"
+                    conf = float(pair.get("confidence") or 0.99)
+                    status = "VERIFIED"
+
+            if not target_code:
+                paired_rel = next(
+                    (r for r in rel_dicts if str(r.get("source_code")) == ui_code or str(r.get("target_code")) == ui_code),
+                    None
+                )
+                if paired_rel:
+                    target_code = str(paired_rel.get("target_code") if str(paired_rel.get("source_code")) == ui_code else paired_rel.get("source_code"))
+                    rel_type = paired_rel.get("relation_type")
+                    prov = paired_rel.get("provenance")
+                    conf = float(paired_rel.get("confidence") or 0.85)
+                    if rel_type in ("PDF_TABLE_PAIRING_VERIFIED", "KIT_PAIRING_VERIFIED", "PAIRED_WITH_VERIFIED", "COMPATIBLE_WITH", "PAIRED_WITH_DERIVED"):
+                        status = "VERIFIED"
+
+            if not target_code:
+                ue_cands = candidate_pools.get("slot_ue", [])
+                if ue_cands:
+                    top_ue = ue_cands[0]
+                    target_code = str(top_ue.get("code") or "")
+                    rel_meta = top_ue.get("relation_evidence") or {}
+                    rel_type = rel_meta.get("relation_type") or top_ue.get("relation_type")
+                    prov = rel_meta.get("provenance") or top_ue.get("relation_provenance")
+                    conf = float(rel_meta.get("confidence") or 0.70)
+                    if rel_type in ("PDF_TABLE_PAIRING_VERIFIED", "KIT_PAIRING_VERIFIED", "PAIRED_WITH_VERIFIED", "COMPATIBLE_WITH", "PAIRED_WITH_DERIVED"):
+                        status = "VERIFIED"
+
+            connected = [
+                {"code": ui_code, "mfg_code": ui_item.get("mfg_code"), "name": ui_item.get("name"), "role": "UI"}
+            ]
+            if target_code:
+                lookup = lookup_dict or {}
+                ue_info = lookup.get(target_code) or {}
+                connected.append({
+                    "code": target_code,
+                    "mfg_code": ue_info.get("mfg_code"),
+                    "name": ue_info.get("name"),
+                    "role": "UE",
+                    "note": "Unità esterna compatibile a scopo informativo (NON inclusa nella BOM)"
+                })
+
+            all_rel_evs = [r for r in rel_dicts if str(r.get("source_code")) == ui_code or str(r.get("target_code")) == ui_code]
+            if ui_item.get("relation_evidences"):
+                all_rel_evs.extend(ui_item.get("relation_evidences"))
+
+            evidence = {
+                "relation_type": rel_type,
+                "provenance": prov,
+                "source": prov,
+                "confidence": conf,
+                "source_code": source_code,
+                "target_code": target_code,
+                "connected_components": connected,
+                "componenti_collegati": connected,
+                "relation_evidences": all_rel_evs
+            }
+            return status, evidence
+        return "NOT_VERIFIED", {
+            "relation_type": None,
+            "provenance": None,
+            "source": None,
+            "confidence": None,
+            "source_code": None,
+            "target_code": None,
+            "connected_components": [],
+            "componenti_collegati": [],
+            "relation_evidences": []
+        }
+
+    elif product_scope == "UE_ONLY":
+        if ue_in_bom:
+            ue_item = ue_in_bom
+            ue_code = str(ue_item.get("code") or "")
+            source_code = ue_code
+            target_code = None
+            status = "NOT_VERIFIED"
+            rel_type = None
+            prov = None
+            conf = None
+
+            if adapter and hasattr(adapter, "_pdf_table_pairs_ue_to_ui"):
+                pdf_pairs = adapter._pdf_table_pairs_ue_to_ui.get(ue_code, [])
+                if pdf_pairs:
+                    pair = pdf_pairs[0]
+                    target_code = str(pair.get("target_code") or "")
+                    rel_type = "PDF_TABLE_PAIRING_VERIFIED"
+                    prov = f"catalog_table_context.json:table_id={pair.get('table_id')}[p.{pair.get('page')}]"
+                    conf = float(pair.get("confidence") or 0.99)
+                    status = "VERIFIED"
+
+            if not target_code:
+                paired_rel = next(
+                    (r for r in rel_dicts if str(r.get("source_code")) == ue_code or str(r.get("target_code")) == ue_code),
+                    None
+                )
+                if paired_rel:
+                    target_code = str(paired_rel.get("target_code") if str(paired_rel.get("source_code")) == ue_code else paired_rel.get("source_code"))
+                    rel_type = paired_rel.get("relation_type")
+                    prov = paired_rel.get("provenance")
+                    conf = float(paired_rel.get("confidence") or 0.85)
+                    if rel_type in ("PDF_TABLE_PAIRING_VERIFIED", "KIT_PAIRING_VERIFIED", "PAIRED_WITH_VERIFIED", "COMPATIBLE_WITH", "PAIRED_WITH_DERIVED"):
+                        status = "VERIFIED"
+
+            if not target_code:
+                ui_candidates_found = []
+                for s_id, cands in candidate_pools.items():
+                    if s_id.startswith("slot_ui") and cands:
+                        ui_candidates_found.extend(cands[:2])
+                if ui_candidates_found:
+                    top_ui = ui_candidates_found[0]
+                    target_code = str(top_ui.get("code") or "")
+                    rel_meta = top_ui.get("relation_evidence") or {}
+                    rel_type = rel_meta.get("relation_type") or top_ui.get("relation_type")
+                    prov = rel_meta.get("provenance") or top_ui.get("relation_provenance")
+                    conf = float(rel_meta.get("confidence") or 0.70)
+                    if rel_type in ("PDF_TABLE_PAIRING_VERIFIED", "KIT_PAIRING_VERIFIED", "PAIRED_WITH_VERIFIED", "COMPATIBLE_WITH", "PAIRED_WITH_DERIVED"):
+                        status = "VERIFIED"
+
+            connected = [
+                {"code": ue_code, "mfg_code": ue_item.get("mfg_code"), "name": ue_item.get("name"), "role": "UE"}
+            ]
+            if target_code:
+                lookup = lookup_dict or {}
+                ui_info = lookup.get(target_code) or {}
+                connected.append({
+                    "code": target_code,
+                    "mfg_code": ui_info.get("mfg_code"),
+                    "name": ui_info.get("name"),
+                    "role": "UI",
+                    "note": "Unità interna compatibile a scopo informativo (NON inclusa nella BOM)"
+                })
+
+            all_rel_evs = [r for r in rel_dicts if str(r.get("source_code")) == ue_code or str(r.get("target_code")) == ue_code]
+            if ue_item.get("relation_evidences"):
+                all_rel_evs.extend(ue_item.get("relation_evidences"))
+
+            evidence = {
+                "relation_type": rel_type,
+                "provenance": prov,
+                "source": prov,
+                "confidence": conf,
+                "source_code": source_code,
+                "target_code": target_code,
+                "connected_components": connected,
+                "componenti_collegati": connected,
+                "relation_evidences": all_rel_evs
+            }
+            return status, evidence
+        return "NOT_VERIFIED", {
+            "relation_type": None,
+            "provenance": None,
+            "source": None,
+            "confidence": None,
+            "source_code": None,
+            "target_code": None,
+            "connected_components": [],
+            "componenti_collegati": [],
+            "relation_evidences": []
+        }
+
+    return "NOT_APPLICABLE", {
+        "relation_type": None,
+        "provenance": None,
+        "source": None,
+        "confidence": None,
+        "source_code": None,
+        "target_code": None,
+        "connected_components": [],
+        "componenti_collegati": [],
+        "relation_evidences": []
+    }
 
 
 class CatalogSearchEngine:
@@ -218,6 +957,7 @@ class CatalogSearchEngine:
         self._evidence_reranker = GenericEvidenceReranker()
         self._relation_expander = TypedRelationExpander()
         self._catalog_table_context: Optional[CatalogTableContextIndex] = None
+        self._component_relation_index: Optional[ClimateComponentRelationIndex] = None
 
         # Adapters e Router
         self._climate_adapter: Optional[ClimateCategoryAdapter] = None
@@ -237,6 +977,12 @@ class CatalogSearchEngine:
     def _ensure_initialized(self):
         if self._catalog_table_context is None:
             self._catalog_table_context = CatalogTableContextIndex(CATALOG_TABLE_CONTEXT_PATH)
+
+        if self._component_relation_index is None:
+            self._component_relation_index = ClimateComponentRelationIndex(
+                COMPONENT_RELATIONS_V34_PATH,
+                CATALOG_TABLE_CONTEXT_PATH,
+            )
 
         if self._lookup is None:
             if os.path.exists(self.lookup_path):
@@ -349,6 +1095,132 @@ class CatalogSearchEngine:
             self._catalog_table_context.enrich_item(item)
         if adapter is not None:
             adapter.enrich_item(item)
+
+    @staticmethod
+    def _component_product_payload(item: Dict[str, Any]) -> Dict[str, Any]:
+        return {
+            "code": str(item.get("code") or "") or None,
+            "mfg_code": item.get("mfg_code"),
+            "name": item.get("name"),
+            "role": item.get("role"),
+            "is_ui": bool(item.get("is_ui")),
+            "is_ue": bool(item.get("is_ue")),
+            "table_id": item.get("table_id"),
+            "family_key": item.get("family_key"),
+            "catalog_family": item.get("catalog_family"),
+            "model": (item.get("table_context") or {}).get("model"),
+        }
+
+    @staticmethod
+    def _deduplicate_component_products(items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        kept = []
+        seen = set()
+        for item in items:
+            key = (
+                str(item.get("code") or ""), str(item.get("table_id") or ""),
+                str(item.get("family_key") or ""), str(item.get("mfg_code") or ""),
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            kept.append(item)
+        return kept
+
+    def _component_relations_after_product_match(
+        self,
+        adapter_name: str,
+        exact_token_candidates: List[Dict[str, Any]],
+        bom: List[Dict[str, Any]],
+        formatted_results: List[Dict[str, Any]],
+        query_context: Dict[str, Any],
+        product_scope: Optional[str],
+        query: str,
+    ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], str]:
+        """Lookup accessories only after product identity has been established."""
+        if adapter_name != "CLIMA" or self._component_relation_index is None:
+            return [], [], "NOT_APPLICABLE"
+
+        def product_candidates(items):
+            return self._deduplicate_component_products([
+                self._component_product_payload(item)
+                for item in items
+                if item.get("is_ui") or item.get("is_ue")
+                or str(item.get("role") or "").upper() in {"UI", "UE"}
+            ])
+
+        def lookup_products(products):
+            relations = []
+            for product in products:
+                relations.extend(self._component_relation_index.lookup_product(product))
+            return self._component_relation_index._deduplicate(relations)
+
+        # Strong product identity wins.  If it has no component relation, do not
+        # guess a different product from semantic candidates.
+        exact_products = product_candidates(exact_token_candidates)
+        if exact_products:
+            return lookup_products(exact_products), exact_products, "EXACT_PRODUCT_IDENTITY"
+
+        if product_scope and product_scope != "GENERAL":
+            bom_products = product_candidates(bom)
+            if bom_products:
+                matches = lookup_products(bom_products)
+                return matches, bom_products, "BOM_PRODUCT_IDENTITY"
+
+        requested_family_key = query_context.get("requested_family_key")
+        if requested_family_key:
+            matches = self._component_relation_index.lookup_family(requested_family_key)
+            family_product = [{
+                "code": None,
+                "mfg_code": None,
+                "name": query_context.get("requested_family"),
+                "role": "FAMILY",
+                "is_ui": False,
+                "is_ue": False,
+                "table_id": None,
+                "family_key": requested_family_key,
+                "catalog_family": query_context.get("requested_family"),
+                "model": None,
+            }]
+            return matches, family_product, "EXACT_FAMILY_CONTEXT"
+
+        # The catalog can replace a final model revision letter (for example
+        # FCAG71A in a legacy title vs FCAG71B in the current table).  Resolve
+        # only that exact one-character revision pattern, never fuzzy or
+        # semantic similarity, and only among already retrieved UI products.
+        query_model_tokens = {
+            normalize_token(token)
+            for token in re.findall(r"[A-Za-z0-9][A-Za-z0-9()/.\-]{4,}", query)
+            if normalize_token(token)
+        }
+        revision_products = []
+        for product in product_candidates(formatted_results):
+            model = normalize_token(product.get("mfg_code") or product.get("model") or "")
+            if not model or not product.get("is_ui"):
+                continue
+            if any(
+                len(model) == len(token)
+                and len(model) >= 6
+                and model[:-1] == token[:-1]
+                and model[-1:].isalpha()
+                and token[-1:].isalpha()
+                for token in query_model_tokens
+            ):
+                revision_products.append(product)
+        revision_products = self._deduplicate_component_products(revision_products)
+        if revision_products:
+            matches = lookup_products(revision_products)
+            return matches, revision_products, "EXACT_MODEL_REVISION_PRODUCT_CONTEXT"
+
+        # Last deterministic product-identification fallback: use only concrete
+        # UI candidates already selected by retrieval.  Accessory candidates are
+        # never searched or used to guess the product.
+        result_products = product_candidates([
+            item for item in formatted_results if item.get("is_ui")
+        ])
+        if result_products:
+            matches = lookup_products(result_products)
+            return matches, result_products, "RETRIEVED_UI_PRODUCT_CONTEXT"
+        return [], [], "NO_IDENTIFIED_CLIMATE_PRODUCT"
 
     def _search_master_retry(
         self,
@@ -485,13 +1357,36 @@ class CatalogSearchEngine:
                 item["page_accessories"] = []
 
             item["score"] = 1000.0
+            component_relations = []
+            component_products = []
+            component_lookup_status = "NOT_APPLICABLE"
+            if item.get("is_ui") or item.get("is_ue"):
+                product = self._component_product_payload(item)
+                component_products = [product]
+                component_relations = self._component_relation_index.lookup_product(product)
+                component_lookup_status = "EXACT_PRODUCT_IDENTITY"
             return {
                 "query": query,
                 "detected_brand": item.get("brand"),
                 "match_type": "exact_code_short_circuit",
                 "execution_time_ms": round(elapsed * 1000, 2),
                 "total_results": 1,
-                "results": [item]
+                "results": [item],
+                "product_scope": None,
+                "compatibility_status": "NOT_APPLICABLE",
+                "compatibility_evidence": {
+                    "relation_type": None,
+                    "provenance": None,
+                    "source": None,
+                    "connected_components": [],
+                    "componenti_collegati": [],
+                    "confidence": None
+                },
+                "bom": [item],
+                "component_relations": component_relations,
+                "component_relation_products": component_products,
+                "component_relation_lookup_status": component_lookup_status,
+                "component_relation_source": ClimateComponentRelationIndex.SOURCE_NAME,
             }
 
         # STADIO 1.2: EXACT TOKEN & NEAR MODEL PARSING
@@ -857,9 +1752,34 @@ class CatalogSearchEngine:
             for rel in relations
         ]
 
+        product_scope = query_context.get("product_scope") if adapter.name == "CLIMA" else None
+
+        bom = assemble_bom(
+            product_scope, candidate_pools_data, query_context, formatted_results,
+            query=query, exact_token_candidates=exact_token_candidates, near_model_candidates=near_model_candidates
+        )
+        compat_status, compat_evidence = compute_compatibility_info(
+            product_scope, adapter.name, bom, candidate_pools_data, relations, query_context,
+            adapter=adapter, lookup_dict=self._lookup
+        )
+        component_relations, component_products, component_lookup_status = (
+            self._component_relations_after_product_match(
+                adapter.name,
+                exact_token_candidates,
+                bom,
+                formatted_results,
+                query_context,
+                product_scope,
+                query,
+            )
+        )
+
         query_analysis_data = {
             "query_context": query_context,
             "target_brand": target_brand,
+            "product_scope": product_scope,
+            "compatibility_status": compat_status,
+            "compatibility_evidence": compat_evidence,
             "phase": query_context.get("phase"),
             "requested_brand": query_context.get("requested_brand"),
             "requested_family": query_context.get("requested_family"),
@@ -872,7 +1792,9 @@ class CatalogSearchEngine:
             "near_model_candidates": [
                 {"code": str(it.get("code")), "mfg_code": it.get("mfg_code")}
                 for it in near_model_candidates
-            ]
+            ],
+            "component_relation_lookup_status": component_lookup_status,
+            "component_relation_products": component_products,
         }
 
         return {
@@ -888,7 +1810,16 @@ class CatalogSearchEngine:
             # Nuovi campi per architettura avanzata:
             "candidate_pools": candidate_pools_data,
             "relations": relations_data,
-            "query_analysis": query_analysis_data
+            "query_analysis": query_analysis_data,
+            # Campi espliciti richiesti:
+            "product_scope": product_scope,
+            "compatibility_status": compat_status,
+            "compatibility_evidence": compat_evidence,
+            "bom": bom,
+            "component_relations": component_relations,
+            "component_relation_products": component_products,
+            "component_relation_lookup_status": component_lookup_status,
+            "component_relation_source": ClimateComponentRelationIndex.SOURCE_NAME,
         }
 
 
