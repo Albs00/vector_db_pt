@@ -475,19 +475,46 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
     def extract_query_context(self, query: str) -> Dict[str, Any]:
         q_u = query.upper()
         btus = extract_split_capacities(query)
-        is_ue_only = (
-            ("UNITÀ ESTERNA" in q_u or "UNITA ESTERNA" in q_u or "MOTOCONDENSANTE" in q_u)
-            and not any(k in q_u for k in ['MONOSPLIT', 'MONO SPLIT', 'DUAL SPLIT', 'TRIAL SPLIT', 'QUADRI SPLIT', 'PENTA SPLIT'])
-            and len(btus) == 0
-        )
-        is_multi = (
-            any(k in q_u for k in ['DUAL', 'TRIAL', 'QUADRI', 'PENTA', 'MULTISPLIT'])
-            or len(btus) > 1
-        )
-        is_mono = (
-            any(k in q_u for k in ['MONOSPLIT', 'MONO SPLIT'])
-            or (len(btus) == 1 and not is_multi)
-        )
+
+        # Riconoscimento esplicito Product Scope / Topology:
+        # UI_ONLY: "UNITÀ INTERNA", "UNITA INTERNA", riferimenti espliciti a sola UI.
+        # UE_ONLY: "UNITÀ ESTERNA", "UNITA ESTERNA", "MOTOCONDENSANTE", riferimenti espliciti a sola UE.
+        # MULTISPLIT: DUAL, TRIAL, QUADRI, PENTA, MULTISPLIT o più taglie BTU.
+        # MONOSPLIT: solo quando dichiarato "MONOSPLIT"/"MONO SPLIT" oppure come fallback da una singola taglia BTU se NON UI_ONLY o UE_ONLY.
+        # Priorità: UI_ONLY / UE_ONLY > inferenza MONOSPLIT da singola taglia BTU.
+        has_ui_explicit = bool(re.search(r'\b(UNIT[AÀ]\s+INTERNA|UNITA\s+INTERNA|SOLO\s+UI|SOLO\s+UNIT[AÀ]\s+INTERNA)\b', q_u))
+        has_ue_explicit = bool(re.search(r'\b(UNIT[AÀ]\s+ESTERNA|UNITA\s+ESTERNA|MOTOCONDENSANTE|SOLO\s+UE|SOLO\s+UNIT[AÀ]\s+ESTERNA)\b', q_u))
+        has_multi_kw = any(k in q_u for k in ['DUAL', 'TRIAL', 'QUADRI', 'PENTA', 'MULTISPLIT', 'MULTI SPLIT'])
+        has_mono_kw = any(k in q_u for k in ['MONOSPLIT', 'MONO SPLIT'])
+
+        is_multi = has_multi_kw or len(btus) > 1
+
+        if has_ui_explicit and has_ue_explicit:
+            product_scope = "MULTISPLIT" if is_multi else "MONOSPLIT"
+            product_scope_source = "QUERY_EXPLICIT_CONFIGURATION"
+        elif has_ui_explicit and not has_ue_explicit:
+            product_scope = "UI_ONLY"
+            product_scope_source = "QUERY_EXPLICIT_ROLE"
+        elif has_ue_explicit and not has_ui_explicit:
+            product_scope = "UE_ONLY"
+            product_scope_source = "QUERY_EXPLICIT_ROLE"
+        elif is_multi:
+            product_scope = "MULTISPLIT"
+            product_scope_source = "QUERY_EXPLICIT_CONFIGURATION"
+        elif has_mono_kw or len(btus) == 1:
+            product_scope = "MONOSPLIT"
+            product_scope_source = (
+                "QUERY_EXPLICIT_CONFIGURATION"
+                if has_mono_kw else "QUERY_CAPACITY_FALLBACK"
+            )
+        else:
+            product_scope = "GENERAL"
+            product_scope_source = "FALLBACK"
+
+        is_ui_only = (product_scope == "UI_ONLY")
+        is_ue_only = (product_scope == "UE_ONLY")
+        is_monosplit = (product_scope == "MONOSPLIT")
+        is_multisplit = (product_scope == "MULTISPLIT")
         has_commercial_kw = any(k in q_u for k in ['CASSETTA', 'CANALIZZAT', 'SOFFITTO', 'PAVIMENTO', 'CONSOLE'])
 
         # Rilevamento tipologia su 3 livelli:
@@ -583,8 +610,11 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             "feature_comando": feature_comando,
             "is_trifase": phase == "TRIFASE",
             "is_monofase": phase == "MONOFASE",
-            "is_multisplit": is_multi,
-            "is_monosplit": is_mono,
+            "product_scope": product_scope,
+            "product_scope_source": product_scope_source,
+            "is_ui_only": is_ui_only,
+            "is_multisplit": is_multisplit,
+            "is_monosplit": is_monosplit,
             "is_ue_only": is_ue_only,
             "has_commercial_kw": has_commercial_kw,
             "explicit_tipologia": explicit_tipologia,

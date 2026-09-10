@@ -1126,6 +1126,112 @@ class CatalogSearchEngine:
             kept.append(item)
         return kept
 
+    @staticmethod
+    def _is_climate_scope_product(item: Dict[str, Any]) -> bool:
+        """Return whether product metadata reliably places an item in climate."""
+        category_root = str(item.get("category_root") or "").strip().upper()
+        category_path = str(
+            item.get("category_path") or item.get("category") or ""
+        ).strip().upper()
+        product_domain = str(item.get("product_domain") or "").strip().upper()
+        return (
+            category_root == "CONDIZIONAMENTO"
+            or category_path.startswith("CONDIZIONAMENTO")
+            or product_domain == "AIR_AIR_CLIMATE"
+        )
+
+    @staticmethod
+    def _set_product_scope_context(
+        query_context: Dict[str, Any],
+        product_scope: str,
+        source: str,
+    ) -> str:
+        """Keep the scalar scope and its legacy boolean projections aligned."""
+        query_context["product_scope"] = product_scope
+        query_context["product_scope_source"] = source
+        query_context["is_ui_only"] = product_scope == "UI_ONLY"
+        query_context["is_ue_only"] = product_scope == "UE_ONLY"
+        query_context["is_monosplit"] = product_scope == "MONOSPLIT"
+        query_context["is_multisplit"] = product_scope == "MULTISPLIT"
+        return product_scope
+
+    def _reconcile_product_scope(
+        self,
+        query_context: Dict[str, Any],
+        identified_products: List[Dict[str, Any]],
+        query: str = "",
+    ) -> str:
+        """Reconcile a weak query scope with already identified product roles.
+
+        Explicit role/topology language always wins.  Metadata is considered
+        only for exact products in the climate domain and only when their UI/UE
+        flags are mutually exclusive.  Ambiguous alternatives for the same
+        model may still establish a role when every alternative agrees.
+        """
+        current_scope = str(query_context.get("product_scope") or "GENERAL").upper()
+        current_source = str(query_context.get("product_scope_source") or "")
+        if current_source in {
+            "QUERY_EXPLICIT_ROLE",
+            "QUERY_EXPLICIT_CONFIGURATION",
+        }:
+            return self._set_product_scope_context(
+                query_context, current_scope, current_source
+            )
+
+        products = self._deduplicate_component_products(identified_products or [])
+        requested_pt_codes = set(re.findall(r"(?<!\d)\d{8}(?!\d)", query or ""))
+        if requested_pt_codes:
+            pt_products = [
+                item for item in products
+                if str(item.get("code") or "") in requested_pt_codes
+            ]
+            if pt_products:
+                products = pt_products
+
+        role_products = []
+        for item in products:
+            if not self._is_climate_scope_product(item):
+                continue
+            is_ui = bool(item.get("is_ui"))
+            is_ue = bool(item.get("is_ue"))
+            if is_ui == is_ue:
+                continue
+            role_products.append((item, "UI" if is_ui else "UE"))
+
+        if not role_products:
+            return self._set_product_scope_context(
+                query_context,
+                current_scope,
+                current_source or "FALLBACK",
+            )
+
+        roles = {role for _, role in role_products}
+        matched_tokens = {
+            normalize_token(item.get("_matched_token") or "")
+            for item, _ in role_products
+            if normalize_token(item.get("_matched_token") or "")
+        }
+
+        if roles == {"UI", "UE"}:
+            reconciled_scope = "MONOSPLIT"
+            source = "EXACT_PRODUCT_COMPOSITION"
+        elif roles == {"UI"}:
+            # Multiple candidates for one ambiguous label are alternatives,
+            # not a multisplit.  Multiple distinct exact tokens are components.
+            if len(matched_tokens) > 1:
+                reconciled_scope = "MULTISPLIT"
+                source = "EXACT_PRODUCT_COMPOSITION"
+            else:
+                reconciled_scope = "UI_ONLY"
+                source = "EXACT_PRODUCT_METADATA"
+        else:
+            reconciled_scope = "UE_ONLY"
+            source = "EXACT_PRODUCT_METADATA"
+
+        return self._set_product_scope_context(
+            query_context, reconciled_scope, source
+        )
+
     def _component_relations_after_product_match(
         self,
         adapter_name: str,
@@ -1327,6 +1433,12 @@ class CatalogSearchEngine:
             elapsed = time.time() - t0
             item = dict(single_exact_match)
             self._enrich_candidate(item, self._climate_adapter)
+            is_climate_product = self._is_climate_scope_product(item)
+            query_context = self._climate_adapter.extract_query_context(query)
+            product_scope = (
+                self._reconcile_product_scope(query_context, [item], query)
+                if is_climate_product else None
+            )
             if include_accessories:
                 rel = self._acc_engine.get_relations(item)
                 item["product_type"] = rel["product_type"]
@@ -1368,11 +1480,24 @@ class CatalogSearchEngine:
             return {
                 "query": query,
                 "detected_brand": item.get("brand"),
+                "detected_category": "CLIMA" if is_climate_product else None,
                 "match_type": "exact_code_short_circuit",
                 "execution_time_ms": round(elapsed * 1000, 2),
                 "total_results": 1,
                 "results": [item],
-                "product_scope": None,
+                "query_analysis": {
+                    "query_context": query_context,
+                    "product_scope": product_scope,
+                    "exact_token_candidates": [{
+                        "code": str(item.get("code") or ""),
+                        "mfg_code": item.get("mfg_code"),
+                        "match_type": "EXACT_PT",
+                    }],
+                    "near_model_candidates": [],
+                    "component_relation_lookup_status": component_lookup_status,
+                    "component_relation_products": component_products,
+                },
+                "product_scope": product_scope,
                 "compatibility_status": "NOT_APPLICABLE",
                 "compatibility_evidence": {
                     "relation_type": None,
@@ -1752,7 +1877,13 @@ class CatalogSearchEngine:
             for rel in relations
         ]
 
-        product_scope = query_context.get("product_scope") if adapter.name == "CLIMA" else None
+        product_scope = None
+        if adapter.name == "CLIMA":
+            product_scope = self._reconcile_product_scope(
+                query_context,
+                exact_token_candidates,
+                query,
+            )
 
         bom = assemble_bom(
             product_scope, candidate_pools_data, query_context, formatted_results,
@@ -1778,6 +1909,7 @@ class CatalogSearchEngine:
             "query_context": query_context,
             "target_brand": target_brand,
             "product_scope": product_scope,
+            "product_scope_source": query_context.get("product_scope_source"),
             "compatibility_status": compat_status,
             "compatibility_evidence": compat_evidence,
             "phase": query_context.get("phase"),
