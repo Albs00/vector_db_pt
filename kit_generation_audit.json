@@ -1,0 +1,680 @@
+{
+  "audit_metadata": {
+    "title": "KIT GENERATION AUDIT — MPN Decision Logic",
+    "audit_date": "2026-09-10",
+    "mode": "READ_ONLY",
+    "code_modified": false,
+    "datasets_modified": false,
+    "artifact_type": "DIAGNOSTIC_REPORT_ONLY",
+    "runtime_entrypoint": "CatalogSearchEngine.search",
+    "audited_sources": [
+      "catalog_search_engine.py",
+      "accessory_engine.py",
+      "src/core/component_relations.py",
+      "run_full_csv_audit.py",
+      "src/clima_matching_engine.py",
+      "Knowledge/unified_catalog_master.json",
+      "Knowledge/climatizzatori_compatibilita_master.json",
+      "Knowledge/catalog_table_context.json",
+      "Knowledge/vector_db/exact_code_lookup.json",
+      "catalog_component_relations_safe_preview_v3_4.json"
+    ],
+    "interpretation_note": "final_mpn_candidate is an audit reconstruction, not a field currently emitted by CatalogSearchEngine.search. Each case states whether it is publishable or blocked."
+  },
+  "executive_result": {
+    "can_generate_commercial_product_sheet": "PARTIAL",
+    "can_generate_final_mpn_safely_end_to_end": "NO",
+    "verdict": "The retrieval result already contains identified products, product_scope, BOM and catalog_component_relations_v3_4 evidence, but there is no integrated MPN decision layer that consumes relation_intent after BOM assembly. Existing MPN-producing paths are separate from the v3.4 component-relation lookup.",
+    "main_risks": [
+      "ACCESSORY_REQUIRED can be mistaken for automatic inclusion even though v3.4 defines it as mandatory pairing, not base-product inclusion.",
+      "An explicit accessory request is not reconciled with component relations to add exactly the selected PT.",
+      "Pairwise UI/UE compatibility can be mistaken for a valid complete multisplit combination.",
+      "Discovery-only products can be serialized as MPN even when model or size is not uniquely identified.",
+      "Synthetic KIT-* identifiers from compatibility data can be mistaken for real catalog PT codes."
+    ]
+  },
+  "decision_policy_used_by_audit": {
+    "INCLUDE_IN_MPN": "A separately coded physical item explicitly selected or otherwise proven to be part of the commercial shipment. Conditional required alternatives are not serialized until one alternative is selected and the shipping rule is proven.",
+    "OPTIONAL_ONLY": "A compatible accessory that is not part of the base product and was not explicitly selected by the query.",
+    "FEATURE_ONLY": "A machine feature or catalog statement; it never contributes a PT code.",
+    "INCLUDED_IN_PRODUCT": "Included in the base package without a separate sellable code to append.",
+    "conditional_decision_rule": "When the catalog proves mandatory pairing but not which alternative is selected or whether a separate shipment line must be emitted, the element keeps decision INCLUDE_IN_MPN with decision_status CONDITIONAL; it is not inserted into final_mpn_candidate."
+  },
+  "v3_4_relation_inventory": {
+    "total_records": 859,
+    "by_relation_intent": {
+      "ACCESSORY_OPTIONAL": 531,
+      "ACCESSORY_REQUIRED": 102,
+      "FEATURE_ONLY": 75,
+      "NO_COMPONENT_CODE": 151,
+      "ACCESSORY_INCLUDED_SEPARATE": 0
+    },
+    "required_semantics_observed": "MANDATORY_PAIRING_NOT_BASE_PRODUCT_INCLUSION",
+    "included_mapping_gap": "Included remotes/controls are represented as NO_COMPONENT_CODE plus catalog_inclusion_status=INCLUDED, not as ACCESSORY_INCLUDED_SEPARATE. An MPN composer needs an explicit mapping to INCLUDED_IN_PRODUCT."
+  },
+  "cases": [
+    {
+      "test_id": 1,
+      "test_name": "DAIKIN FFA25A9",
+      "query": "Daikin FFA25A9",
+      "product": {
+        "pt": "99718206",
+        "model": "FFA25A9",
+        "name": "UI CASSETTA 600x600 FFA25A9",
+        "brand": "DAIKIN",
+        "identification": "EXACT_MODEL",
+        "table_id": "PDF_P0473_84E198812D",
+        "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60"
+      },
+      "product_scope": "UI_ONLY",
+      "base_components": [
+        {
+          "pt": "99718206",
+          "model": "FFA25A9",
+          "role": "UI",
+          "quantity": 1,
+          "include_in_mpn": true
+        }
+      ],
+      "accessory_decisions": [
+        {
+          "pt": "50132676",
+          "model": "BRP069C81",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "The relation is explicitly optional and required_for_sale=false."
+        },
+        {
+          "pt": "99718244",
+          "model": "BRC7F530S",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "Infrared control/grille variant is catalog-excluded from the base product and is not requested."
+        },
+        {
+          "pt": "99718251",
+          "model": "BRC7F530W",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "Infrared control/grille variant is catalog-excluded from the base product and is not requested."
+        },
+        {
+          "pt": "99718268",
+          "model": "BYFQ60CS",
+          "relation_intent": "ACCESSORY_REQUIRED",
+          "decision": "INCLUDE_IN_MPN",
+          "decision_status": "CONDITIONAL_NOT_SELECTED",
+          "automatic_inclusion": false,
+          "catalog_says_mandatory": true,
+          "physically_separate": "SUPPORTED_BY_SEPARATE_PT_AND_CATALOG_EXCLUDED",
+          "pt_exists": true,
+          "actual_separate_shipping_required": "NOT_PROVEN_BY_AVAILABLE_DATA",
+          "reason": "The catalog says 'Griglia esclusa da abbinare obbligatoriamente', but BYFQ60CS and BYFQ60CW are alternatives. No finish was selected by this query."
+        },
+        {
+          "pt": "99718275",
+          "model": "BYFQ60CW",
+          "relation_intent": "ACCESSORY_REQUIRED",
+          "decision": "INCLUDE_IN_MPN",
+          "decision_status": "CONDITIONAL_NOT_SELECTED",
+          "automatic_inclusion": false,
+          "catalog_says_mandatory": true,
+          "physically_separate": "SUPPORTED_BY_SEPARATE_PT_AND_CATALOG_EXCLUDED",
+          "pt_exists": true,
+          "actual_separate_shipping_required": "NOT_PROVEN_BY_AVAILABLE_DATA",
+          "reason": "The catalog says 'Griglia esclusa da abbinare obbligatoriamente', but BYFQ60CS and BYFQ60CW are alternatives. No finish was selected by this query."
+        },
+        {
+          "pt": null,
+          "model": "Pompa scarico condensa inclusa",
+          "relation_intent": "FEATURE_ONLY",
+          "decision": "FEATURE_ONLY",
+          "reason": "The component is declared included as a feature, has no emitted PT and bom_action=NONE."
+        },
+        {
+          "pt": "99848071",
+          "model": "BRC1H52K",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "Optional wired control, not requested."
+        }
+      ],
+      "final_mpn_candidate": {
+        "value": "99718206",
+        "components": [
+          {
+            "pt": "99718206",
+            "quantity": 1
+          }
+        ],
+        "status": "BASE_SKU_ONLY",
+        "generated_by_runtime": false,
+        "publishable_as_base_product": true,
+        "publishable_as_complete_installable_cassette": false
+      },
+      "warnings": [
+        "The base MPN is correctly limited to 99718206; required grille alternatives must not both be appended.",
+        "A complete sellable cassette configuration needs one grille choice, but catalog evidence does not prove the separate-shipment rule requested by the audit."
+      ],
+      "case_result": "PASS_BASE_MPN_WITH_REQUIRED_ACCESSORY_WARNING"
+    },
+    {
+      "test_id": 2,
+      "test_name": "DAIKIN FFA25A9 + GRIGLIA OBBLIGATORIA",
+      "query": "Daikin FFA25A9 Griglia esclusa da abbinare obbligatoriamente",
+      "product": {
+        "pt": "99718206",
+        "model": "FFA25A9",
+        "name": "UI CASSETTA 600x600 FFA25A9",
+        "brand": "DAIKIN",
+        "identification": "EXACT_MODEL",
+        "table_id": "PDF_P0473_84E198812D",
+        "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60"
+      },
+      "product_scope": "UI_ONLY",
+      "base_components": [
+        {
+          "pt": "99718206",
+          "model": "FFA25A9",
+          "role": "UI",
+          "quantity": 1,
+          "include_in_mpn": true
+        }
+      ],
+      "accessory_decisions": [
+        {
+          "pt": "99718268",
+          "model": "BYFQ60CS",
+          "relation_intent": "ACCESSORY_REQUIRED",
+          "decision": "INCLUDE_IN_MPN",
+          "decision_status": "CONDITIONAL_VARIANT_SELECTION_REQUIRED",
+          "automatic_inclusion": false,
+          "catalog_says_mandatory": true,
+          "physically_separate": "SUPPORTED_BY_SEPARATE_PT_AND_CATALOG_EXCLUDED",
+          "pt_exists": true,
+          "actual_separate_shipping_required": "NOT_PROVEN_BY_AVAILABLE_DATA",
+          "reason": "Mandatory silver alternative. It can enter a composite MPN only after the commercial selection and shipment rule are confirmed."
+        },
+        {
+          "pt": "99718275",
+          "model": "BYFQ60CW",
+          "relation_intent": "ACCESSORY_REQUIRED",
+          "decision": "INCLUDE_IN_MPN",
+          "decision_status": "CONDITIONAL_VARIANT_SELECTION_REQUIRED",
+          "automatic_inclusion": false,
+          "catalog_says_mandatory": true,
+          "physically_separate": "SUPPORTED_BY_SEPARATE_PT_AND_CATALOG_EXCLUDED",
+          "pt_exists": true,
+          "actual_separate_shipping_required": "NOT_PROVEN_BY_AVAILABLE_DATA",
+          "reason": "Mandatory white alternative. It can enter a composite MPN only after the commercial selection and shipment rule are confirmed."
+        },
+        {
+          "pt": "50132676",
+          "model": "BRP069C81",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "Optional Wi-Fi remains outside the MPN."
+        },
+        {
+          "pt": "99718244",
+          "model": "BRC7F530S",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "Optional control/grille remains outside the MPN."
+        },
+        {
+          "pt": "99718251",
+          "model": "BRC7F530W",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "Optional control/grille remains outside the MPN."
+        },
+        {
+          "pt": "99848071",
+          "model": "BRC1H52K",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "Optional wired control remains outside the MPN."
+        },
+        {
+          "pt": null,
+          "model": "Pompa scarico condensa inclusa",
+          "relation_intent": "FEATURE_ONLY",
+          "decision": "FEATURE_ONLY",
+          "reason": "Included machine feature; no separate PT."
+        }
+      ],
+      "final_mpn_candidate": {
+        "value": null,
+        "base_value": "99718206",
+        "status": "BLOCKED_REQUIRED_ACCESSORY_VARIANT",
+        "generated_by_runtime": false,
+        "publishable": false,
+        "allowed_shapes_after_resolution": [
+          "99718206+99718268",
+          "99718206+99718275"
+        ]
+      },
+      "warnings": [
+        "The query repeats the catalog requirement but does not select silver versus white.",
+        "relation_intent does not change because of query wording; both relations are already ACCESSORY_REQUIRED in v3.4.",
+        "Do not emit both grilles.",
+        "Available catalog data does not prove the actual separate-shipment commercial rule, so neither composite MPN can be finalized automatically."
+      ],
+      "case_result": "AMBIGUOUS_REQUIRES_COMMERCIAL_RULE_AND_VARIANT"
+    },
+    {
+      "test_id": 3,
+      "test_name": "AERMEC SPG WIFI OPTIONAL",
+      "query": "Aermec SPG WiFi optional",
+      "product": {
+        "pt": null,
+        "model": "SPG",
+        "name": "AERMEC SPG family",
+        "brand": "AERMEC",
+        "identification": "FAMILY_ONLY",
+        "family_key": "AERMEC_SPG",
+        "runtime_discovery_choice": {
+          "pt": "50117833",
+          "model": "SPG250",
+          "name": "UE SPG250 R32"
+        }
+      },
+      "product_scope": "GENERAL",
+      "base_components": [
+        {
+          "pt": "50117833",
+          "model": "SPG250",
+          "role": "UE",
+          "quantity": 1,
+          "include_in_mpn": false,
+          "reason": "Runtime selected this item by discovery, but the query does not specify the SPG size and does not exact-match SPG250."
+        }
+      ],
+      "accessory_decisions": [
+        {
+          "pt": "50253210",
+          "model": "KITWIFI / WIFIKIT01",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "The relation is table-wide, explicitly optional and required_for_sale=false. The unified master also labels the catalog row OPTIONAL."
+        }
+      ],
+      "final_mpn_candidate": {
+        "value": null,
+        "status": "BLOCKED_BASE_PRODUCT_NOT_UNIQUE",
+        "generated_by_runtime": false,
+        "publishable": false
+      },
+      "warnings": [
+        "The SPG family contains SPG250, SPG350, SPG500 and SPG700 variants; no size is requested.",
+        "The runtime BOM chooses 50117833 SPG250 and scope GENERAL without exact identity. Serializing it would create an unsupported MPN.",
+        "The Wi-Fi decision is correct, but a base-only MPN cannot be finalized until the base SPG variant and intended UI/UE scope are selected."
+      ],
+      "case_result": "FAIL_BASE_IDENTIFICATION_OPTIONAL_ACCESSORY_CLASSIFIED_CORRECTLY"
+    },
+    {
+      "test_id": 4,
+      "test_name": "HAIER CASSETTA PANNELLO BIANCO",
+      "query": "Haier AB71S2SA1FA Pannello bianco",
+      "product": {
+        "pt": "50370283",
+        "model": "AB71S2SA1FA(H)",
+        "mfg_code": "AE1ZR5E00",
+        "name": "UI CASSETTA A 1 VIA AB71S2SA1FA(H)",
+        "brand": "HAIER",
+        "identification": "EXACT_CATALOG_MODEL_LABEL",
+        "table_id": "PDF_P0563_C17CE33993",
+        "family_key": "HAIER_CASSETTA_A_1_VIA"
+      },
+      "product_scope": "UI_ONLY",
+      "base_components": [
+        {
+          "pt": "50370283",
+          "model": "AB71S2SA1FA(H)",
+          "role": "UI",
+          "quantity": 1,
+          "include_in_mpn": true
+        }
+      ],
+      "accessory_decisions": [
+        {
+          "pt": "50370160",
+          "model": "P1B-1348IB / AA0YBLE00",
+          "relation_model_reference": "AB50S2SA1FA - AB71S2SA1FA",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "INCLUDE_IN_MPN",
+          "decision_status": "EXPLICITLY_REQUESTED_OPTIONAL_ACCESSORY",
+          "reason": "v3.4 classifies the panel as optional/unknown inclusion, while the master calls it a separate panel PT and the product page says 'Griglia esclusa'. The query explicitly requests the white panel, so an MPN decision layer should append this physical item without reclassifying the relation as required."
+        },
+        {
+          "pt": null,
+          "model": "Comando escluso",
+          "relation_intent": "ACCESSORY_OPTIONAL",
+          "decision": "OPTIONAL_ONLY",
+          "reason": "No command PT is selected by this query."
+        }
+      ],
+      "final_mpn_candidate": {
+        "value": "50370283+50370160",
+        "components": [
+          {
+            "pt": "50370283",
+            "quantity": 1
+          },
+          {
+            "pt": "50370160",
+            "quantity": 1
+          }
+        ],
+        "status": "AUDIT_CANDIDATE_EXPLICIT_ACCESSORY",
+        "generated_by_runtime": false,
+        "publishable": false
+      },
+      "warnings": [
+        "The runtime BOM contains only 50370283; it does not add the explicitly requested panel.",
+        "The relation says ACCESSORY_OPTIONAL and catalog_inclusion_status=UNKNOWN, so catalog evidence does not justify reclassifying the panel as mandatory or included.",
+        "Publication requires a commercial rule that explicit optional-accessory selection adds the separate PT."
+      ],
+      "case_result": "DATA_SUFFICIENT_BUT_MPN_DECISION_RULE_MISSING"
+    },
+    {
+      "test_id": 5,
+      "test_name": "DAIKIN MONOSPLIT COMPLETO",
+      "query": "Daikin FTXM25A RXM25A",
+      "product": {
+        "pt": null,
+        "model": "FTXM25A + RXM25A",
+        "name": "Daikin Perfera All Seasons monosplit",
+        "brand": "DAIKIN",
+        "identification": "TWO_EXACT_PRODUCT_TOKENS"
+      },
+      "product_scope": "MONOSPLIT",
+      "base_components": [
+        {
+          "pt": "50307791",
+          "model": "FTXM25A",
+          "role": "UI",
+          "quantity": 1,
+          "include_in_mpn": true
+        },
+        {
+          "pt": "50308071",
+          "model": "RXM25A",
+          "role": "UE",
+          "quantity": 1,
+          "include_in_mpn": true
+        }
+      ],
+      "accessory_decisions": [
+        {
+          "pt": null,
+          "model": "Wi-Fi",
+          "relation_intent": "BASE_PRODUCT_FEATURE",
+          "decision": "FEATURE_ONLY",
+          "reason": "Wi-Fi is part of the UI catalog name and no separate component relation is returned for FTXM25A."
+        }
+      ],
+      "final_mpn_candidate": {
+        "value": "50307791+50308071",
+        "display": "FTXM25A + RXM25A",
+        "components": [
+          {
+            "pt": "50307791",
+            "quantity": 1
+          },
+          {
+            "pt": "50308071",
+            "quantity": 1
+          }
+        ],
+        "status": "TECHNICALLY_SUPPORTED_AUDIT_CANDIDATE",
+        "generated_by_runtime": false,
+        "publishable": false
+      },
+      "warnings": [
+        "Both exact products are present in the BOM and reciprocal compatibility evidence exists in compatibility master.",
+        "Runtime compatibility_status is nevertheless NOT_VERIFIED; an automatic publication gate cannot treat the MPN as final until this status/evidence inconsistency is resolved.",
+        "No Wi-Fi, remote or compatible accessory PT is appended."
+      ],
+      "case_result": "CORRECT_COMPONENT_SET_WITH_RUNTIME_VERIFICATION_WARNING"
+    },
+    {
+      "test_id": 6,
+      "test_name": "HAIER DUAL SPLIT 9000 + 12000",
+      "query": "Haier Dual Split 9000 + 12000",
+      "product": {
+        "pt": null,
+        "model": null,
+        "name": "Generic Haier dual split 9000 + 12000",
+        "brand": "HAIER",
+        "identification": "DISCOVERY_ONLY_NO_SERIES_OR_EXACT_MODEL"
+      },
+      "product_scope": "MULTISPLIT",
+      "base_components": [
+        {
+          "pt": "50125296",
+          "model": "4U85S2SR5FA / AAA2R5E00",
+          "role": "UE",
+          "quantity": 1,
+          "include_in_mpn": true,
+          "candidate_eligible": false
+        },
+        {
+          "pt": "50126057",
+          "model": "AD25S2SS1FA(H) / AA9GL2E00",
+          "role": "UI_9000",
+          "quantity": 1,
+          "include_in_mpn": true,
+          "candidate_eligible": false
+        },
+        {
+          "pt": "50125227",
+          "model": "AS35XCAHRA / AABQQ0E00",
+          "role": "UI_12000",
+          "quantity": 1,
+          "include_in_mpn": true,
+          "candidate_eligible": false
+        }
+      ],
+      "accessory_decisions": [],
+      "final_mpn_candidate": {
+        "value": null,
+        "rejected_runtime_bom_serialization": "50125296+50126057+50125227",
+        "status": "REJECTED_INVALID_COMPLETE_COMBINATION",
+        "generated_by_runtime": false,
+        "publishable": false,
+        "requested_quantities": {
+          "UE": 1,
+          "UI_9000": 1,
+          "UI_12000": 1
+        },
+        "runtime_quantities": {
+          "UE": 1,
+          "UI_9000": 1,
+          "UI_12000": 1
+        }
+      },
+      "warnings": [
+        "The quantities are structurally correct, but the selected UE 50125296 is a four-port Quadri-Split unit.",
+        "Its catalog combinations are four-UI combinations only: 20+20+20+20, 20+20+20+25, 20+20+25+25, 25+25+25+25 and 20+25+25+35. The requested two-UI 25+35 combination is absent.",
+        "Pairwise compatibility edges exist for both selected UIs, but they do not prove the full three-component combination.",
+        "The two UIs are also selected from different catalog families without a requested series. Runtime compatibility_status is NOT_VERIFIED.",
+        "A two-port UE such as 50125265 has 25+35 among its catalog combinations, but the query still does not uniquely select an indoor-unit family; no replacement MPN is asserted by this audit."
+      ],
+      "case_result": "FAIL_COMBINATION_LEVEL_VALIDATION"
+    },
+    {
+      "test_id": 7,
+      "test_name": "FEATURE INCLUDED",
+      "query": "Climatizzatore con pompa scarico condensa inclusa",
+      "product": {
+        "pt": null,
+        "model": null,
+        "name": null,
+        "brand": null,
+        "identification": "NO_RELIABLE_PRODUCT_ANCHOR",
+        "runtime_discovery_choice_rejected": {
+          "pt": "50222674",
+          "model": "RAV-GV1401AT8P-E",
+          "name": "UE DIGITAL CLASSIC RAVGV1401AT8PE R32 T"
+        }
+      },
+      "product_scope": "GENERAL",
+      "base_components": [],
+      "accessory_decisions": [
+        {
+          "pt": null,
+          "model": "Pompa scarico condensa inclusa",
+          "relation_intent": "FEATURE_ONLY",
+          "decision": "FEATURE_ONLY",
+          "reason": "This phrase must never add a code. v3.4 proves the intended representation on the FFA25A9 context: COMPONENT_INCLUDED, catalog_inclusion_status=INCLUDED, bom_action=NONE and no accessory PT."
+        }
+      ],
+      "final_mpn_candidate": {
+        "value": null,
+        "status": "BLOCKED_NO_IDENTIFIED_PRODUCT",
+        "generated_by_runtime": false,
+        "publishable": false
+      },
+      "warnings": [
+        "The mandatory generic query does not identify a product, so no commercial MPN can be generated.",
+        "Runtime currently creates a discovery BOM with an unrelated Toshiba UE and returns no component relation; that BOM must not be serialized.",
+        "Control query 'Daikin FFA25A9 pompa scarico condensa inclusa' correctly retrieves the FEATURE_ONLY relation with no PT."
+      ],
+      "case_result": "PASS_FEATURE_CLASSIFICATION_FAIL_PRODUCT_IDENTIFICATION"
+    },
+    {
+      "test_id": 8,
+      "test_name": "KIT COMPLETO DA CATALOGO CON CODICE UNICO",
+      "query": "99692315",
+      "product": {
+        "pt": "99692315",
+        "model": "240.297.00.1",
+        "name": "KIT COMPLETO",
+        "brand": "GEBERIT",
+        "category": "IDROSANITARIA > CASSETTE WC > RICAMBI",
+        "identification": "EXACT_PT",
+        "catalog_page": 1231,
+        "climate_scope": false
+      },
+      "product_scope": null,
+      "base_components": [
+        {
+          "pt": "99692315",
+          "model": "240.297.00.1",
+          "role": "SINGLE_CATALOG_KIT_SKU",
+          "quantity": 1,
+          "include_in_mpn": true
+        }
+      ],
+      "accessory_decisions": [],
+      "final_mpn_candidate": {
+        "value": "99692315",
+        "components": [
+          {
+            "pt": "99692315",
+            "quantity": 1
+          }
+        ],
+        "status": "FINAL_SINGLE_CATALOG_SKU",
+        "generated_by_runtime": false,
+        "publishable": true
+      },
+      "warnings": [
+        "This proves the non-decomposition rule for a real catalog SKU named KIT COMPLETO, but it is not an air-air climate product.",
+        "No air-air climate product with a real unique KIT_COMPLETO PT was found in unified_catalog_master.",
+        "The 1,064 KIT-* records in compatibility master are synthetic bundle identifiers; none matches a catalog PT or MPN and none declares a single-SKU flag. They must not replace a real single catalog code."
+      ],
+      "case_result": "PASS_SINGLE_SKU_RULE_NON_HVAC_COVERAGE_ONLY"
+    }
+  ],
+  "required_accessory_control": {
+    "relations_in_mandatory_cases": [
+      {
+        "product_pt": "99718206",
+        "accessory_pt": "99718268",
+        "model": "BYFQ60CS",
+        "catalog_says_mandatory": true,
+        "catalog_text": "Griglia esclusa da abbinare obbligatoriamente",
+        "physically_separate": "SUPPORTED_BY_SEPARATE_CATALOG_PT_AND_EXCLUDED_STATUS",
+        "pt_exists": true,
+        "actual_separate_shipping_required": "NOT_PROVEN_BY_AVAILABLE_DATA",
+        "automatic_mpn_inclusion": false
+      },
+      {
+        "product_pt": "99718206",
+        "accessory_pt": "99718275",
+        "model": "BYFQ60CW",
+        "catalog_says_mandatory": true,
+        "catalog_text": "Griglia esclusa da abbinare obbligatoriamente",
+        "physically_separate": "SUPPORTED_BY_SEPARATE_CATALOG_PT_AND_EXCLUDED_STATUS",
+        "pt_exists": true,
+        "actual_separate_shipping_required": "NOT_PROVEN_BY_AVAILABLE_DATA",
+        "automatic_mpn_inclusion": false
+      }
+    ],
+    "conclusion": "ACCESSORY_REQUIRED is evidence of mandatory pairing, not evidence of base inclusion. The final MPN needs both an alternative-selection rule and an authoritative commercial-shipment rule."
+  },
+  "architecture_findings": {
+    "catalog_search_engine_output": [
+      "identified results",
+      "product_scope",
+      "bom",
+      "compatibility_evidence",
+      "component_relation_products",
+      "component_relations"
+    ],
+    "catalog_search_engine_missing_output": [
+      "accessory_decisions",
+      "final_mpn_candidate",
+      "commercial_publishability gate"
+    ],
+    "separate_mpn_paths": [
+      {
+        "file": "run_full_csv_audit.py",
+        "finding": "Builds PT strings from title-derived kit requirements and direct product selectors; it does not consume catalog_component_relations_v3_4 or relation_intent."
+      },
+      {
+        "file": "src/clima_matching_engine.py",
+        "finding": "Validates or resolves climate BOMs with its own title parser and compatibility logic; it does not consume catalog_component_relations_v3_4 or relation_intent."
+      }
+    ],
+    "separation_status": "BOM/compatibility and component relations are available as separate evidence streams, but no final commercial decision layer joins them."
+  },
+  "final_report": {
+    "correct_cases": [
+      "Test 1: exact FFA25A9 identification, UI_ONLY scope, base MPN 99718206, optional controls/Wi-Fi excluded and pump kept as FEATURE_ONLY.",
+      "Test 5: exact Daikin UI+UE physical component set is 50307791 + 50308071 and no accessory code is appended.",
+      "Test 7: v3.4 can represent 'pompa scarico condensa inclusa' as FEATURE_ONLY with no PT when a product context exists.",
+      "Test 8: a real catalog item named KIT COMPLETO with unique PT 99692315 remains one code and is not decomposed."
+    ],
+    "ambiguous_cases": [
+      "Tests 1-2: BYFQ60CS and BYFQ60CW are mandatory alternatives, but no variant is selected and separate shipment is not proven.",
+      "Test 3: SPG is a family, not a unique model; the optional Wi-Fi classification is correct but the base PT is unresolved.",
+      "Test 4: panel 50370160 is a separate optional/unknown-inclusion accessory explicitly requested by the query; runtime does not reconcile that request into the BOM.",
+      "Test 5: compatibility evidence supports the exact pair but runtime compatibility_status remains NOT_VERIFIED.",
+      "Test 8: the unique-code example is non-HVAC because no real single-SKU air-air KIT_COMPLETO was found."
+    ],
+    "decisions_impossible_without_commercial_rule": [
+      "Whether an ACCESSORY_REQUIRED item must always be serialized into the commercial MPN or merely displayed as a mandatory separate line item.",
+      "Which member of a required accessory alternative group must be chosen when the query gives no finish/model.",
+      "Whether an explicitly requested ACCESSORY_OPTIONAL item should always be appended to MPN, and how exact accessory selection is resolved.",
+      "Whether runtime NOT_VERIFIED compatibility can be published when lower-level reciprocal evidence exists.",
+      "How a real manufacturer single-SKU climate kit is authoritatively distinguished from a synthetic KIT-* compatibility bundle."
+    ],
+    "missing_rules_for_mpn_generation": [
+      "Add a post-BOM, post-component-relations decision stage that consumes product identity, product_scope, BOM, relation_intent and query accessory intent.",
+      "Define a strict relation mapping: ACCESSORY_OPTIONAL -> OPTIONAL_ONLY unless explicitly selected; FEATURE_ONLY -> FEATURE_ONLY; NO_COMPONENT_CODE plus INCLUDED -> INCLUDED_IN_PRODUCT; ACCESSORY_REQUIRED -> conditional mandatory selection, never unconditional append-all.",
+      "Define required-accessory selection groups so mutually exclusive variants cannot both enter the MPN.",
+      "Add an authoritative physical-shipment flag distinct from required_for_sale and catalog_inclusion_status.",
+      "Resolve explicit accessory mentions to one PT using model/color/title evidence before adding them to the MPN.",
+      "Validate multisplit BOMs against complete allowed combinations and quantities, not only pairwise UI/UE compatibility edges.",
+      "Require exact or otherwise reliable base-product identity before serializing a discovered BOM.",
+      "Serialize quantities as a multiset so repeated identical UIs are preserved.",
+      "Define a real single-SKU KIT_COMPLETO flag backed by a catalog PT; never treat synthetic KIT-* identifiers as PT codes.",
+      "Expose final_mpn_candidate, decision provenance, warnings and publishability in one runtime result."
+    ],
+    "overall_answer": "The current system has enough evidence to make several individual decisions, but it cannot yet generate a reliable commercial product sheet and final MPN for all required cases without a dedicated commercial decision layer and missing business rules."
+  }
+}

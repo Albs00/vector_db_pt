@@ -204,6 +204,7 @@ class ExactTokenParser:
         - near_model_candidates: elementi con divergenza sintattica di modello/suffisso.
         """
         raw_tokens = self.extract_model_tokens(query)
+        raw_token_norms = {normalize_token(token) for token in raw_tokens}
         exact_matches: List[Dict[str, Any]] = []
         near_model_candidates: List[Dict[str, Any]] = []
         seen_exact_codes: Set[str] = set()
@@ -229,7 +230,19 @@ class ExactTokenParser:
             exact_matches.append(item_copy)
         # Controllo preventivo per sigle commerciali a catalogo composte (es. 5000M 82/4 E)
         for norm_lbl, candidates in self._catalog_model_label_map.items():
-            if len(norm_lbl) >= 6 and norm_lbl in norm_q:
+            label_parts = re.findall(r"[A-Z0-9]+", str(candidates[0].get("raw_label") or "").upper()) if candidates else []
+            complete_label_pattern = None
+            if label_parts:
+                label_body = r"[-\s_./]*".join(re.escape(part) for part in label_parts)
+                complete_label_pattern = re.compile(
+                    rf"(?<![A-Z0-9]){label_body}(?![A-Z0-9])",
+                    re.IGNORECASE,
+                )
+            is_complete_label = (
+                norm_lbl in raw_token_norms
+                or bool(complete_label_pattern and complete_label_pattern.search(query))
+            )
+            if len(norm_lbl) >= 6 and is_complete_label:
                 unique_pt_codes = {entry["pt_code"] for entry in candidates}
                 is_unique = (len(unique_pt_codes) == 1)
                 for entry in candidates:

@@ -46,7 +46,11 @@ from src.core.catalog_table_context import (
 from src.core.component_relations import ClimateComponentRelationIndex
 
 # Category Adapters
-from src.adapters.climate import ClimateCategoryAdapter, extract_split_capacities
+from src.adapters.climate import (
+    ClimateCategoryAdapter,
+    extract_split_capacities,
+    validate_multisplit_combination,
+)
 from src.adapters.boiler import BoilerCategoryAdapter
 from src.adapters.default import DefaultCategoryAdapter
 
@@ -398,6 +402,21 @@ def assemble_bom(
                         seen_bom_codes.add(str(cand.get("code") or ""))
             else:
                 cands = candidate_pools.get("slot_ui", [])
+                if not cands:
+                    # Some catalog model labels identify a UI exactly even when
+                    # the title omits the BTU value and the ERP MFG field is a
+                    # vendor code. In that case use the best already-ranked UI
+                    # slot instead of losing the explicit UI identity.
+                    cands = sorted(
+                        [
+                            candidate
+                            for slot_id, slot_candidates in candidate_pools.items()
+                            if slot_id.startswith("slot_ui_")
+                            for candidate in slot_candidates
+                        ],
+                        key=lambda candidate: float(candidate.get("score") or 0.0),
+                        reverse=True,
+                    )
                 if cands and str(cands[0].get("code") or "") not in seen_bom_codes:
                     cand = dict(cands[0])
                     cand["role"] = "UI"
@@ -455,6 +474,17 @@ def assemble_bom(
                         seen_bom_codes.add(str(cand.get("code") or ""))
             else:
                 cands = candidate_pools.get("slot_ui", [])
+                if not cands:
+                    cands = sorted(
+                        [
+                            candidate
+                            for slot_id, slot_candidates in candidate_pools.items()
+                            if slot_id.startswith("slot_ui_")
+                            for candidate in slot_candidates
+                        ],
+                        key=lambda candidate: float(candidate.get("score") or 0.0),
+                        reverse=True,
+                    )
                 if cands and str(cands[0].get("code") or "") not in seen_bom_codes:
                     cand = dict(cands[0])
                     cand["role"] = "UI"
@@ -495,51 +525,8 @@ def assemble_bom(
 
 
 def check_multisplit_combination_verified(ue_rec: Dict[str, Any], uis_in_bom: List[Dict[str, Any]]) -> bool:
-    if not ue_rec:
-        return False
-    comb_list = ue_rec.get("combinazioni_ammesse") or ue_rec.get("combinazioni_ammesse_taglie") or []
-    if not comb_list:
-        return False
-
-    btu_to_tokens = {
-        7000: {"20", "21", "2.0", "7"},
-        9000: {"25", "26", "2.5", "2.6", "9"},
-        12000: {"35", "3.5", "12"},
-        15000: {"42", "45", "4.2", "4.5", "15"},
-        18000: {"50", "52", "53", "5.0", "18"},
-        21000: {"60", "6.0", "21"},
-        24000: {"70", "71", "7.0", "24"},
-    }
-
-    ui_btus = [it.get("taglia_btu") for it in uis_in_bom if it.get("taglia_btu")]
-    if len(ui_btus) != len(uis_in_bom):
-        return False
-
-    max_ports = ue_rec.get("porte_attacchi") or ue_rec.get("max_ui_collegabili") or 99
-    if len(uis_in_bom) > max_ports:
-        return False
-
-    for comb_str in comb_list:
-        parts = [p.strip() for p in re.split(r'[+\s,]+', comb_str) if p.strip()]
-        if len(parts) != len(ui_btus):
-            continue
-        matched_indices = set()
-        for part in parts:
-            found_idx = None
-            for idx, b in enumerate(ui_btus):
-                if idx not in matched_indices:
-                    toks = btu_to_tokens.get(b, {str(b)})
-                    if part in toks:
-                        found_idx = idx
-                        break
-            if found_idx is not None:
-                matched_indices.add(found_idx)
-            else:
-                break
-        if len(matched_indices) == len(ui_btus):
-            return True
-
-    return False
+    """Backward-compatible boolean wrapper around the canonical matcher."""
+    return bool(validate_multisplit_combination(ue_rec, uis_in_bom)["matched"])
 
 
 def compute_compatibility_info(
@@ -550,7 +537,8 @@ def compute_compatibility_info(
     relations: List[Any],
     query_context: Dict[str, Any],
     adapter: Any = None,
-    lookup_dict: Optional[Dict[str, Any]] = None
+    lookup_dict: Optional[Dict[str, Any]] = None,
+    full_combination_result: Optional[Dict[str, Any]] = None,
 ) -> Tuple[str, Dict[str, Any]]:
     """
     Calcola compatibility_status (VERIFIED | NOT_VERIFIED | NOT_APPLICABLE)
@@ -695,11 +683,19 @@ def compute_compatibility_info(
             elif lookup_dict:
                 ue_master_rec = lookup_dict.get(ue_code) or {}
 
-            comb_verified = False
+            combination_result = full_combination_result
             if all_pairwise_compat and ue_master_rec:
-                comb_verified = check_multisplit_combination_verified(ue_master_rec, uis_in_bom)
+                if combination_result is None:
+                    combination_result = validate_multisplit_combination(
+                        ue_master_rec, uis_in_bom
+                    )
 
-            status = "VERIFIED" if comb_verified else "NOT_VERIFIED"
+            combination_result = combination_result or {}
+            direct_full_evidence = bool(
+                combination_result.get("matched")
+                and combination_result.get("evidence_strength") == "CATALOG_TABLE_VERIFIED"
+            )
+            status = "VERIFIED" if direct_full_evidence else "NOT_VERIFIED"
             evidence = {
                 "relation_type": "COMPATIBLE_WITH",
                 "provenance": "climatizzatori_compatibilita_master.json:unita_esterne.unita_interne_compatibili",
@@ -709,7 +705,8 @@ def compute_compatibility_info(
                 "target_code": target_code,
                 "connected_components": connected,
                 "componenti_collegati": connected,
-                "relation_evidences": all_pair_evs
+                "relation_evidences": all_pair_evs,
+                "full_combination_validation": combination_result,
             }
             return status, evidence
         else:
@@ -1978,10 +1975,75 @@ class CatalogSearchEngine:
             product_scope, candidate_pools_data, query_context, formatted_results,
             query=query, exact_token_candidates=exact_token_candidates, near_model_candidates=near_model_candidates
         )
+        pairing_diagnostics = {
+            "PAIRING_REASON": None,
+            "PAIRING_SCORE_BREAKDOWN": {},
+            "PAIRING_STATUS": "NOT_APPLICABLE",
+            "MPN_FINAL_ALLOWED": False,
+        }
+        if (
+            adapter.name == "CLIMA"
+            and product_scope in ("MONOSPLIT", "MULTISPLIT")
+            and hasattr(adapter, "resolve_main_component_pairing")
+        ):
+            bom, pairing_diagnostics = adapter.resolve_main_component_pairing(
+                bom, candidate_pools_data, query_context
+            )
+            ue_for_pairing = next(
+                (item for item in bom if item.get("role") == "UE" or item.get("is_ue")),
+                None,
+            )
+            uis_for_pairing = [
+                item for item in bom if item.get("role") == "UI" or item.get("is_ui")
+            ]
+            if product_scope == "MULTISPLIT":
+                product_identity_status = pairing_diagnostics.get(
+                    "PRODUCT_IDENTITY_STATUS", "DISCOVERY_ONLY"
+                )
+                configuration_status = pairing_diagnostics.get(
+                    "CONFIGURATION_STATUS", "NOT_VERIFIED"
+                )
+                pairing_confirmed = bool(
+                    product_identity_status == "EXACT"
+                    and configuration_status == "VERIFIED_FULL_COMBINATION"
+                )
+                pairing_diagnostics["PAIRING_STATUS"] = (
+                    "PAIRING_CONFIRMED"
+                    if pairing_confirmed
+                    else "CONFIGURAZIONE_NON_CONFERMATA"
+                )
+                pairing_diagnostics["MPN_FINAL_ALLOWED"] = pairing_confirmed
+                pairing_diagnostics["full_configuration_verified"] = bool(
+                    configuration_status == "VERIFIED_FULL_COMBINATION"
+                )
+            elif pairing_diagnostics.get("selected_ue_code"):
+                pairing_diagnostics["PAIRING_STATUS"] = "PAIRING_CONFIRMED"
+                pairing_diagnostics["MPN_FINAL_ALLOWED"] = True
         compat_status, compat_evidence = compute_compatibility_info(
             product_scope, adapter.name, bom, candidate_pools_data, relations, query_context,
-            adapter=adapter, lookup_dict=self._lookup
+            adapter=adapter, lookup_dict=self._lookup,
+            full_combination_result=pairing_diagnostics.get(
+                "FULL_CONFIGURATION_VALIDATION"
+            ),
         )
+        if (
+            product_scope == "MULTISPLIT"
+            and pairing_diagnostics.get("PAIRING_STATUS") == "CONFIGURAZIONE_NON_CONFERMATA"
+        ):
+            # Pairwise master compatibility is eligibility evidence only.  It
+            # cannot certify the complete commercial combination or unlock MPN.
+            compat_status = "NOT_VERIFIED"
+            compat_evidence = dict(compat_evidence or {})
+            compat_evidence["commercial_pairing_status"] = "CONFIGURAZIONE_NON_CONFERMATA"
+            compat_evidence["commercial_pairing_gate"] = "SELECTED_UI_BOM_ONLY"
+        elif (
+            product_scope == "MULTISPLIT"
+            and pairing_diagnostics.get("PAIRING_STATUS") == "PAIRING_CONFIRMED"
+        ):
+            compat_status = "VERIFIED"
+            compat_evidence = dict(compat_evidence or {})
+            compat_evidence["commercial_pairing_status"] = "PAIRING_CONFIRMED"
+            compat_evidence["commercial_pairing_gate"] = "SELECTED_UI_BOM_ONLY"
         component_relations, component_products, component_lookup_status = (
             self._component_relations_after_product_match(
                 adapter.name,
@@ -2016,6 +2078,13 @@ class CatalogSearchEngine:
             ],
             "component_relation_lookup_status": component_lookup_status,
             "component_relation_products": component_products,
+            "pairing_reason": pairing_diagnostics.get("PAIRING_REASON"),
+            "pairing_score_breakdown": pairing_diagnostics.get("PAIRING_SCORE_BREAKDOWN"),
+            "pairing_status": pairing_diagnostics.get("PAIRING_STATUS"),
+            "mpn_final_allowed": pairing_diagnostics.get("MPN_FINAL_ALLOWED"),
+            "product_identity_status": pairing_diagnostics.get("PRODUCT_IDENTITY_STATUS"),
+            "configuration_status": pairing_diagnostics.get("CONFIGURATION_STATUS"),
+            "mpn_final_block_reason": pairing_diagnostics.get("MPN_FINAL_BLOCK_REASON"),
         }
 
         return {
@@ -2041,6 +2110,14 @@ class CatalogSearchEngine:
             "component_relation_products": component_products,
             "component_relation_lookup_status": component_lookup_status,
             "component_relation_source": ClimateComponentRelationIndex.SOURCE_NAME,
+            "pairing_reason": pairing_diagnostics.get("PAIRING_REASON"),
+            "pairing_score_breakdown": pairing_diagnostics.get("PAIRING_SCORE_BREAKDOWN"),
+            "pairing_status": pairing_diagnostics.get("PAIRING_STATUS"),
+            "mpn_final_allowed": pairing_diagnostics.get("MPN_FINAL_ALLOWED"),
+            "product_identity_status": pairing_diagnostics.get("PRODUCT_IDENTITY_STATUS"),
+            "configuration_status": pairing_diagnostics.get("CONFIGURATION_STATUS"),
+            "mpn_final_block_reason": pairing_diagnostics.get("MPN_FINAL_BLOCK_REASON"),
+            "pairing_diagnostics": pairing_diagnostics,
         }
 
 

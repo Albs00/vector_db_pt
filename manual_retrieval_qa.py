@@ -214,6 +214,61 @@ def format_qa_single_report(
     lines.append(subsep)
     lines.append(f"  • Product Scope        : {search_res.get('product_scope') or 'N/D'}")
     lines.append(f"  • Compatibility Status : {search_res.get('compatibility_status') or 'NOT_APPLICABLE'}")
+    lines.append(f"  • PAIRING_REASON        : {search_res.get('pairing_reason') or 'NOT_APPLICABLE'}")
+    lines.append(f"  • PAIRING_STATUS        : {search_res.get('pairing_status') or 'NOT_APPLICABLE'}")
+    lines.append(f"  • PRODUCT_IDENTITY_STATUS: {search_res.get('product_identity_status') or 'NOT_APPLICABLE'}")
+    lines.append(f"  • CONFIGURATION_STATUS : {search_res.get('configuration_status') or 'NOT_APPLICABLE'}")
+    lines.append(f"  • MPN Final Allowed     : {bool(search_res.get('mpn_final_allowed'))}")
+    pairing_breakdown = search_res.get("pairing_score_breakdown") or {}
+    if pairing_breakdown:
+        ordered_pairing_keys = ["PDF_PAIRING", "EXPLICIT_MODEL", "EXPLICIT_MODEL_REVISION", "FAMILY", "MASTER", "MASTER_PAIRWISE_SELECTED_UI", "BTU", "VARIANT", "FINAL"]
+        breakdown_text = ", ".join(
+            f"{key}={pairing_breakdown.get(key)}"
+            for key in ordered_pairing_keys
+            if key in pairing_breakdown
+        )
+        lines.append(f"  • PAIRING_SCORE_BREAKDOWN: {breakdown_text}")
+    pairing_diag = search_res.get("pairing_diagnostics") or {}
+    lines.append(f"  • EXPLICIT_UE_TOKEN     : {pairing_diag.get('EXPLICIT_UE_TOKEN') or '-'}")
+    lines.append(f"  • EXPLICIT_UE_MATCH_TYPE: {pairing_diag.get('EXPLICIT_UE_MATCH_TYPE') or '-'}")
+    lines.append(
+        "  • EXPLICIT_UE_CANDIDATES: "
+        f"{json.dumps(pairing_diag.get('EXPLICIT_UE_CANDIDATES') or [], ensure_ascii=False)}"
+    )
+    lines.append(
+        "  • SELECTED_UI_EVIDENCE_PT: "
+        f"{json.dumps(pairing_diag.get('SELECTED_UI_EVIDENCE_PT') or [], ensure_ascii=False)}"
+    )
+    lines.append(
+        "  • REJECTED_NON_BOM_UI_EVIDENCE: "
+        f"{json.dumps(pairing_diag.get('REJECTED_NON_BOM_UI_EVIDENCE') or [], ensure_ascii=False)}"
+    )
+    lines.append(f"  • UE_SELECTION_REASON  : {pairing_diag.get('UE_SELECTION_REASON') or '-'}")
+    lines.append(
+        "  • FULL_CONFIGURATION_EVIDENCE: "
+        f"{json.dumps(pairing_diag.get('FULL_CONFIGURATION_EVIDENCE') or [], ensure_ascii=False)}"
+    )
+    for key in (
+        "FULL_CONFIGURATION_MATCHED",
+        "FULL_CONFIGURATION_REQUESTED",
+        "FULL_CONFIGURATION_CATALOG",
+        "FULL_CONFIGURATION_SOURCE_FIELD",
+        "FULL_CONFIGURATION_EVIDENCE_STRENGTH",
+        "FULL_CONFIGURATION_PROVENANCE",
+        "FULL_CONFIGURATION_PAGE",
+        "FULL_CONFIGURATION_TABLE",
+    ):
+        value = pairing_diag.get(key)
+        lines.append(f"  • {key}: {value if value is not None else '-'}")
+    lines.append(
+        "  • CONFIGURATION_CONFLICT_REASON: "
+        f"{pairing_diag.get('CONFIGURATION_CONFLICT_REASON') or '-'}"
+    )
+    lines.append(
+        "  • CONFIGURATION_CONFLICT_DETAILS: "
+        f"{json.dumps(pairing_diag.get('CONFIGURATION_CONFLICT_DETAILS') or {}, ensure_ascii=False)}"
+    )
+    lines.append(f"  • MPN_FINAL_BLOCK_REASON: {pairing_diag.get('MPN_FINAL_BLOCK_REASON') or '-'}")
 
     compat_evidence = search_res.get("compatibility_evidence") or {}
     rel_type = compat_evidence.get("relation_type")
@@ -371,6 +426,48 @@ def run_batch_qa(engine: CatalogSearchEngine, input_file: str, output_file: str)
         rec["COMPATIBILITY_STATUS"] = res.get("compatibility_status")
         rec["COMPATIBILITY_RELATION"] = compat_ev.get("relation_type")
         rec["COMPATIBILITY_PROVENANCE"] = compat_ev.get("provenance")
+        rec["PAIRING_REASON"] = res.get("pairing_reason")
+        rec["PAIRING_STATUS"] = res.get("pairing_status")
+        rec["PAIRING_SCORE_BREAKDOWN"] = json.dumps(
+            res.get("pairing_score_breakdown") or {}, ensure_ascii=False
+        )
+        rec["MPN_FINAL_ALLOWED"] = bool(res.get("mpn_final_allowed"))
+        pairing_diag = res.get("pairing_diagnostics") or {}
+        rec["PRODUCT_IDENTITY_STATUS"] = pairing_diag.get("PRODUCT_IDENTITY_STATUS")
+        rec["CONFIGURATION_STATUS"] = pairing_diag.get("CONFIGURATION_STATUS")
+        rec["EXPLICIT_UE_TOKEN"] = pairing_diag.get("EXPLICIT_UE_TOKEN")
+        rec["EXPLICIT_UE_MATCH_TYPE"] = pairing_diag.get("EXPLICIT_UE_MATCH_TYPE")
+        rec["EXPLICIT_UE_CANDIDATES"] = json.dumps(
+            pairing_diag.get("EXPLICIT_UE_CANDIDATES") or [], ensure_ascii=False
+        )
+        rec["SELECTED_UI_EVIDENCE_PT"] = json.dumps(
+            pairing_diag.get("SELECTED_UI_EVIDENCE_PT") or [], ensure_ascii=False
+        )
+        rec["REJECTED_NON_BOM_UI_EVIDENCE"] = json.dumps(
+            pairing_diag.get("REJECTED_NON_BOM_UI_EVIDENCE") or [], ensure_ascii=False
+        )
+        rec["UE_SELECTION_REASON"] = pairing_diag.get("UE_SELECTION_REASON")
+        rec["FULL_CONFIGURATION_EVIDENCE"] = json.dumps(
+            pairing_diag.get("FULL_CONFIGURATION_EVIDENCE") or [], ensure_ascii=False
+        )
+        for key in (
+            "FULL_CONFIGURATION_MATCHED",
+            "FULL_CONFIGURATION_REQUESTED",
+            "FULL_CONFIGURATION_CATALOG",
+            "FULL_CONFIGURATION_SOURCE_FIELD",
+            "FULL_CONFIGURATION_EVIDENCE_STRENGTH",
+            "FULL_CONFIGURATION_PROVENANCE",
+            "FULL_CONFIGURATION_PAGE",
+            "FULL_CONFIGURATION_TABLE",
+        ):
+            rec[key] = pairing_diag.get(key)
+        rec["CONFIGURATION_CONFLICT_REASON"] = pairing_diag.get(
+            "CONFIGURATION_CONFLICT_REASON"
+        )
+        rec["CONFIGURATION_CONFLICT_DETAILS"] = json.dumps(
+            pairing_diag.get("CONFIGURATION_CONFLICT_DETAILS") or {}, ensure_ascii=False
+        )
+        rec["MPN_FINAL_BLOCK_REASON"] = pairing_diag.get("MPN_FINAL_BLOCK_REASON")
         rec["COMPONENT_RELATION_LOOKUP_STATUS"] = res.get("component_relation_lookup_status")
         rec["COMPONENT_RELATION_SOURCE"] = res.get("component_relation_source")
         rec["COMPONENT_RELATIONS_JSON"] = json.dumps(

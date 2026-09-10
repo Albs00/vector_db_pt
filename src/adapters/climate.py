@@ -23,6 +23,124 @@ from src.core.catalog_table_context import CatalogTableContextIndex
 from build_full_ac_matrix import extract_btu_and_kw
 
 
+_MULTISPLIT_BTU_TO_TOKENS = {
+    7000: {"20", "21", "2.0", "7"},
+    9000: {"25", "26", "2.5", "2.6", "9"},
+    12000: {"35", "3.5", "12"},
+    15000: {"42", "45", "4.2", "4.5", "15"},
+    18000: {"50", "52", "53", "5.0", "18"},
+    21000: {"60", "6.0", "21"},
+    24000: {"70", "71", "7.0", "24"},
+}
+
+_MULTISPLIT_CANONICAL_BTU_TOKEN = {
+    7000: "20", 9000: "25", 12000: "35", 15000: "42",
+    18000: "50", 21000: "60", 24000: "70",
+}
+
+
+def _combination_provenance(
+    ue_rec: Dict[str, Any], source_field: Optional[str], combination: Optional[str] = None
+) -> Tuple[str, str]:
+    """Classify only explicit source metadata; page/table labels are not proof."""
+    metadata = (
+        ue_rec.get(f"{source_field}_provenance") if source_field else None
+    ) or ue_rec.get("combination_provenance") or ue_rec.get("combinazioni_provenance")
+    if isinstance(metadata, dict) and combination and combination in metadata:
+        metadata = metadata[combination]
+    if isinstance(metadata, dict):
+        strength = str(metadata.get("evidence_strength") or metadata.get("strength") or "").upper()
+        provenance = str(metadata.get("provenance") or metadata.get("source") or "")
+    else:
+        strength = str(metadata or "").upper()
+        provenance = str(metadata or "")
+    if strength == "CATALOG_TABLE_VERIFIED":
+        return strength, provenance or "explicit catalog-table provenance metadata"
+    if strength == "MASTER_DERIVED":
+        return strength, provenance or "explicit builder-derived provenance metadata"
+    return (
+        "UNKNOWN_PROVENANCE",
+        "master record has no explicit per-combination origin metadata; page, table name, and generated kits are not sufficient",
+    )
+
+
+def validate_multisplit_combination(
+    ue_rec: Dict[str, Any], uis_in_bom: List[Dict[str, Any]]
+) -> Dict[str, Any]:
+    """Canonical, multiset-preserving full-combination matcher."""
+    source_field = None
+    combinations = ue_rec.get("combinazioni_ammesse") or []
+    if combinations:
+        source_field = "combinazioni_ammesse"
+    else:
+        combinations = ue_rec.get("combinazioni_ammesse_taglie") or []
+        if combinations:
+            source_field = "combinazioni_ammesse_taglie"
+
+    selected_ui_multiset = dict(collections.Counter(
+        str(item.get("code") or item.get("codice_pt") or "")
+        for item in uis_in_bom
+        if item.get("code") or item.get("codice_pt")
+    ))
+    ui_btus = [item.get("taglia_btu") for item in uis_in_bom]
+    canonical_tokens = [
+        _MULTISPLIT_CANONICAL_BTU_TOKEN.get(btu, str(btu) if btu else "")
+        for btu in ui_btus
+    ]
+    requested_configuration = (
+        "+".join(sorted(canonical_tokens, key=lambda token: float(token)))
+        if canonical_tokens and all(canonical_tokens)
+        else None
+    )
+    strength, provenance = _combination_provenance(ue_rec, source_field)
+    result = {
+        "matched": False,
+        "requested_configuration": requested_configuration,
+        "matched_configuration": None,
+        "ue_pt": str(ue_rec.get("codice_pt") or ue_rec.get("code") or "") or None,
+        "selected_ui_multiset": selected_ui_multiset,
+        "source_field": source_field,
+        "source": "climatizzatori_compatibilita_master.json",
+        "catalog_page": ue_rec.get("pagina_catalogo"),
+        "catalog_combination_page": ue_rec.get("pagina_combinazioni_catalogo"),
+        "catalog_table": ue_rec.get("nome_tabella_combinazioni"),
+        "evidence_strength": strength,
+        "evidence_provenance": provenance,
+    }
+    if not ue_rec or not combinations or not ui_btus or any(not btu for btu in ui_btus):
+        return result
+    max_ports = ue_rec.get("porte_attacchi") or ue_rec.get("max_ui_collegabili") or 99
+    if len(uis_in_bom) > int(max_ports):
+        return result
+
+    for combination in combinations:
+        parts = [part for part in re.split(r"[+\s,]+", str(combination)) if part]
+        if len(parts) != len(ui_btus):
+            continue
+        unmatched = list(ui_btus)
+        for part in parts:
+            match_index = next(
+                (
+                    index for index, btu in enumerate(unmatched)
+                    if part in _MULTISPLIT_BTU_TO_TOKENS.get(int(btu), {str(btu)})
+                ),
+                None,
+            )
+            if match_index is None:
+                break
+            unmatched.pop(match_index)
+        if not unmatched:
+            result["matched"] = True
+            result["matched_configuration"] = str(combination)
+            strength, provenance = _combination_provenance(
+                ue_rec, source_field, str(combination)
+            )
+            result["evidence_strength"] = strength
+            result["evidence_provenance"] = provenance
+            return result
+    return result
+
+
 def capacity_kw_for_btu(btu: int) -> float:
     """Restituisce la potenza nominale in kW commerciale corrispondente alla taglia BTU."""
     mapping = {
@@ -751,12 +869,26 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         req_color = query_context.get("requested_color")
         if req_color:
             name_u = (item.get("name") or "").upper()
-            if req_color in name_u:
+            colour_groups = {
+                "BLACK": {"BLACK", "NERO", "NER"},
+                "WHITE": {"WHITE", "BIANCO", "BCO"},
+                "SILVER": {"SILVER", "ARGENTO", "GRIGIO"},
+            }
+            requested_group = next(
+                (group for group, tokens in colour_groups.items() if req_color in tokens),
+                req_color,
+            )
+            item_groups = {
+                group
+                for group, tokens in colour_groups.items()
+                if any(token in name_u for token in tokens)
+            }
+            if requested_group in item_groups:
                 item["_color_match"] = True
                 boost += 15.0
-            elif any(c in name_u for c in ["NERO", "BLACK", "BIANCO", "WHITE", "BCO", "SILVER"]):
+            elif item_groups:
                 item["_color_mismatch"] = True
-                boost -= 20.0
+                boost -= 40.0
 
         return boost
 
@@ -1101,6 +1233,731 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         best["_is_ui_anchor"] = True
         return [best]
 
+    @staticmethod
+    def _flexible_model_pattern(label: str) -> Optional[re.Pattern]:
+        """Build a strict model matcher while tolerating catalog punctuation."""
+        parts = re.findall(r"[A-Z0-9]+", str(label or "").upper())
+        if not parts or sum(len(part) for part in parts) < 4:
+            return None
+        body = r"[-\s_./]*".join(re.escape(part) for part in parts)
+        return re.compile(rf"(?<![A-Z0-9]){body}(?![A-Z0-9])", re.IGNORECASE)
+
+    def _candidate_model_labels(self, item: Dict[str, Any]) -> List[str]:
+        labels: List[str] = []
+        for value in (item.get("mfg_code"), item.get("codice_mfg"), item.get("model")):
+            if value:
+                labels.append(str(value).strip())
+
+        code = str(item.get("code") or "")
+        if code and self._table_context_index:
+            table_ctx = self._table_context_index.get(code) or {}
+            for value in (table_ctx.get("model"), table_ctx.get("mpn")):
+                if value:
+                    raw_value = str(value).strip()
+                    labels.append(raw_value)
+                    without_role = re.sub(r"^\s*U\s*[.]?\s*[IE]\s*[.]?\s*", "", raw_value, flags=re.IGNORECASE)
+                    if without_role and without_role != raw_value:
+                        labels.append(without_role)
+
+        # Product names often contain the commercial model even when the MFG
+        # field contains an ERP/vendor code (notably Baxi).
+        name = str(item.get("name") or item.get("nome") or "").upper()
+        labels.extend(
+            token for token in re.findall(r"\b[A-Z][A-Z0-9]*(?:[-/][A-Z0-9]+)+\b", name)
+            if len(re.sub(r"[^A-Z0-9]", "", token)) >= 5
+        )
+        labels.extend(
+            token for token in re.findall(r"\b(?=[A-Z0-9]{6,}\b)(?=[A-Z0-9]*[A-Z])(?=[A-Z0-9]*\d)[A-Z0-9]+\b", name)
+            if token not in {"INVERTER"}
+        )
+
+        result: List[str] = []
+        seen = set()
+        normalized_labels = [
+            re.sub(r"[^A-Z0-9]", "", str(value).upper())
+            for value in labels
+            if value
+        ]
+        for label in labels:
+            norm = re.sub(r"[^A-Z0-9]", "", label.upper())
+            if any(other.startswith(norm) and len(other) > len(norm) for other in normalized_labels):
+                continue
+            if norm and norm not in seen:
+                seen.add(norm)
+                result.append(label)
+        return result
+
+    def _explicit_model_in_query(self, item: Dict[str, Any], query: str) -> Optional[str]:
+        for label in self._candidate_model_labels(item):
+            pattern = self._flexible_model_pattern(label)
+            if pattern and pattern.search(str(query or "")):
+                return label
+        return None
+
+    @staticmethod
+    def _query_model_tokens(query: str) -> List[str]:
+        """Return only model-like query tokens (letters + digits), not capacities."""
+        matches = list(re.finditer(
+            r"(?<![A-Z0-9])(?=[A-Z0-9._/-]{6,})(?=[A-Z0-9._/-]*[A-Z])"
+            r"(?=[A-Z0-9._/-]*\d)[A-Z0-9]+(?:[-_./][A-Z0-9]+)*(?![A-Z0-9])",
+            str(query or "").upper(),
+        ))
+        tokens = []
+        query_text = str(query or "").upper()
+        for match in matches:
+            token = match.group(0)
+            suffix_match = re.match(r"\s+([A-Z](?:\d{1,2})?)\b", query_text[match.end():])
+            if suffix_match and suffix_match.group(1) not in {"R", "K"}:
+                # A short, immediately adjacent variant may be part of the
+                # model (EX18000-2 E, MODEL V3). Keep the base token as a
+                # secondary candidate; catalog identity decides whether the
+                # combined form is valid.
+                tokens.append(f"{token} {suffix_match.group(1)}")
+            tokens.append(token)
+        result = []
+        seen = set()
+        for token in tokens:
+            norm = re.sub(r"[^A-Z0-9]", "", token)
+            if len(norm) >= 6 and norm not in seen:
+                seen.add(norm)
+                result.append(token)
+        return result
+
+    def _explicit_ue_model_match(self, item: Dict[str, Any], query: str) -> Dict[str, Optional[str]]:
+        """Match an explicit UE token, preserving suffix/revision distinctions."""
+        for token in self._query_model_tokens(query):
+            match = self._ue_candidate_token_match(item, token)
+            if match:
+                return match
+        return {"token": None, "label": None, "match_type": None}
+
+    @staticmethod
+    def _revision_base(value: str) -> str:
+        text = str(value or "").upper().strip()
+        base = re.sub(
+            r"[-_./]\s*(?:REV(?:ISIONE)?\s*)?[A-Z0-9]{1,3}$",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
+        return re.sub(r"[^A-Z0-9]", "", base)
+
+    def _ue_candidate_token_match(
+        self, item: Dict[str, Any], token: str
+    ) -> Optional[Dict[str, str]]:
+        token_text = str(token or "").upper().strip()
+        token_norm = re.sub(r"[^A-Z0-9]", "", token_text)
+        if len(token_norm) < 6:
+            return None
+
+        raw_values = []
+        for value in (
+            item.get("mfg_code"),
+            item.get("codice_mfg"),
+            item.get("model"),
+            *self._candidate_model_labels(item),
+        ):
+            value = str(value or "").strip()
+            if value and value not in raw_values:
+                raw_values.append(value)
+
+        revision_matches = []
+        for label in raw_values:
+            label_norm = re.sub(r"[^A-Z0-9]", "", label.upper())
+            if label_norm == token_norm or label_norm.endswith(token_norm):
+                return {
+                    "token": token,
+                    "label": label,
+                    "catalog_model": label,
+                    "match_type": "EXPLICIT_MODEL_EXACT_MATCH",
+                }
+
+            same_delimited_revision = (
+                self._revision_base(label)
+                and self._revision_base(label) == self._revision_base(token_text)
+                and label_norm != token_norm
+            )
+            short_prefix_variant = (
+                label_norm.startswith(token_norm)
+                and 1 <= len(label_norm) - len(token_norm) <= 3
+            )
+            descriptive_prefix_variant = False
+            if token_norm in label_norm:
+                suffix = label_norm.split(token_norm, 1)[1]
+                descriptive_prefix_variant = 1 <= len(suffix) <= 2
+            if same_delimited_revision or short_prefix_variant or descriptive_prefix_variant:
+                catalog_model = label
+                direct_mfg = str(item.get("mfg_code") or "").strip()
+                direct_mfg_norm = re.sub(r"[^A-Z0-9]", "", direct_mfg.upper())
+                if direct_mfg and (
+                    direct_mfg_norm.startswith(token_norm)
+                    or token_norm.startswith(direct_mfg_norm)
+                ):
+                    catalog_model = direct_mfg
+                revision_matches.append({
+                    "token": token,
+                    "label": label,
+                    "catalog_model": catalog_model,
+                    "match_type": "EXPLICIT_MODEL_REVISION_MATCH",
+                })
+
+        return revision_matches[0] if revision_matches else None
+
+    def _explicit_ue_identity_analysis(
+        self, candidates: List[Dict[str, Any]], query: str
+    ) -> Dict[str, Any]:
+        """Resolve UE model identity independently from configuration validity."""
+        token_matches = []
+        for token in self._query_model_tokens(query):
+            matches = []
+            for candidate in candidates:
+                match = self._ue_candidate_token_match(candidate, token)
+                if match:
+                    matches.append({"candidate": candidate, **match})
+            if matches:
+                token_matches.append((token, matches))
+
+        if not token_matches:
+            return {
+                "status": "DISCOVERY_ONLY",
+                "token": None,
+                "match_type": None,
+                "matches": [],
+                "candidates": [],
+            }
+
+        exact_groups = [
+            (token, matches)
+            for token, matches in token_matches
+            if any(match["match_type"] == "EXPLICIT_MODEL_EXACT_MATCH" for match in matches)
+        ]
+        if exact_groups:
+            token, matches = exact_groups[0]
+            matches = [
+                match for match in matches
+                if match["match_type"] == "EXPLICIT_MODEL_EXACT_MATCH"
+            ]
+            status = "EXACT" if len(matches) == 1 else "CONFLICT"
+            match_type = "EXPLICIT_MODEL_EXACT_MATCH" if status == "EXACT" else "CONFLICT"
+        else:
+            token, matches = token_matches[0]
+            status = "REVISION_CANDIDATE" if len(matches) == 1 else "AMBIGUOUS_REVISION"
+            match_type = (
+                "EXPLICIT_MODEL_REVISION_MATCH"
+                if status == "REVISION_CANDIDATE"
+                else "AMBIGUOUS_REVISION"
+            )
+
+        diagnostic_candidates = []
+        seen = set()
+        for match in matches:
+            candidate = match["candidate"]
+            code = str(candidate.get("code") or "")
+            if code in seen:
+                continue
+            seen.add(code)
+            diagnostic_candidates.append({
+                "pt": code,
+                "catalog_model": match.get("catalog_model") or match.get("label"),
+                "match_type": match.get("match_type"),
+            })
+        return {
+            "status": status,
+            "token": token,
+            "match_type": match_type,
+            "matches": matches,
+            "candidates": diagnostic_candidates,
+        }
+
+    def _has_pdf_pairing(self, ui_codes: List[str], ue_code: str) -> bool:
+        if not ui_codes or not ue_code:
+            return False
+        return all(
+            any(str(pair.get("target_code") or "") == ue_code for pair in self._pdf_table_pairs_ui_to_ue.get(ui_code, []))
+            for ui_code in ui_codes
+        )
+
+    def _master_compatible_selected_ui_codes(
+        self, ui_items: List[Dict[str, Any]], ue_code: str
+    ) -> List[str]:
+        if not ui_items or not ue_code:
+            return []
+        ue_master = self._ac_master_ues.get(ue_code) or {}
+        compatible_ui_models = {
+            re.sub(r"[^A-Z0-9]", "", str(value).upper())
+            for value in (ue_master.get("modelli_ui_compatibili") or [])
+            if value
+        }
+
+        compatible_codes = []
+        for ui_item in ui_items:
+            ui_code = str(ui_item.get("code") or "")
+            ui_master = self._ac_master_uis.get(ui_code) or {}
+            direct_codes = {
+                str(rec.get("code") or rec.get("codice_pt") or "")
+                for rec in (ui_master.get("unita_esterne_compatibili") or [])
+            }
+            ui_mfg = re.sub(
+                r"[^A-Z0-9]", "",
+                str(ui_item.get("mfg_code") or ui_master.get("mfg_code") or "").upper(),
+            )
+            if ue_code not in direct_codes and (not ui_mfg or ui_mfg not in compatible_ui_models):
+                continue
+            compatible_codes.append(ui_code)
+        return compatible_codes
+
+    def _has_master_compatibility(self, ui_items: List[Dict[str, Any]], ue_code: str) -> bool:
+        if not ui_items:
+            return False
+        return len(self._master_compatible_selected_ui_codes(ui_items, ue_code)) == len(ui_items)
+
+    def _multisplit_configuration_verified(self, ui_items: List[Dict[str, Any]], ue_code: str) -> bool:
+        """Require a full catalog combination, never only pairwise UI links."""
+        ue_master = self._ac_master_ues.get(ue_code) or {}
+        return bool(validate_multisplit_combination(ue_master, ui_items)["matched"])
+
+    @staticmethod
+    def _commercial_family_match(ui_items: List[Dict[str, Any]], ue_item: Dict[str, Any], query_context: Dict[str, Any]) -> bool:
+        ue_text = " ".join(str(ue_item.get(key) or "") for key in ("name", "serie", "famiglia_catalogo", "catalog_family")).upper()
+        requested = str(query_context.get("requested_series") or "").strip().upper()
+        if requested and requested in ue_text:
+            return True
+        for ui_item in ui_items:
+            for key in ("serie", "famiglia_catalogo", "catalog_family"):
+                family = str(ui_item.get(key) or "").strip().upper()
+                if family and family in ue_text:
+                    return True
+            ui_name = str(ui_item.get("name") or "").upper()
+            for family in ("HAORI", "DAISEIKAI", "PERFERA", "STYLISH", "FLEXIS", "ASTRA", "EXPERT"):
+                if family in ui_name and family in ue_text:
+                    return True
+        return False
+
+    @staticmethod
+    def _colour_variant_score(ue_item: Dict[str, Any], query_context: Dict[str, Any]) -> float:
+        requested = str(query_context.get("requested_color") or "").upper()
+        if not requested:
+            return 0.0
+        groups = {
+            "BLACK": {"BLACK", "NERO", "NER"},
+            "WHITE": {"WHITE", "BIANCO", "BCO"},
+            "SILVER": {"SILVER", "ARGENTO"},
+        }
+        requested_group = next((group for group, tokens in groups.items() if requested in tokens), requested)
+        text = " ".join(str(ue_item.get(key) or "") for key in ("name", "serie", "famiglia_catalogo", "catalog_family")).upper()
+        present_groups = {group for group, tokens in groups.items() if any(token in text for token in tokens)}
+        if not present_groups:
+            return 0.0
+        return 40.0 if requested_group in present_groups else -120.0
+
+    def pairing_score_breakdown(
+        self,
+        ui_items: List[Dict[str, Any]],
+        ue_item: Dict[str, Any],
+        query_context: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        """Score a UE candidate using evidence in the requested commercial order."""
+        ue_code = str(ue_item.get("code") or "")
+        ui_codes = [str(item.get("code") or "") for item in ui_items if item.get("code")]
+        pdf_pair_is_strong = self._has_pdf_pairing(ui_codes, ue_code)
+        if query_context.get("is_multisplit"):
+            pdf_pair_is_strong = pdf_pair_is_strong and self._multisplit_configuration_verified(
+                ui_items, ue_code
+            )
+        pdf_pairing = 100.0 if pdf_pair_is_strong else 0.0
+        if query_context.get("is_multisplit"):
+            explicit_match = self._explicit_ue_model_match(
+                ue_item, query_context.get("query_text") or ""
+            )
+        else:
+            mono_explicit_label = self._explicit_model_in_query(
+                ue_item, query_context.get("query_text") or ""
+            )
+            explicit_match = {
+                "token": mono_explicit_label,
+                "label": mono_explicit_label,
+                "match_type": "EXPLICIT_MODEL_EXACT_MATCH" if mono_explicit_label else None,
+            }
+        explicit_label = explicit_match.get("label")
+        explicit_match_type = explicit_match.get("match_type")
+        explicit_model = 90.0 if explicit_match_type == "EXPLICIT_MODEL_EXACT_MATCH" else 0.0
+        explicit_revision = 85.0 if explicit_match_type == "EXPLICIT_MODEL_REVISION_MATCH" else 0.0
+        family = 80.0 if self._commercial_family_match(ui_items, ue_item, query_context) else 0.0
+        master_compatible_ui_codes = self._master_compatible_selected_ui_codes(ui_items, ue_code)
+        master = 70.0 if len(master_compatible_ui_codes) == len(ui_items) else 0.0
+        master_pairwise = 10.0 * len(master_compatible_ui_codes)
+
+        btu = 0.0
+        if len(ui_items) == 1:
+            ui_btu = ui_items[0].get("taglia_btu")
+            ue_master = self._ac_master_ues.get(ue_code) or {}
+            ue_kw = float(
+                ue_item.get("potenza_nominale_kw") or ue_item.get("taglia_kw") or
+                ue_master.get("potenza_nominale_kw") or ue_master.get("taglia_kw") or 0.0
+            )
+            if ui_btu and ue_kw:
+                diff = abs(ue_kw - capacity_kw_for_btu(int(ui_btu)))
+                if diff <= 1.5:
+                    btu = 50.0
+
+        variant = self._colour_variant_score(ue_item, query_context)
+        final = (
+            pdf_pairing + explicit_model + explicit_revision + family + master
+            + master_pairwise + btu + variant
+        )
+        return {
+            "PDF_PAIRING": pdf_pairing,
+            "EXPLICIT_MODEL": explicit_model,
+            "EXPLICIT_MODEL_REVISION": explicit_revision,
+            "FAMILY": family,
+            "MASTER": master,
+            "MASTER_PAIRWISE_SELECTED_UI": master_pairwise,
+            "MASTER_COMPATIBLE_SELECTED_UI_PT": master_compatible_ui_codes,
+            "BTU": btu,
+            "VARIANT": variant,
+            "FINAL": final,
+            "explicit_model_label": explicit_label,
+            "explicit_ue_token": explicit_match.get("token"),
+            "explicit_ue_match_type": explicit_match_type,
+        }
+
+    def resolve_main_component_pairing(
+        self,
+        bom: List[Dict[str, Any]],
+        candidate_pools: Dict[str, List[Dict[str, Any]]],
+        query_context: Dict[str, Any],
+    ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+        """Resolve the commercial UE only after the UI identity is established."""
+        ui_items = [item for item in bom if item.get("role") == "UI" or item.get("is_ui")]
+        ue_candidates = list(candidate_pools.get("slot_ue") or [])
+        selected_ui_counts = collections.Counter(
+            str(item.get("code") or "") for item in ui_items if item.get("code")
+        )
+        selected_ui_context = [
+            {"pt": code, "quantity": quantity}
+            for code, quantity in selected_ui_counts.items()
+        ]
+        identity_analysis = {
+            "status": "DISCOVERY_ONLY",
+            "token": None,
+            "match_type": None,
+            "matches": [],
+            "candidates": [],
+        }
+        if query_context.get("is_multisplit"):
+            identity_analysis = self._explicit_ue_identity_analysis(
+                ue_candidates, query_context.get("query_text") or ""
+            )
+
+            if identity_analysis["status"] in ("AMBIGUOUS_REVISION", "CONFLICT"):
+                bom = [
+                    item for item in bom
+                    if not (item.get("role") == "UE" or item.get("is_ue"))
+                ]
+                block_reason = (
+                    "AMBIGUOUS_UE_REVISION"
+                    if identity_analysis["status"] == "AMBIGUOUS_REVISION"
+                    else "EXPLICIT_UE_IDENTITY_CONFLICT"
+                )
+                return bom, {
+                    "PAIRING_REASON": block_reason,
+                    "PAIRING_SCORE_BREAKDOWN": {},
+                    "PAIRING_STATUS": "CONFIGURAZIONE_NON_CONFERMATA",
+                    "MPN_FINAL_ALLOWED": False,
+                    "PRODUCT_IDENTITY_STATUS": identity_analysis["status"],
+                    "CONFIGURATION_STATUS": "NOT_VERIFIED",
+                    "EXPLICIT_UE_TOKEN": identity_analysis["token"],
+                    "EXPLICIT_UE_MATCH_TYPE": identity_analysis["match_type"],
+                    "EXPLICIT_UE_CANDIDATES": identity_analysis["candidates"],
+                    "SELECTED_UI_EVIDENCE_PT": selected_ui_context,
+                    "REJECTED_NON_BOM_UI_EVIDENCE": [],
+                    "FULL_CONFIGURATION_EVIDENCE": [],
+                    "FULL_CONFIGURATION_MATCHED": False,
+                    "FULL_CONFIGURATION_REQUESTED": None,
+                    "FULL_CONFIGURATION_CATALOG": None,
+                    "FULL_CONFIGURATION_SOURCE_FIELD": None,
+                    "FULL_CONFIGURATION_EVIDENCE_STRENGTH": "UNKNOWN_PROVENANCE",
+                    "FULL_CONFIGURATION_PROVENANCE": "UE identity is ambiguous or conflicting; no full-combination validation was attempted",
+                    "FULL_CONFIGURATION_PAGE": None,
+                    "FULL_CONFIGURATION_TABLE": None,
+                    "CONFIGURATION_CONFLICT_REASON": None,
+                    "CONFIGURATION_CONFLICT_DETAILS": {},
+                    "MPN_FINAL_BLOCK_REASON": block_reason,
+                    "UE_SELECTION_REASON": block_reason,
+                }
+
+            if identity_analysis["matches"]:
+                # Explicit product identity wins even when its topology later
+                # proves incompatible with the requested number of UIs.
+                explicit_codes = {
+                    str(match["candidate"].get("code") or "")
+                    for match in identity_analysis["matches"]
+                }
+                ue_candidates = [
+                    candidate for candidate in ue_candidates
+                    if str(candidate.get("code") or "") in explicit_codes
+                ]
+            elif ui_items:
+                # Topology is only a discovery filter when no UE model was
+                # explicit; it must never replace an explicit conflicting UE.
+                topology_candidates = []
+                for candidate in ue_candidates:
+                    ue_master = self._ac_master_ues.get(str(candidate.get("code") or "")) or {}
+                    ports = (
+                        candidate.get("porte_attacchi") or candidate.get("max_ui_collegabili") or
+                        ue_master.get("porte_attacchi") or ue_master.get("max_ui_collegabili")
+                    )
+                    if ports and int(ports) >= len(ui_items):
+                        topology_candidates.append(candidate)
+                if topology_candidates:
+                    ue_candidates = topology_candidates
+        if not ui_items or not ue_candidates:
+            return bom, {
+                "PAIRING_REASON": None,
+                "PAIRING_SCORE_BREAKDOWN": {},
+                "PAIRING_STATUS": "NOT_APPLICABLE",
+                "MPN_FINAL_ALLOWED": False,
+                "PRODUCT_IDENTITY_STATUS": identity_analysis["status"],
+                "CONFIGURATION_STATUS": "NOT_VERIFIED",
+                "EXPLICIT_UE_TOKEN": identity_analysis["token"],
+                "EXPLICIT_UE_MATCH_TYPE": identity_analysis["match_type"],
+                "EXPLICIT_UE_CANDIDATES": identity_analysis["candidates"],
+                "SELECTED_UI_EVIDENCE_PT": selected_ui_context,
+                "REJECTED_NON_BOM_UI_EVIDENCE": [],
+                "FULL_CONFIGURATION_EVIDENCE": [],
+                "FULL_CONFIGURATION_MATCHED": False,
+                "FULL_CONFIGURATION_REQUESTED": None,
+                "FULL_CONFIGURATION_CATALOG": None,
+                "FULL_CONFIGURATION_SOURCE_FIELD": None,
+                "FULL_CONFIGURATION_EVIDENCE_STRENGTH": "UNKNOWN_PROVENANCE",
+                "FULL_CONFIGURATION_PROVENANCE": "selected UI/UE set is incomplete; no full-combination validation was attempted",
+                "FULL_CONFIGURATION_PAGE": None,
+                "FULL_CONFIGURATION_TABLE": None,
+                "CONFIGURATION_CONFLICT_REASON": None,
+                "CONFIGURATION_CONFLICT_DETAILS": {},
+                "MPN_FINAL_BLOCK_REASON": "FULL_COMBINATION_NOT_VERIFIED",
+            }
+
+        ranked = []
+        for candidate in ue_candidates:
+            breakdown = self.pairing_score_breakdown(ui_items, candidate, query_context)
+            if query_context.get("is_multisplit"):
+                # The final UE decision is made only after the BOM UI slots are
+                # fixed. Candidate/intermediate UI relation boosts are excluded.
+                priority_key = (
+                    int(breakdown["EXPLICIT_MODEL"] > 0),
+                    int(breakdown["EXPLICIT_MODEL_REVISION"] > 0),
+                    int(breakdown["PDF_PAIRING"] > 0),
+                    int(breakdown["MASTER"] > 0),
+                    len(breakdown["MASTER_COMPATIBLE_SELECTED_UI_PT"]),
+                    -int(str(candidate.get("code") or "0"))
+                    if str(candidate.get("code") or "").isdigit()
+                    else 0,
+                )
+            else:
+                priority_key = (
+                    int(breakdown["PDF_PAIRING"] > 0),
+                    int(breakdown["EXPLICIT_MODEL"] > 0),
+                    int(breakdown["FAMILY"] > 0),
+                    int(breakdown["MASTER"] > 0),
+                    int(breakdown["BTU"] > 0),
+                    float(breakdown["VARIANT"]),
+                    float(breakdown["FINAL"]),
+                )
+            ranked.append((priority_key, candidate, breakdown))
+        ranked.sort(key=lambda row: row[0], reverse=True)
+
+        _, selected, breakdown = ranked[0]
+        if query_context.get("is_multisplit"):
+            reason = (
+                "EXPLICIT_MODEL_IN_QUERY" if breakdown["EXPLICIT_MODEL"] else
+                "EXPLICIT_MODEL_REVISION_MATCH" if breakdown["EXPLICIT_MODEL_REVISION"] else
+                "PDF_TABLE_PAIRING" if breakdown["PDF_PAIRING"] else
+                "MASTER_COMPATIBILITY_FALLBACK" if breakdown["MASTER"] else
+                "MASTER_PAIRWISE_DIAGNOSTIC_FALLBACK"
+                if breakdown["MASTER_PAIRWISE_SELECTED_UI"] else
+                "BTU_FALLBACK"
+            )
+        else:
+            reason = (
+                "PDF_TABLE_PAIRING" if breakdown["PDF_PAIRING"] else
+                "EXPLICIT_MODEL_IN_QUERY" if breakdown["EXPLICIT_MODEL"] else
+                "FAMILY_SERIES_MATCH" if breakdown["FAMILY"] else
+                "MASTER_COMPATIBILITY_FALLBACK" if breakdown["MASTER"] else
+                "BTU_FALLBACK"
+            )
+
+        product_identity_status = (
+            identity_analysis["status"]
+            if query_context.get("is_multisplit")
+            else "EXACT" if breakdown["EXPLICIT_MODEL"] else "DISCOVERY_ONLY"
+        )
+        configuration_status = "NOT_VERIFIED"
+        full_configuration_evidence = []
+        full_combination_validation = {
+            "matched": False,
+            "requested_configuration": None,
+            "matched_configuration": None,
+            "source_field": None,
+            "evidence_strength": "UNKNOWN_PROVENANCE",
+            "evidence_provenance": "no selected multisplit UE/UI combination was validated",
+            "catalog_combination_page": None,
+            "catalog_table": None,
+        }
+        configuration_conflict_reason = None
+        configuration_conflict_details = {}
+        if query_context.get("is_multisplit"):
+            selected_code = str(selected.get("code") or "")
+            ue_master = self._ac_master_ues.get(selected_code) or {}
+            full_combination_validation = validate_multisplit_combination(
+                ue_master, ui_items
+            )
+            if full_combination_validation["matched"]:
+                full_configuration_evidence = [dict(full_combination_validation)]
+            ports = (
+                selected.get("porte_attacchi") or selected.get("max_ui_collegabili") or
+                ue_master.get("porte_attacchi") or ue_master.get("max_ui_collegabili")
+            )
+            combinations = (
+                ue_master.get("combinazioni_ammesse")
+                or ue_master.get("combinazioni_ammesse_taglie")
+                or []
+            )
+            combination_arities = {
+                len([part for part in re.split(r"[+\s,]+", str(combination)) if part])
+                for combination in combinations
+            }
+            explicit_identity = product_identity_status in ("EXACT", "REVISION_CANDIDATE")
+            if explicit_identity and ports and int(ports) < len(ui_items):
+                configuration_conflict_reason = "UI_COUNT_MISMATCH"
+                configuration_conflict_details = {
+                    "requested_ui_count": len(ui_items),
+                    "ue_ports": int(ports),
+                }
+            elif (
+                explicit_identity
+                and combination_arities
+                and len(ui_items) not in combination_arities
+            ):
+                configuration_conflict_reason = "EXPLICIT_SCOPE_CONFLICT"
+                configuration_conflict_details = {
+                    "requested_ui_count": len(ui_items),
+                    "ue_ports": int(ports) if ports else None,
+                    "catalog_combination_ui_counts": sorted(combination_arities),
+                    "evidence_source": "compatibility_master.combinazioni_ammesse",
+                }
+            explicit_configuration_conflict = bool(configuration_conflict_reason)
+
+            if explicit_configuration_conflict:
+                configuration_status = "CONFLICT"
+            elif (
+                full_combination_validation["matched"]
+                and full_combination_validation["evidence_strength"]
+                == "CATALOG_TABLE_VERIFIED"
+            ):
+                configuration_status = "VERIFIED_FULL_COMBINATION"
+            elif breakdown["MASTER_PAIRWISE_SELECTED_UI"]:
+                configuration_status = "PAIRWISE_ONLY"
+
+        if product_identity_status == "AMBIGUOUS_REVISION":
+            block_reason = "AMBIGUOUS_UE_REVISION"
+        elif configuration_status == "CONFLICT":
+            block_reason = "EXPLICIT_UE_CONFIGURATION_CONFLICT"
+        elif product_identity_status == "REVISION_CANDIDATE":
+            block_reason = "REVISION_NOT_EXACT"
+        elif configuration_status == "PAIRWISE_ONLY":
+            block_reason = "PAIRWISE_COMPATIBILITY_ONLY"
+        elif configuration_status != "VERIFIED_FULL_COMBINATION":
+            block_reason = "FULL_COMBINATION_NOT_VERIFIED"
+        elif product_identity_status != "EXACT":
+            block_reason = "UI_IDENTITY_NOT_RELIABLE"
+        else:
+            block_reason = None
+
+        selected_copy = dict(selected)
+
+        selected_ui_codes = set(selected_ui_counts)
+        selected_evidences = []
+        rejected_non_bom_ui_evidence = []
+        for evidence in selected.get("relation_evidences") or []:
+            source_code = str(evidence.get("source_code") or "")
+            target_code = str(evidence.get("target_code") or "")
+            evidence_ui_code = source_code if source_code != str(selected.get("code") or "") else target_code
+            if evidence_ui_code in selected_ui_codes:
+                selected_evidences.append(evidence)
+            elif evidence_ui_code and evidence_ui_code not in rejected_non_bom_ui_evidence:
+                rejected_non_bom_ui_evidence.append(evidence_ui_code)
+        selected_copy["relation_evidences"] = selected_evidences
+        selected_copy["relation_evidence"] = selected_evidences[0] if selected_evidences else None
+        selected_copy["role"] = "UE"
+        selected_copy["role_label"] = "UE (Motore Esterno)"
+        selected_copy["pairing_reason"] = reason
+        selected_copy["pairing_score_breakdown"] = breakdown
+        selected_copy["product_identity_status"] = product_identity_status
+        selected_copy["configuration_status"] = configuration_status
+        selected_copy["configuration_conflict_reason"] = configuration_conflict_reason
+        selected_copy["configuration_conflict_details"] = configuration_conflict_details
+        selected_copy["selected_ui_context"] = selected_ui_context
+        selected_copy["rejected_non_bom_ui_evidence"] = rejected_non_bom_ui_evidence
+
+        ue_index = next(
+            (idx for idx, item in enumerate(bom) if item.get("role") == "UE" or item.get("is_ue")),
+            None,
+        )
+        if ue_index is None:
+            bom.insert(0, selected_copy)
+        else:
+            bom[ue_index] = selected_copy
+
+        # Keep diagnostics and downstream inspection aligned with the selected
+        # component without changing the general retrieval ranking.
+        candidate_pools["slot_ue"] = [selected_copy] + [
+            candidate for candidate in ue_candidates
+            if str(candidate.get("code") or "") != str(selected.get("code") or "")
+        ]
+        mpn_final_allowed = bool(
+            product_identity_status == "EXACT"
+            and configuration_status == "VERIFIED_FULL_COMBINATION"
+        )
+        return bom, {
+            "PAIRING_REASON": reason,
+            "PAIRING_SCORE_BREAKDOWN": breakdown,
+            "PAIRING_STATUS": (
+                "PAIRING_CONFIRMED"
+                if mpn_final_allowed
+                else "CONFIGURAZIONE_NON_CONFERMATA"
+            ),
+            "MPN_FINAL_ALLOWED": mpn_final_allowed,
+            "selected_ue_code": str(selected.get("code") or ""),
+            "selected_ue_mfg": selected.get("mfg_code"),
+            "selected_ui_codes": [str(item.get("code") or "") for item in ui_items],
+            "selected_ui_context": selected_ui_context,
+            "PRODUCT_IDENTITY_STATUS": product_identity_status,
+            "CONFIGURATION_STATUS": configuration_status,
+            "EXPLICIT_UE_TOKEN": identity_analysis.get("token") or breakdown.get("explicit_ue_token"),
+            "EXPLICIT_UE_MATCH_TYPE": identity_analysis.get("match_type") or breakdown.get("explicit_ue_match_type"),
+            "EXPLICIT_UE_CANDIDATES": identity_analysis.get("candidates") or [],
+            "SELECTED_UI_EVIDENCE_PT": selected_ui_context,
+            "MASTER_COMPATIBLE_SELECTED_UI_PT": breakdown.get(
+                "MASTER_COMPATIBLE_SELECTED_UI_PT"
+            ) or [],
+            "REJECTED_NON_BOM_UI_EVIDENCE": rejected_non_bom_ui_evidence,
+            "FULL_CONFIGURATION_EVIDENCE": full_configuration_evidence,
+            "FULL_CONFIGURATION_VALIDATION": full_combination_validation,
+            "FULL_CONFIGURATION_MATCHED": bool(full_combination_validation.get("matched")),
+            "FULL_CONFIGURATION_REQUESTED": full_combination_validation.get("requested_configuration"),
+            "FULL_CONFIGURATION_CATALOG": full_combination_validation.get("matched_configuration"),
+            "FULL_CONFIGURATION_SOURCE_FIELD": full_combination_validation.get("source_field"),
+            "FULL_CONFIGURATION_EVIDENCE_STRENGTH": full_combination_validation.get("evidence_strength"),
+            "FULL_CONFIGURATION_PROVENANCE": full_combination_validation.get("evidence_provenance"),
+            "FULL_CONFIGURATION_PAGE": full_combination_validation.get("catalog_combination_page"),
+            "FULL_CONFIGURATION_TABLE": full_combination_validation.get("catalog_table"),
+            "CONFIGURATION_CONFLICT_REASON": configuration_conflict_reason,
+            "CONFIGURATION_CONFLICT_DETAILS": configuration_conflict_details,
+            "MPN_FINAL_BLOCK_REASON": block_reason,
+            "UE_SELECTION_REASON": reason,
+        }
+
     def score_ue_for_ui_anchor(
         self,
         ue_item: Dict[str, Any],
@@ -1126,8 +1983,7 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         ue_tid = ue_item.get("table_id") or (ue_item.get("table_context") or {}).get("table_id")
         if ui_tid and ue_tid and ui_tid == ue_tid:
             score += 100.0
-        elif ui_page and ue_page and int(ui_page) == int(ue_page):
-            score += 80.0
+        # Same page alone is deliberately not evidence of a commercial pair.
 
         # 2. Stesso family_key
         ui_fk = ui_item.get("family_key")
