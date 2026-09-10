@@ -1098,11 +1098,19 @@ class CatalogSearchEngine:
 
     @staticmethod
     def _component_product_payload(item: Dict[str, Any]) -> Dict[str, Any]:
+        role = str(item.get("role") or "").upper()
+        if role not in {"UI", "UE"}:
+            if item.get("is_ui") and not item.get("is_ue"):
+                role = "UI"
+            elif item.get("is_ue") and not item.get("is_ui"):
+                role = "UE"
+            else:
+                role = ""
         return {
             "code": str(item.get("code") or "") or None,
             "mfg_code": item.get("mfg_code"),
             "name": item.get("name"),
-            "role": item.get("role"),
+            "role": role or None,
             "is_ui": bool(item.get("is_ui")),
             "is_ue": bool(item.get("is_ue")),
             "table_id": item.get("table_id"),
@@ -1260,14 +1268,95 @@ class CatalogSearchEngine:
                 relations.extend(self._component_relation_index.lookup_product(product))
             return self._component_relation_index._deduplicate(relations)
 
+        def role_products(products, role):
+            return [
+                product for product in products
+                if str(product.get("role") or "").upper() == role
+            ]
+
+        def select_role_product(role, exact_products, bom_products, result_products):
+            """Select one concrete PT for a role, preferring exact + BOM agreement."""
+            exact_for_role = role_products(exact_products, role)
+            bom_for_role = role_products(bom_products, role)
+            result_for_role = role_products(result_products, role)
+            exact_codes = {
+                str(product.get("code") or "") for product in exact_for_role
+                if product.get("code")
+            }
+
+            # The BOM has already resolved ambiguous alternatives (for example
+            # white vs black variants).  It may select an exact product but must
+            # never promote a different-role context.
+            for product in bom_for_role:
+                if str(product.get("code") or "") in exact_codes:
+                    return product
+            if len(exact_for_role) == 1:
+                return exact_for_role[0]
+            for product in result_for_role:
+                if str(product.get("code") or "") in exact_codes:
+                    return product
+            if bom_for_role:
+                return bom_for_role[0]
+            if exact_for_role:
+                return exact_for_role[0]
+            if result_for_role:
+                return result_for_role[0]
+            return None
+
+        exact_products = product_candidates(exact_token_candidates)
+        bom_products = product_candidates(bom)
+        result_products = product_candidates(formatted_results)
+        exact_codes = {
+            str(product.get("code") or "") for product in exact_products
+            if product.get("code")
+        }
+
+        def selection_status(products):
+            if any(str(product.get("code") or "") in exact_codes for product in products):
+                return "EXACT_PRODUCT_IDENTITY"
+            return "BOM_PRODUCT_IDENTITY"
+
+        if product_scope in {"UI_ONLY", "UE_ONLY"}:
+            role = "UI" if product_scope == "UI_ONLY" else "UE"
+            target = select_role_product(
+                role, exact_products, bom_products, result_products
+            )
+            if target:
+                products = [target]
+                return lookup_products(products), products, selection_status(products)
+            return [], [], "NO_ROLE_MATCHED_PRODUCT_CONTEXT"
+
+        if product_scope == "MONOSPLIT":
+            ui_product = select_role_product(
+                "UI", exact_products, bom_products, result_products
+            )
+            ue_product = select_role_product(
+                "UE", exact_products, bom_products, result_products
+            )
+            products = []
+            relations = []
+            if ui_product:
+                products.append(ui_product)
+                relations.extend(self._component_relation_index.lookup_product(ui_product))
+            if ue_product:
+                ue_relations = self._component_relation_index.lookup_product(ue_product)
+                if ue_relations:
+                    products.append(ue_product)
+                    relations.extend(ue_relations)
+            if products:
+                return (
+                    self._component_relation_index._deduplicate(relations),
+                    products,
+                    selection_status(products),
+                )
+            return [], [], "NO_ROLE_MATCHED_PRODUCT_CONTEXT"
+
         # Strong product identity wins.  If it has no component relation, do not
         # guess a different product from semantic candidates.
-        exact_products = product_candidates(exact_token_candidates)
         if exact_products:
             return lookup_products(exact_products), exact_products, "EXACT_PRODUCT_IDENTITY"
 
         if product_scope and product_scope != "GENERAL":
-            bom_products = product_candidates(bom)
             if bom_products:
                 matches = lookup_products(bom_products)
                 return matches, bom_products, "BOM_PRODUCT_IDENTITY"

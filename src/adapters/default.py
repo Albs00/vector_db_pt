@@ -45,7 +45,8 @@ class DefaultCategoryAdapter(BaseCategoryAdapter):
     def expand_relations(
         self,
         anchor_items: List[Dict[str, Any]],
-        lookup_dict: Dict[str, Any]
+        lookup_dict: Dict[str, Any],
+        query_context: Optional[Dict[str, Any]] = None
     ) -> List[TypedRelation]:
         return []
 

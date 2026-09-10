@@ -1,0 +1,938 @@
+{
+  "total_relations": 2599,
+  "total_unique_accessories_found": 282,
+  "total_accessories_with_code": 282,
+  "certain_relations_count": 396,
+  "annotations_without_accessory_count": 2203,
+  "annotations_without_accessory_sample": [
+    {
+      "annotation_id": "ANN_P0028_0001",
+      "page": 28,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "FBC",
+      "raw_text": "Caldaia con scambiatore primario in acciaio inox mono circuito privo di"
+    },
+    {
+      "annotation_id": "ANN_P0028_0004",
+      "page": 28,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "BLUEHELIX HITECH RRT C",
+      "raw_text": "Esclusivo"
+    },
+    {
+      "annotation_id": "ANN_P0028_0006",
+      "page": 28,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "BLUEHELIX THETA 24 C",
+      "raw_text": "Caldaia con scambiatore primario in acciaio inox mono circuito privo di"
+    },
+    {
+      "annotation_id": "ANN_P0028_0008",
+      "page": 28,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "BLUEHELIX HITECH RRT 45 H",
+      "raw_text": "condotti scarico fumi del diametro di 50 mm - Circuito idraulico completo di"
+    },
+    {
+      "annotation_id": "ANN_P0028_0010",
+      "page": 28,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "BLUEHELIX TECH RRT C",
+      "raw_text": "Esclusivo"
+    },
+    {
+      "annotation_id": "ANN_P0028_0013",
+      "page": 28,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "BLUEHELIX TOP RRT K 50",
+      "raw_text": "Esclusivo"
+    },
+    {
+      "annotation_id": "ANN_P0028_0014",
+      "page": 28,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "BLUEHELIX ALPHA",
+      "raw_text": "Caldaia con scambiatore primario in acciaio inox mono circuito privo di"
+    },
+    {
+      "annotation_id": "ANN_P0028_0015",
+      "page": 28,
+      "component_type": "SONDA",
+      "status": "OTHER",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "BLUEHELIX HITECH RRT K 50",
+      "raw_text": "modulante e alla sonda esterna (opzionali) raggiunge la classe di efficienza"
+    },
+    {
+      "annotation_id": "ANN_P0028_0016",
+      "page": 28,
+      "component_type": "BRUCIATORE",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "BLUEHELIX HITECH RRT K 50",
+      "raw_text": "superiore A+ (scala da G ad A+++). Esclusivo sistema scambiatore-bruciatore"
+    },
+    {
+      "annotation_id": "ANN_P0029_0017",
+      "page": 29,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "Bluehelix Hitech RRT H Solar (solo caldaia)",
+      "raw_text": "involucro INCASSO ESCLUSO"
+    },
+    {
+      "annotation_id": "ANN_P0029_0020",
+      "page": 29,
+      "component_type": "BRUCIATORE",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "Bluehelix Hitech RRT H Solar (solo caldaia)",
+      "raw_text": "Esclusivo sistema scambiatore-bruciatore con"
+    },
+    {
+      "annotation_id": "ANN_P0029_0023",
+      "page": 29,
+      "component_type": "RUBINETTERIA",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "Bluehelix Hitech RRT H Solar (solo caldaia)",
+      "raw_text": "due miscelate (tramite l’utilizzo di kit opzionali) - Circuito solare completo di"
+    },
+    {
+      "annotation_id": "ANN_P0029_0024",
+      "page": 29,
+      "component_type": "- POMPA CIRCUITO SOLARE MODULANTE A BASSO CONSUMO (ERP - CLASSE",
+      "status": "COMPONENT_OPTIONAL",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "Bluehelix Hitech RRT H Solar (solo caldaia)",
+      "raw_text": "opzionale - Pompa circuito solare modulante a basso consumo (ErP - Classe"
+    },
+    {
+      "annotation_id": "ANN_P0029_0025",
+      "page": 29,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "Bluehelix Hitech RRT H Solar (solo caldaia)",
+      "raw_text": "escluso."
+    },
+    {
+      "annotation_id": "ANN_P0029_0026",
+      "page": 29,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "Bluehelix Hitech RRT H Solar (solo caldaia)",
+      "raw_text": "accessori sono esclusi."
+    },
+    {
+      "annotation_id": "ANN_P0029_0027",
+      "page": 29,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "Bluehelix Hitech RRT H Solar (solo caldaia)",
+      "raw_text": "Estetica con linee esclusive (Patent) che innovano radicalmente il concetto di"
+    },
+    {
+      "annotation_id": "ANN_P0029_0030",
+      "page": 29,
+      "component_type": "BRUCIATORE",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "Bluehelix Hitech RRT H Solar (solo caldaia)",
+      "raw_text": "Esclusivo sistema scambiatore-bruciatore con porta"
+    },
+    {
+      "annotation_id": "ANN_P0029_0031",
+      "page": 29,
+      "component_type": "VALVOLA",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "KIT 1° ZONA MISCELATA 012041X0",
+      "raw_text": "Completo di pompa a basso consumo ErP classe A, valvola,"
+    },
+    {
+      "annotation_id": "ANN_P0029_0032",
+      "page": 29,
+      "component_type": "VALVOLA",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "KIT 2° ZONA MISCELATA 012042X0",
+      "raw_text": "completo di pompa a basso consumo ErP classe A, valvola"
+    },
+    {
+      "annotation_id": "ANN_P0031_0035",
+      "page": 31,
+      "component_type": "BRUCIATORE",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "SILENT D ECO UNIT",
+      "raw_text": "Completo di bruciatore a gasolio monostadio a basse emissioni inquinanti -"
+    },
+    {
+      "annotation_id": "ANN_P0031_0036",
+      "page": 31,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "SILENT D ECO UNIT",
+      "raw_text": "parametri semplici ed intuitivi - Completo di circolatore riscaldamento, vaso di"
+    },
+    {
+      "annotation_id": "ANN_P0031_0037",
+      "page": 31,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "SILENT D ECO UNIT",
+      "raw_text": "unico collo contenuto in imballo in legno completo di filtro e flessibili di"
+    },
+    {
+      "annotation_id": "ANN_P0031_0038",
+      "page": 31,
+      "component_type": "BRUCIATORE",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "SILENT D ECO COND UNIT a condensazione",
+      "raw_text": "Camera di combustione completamente bagnata - Completo di bruciatore a"
+    },
+    {
+      "annotation_id": "ANN_P0031_0039",
+      "page": 31,
+      "component_type": "VALVOLA",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "SILENT D ECO COND UNIT a condensazione",
+      "raw_text": "intuitivi - Completo di circolatore riscaldamento, vaso di espansione, valvola di"
+    },
+    {
+      "annotation_id": "ANN_P0031_0040",
+      "page": 31,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "SILENT D ECO COND UNIT a condensazione",
+      "raw_text": "imballo in legno, completo di filtro e flessibili di collegamento linea gasolio."
+    },
+    {
+      "annotation_id": "ANN_P0032_0041",
+      "page": 32,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "kit scarico tubi separati completo di prese per analisi 041082X0",
+      "raw_text": "kit scarico tubi separati completo di prese per analisi"
+    },
+    {
+      "annotation_id": "ANN_P0032_0044",
+      "page": 32,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "KIT CONDOTTI SEPARATI IN PP/pvc Senza prelievo fumi",
+      "raw_text": "Esclusi i mod. FBC e Theta"
+    },
+    {
+      "annotation_id": "ANN_P0034_0050",
+      "page": 34,
+      "component_type": "SONDA",
+      "status": "COMPONENT_OPTIONAL",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "TOR",
+      "raw_text": "sonda esterna (opzionale) - Funzionante in abbinamento ai comandi remoti"
+    },
+    {
+      "annotation_id": "ANN_P0036_0057",
+      "page": 36,
+      "component_type": "BOLLITORE",
+      "status": "FEATURE_INCLUDED",
+      "relation_intent": "FEATURE_ONLY",
+      "table_title": "NUVOLA CENTURY",
+      "raw_text": "Scarico sdoppiato ø80 DI SERIE - Modello con accumulo - scambiatore ad"
+    },
+    {
+      "annotation_id": "ANN_P0036_0058",
+      "page": 36,
+      "component_type": "VALVOLA",
+      "status": "FEATURE_INCLUDED",
+      "relation_intent": "FEATURE_ONLY",
+      "table_title": "COMBI 160",
+      "raw_text": "accessorio - gruppo idraulico solare DI SERIE (pompa, valvola di sicurezza,"
+    },
+    {
+      "annotation_id": "ANN_P0036_0060",
+      "page": 36,
+      "component_type": "WIFI",
+      "status": "FEATURE_INCLUDED",
+      "relation_intent": "FEATURE_ONLY",
+      "table_title": "NUVOLA CENTURY",
+      "raw_text": "Kit pannello di controllo WI-FI DI SERIE nel modello Luna Air WI-FI: Hybrid"
+    },
+    {
+      "annotation_id": "ANN_P0036_0063",
+      "page": 36,
+      "component_type": "WIFI",
+      "status": "FEATURE_INCLUDED",
+      "relation_intent": "FEATURE_ONLY",
+      "table_title": "LUNA AIR wi-fi (kit pannello di controllo WI-FI DI SERIE)",
+      "raw_text": "LUNA AIR wi-fi (kit pannello di controllo WI-FI DI SERIE)"
+    },
+    {
+      "annotation_id": "ANN_P0036_0064",
+      "page": 36,
+      "component_type": "WIFI",
+      "status": "FEATURE_INCLUDED",
+      "relation_intent": "FEATURE_ONLY",
+      "table_title": "LUNA AIR wi-fi (kit pannello di controllo WI-FI DI SERIE)",
+      "raw_text": "kit pannello di controllo WI-FI DI SERIE nel modello Luna Air WI-FI: Hybrid"
+    },
+    {
+      "annotation_id": "ANN_P0036_0068",
+      "page": 36,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "LUNA AIR wi-fi (kit pannello di controllo WI-FI DI SERIE)",
+      "raw_text": "Cassa di contenimento esclusa.  Installabile incasso+esterno."
+    },
+    {
+      "annotation_id": "ANN_P0036_0069",
+      "page": 36,
+      "component_type": "WIFI",
+      "status": "FEATURE_INCLUDED",
+      "relation_intent": "FEATURE_ONLY",
+      "table_title": "LUNA IN PLUS wi-fi (kit pannello di controllo WI-FI DI SERIE)",
+      "raw_text": "LUNA IN PLUS wi-fi (kit pannello di controllo WI-FI DI SERIE)"
+    },
+    {
+      "annotation_id": "ANN_P0037_0073",
+      "page": 37,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "KIT SCARICO SEPARATO 7102689",
+      "raw_text": "Per tutti i modelli escluso"
+    },
+    {
+      "annotation_id": "ANN_P0037_0076",
+      "page": 37,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "KIT SCARICO SEPARATO HT IN PP KHG 71405911",
+      "raw_text": "Per tutti i modelli Escluso Luna Classic"
+    },
+    {
+      "annotation_id": "ANN_P0037_0079",
+      "page": 37,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "KIT SDOPPIATO A CIABATTA ECO in PP/PP CON PRELIEVO FUMI",
+      "raw_text": "Per tutti i modelli esclusi tutti i mod. Luna"
+    },
+    {
+      "annotation_id": "ANN_P0037_0080",
+      "page": 37,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "KIT COASSIALE IN PP/PP CON TERMINALE DI SCARICO COLORE BIANCO",
+      "raw_text": "Per tutti i modelli esclusi tutti i mod. Luna"
+    },
+    {
+      "annotation_id": "ANN_P0037_0081",
+      "page": 37,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "KIT SDOPPIATO A CIABATTA ECO UNIVERSALE in PP/PP CON PRELIEVO FUMI",
+      "raw_text": "Per tutti i modelli esclusi tutti i mod. Luna"
+    },
+    {
+      "annotation_id": "ANN_P0037_0082",
+      "page": 37,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "PARTENZA VERTICALE COASSIALE in PP/Pvc CON PRELIEVO FUMI",
+      "raw_text": "Per tutti i modelli esclusi tutti i mod. Luna"
+    },
+    {
+      "annotation_id": "ANN_P0037_0084",
+      "page": 37,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "KIT CONDOTTI SEPARATI IN PP/pvc senza prelievo fumi",
+      "raw_text": "Per tutti i modelli esclusi tutti i mod. Luna"
+    },
+    {
+      "annotation_id": "ANN_P0038_0087",
+      "page": 38,
+      "component_type": "SONDA",
+      "status": "FEATURE_INCLUDED",
+      "relation_intent": "FEATURE_ONLY",
+      "table_title": "Cronotermostato modulante Baxi Mago A+ con wifi integrato con sonda esterna A7791884",
+      "raw_text": "integrato con sonda esterna A7791884"
+    },
+    {
+      "annotation_id": "ANN_P0040_0090",
+      "page": 40,
+      "component_type": "SMALTATO VETRIFICATO",
+      "status": "COMPONENT_OPTIONAL",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "Power HT OIL",
+      "raw_text": "smaltato vetrificato optional"
+    },
+    {
+      "annotation_id": "ANN_P0040_0092",
+      "page": 40,
+      "component_type": "VALVOLA",
+      "status": "FEATURE_INCLUDED",
+      "relation_intent": "FEATURE_ONLY",
+      "table_title": "Power HT OIL",
+      "raw_text": "valvola di sicurezza e manometro elettronico DI SERIE - sonda esterna DI"
+    },
+    {
+      "annotation_id": "ANN_P0040_0093",
+      "page": 40,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "Power HT OIL",
+      "raw_text": "da 110 litri già compreso nel mod. 24/110 e da 160 litri nei mod. 24/160 e"
+    },
+    {
+      "annotation_id": "ANN_P0040_0094",
+      "page": 40,
+      "component_type": "SONDA",
+      "status": "FEATURE_INCLUDED",
+      "relation_intent": "FEATURE_ONLY",
+      "table_title": "Power HT OIL",
+      "raw_text": "sicurezza e manometro elettronico DI SERIE - sonda esterna DI SERIE."
+    },
+    {
+      "annotation_id": "ANN_P0042_0098",
+      "page": 42,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_EXCLUDED",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "GENUS ONE+ NET",
+      "raw_text": "Nuovo scambiatore XtraTech™in acciaio inox esclusivo* Ariston"
+    },
+    {
+      "annotation_id": "ANN_P0042_0101",
+      "page": 42,
+      "component_type": "ACCESSORIO",
+      "status": "COMPONENT_INCLUDED",
+      "relation_intent": "NO_COMPONENT_CODE",
+      "table_title": "GENUS ONE+ NET",
+      "raw_text": "Connettività Ariston NET inclusa, grazie al"
+    },
+    {
+      "annotation_id": "ANN_P0042_0105",
+      "page": 42,
+      "component_type": "PRESSIONE POSITIVA (C10) - FUNZIONAMENTO ARIA PROPANATA CON KIT  -",
+      "status": "COMPONENT_OPTIONAL",
+      "relation_intent": "ACCESSORY_OPTIONAL",
+      "table_title": "CARES s",
+      "raw_text": "pressione positiva (C10) - Funzionamento aria propanata con kit opzionale -"
+    }
+  ],
+  "ambiguous_cases_count": 63,
+  "ambiguous_cases_sample": [
+    {
+      "annotation_id": "ANN_P0058_0235",
+      "page": 58,
+      "component_type": "BOLLITORE",
+      "table_title": "VERSIONE LOW NOX - SOLO RISCALDAMENTO (senza bollitore)",
+      "matched_count": 6,
+      "raw_text": "VERSIONE LOW NOX - SOLO RISCALDAMENTO (senza bollitore)"
+    },
+    {
+      "annotation_id": "ANN_P0161_0586",
+      "page": 161,
+      "component_type": "BRUCIATORE",
+      "table_title": "*KIT Bruciatore policombustibile - ACCESSORIO OBBLIGATORIO",
+      "matched_count": 5,
+      "raw_text": "*KIT Bruciatore policombustibile"
+    },
+    {
+      "annotation_id": "ANN_P0162_0596",
+      "page": 162,
+      "component_type": "BRUCIATORE",
+      "table_title": "*KIT Bruciatore policombustibile - ACCESSORIO OBBLIGATORIO",
+      "matched_count": 5,
+      "raw_text": "*KIT Bruciatore policombustibile"
+    },
+    {
+      "annotation_id": "ANN_P0324_0875",
+      "page": 324,
+      "component_type": "VALVOLA",
+      "table_title": "Valvola zona 2 vie senza motore",
+      "matched_count": 8,
+      "raw_text": "Valvola zona 2 vie senza motore"
+    },
+    {
+      "annotation_id": "ANN_P0374_1076",
+      "page": 374,
+      "component_type": "COMANDO",
+      "table_title": "a-LIFE3 versione 2 tubi DLMV *",
+      "matched_count": 10,
+      "raw_text": "Privo di comando"
+    },
+    {
+      "annotation_id": "ANN_P0374_1078",
+      "page": 374,
+      "component_type": "COMANDO",
+      "table_title": "a-LIFE3 versione 2 tubi DLMV *",
+      "matched_count": 10,
+      "raw_text": "Comando a bordo iks2 incluso"
+    },
+    {
+      "annotation_id": "ANN_P0473_1474",
+      "page": 473,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata ULTRA PIATTA FDXM-F9",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0473_1475",
+      "page": 473,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata ULTRA PIATTA FDXM-F9",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0473_1480",
+      "page": 473,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata DC FBA-A (9)",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0473_1481",
+      "page": 473,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata DC FBA-A (9)",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0474_1489",
+      "page": 474,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "matched_count": 7,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0476_1496",
+      "page": 476,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata DC FBA-A (9)",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0476_1497",
+      "page": 476,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata DC FBA-A (9)",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0477_1509",
+      "page": 477,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "matched_count": 6,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0477_1510",
+      "page": 477,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "matched_count": 6,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0478_1527",
+      "page": 478,
+      "component_type": "COMANDO",
+      "table_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0479_1532",
+      "page": 479,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "matched_count": 6,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0479_1533",
+      "page": 479,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "matched_count": 6,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0480_1542",
+      "page": 480,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata DC FBA-A (9)",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0480_1543",
+      "page": 480,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata DC FBA-A (9)",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0481_1549",
+      "page": 481,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "matched_count": 7,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0482_1554",
+      "page": 482,
+      "component_type": "COMANDO",
+      "table_title": "PARETE FAA-B",
+      "matched_count": 6,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0482_1555",
+      "page": 482,
+      "component_type": "COMANDO",
+      "table_title": "PARETE FAA-B",
+      "matched_count": 6,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0483_1560",
+      "page": 483,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata DC FBA-A (9)",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0483_1561",
+      "page": 483,
+      "component_type": "COMANDO",
+      "table_title": "canalizzata DC FBA-A (9)",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0484_1567",
+      "page": 484,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "matched_count": 7,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0484_1568",
+      "page": 484,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "matched_count": 7,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0487_1596",
+      "page": 487,
+      "component_type": "COMANDO",
+      "table_title": "Griglia standard 95x95",
+      "matched_count": 7,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0488_1600",
+      "page": 488,
+      "component_type": "COMANDO A FILO",
+      "table_title": "Comando a filo BT bianco",
+      "matched_count": 7,
+      "raw_text": "Comando a filo BT bianco optional"
+    },
+    {
+      "annotation_id": "ANN_P0488_1601",
+      "page": 488,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA PENSILE A SOFFITTO FUA-A",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0488_1602",
+      "page": 488,
+      "component_type": "COMANDO",
+      "table_title": "CASSETTA PENSILE A SOFFITTO FUA-A",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0499_1646",
+      "page": 499,
+      "component_type": "COMANDO",
+      "table_title": "PEAD-M JA2 canalizzata",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0501_1659",
+      "page": 501,
+      "component_type": "COMANDO",
+      "table_title": "PCA-M KA2 SOFFITTO",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0501_1660",
+      "page": 501,
+      "component_type": "COMANDO",
+      "table_title": "PCA-M KA2 SOFFITTO",
+      "matched_count": 5,
+      "raw_text": "Comando a bordo incluso"
+    },
+    {
+      "annotation_id": "ANN_P0502_1664",
+      "page": 502,
+      "component_type": "COMANDO",
+      "table_title": "PEAD-M JA2 canalizzata",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0504_1678",
+      "page": 504,
+      "component_type": "COMANDO",
+      "table_title": "PCA-M KA2 SOFFITTO",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0504_1679",
+      "page": 504,
+      "component_type": "COMANDO",
+      "table_title": "PCA-M KA2 SOFFITTO",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0505_1684",
+      "page": 505,
+      "component_type": "COMANDO",
+      "table_title": "PCA-M HA2 PENSILE A SOFFITTO",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0505_1685",
+      "page": 505,
+      "component_type": "COMANDO A FILO",
+      "table_title": "PCA-M HA2 PENSILE A SOFFITTO",
+      "matched_count": 5,
+      "raw_text": "Comando a filo incluso"
+    },
+    {
+      "annotation_id": "ANN_P0515_1732",
+      "page": 515,
+      "component_type": "COMANDO",
+      "table_title": "Comando wireless",
+      "matched_count": 5,
+      "raw_text": "Comando wireless optional"
+    },
+    {
+      "annotation_id": "ANN_P0515_1733",
+      "page": 515,
+      "component_type": "COMANDO",
+      "table_title": "PACI NX STANDARD SPLIT",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0515_1734",
+      "page": 515,
+      "component_type": "COMANDO",
+      "table_title": "PACI NX STANDARD SPLIT",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0516_1743",
+      "page": 516,
+      "component_type": "COMANDO A FILO",
+      "table_title": "Comando a filo",
+      "matched_count": 5,
+      "raw_text": "Comando a filo optional"
+    },
+    {
+      "annotation_id": "ANN_P0516_1744",
+      "page": 516,
+      "component_type": "COMANDO",
+      "table_title": "PACI NX STANDARD CASSETTA 60x60",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0516_1745",
+      "page": 516,
+      "component_type": "COMANDO",
+      "table_title": "PACI NX STANDARD canalizzata",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0517_1758",
+      "page": 517,
+      "component_type": "COMANDO",
+      "table_title": "PACI NX STANDARD CASSETTA 90x90",
+      "matched_count": 6,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0517_1759",
+      "page": 517,
+      "component_type": "COMANDO",
+      "table_title": "PACI NX STANDARD SOFFITTO",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0518_1770",
+      "page": 518,
+      "component_type": "COMANDO",
+      "table_title": "Comando wireless",
+      "matched_count": 5,
+      "raw_text": "Comando wireless optional"
+    },
+    {
+      "annotation_id": "ANN_P0518_1771",
+      "page": 518,
+      "component_type": "COMANDO",
+      "table_title": "PACI NX ELITE SPLIT",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    },
+    {
+      "annotation_id": "ANN_P0518_1772",
+      "page": 518,
+      "component_type": "COMANDO",
+      "table_title": "PACI NX ELITE SPLIT",
+      "matched_count": 5,
+      "raw_text": "Comando escluso"
+    }
+  ],
+  "distribution_by_component_type": {
+    "ACCESSORIO": 795,
+    "COMANDO": 407,
+    "STRUTTURA DI FISSAGGIO": 231,
+    "TELECOMANDO": 193,
+    "BOLLITORE": 131,
+    "RUBINETTERIA": 129,
+    "GRIGLIA": 124,
+    "POMPA SCARICO CONDENSA": 109,
+    "SEDILE": 103,
+    "WIFI": 77,
+    "VALVOLA": 76,
+    "BATTERIA": 59,
+    "PILETTA": 47,
+    "SONDA": 40,
+    "COMANDO A FILO": 23,
+    "BRUCIATORE": 10,
+    "CENTRALINA": 3,
+    "GRUPPO DI ALLACCIAMENTO": 2,
+    "TUBO  DA 35 LITRI, COIBENTATO PER ESTENSIONE DI POTENZA": 2,
+    "ACCESSORIO :": 2,
+    "MODBUS E CONTATTI SMART GRID. ESTENSIONE  DELLA": 2,
+    "UNITÀ INTERNA ARIA PER COMPLETARE IL PACCHETTO": 2,
+    "6 KW (230VAC CON ADATTATORE": 2,
+    "- POMPA CIRCUITO SOLARE MODULANTE A BASSO CONSUMO (ERP - CLASSE": 1,
+    "SMALTATO VETRIFICATO": 1,
+    "PRESSIONE POSITIVA (C10) - FUNZIONAMENTO ARIA PROPANATA CON KIT  -": 1,
+    "COME": 1,
+    "FACILITÀ DI INSTALLAZIONE E AMPIA SCELTA DI ACCESSORI DISPONIBILI COME . GRADO": 1,
+    "ALLACCIAMENTO .OMOLOGATA PER ESTERNO IN LUOGHI PARZIALMENTE PROTETTI.": 1,
+    "CHE LI PROTEGGE FINO ALLA TEMPERATURA DI -5 °C (CON KIT  FINO A -15 °C).": 1,
+    "INSTALLATA ALL’APERTO CON UN KIT . INCLUDE DISPLAY TOUCH, MANOPOLE DI": 1,
+    "TRAMITE APPOSITO KIT DI COPERTURA  E AD INCASSO. INTEGRA UNO": 1,
+    ". GRADO DI PROTEZIONE ELETTRICA IPX5D. PER LA TRASFORMAZIONE A GPL": 1,
+    "DOMINUS": 1,
+    "GRUPPO ALLACCIAMENTO": 1,
+    "ALLACCIAMENTO .GRADO DI PROTEZIONE ELETTRICA IPX4D.": 1,
+    "°C (-15 °C CON KIT . PER IL MODELLO VICTRIX SUPERIOR 35 PLUS": 1,
+    "MEDIANTE KIT  DOMINUS.": 1,
+    "ATTIVABILE CON SMARTPHONE O TABLET MEDIANTE KIT  DOMINUS.": 1,
+    "VERSIONE CON SERPENTINA  PERMETTE L'INTEGRAZIONE CON IL": 1,
+    "DIAGNOSTICA ELETTRONICA - KIT ANTIGELO  - ALIMENTAZIONE ELETTRICA A 230": 1,
+    "PANNELLO": 1,
+    "MACCHINA": 1,
+    "INTERNAMENTE ALL’UNITÀ. ESTENSIONE  DELLA GARANZIA": 1,
+    "TELAI MONO-VENTOLA. ESTENSIONE  DELLA GARANZIA FINO A": 1,
+    "GRID. ESTENSIONE  DELLA GARANZIA FINO A 5 ANNI": 1,
+    "ESTENSIONE  DELLA GARANZIA FINO A 5 ANNI ARMADIO": 1,
+    "DI CIRCOLAZIONE SOLARE E VASO DI ESPANSIONE SOLARE DA 15 LITRI .": 1,
+    "COMUNICAZIONE MODBUS COMPATIBILE CON UI THOR": 1,
+    "DEL SISTEMA IBRIDO È NECESSARIO IL KIT DOMINUS V2 .": 1,
+    "THOR  ALIMENTATORE 12V PER LE SMB E 2 O 3 KIT WI FI": 1,
+    "DOMINUS V2 . PRIMA ACCENSIONE GRATUITA.": 1,
+    "KIT  1 ZONA": 1
+  },
+  "distribution_by_status": {
+    "COMPONENT_INCLUDED": 986,
+    "COMPONENT_EXCLUDED": 748,
+    "COMPONENT_OPTIONAL": 401,
+    "FEATURE_INCLUDED": 161,
+    "OTHER": 138,
+    "FEATURE": 77,
+    "COMPONENT_REQUIRED": 67,
+    "COMPATIBILITY_NOTE": 8,
+    "INSTALLATION_REQUIREMENT": 6,
+    "PACKAGE_QUANTITY": 4,
+    "USAGE_LIMITATION": 2,
+    "SALE_QUANTITY": 1
+  },
+  "distribution_by_relation_intent": {
+    "ACCESSORY_OPTIONAL": 1343,
+    "NO_COMPONENT_CODE": 935,
+    "FEATURE_ONLY": 210,
+    "ACCESSORY_REQUIRED": 69,
+    "ACCESSORY_INCLUDED_SEPARATE": 42
+  }
+}

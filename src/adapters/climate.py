@@ -730,6 +730,10 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         if item.get("is_ui") and requested_btus and item.get("taglia_btu") in requested_btus:
             boost += 25.0
 
+        # Boost per UI se la query è specificamente per UI
+        if query_context.get("is_ui_only") and item.get("is_ui"):
+            boost += 15.0
+
         # Boost per UE se la query è specificamente per UE
         if query_context.get("is_ue_only") and item.get("is_ue"):
             boost += 15.0
@@ -1173,9 +1177,24 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
 
     def get_slot_quotas(self, query_context: Dict[str, Any], limit: int) -> List[SlotConfig]:
         configs: List[SlotConfig] = []
+        is_ui_only = query_context.get("is_ui_only", False)
         is_ue_only = query_context.get("is_ue_only", False)
         requested_btus = query_context.get("requested_btus", [])
         has_reliable_anchor = query_context.get("has_reliable_anchor", True)
+
+        if is_ui_only:
+            unique_btus = []
+            for b in requested_btus:
+                if b not in unique_btus:
+                    unique_btus.append(b)
+            prio = 10 if has_reliable_anchor else 0
+            min_res = 1 if has_reliable_anchor else 0
+            if unique_btus:
+                for btu in unique_btus:
+                    configs.append(SlotConfig(slot_id=f"slot_ui_{btu}", priority=prio, min_reserved=min_res, max_candidates=limit))
+            else:
+                configs.append(SlotConfig(slot_id="slot_ui", priority=prio, min_reserved=min_res, max_candidates=limit))
+            return configs
 
         if is_ue_only:
             prio = 10 if has_reliable_anchor else 0

@@ -256,18 +256,72 @@ class CatalogTableContextIndex:
         }
 
     @staticmethod
-    def candidate_family_keys(item: Dict[str, Any]) -> set[str]:
-        keys = {str(item.get("family_key") or "").strip()}
-        context = item.get("table_context") or {}
-        for alternate in context.get("alternate_table_contexts") or []:
-            keys.add(str(alternate.get("family_key") or "").strip())
-        res = set()
-        for k in keys:
-            if not k:
+    def _family_key_aliases(key: Any) -> set[str]:
+        value = str(key or "").strip()
+        if not value:
+            return set()
+        aliases = {value}
+        if "SOFFI_TTO" in value:
+            aliases.add(value.replace("SOFFI_TTO", "SOFFITTO"))
+        if "SOFFITTO" in value:
+            aliases.add(value.replace("SOFFITTO", "SOFFI_TTO"))
+        return aliases
+
+    @classmethod
+    def candidate_family_contexts(cls, item: Dict[str, Any]) -> list[Dict[str, Any]]:
+        """Return the primary context plus every explicitly valid alternate.
+
+        The primary fields remain untouched.  A missing alternate ``family_key``
+        is derived only for matching, using the alternate family and the catalog
+        brand; this does not promote that alternate to primary.
+        """
+        table_context = item.get("table_context") or {}
+        fallback_brand = table_context.get("brand") or item.get("brand")
+        raw_contexts: list[Dict[str, Any]] = [table_context or item]
+        for source in (table_context, item):
+            for alternate in source.get("alternate_table_contexts") or []:
+                if isinstance(alternate, dict):
+                    raw_contexts.append(alternate)
+
+        contexts: list[Dict[str, Any]] = []
+        seen: set[tuple[str, str, str]] = set()
+        for raw in raw_contexts:
+            key = str(raw.get("family_key") or "").strip()
+            if not key:
+                key = make_family_key(
+                    raw.get("brand") or fallback_brand,
+                    raw.get("catalog_family"),
+                )
+            if not key:
                 continue
-            res.add(k)
-            if "SOFFI_TTO" in k:
-                res.add(k.replace("SOFFI_TTO", "SOFFITTO"))
-            if "SOFFITTO" in k:
-                res.add(k.replace("SOFFITTO", "SOFFI_TTO"))
-        return res
+            identity = (
+                key,
+                str(raw.get("table_id") or ""),
+                str(raw.get("page") or ""),
+            )
+            if identity in seen:
+                continue
+            seen.add(identity)
+            context = dict(raw)
+            context["family_key"] = key
+            contexts.append(context)
+        return contexts
+
+    @classmethod
+    def candidate_family_keys(cls, item: Dict[str, Any]) -> set[str]:
+        keys: set[str] = set()
+        for context in cls.candidate_family_contexts(item):
+            keys.update(cls._family_key_aliases(context.get("family_key")))
+        return keys
+
+    @classmethod
+    def matching_family_context(
+        cls, item: Dict[str, Any], requested_family_key: Any
+    ) -> Optional[Dict[str, Any]]:
+        requested = str(requested_family_key or "").strip()
+        if not requested:
+            return None
+        for context in cls.candidate_family_contexts(item):
+            if requested in cls._family_key_aliases(context.get("family_key")):
+                return context
+        return None

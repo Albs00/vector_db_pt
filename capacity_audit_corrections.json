@@ -1,0 +1,2563 @@
+{
+  "metadata": {
+    "file": "capacity_audit_corrections.json",
+    "status": "applied",
+    "applied_at_utc": "2026-09-09T09:16:12.412469+00:00",
+    "last_applied_at_utc": "2026-09-09T09:21:19.203147+00:00",
+    "application_runs": 2,
+    "master": "Knowledge\\climatizzatori_compatibilita_master.json",
+    "source_report": "capacity_audit_report.json",
+    "master_sha256_before": "64fe81c58457e9c7c0f3a375f10821ebaec007298c64159a4868cb86f5def2df",
+    "last_application_sha256_before": "7d71fa476e31991a28274d6c0adc29976cd2f5c1e942708a32c10cce0ebb1cb5",
+    "master_sha256_after": "cee170555d584228e73a97b8595d26a74a7b4277e8cfb7a6aea62e3f5553450f",
+    "scope": "Solo dati di capacita; nessuna modifica a search engine, ranking o algoritmi."
+  },
+  "summary": {
+    "records_changed": 36,
+    "records_reviewed_no_change": 2,
+    "unit_occurrences_updated": 1508,
+    "field_values_updated": 4832,
+    "kw_fields_changed": 0,
+    "validation_mismatches": 0
+  },
+  "corrections": [
+    {
+      "pt_code": "50368716",
+      "brand": "HISENSE",
+      "mfg_code": "AUF140UR4RMPA8",
+      "name": "UI A COLONNA 140 AUF140UR4RMPA8",
+      "series": "COMMERCIALE HISENSE (TURBO / CASSETTA / CANALIZZATO / COLONNA)",
+      "field": "taglia_btu",
+      "old_value": 42000,
+      "audit_proposed_value": 48000,
+      "applied_value": 48000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 17,
+      "field_updates": {
+        "taglia_btu": 17,
+        "tag_btu": 17,
+        "tag_btu_display": 17,
+        "tags": 13,
+        "kit_commerciali_inclusi.nome_kit": 26,
+        "kit_commerciali_inclusi.configurazione": 26,
+        "kit_name": 6,
+        "nome_kit": 6,
+        "configurazione": 6,
+        "configuration": 6
+      },
+      "evidence": [
+        {
+          "source": "Knowledge/catalog_table_context.json",
+          "match": "pt_code",
+          "pt_code": "50368716",
+          "model": "U.I. AUF140UR4RMPA8",
+          "mpn": "AUF140UR4RMPA8",
+          "catalog_family": "COLONNA",
+          "page": 552,
+          "confidence": 1.0
+        },
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "HISENSE",
+          "serie": "COMMERCIALE HISENSE (TURBO / CASSETTA / CANALIZZATO / COLONNA)",
+          "model_capacity_class": 140,
+          "distribution": {
+            "42000": 1,
+            "48000": 1
+          },
+          "mode": 42000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50199075",
+              "name": "UI COMM PAV/SOFF 140 AUV140UR4RC8",
+              "current_btu": 48000,
+              "current_kw": null,
+              "catalog_model": "U.I. AUV140UR4RC8",
+              "catalog_page": 552
+            }
+          ]
+        },
+        {
+          "source": "single_model_family_catalog_peer",
+          "proposed_btu": 48000
+        }
+      ]
+    },
+    {
+      "pt_code": "50202140",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXP35N",
+      "name": "UI COMFORA FTXP35N R32",
+      "series": "COMFORA",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 12000,
+      "applied_value": 12000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 49,
+      "field_updates": {
+        "taglia_btu": 49,
+        "tag_btu": 49,
+        "tag_btu_display": 49,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "COMFORA",
+          "model_capacity_class": 35,
+          "distribution": {
+            "12000": 1,
+            "9000": 1
+          },
+          "mode": 12000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307968",
+              "name": "UI COMFORA FTXP35N9 WI-FI",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXP35N9",
+              "catalog_page": 468
+            }
+          ]
+        },
+        {
+          "source": "single_model_family_catalog_peer",
+          "proposed_btu": 12000
+        }
+      ]
+    },
+    {
+      "pt_code": "50202157",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXP50N",
+      "name": "UI COMFORA FTXP50N R32",
+      "series": "COMFORA",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 18000,
+      "applied_value": 18000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 49,
+      "field_updates": {
+        "taglia_btu": 49,
+        "tag_btu": 49,
+        "tag_btu_display": 49,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "COMFORA",
+          "model_capacity_class": 50,
+          "distribution": {
+            "18000": 1,
+            "9000": 1
+          },
+          "mode": 18000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50373222",
+              "name": "UI COMFORA FTXP50N9 R32",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXP50N9",
+              "catalog_page": 468
+            }
+          ]
+        },
+        {
+          "source": "single_model_family_catalog_peer",
+          "proposed_btu": 18000
+        }
+      ]
+    },
+    {
+      "pt_code": "99508685",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXJ20MW",
+      "name": "UI EMURA BCO FTXJ20MW-WiFi R32",
+      "series": "EMURA 3",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 7000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 55,
+      "field_updates": {
+        "taglia_btu": 55,
+        "tag_btu": 55,
+        "tag_btu_display": 55,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "EMURA 3",
+          "model_capacity_class": 20,
+          "distribution": {
+            "7000": 4,
+            "9000": 2
+          },
+          "mode": 7000,
+          "mode_ratio": 0.6667
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50148981",
+              "name": "UI EMURA 3 SILVER FTXJ20AS-WiFi R32",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ20AS",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50372805",
+              "name": "UI EMURA BCO FTXJ20AW9-WiFi R32",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ20AW9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50372935",
+              "name": "UI EMURA NERO OP FTXJ20AB9-WiFi R32",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ20AB9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50373130",
+              "name": "UI EMURA SILVER FTXJ20AS9-WiFi R32",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ20AS9",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "99508715",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXJ50MW",
+      "name": "UI EMURA BCO FTXJ50MW-WiFi R32",
+      "series": "EMURA 3",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 18000,
+      "applied_value": 18000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 53,
+      "field_updates": {
+        "taglia_btu": 53,
+        "tag_btu": 53,
+        "tag_btu_display": 53,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "EMURA 3",
+          "model_capacity_class": 50,
+          "distribution": {
+            "18000": 4,
+            "9000": 2
+          },
+          "mode": 18000,
+          "mode_ratio": 0.6667
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50149049",
+              "name": "UI EMURA 3 SILVER FTXJ50AS-WiFi R32",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ50AS",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50372867",
+              "name": "UI EMURA BCO FTXJ50AW9-WiFi R32",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ50AW9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50373109",
+              "name": "UI EMURA NERO OP FTXJ50AB9-WiFi R32",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ50AB9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50373178",
+              "name": "UI EMURA SILVER FTXJ50AS9-WiFi R32",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ50AS9",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 18000
+        }
+      ]
+    },
+    {
+      "pt_code": "99508616",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXJ20MS",
+      "name": "UI EMURA SILVER FTXJ20MS-WiFi R32",
+      "series": "EMURA 3",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 7000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 55,
+      "field_updates": {
+        "taglia_btu": 55,
+        "tag_btu": 55,
+        "tag_btu_display": 55,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "EMURA 3",
+          "model_capacity_class": 20,
+          "distribution": {
+            "7000": 4,
+            "9000": 2
+          },
+          "mode": 7000,
+          "mode_ratio": 0.6667
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50148981",
+              "name": "UI EMURA 3 SILVER FTXJ20AS-WiFi R32",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ20AS",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50372805",
+              "name": "UI EMURA BCO FTXJ20AW9-WiFi R32",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ20AW9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50372935",
+              "name": "UI EMURA NERO OP FTXJ20AB9-WiFi R32",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ20AB9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50373130",
+              "name": "UI EMURA SILVER FTXJ20AS9-WiFi R32",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ20AS9",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "99508654",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXJ35MS",
+      "name": "UI EMURA SILVER FTXJ35MS-WiFi R32",
+      "series": "EMURA 3",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 12000,
+      "applied_value": 12000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 53,
+      "field_updates": {
+        "taglia_btu": 53,
+        "tag_btu": 53,
+        "tag_btu_display": 53,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "EMURA 3",
+          "model_capacity_class": 35,
+          "distribution": {
+            "12000": 4,
+            "9000": 1
+          },
+          "mode": 12000,
+          "mode_ratio": 0.8
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50148943",
+              "name": "UI EMURA 3 BCO FTXJ35AW-WiFi R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "FTXJ35AW",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50372829",
+              "name": "UI EMURA BCO FTXJ35AW9-WiFi R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ35AW9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50373086",
+              "name": "UI EMURA NERO OP FTXJ35AB9-WiFi R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ35AB9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50373154",
+              "name": "UI EMURA SILVER FTXJ35AS9-WiFi R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ35AS9",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 12000
+        }
+      ]
+    },
+    {
+      "pt_code": "99508661",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXJ50MS",
+      "name": "UI EMURA SILVER FTXJ50MS-WiFi R32",
+      "series": "EMURA 3",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 18000,
+      "applied_value": 18000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 53,
+      "field_updates": {
+        "taglia_btu": 53,
+        "tag_btu": 53,
+        "tag_btu_display": 53,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "EMURA 3",
+          "model_capacity_class": 50,
+          "distribution": {
+            "18000": 4,
+            "9000": 2
+          },
+          "mode": 18000,
+          "mode_ratio": 0.6667
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50149049",
+              "name": "UI EMURA 3 SILVER FTXJ50AS-WiFi R32",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ50AS",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50372867",
+              "name": "UI EMURA BCO FTXJ50AW9-WiFi R32",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ50AW9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50373109",
+              "name": "UI EMURA NERO OP FTXJ50AB9-WiFi R32",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ50AB9",
+              "catalog_page": 469
+            },
+            {
+              "pt_code": "50373178",
+              "name": "UI EMURA SILVER FTXJ50AS9-WiFi R32",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXJ50AS9",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 18000
+        }
+      ]
+    },
+    {
+      "pt_code": "50224067",
+      "brand": "HAIER",
+      "mfg_code": "2501304F2",
+      "name": "UI EXPERT AS42XCAHRA-MB NERO",
+      "series": "EXPERT (WHITE / BLACK)",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 15000,
+      "applied_value": 15000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 49,
+      "field_updates": {
+        "taglia_btu": 49,
+        "tag_btu": 49,
+        "tag_btu_display": 49,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "HAIER",
+          "serie": "EXPERT (WHITE / BLACK)",
+          "model_capacity_class": 42,
+          "distribution": {
+            "15000": 1,
+            "9000": 1
+          },
+          "mode": 15000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50283866",
+              "name": "UI EXPERT AS42XCAHRA-1 BCO",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "AS42XCAHRA-1",
+              "catalog_page": 562
+            }
+          ]
+        },
+        {
+          "source": "single_model_family_catalog_peer",
+          "proposed_btu": 15000
+        },
+        {
+          "source": "regression_peer_confirmation",
+          "model_family": "AS42XCAHRA",
+          "brand": "HAIER",
+          "serie": "EXPERT (WHITE / BLACK)",
+          "peer_pt_code": "50283866",
+          "peer_model": "AS42XCAHRA-1",
+          "peer_current_btu": 15000,
+          "peer_catalog_page": 562
+        }
+      ]
+    },
+    {
+      "pt_code": "50490486",
+      "brand": "TOSHIBA",
+      "mfg_code": "RAS-B13N4KVRG-E1",
+      "name": "UI HAORI RASB13N4KVRGE1",
+      "series": "HAORI",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 12000,
+      "applied_value": 12000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 35,
+      "field_updates": {
+        "taglia_btu": 35,
+        "tag_btu": 35,
+        "tag_btu_display": 35,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "TOSHIBA",
+          "serie": "HAORI",
+          "model_capacity_class": 13,
+          "distribution": {
+            "12000": 1,
+            "9000": 1
+          },
+          "mode": 12000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50214044",
+              "name": "UI HAORI RASB13N4KVRGE",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B13N4KVRG-E",
+              "catalog_page": 524
+            },
+            {
+              "pt_code": "50215348",
+              "name": "UI CONSOLE RASB13J2FVGE",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B13J2FVG-E",
+              "catalog_page": 524
+            },
+            {
+              "pt_code": "50292271",
+              "name": "UI DAISEIKAI 10 RAS-B13S4KVDG-E WOOD",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B13S4KVDG-E",
+              "catalog_page": 524
+            },
+            {
+              "pt_code": "50292363",
+              "name": "UI DAISEIKAI 10 RAS-B13S4KVPGE BIANCO",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B13S4KVPG-E",
+              "catalog_page": 524
+            },
+            {
+              "pt_code": "50292509",
+              "name": "UI SEIYA CLASSIC RAS-B13B2KVG-E1",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B13B2KVG-E1",
+              "catalog_page": 523
+            },
+            {
+              "pt_code": "50383825",
+              "name": "UI SEIYA CLASSIC RAS-B13B2KVG-E3",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B13B2KVG-E3",
+              "catalog_page": 523
+            },
+            {
+              "pt_code": "50292431",
+              "name": "UI SEIYA SMART RAS-B13S4KVG-E",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B13S4KVG-E",
+              "catalog_page": 523
+            },
+            {
+              "pt_code": "50218646",
+              "name": "UI SHORAI RASB13G3KVSGBE NERO",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B13G3KVSGB-E",
+              "catalog_page": 523
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 12000
+        }
+      ]
+    },
+    {
+      "pt_code": "50490493",
+      "brand": "TOSHIBA",
+      "mfg_code": "RAS-B16N4KVRG-E1",
+      "name": "UI HAORI RASB16N4KVRGE1",
+      "series": "HAORI",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 15000,
+      "applied_value": 15000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 35,
+      "field_updates": {
+        "taglia_btu": 35,
+        "tag_btu": 35,
+        "tag_btu_display": 35,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "TOSHIBA",
+          "serie": "HAORI",
+          "model_capacity_class": 16,
+          "distribution": {
+            "15000": 1,
+            "9000": 1
+          },
+          "mode": 15000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50214105",
+              "name": "UI HAORI RASB16N4KVRGE",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B16N4KVRG-E",
+              "catalog_page": 524
+            },
+            {
+              "pt_code": "50292516",
+              "name": "UI SEIYA CLASSIC RAS-B16B2KVG-E",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B16B2KVG-E",
+              "catalog_page": 523
+            },
+            {
+              "pt_code": "50383863",
+              "name": "UI SEIYA CLASSIC RAS-B16B2KVG-E2",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B16B2KVG-E2",
+              "catalog_page": 523
+            },
+            {
+              "pt_code": "50292448",
+              "name": "UI SEIYA SMART RAS-B16S4KVG-E",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B16S4KVG-E",
+              "catalog_page": 523
+            },
+            {
+              "pt_code": "50218653",
+              "name": "UI SHORAI RASB16G3KVSGBE NERO",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B16G3KVSGB-E",
+              "catalog_page": 523
+            },
+            {
+              "pt_code": "50214693",
+              "name": "UI SHORAI RASB16G3KVSGE BIANCO",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. RAS-B16G3KVSG-E",
+              "catalog_page": 523
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 15000
+        }
+      ]
+    },
+    {
+      "pt_code": "50490462",
+      "brand": "TOSHIBA",
+      "mfg_code": "RAS-M07N4KVRG-E1",
+      "name": "UI MULTI HAORI RASM07N4KVRGE1",
+      "series": "HAORI",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 7000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 35,
+      "field_updates": {
+        "taglia_btu": 35,
+        "tag_btu": 35,
+        "tag_btu_display": 35,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "TOSHIBA",
+          "serie": "HAORI",
+          "model_capacity_class": 7,
+          "distribution": {
+            "7000": 1,
+            "9000": 1
+          },
+          "mode": 7000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50216314",
+              "name": "UI MULTI HAORI RASM07N4KVRGE",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "RAS-M07N4KVRG-E",
+              "catalog_page": 525
+            },
+            {
+              "pt_code": "50216543",
+              "name": "UI CANALIZZATA MULTI RASM07U2DVGE",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "RAS-M07U2DVG-E",
+              "catalog_page": 527
+            },
+            {
+              "pt_code": "50218868",
+              "name": "UI MULTI CONSOLE RASM07J2FVGE",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "RAS-M07J2FVG-E",
+              "catalog_page": 527
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "50284115",
+      "brand": "HAIER",
+      "mfg_code": "AABF3RE00",
+      "name": "UI MULTI REVIVE AS35RHBHRA-M",
+      "series": "REVIVE",
+      "field": "taglia_btu",
+      "old_value": 18000,
+      "audit_proposed_value": 12000,
+      "applied_value": 12000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 31,
+      "field_updates": {
+        "taglia_btu": 31,
+        "tag_btu": 31,
+        "tag_btu_display": 31,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "Knowledge/catalog_table_context.json",
+          "match": "pt_code",
+          "pt_code": "50284115",
+          "model": "U.I. AS35RHBHRA-M",
+          "mpn": "AABF3RE00",
+          "catalog_family": "REVIVE",
+          "page": 561,
+          "confidence": 1.0
+        },
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "HAIER",
+          "serie": "REVIVE",
+          "model_capacity_class": 35,
+          "distribution": {
+            "12000": 1,
+            "18000": 1
+          },
+          "mode": 18000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50284078",
+              "name": "UI REVIVE AS35RBAHRA-3",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. AS35RBAHRA-3",
+              "catalog_page": 557
+            }
+          ]
+        },
+        {
+          "source": "single_model_family_catalog_peer",
+          "proposed_btu": 12000
+        }
+      ]
+    },
+    {
+      "pt_code": "50315833",
+      "brand": "DAIKIN",
+      "mfg_code": "",
+      "name": "UI MULTI SIESTA ATXF35A",
+      "series": "SIESTA GSI",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 12000,
+      "applied_value": 12000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 11,
+      "field_updates": {
+        "taglia_btu": 11,
+        "tag_btu": 11,
+        "tag_btu_display": 11,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "SIESTA GSI",
+          "model_capacity_class": 35,
+          "distribution": {
+            "12000": 2,
+            "9000": 2
+          },
+          "mode": 12000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50368914",
+              "name": "UI GSI LOW FTXC35D",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXC35D",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50457588",
+              "name": "UI GSI LOW FTXC35E WiFi",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXC35E",
+              "catalog_page": 468
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 12000
+        }
+      ]
+    },
+    {
+      "pt_code": "50109302",
+      "brand": "SAMSUNG",
+      "mfg_code": "AR18BXFYAWKNEU",
+      "name": "UI PARETE CEBU WI-FI AR18BXF",
+      "series": "CEBU WI-FI",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 18000,
+      "applied_value": 18000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 21,
+      "field_updates": {
+        "taglia_btu": 21,
+        "tag_btu": 21,
+        "tag_btu_display": 21,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "SAMSUNG",
+          "serie": "CEBU WI-FI",
+          "model_capacity_class": 18,
+          "distribution": {
+            "18000": 1,
+            "9000": 1
+          },
+          "mode": 18000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50367948",
+              "name": "UI PARETE CEBU S2 WI-FI AR50F18",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. AR50F18C1AHNEU",
+              "catalog_page": 571
+            },
+            {
+              "pt_code": "50199860",
+              "name": "UI PARETE AR35 AR18BXH",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. AR18BXHQASINEU",
+              "catalog_page": 571
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 18000
+        }
+      ]
+    },
+    {
+      "pt_code": "99717810",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXM60N",
+      "name": "UI PERFERA FTXM60N Wi-Fi R32",
+      "series": "PERFERA ALL SEASONS",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 21000,
+      "applied_value": 21000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 49,
+      "field_updates": {
+        "taglia_btu": 49,
+        "tag_btu": 49,
+        "tag_btu_display": 49,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "PERFERA ALL SEASONS",
+          "model_capacity_class": 60,
+          "distribution": {
+            "21000": 2,
+            "9000": 1
+          },
+          "mode": 21000,
+          "mode_ratio": 0.6667
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50352487",
+              "name": "UI PERFERA ALL SEASONS FTXM60A WI-FI",
+              "current_btu": 21000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXM60A",
+              "catalog_page": 468
+            }
+          ]
+        },
+        {
+          "source": "single_model_family_catalog_peer",
+          "proposed_btu": 21000
+        }
+      ]
+    },
+    {
+      "pt_code": "50134854",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXF35D",
+      "name": "UI SENSIRA FTXF35D R32",
+      "series": "SENSIRA",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 12000,
+      "applied_value": 12000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 27,
+      "field_updates": {
+        "taglia_btu": 27,
+        "tag_btu": 27,
+        "tag_btu_display": 27,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "SENSIRA",
+          "model_capacity_class": 35,
+          "distribution": {
+            "12000": 2,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.6
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50373666",
+              "name": "UI MULTI SENSIRA CTXF35F R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "CTXF35f",
+              "catalog_page": 470
+            },
+            {
+              "pt_code": "50374281",
+              "name": "UI SENSIRA FTXF35F WIFI R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXF35F",
+              "catalog_page": 468
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 12000
+        }
+      ]
+    },
+    {
+      "pt_code": "50204915",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXF35E",
+      "name": "UI SENSIRA FTXF35E R32",
+      "series": "SENSIRA",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 12000,
+      "applied_value": 12000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 27,
+      "field_updates": {
+        "taglia_btu": 27,
+        "tag_btu": 27,
+        "tag_btu_display": 27,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "SENSIRA",
+          "model_capacity_class": 35,
+          "distribution": {
+            "12000": 2,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.6
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50373666",
+              "name": "UI MULTI SENSIRA CTXF35F R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "CTXF35f",
+              "catalog_page": 470
+            },
+            {
+              "pt_code": "50374281",
+              "name": "UI SENSIRA FTXF35F WIFI R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXF35F",
+              "catalog_page": 468
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 12000
+        }
+      ]
+    },
+    {
+      "pt_code": "50364848",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXQ35A",
+      "name": "UI SENSIRA FTXQ35A R32",
+      "series": "SENSIRA",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 12000,
+      "applied_value": 12000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 27,
+      "field_updates": {
+        "taglia_btu": 27,
+        "tag_btu": 27,
+        "tag_btu_display": 27,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "SENSIRA",
+          "model_capacity_class": 35,
+          "distribution": {
+            "12000": 2,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.6
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50373666",
+              "name": "UI MULTI SENSIRA CTXF35F R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "CTXF35f",
+              "catalog_page": 470
+            },
+            {
+              "pt_code": "50374281",
+              "name": "UI SENSIRA FTXF35F WIFI R32",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXF35F",
+              "catalog_page": 468
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 12000
+        }
+      ]
+    },
+    {
+      "pt_code": "50367719",
+      "brand": "DAIKIN",
+      "mfg_code": "ATXF35F",
+      "name": "UI SIESTA ATXF35F WIFI",
+      "series": "SIESTA GSI",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 12000,
+      "applied_value": 12000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 15,
+      "field_updates": {
+        "taglia_btu": 15,
+        "tag_btu": 15,
+        "tag_btu_display": 15,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "SIESTA GSI",
+          "model_capacity_class": 35,
+          "distribution": {
+            "12000": 2,
+            "9000": 2
+          },
+          "mode": 12000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50368914",
+              "name": "UI GSI LOW FTXC35D",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXC35D",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50457588",
+              "name": "UI GSI LOW FTXC35E WiFi",
+              "current_btu": 12000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXC35E",
+              "catalog_page": 468
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 12000
+        }
+      ]
+    },
+    {
+      "pt_code": "99643317",
+      "brand": "DAIKIN",
+      "mfg_code": "CTXA15AW",
+      "name": "UI STYLISH BCO CTXA15AW",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 5000,
+      "status": "applied",
+      "decision_source": "user_override",
+      "occurrences_updated": 57,
+      "field_updates": {
+        "taglia_btu": 57,
+        "tag_btu": 57,
+        "tag_btu_display": 57,
+        "tags": 13,
+        "kit_commerciali_inclusi.nome_kit": 26,
+        "kit_commerciali_inclusi.configurazione": 26,
+        "kit_name": 6,
+        "nome_kit": 6,
+        "configurazione": 6,
+        "configuration": 6
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 15,
+          "distribution": {
+            "7000": 3,
+            "9000": 4
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5714
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50308736",
+              "name": "UI STYLISH TOTAL BCO CTXA15CW WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CW",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308712",
+              "name": "UI STYLISH TOTAL BLACK CTXA15CB WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CB",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308729",
+              "name": "UI STYLISH TOTAL SILVER CTXA15CS WIF",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CS",
+              "catalog_page": 472
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "99642983",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXA20AW",
+      "name": "UI STYLISH BCO FTXA20AW",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 7000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 53,
+      "field_updates": {
+        "taglia_btu": 53,
+        "tag_btu": 53,
+        "tag_btu_display": 53,
+        "tags": 7,
+        "kit_commerciali_inclusi.nome_kit": 7,
+        "kit_commerciali_inclusi.configurazione": 7,
+        "kit_name": 3,
+        "nome_kit": 3,
+        "configurazione": 3,
+        "configuration": 3
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 20,
+          "distribution": {
+            "7000": 3,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307524",
+              "name": "UI STYLISH TOTAL BCO FTXA20CW WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA20CW",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307487",
+              "name": "UI STYLISH TOTAL BLACK FTXA20CB WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA20CB",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307500",
+              "name": "UI STYLISH TOTAL SILVER FTXA20CS WIF",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA20CS",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "99643027",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXA50AW",
+      "name": "UI STYLISH BCO FTXA50AW",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 18000,
+      "applied_value": 18000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 53,
+      "field_updates": {
+        "taglia_btu": 53,
+        "tag_btu": 53,
+        "tag_btu_display": 53,
+        "tags": 7,
+        "kit_commerciali_inclusi.nome_kit": 7,
+        "kit_commerciali_inclusi.configurazione": 7,
+        "kit_name": 3,
+        "nome_kit": 3,
+        "configurazione": 3,
+        "configuration": 3
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 50,
+          "distribution": {
+            "18000": 3,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307746",
+              "name": "UI STYLISH TOTAL BCO FTXA50CW WIFI",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA50CW",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307692",
+              "name": "UI STYLISH TOTAL BLACK FTXA50CB WIFI",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA50CB",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307722",
+              "name": "UI STYLISH TOTAL SILVER FTXA50CS WIF",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA50CS",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 18000
+        }
+      ]
+    },
+    {
+      "pt_code": "99794088",
+      "brand": "DAIKIN",
+      "mfg_code": "CTXA15BT",
+      "name": "UI STYLISH REAL BLACKWOOD CTXA15BT",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 5000,
+      "status": "applied",
+      "decision_source": "user_override",
+      "occurrences_updated": 45,
+      "field_updates": {
+        "taglia_btu": 45,
+        "tag_btu": 45,
+        "tag_btu_display": 45,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 15,
+          "distribution": {
+            "7000": 3,
+            "9000": 4
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5714
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50308736",
+              "name": "UI STYLISH TOTAL BCO CTXA15CW WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CW",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308712",
+              "name": "UI STYLISH TOTAL BLACK CTXA15CB WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CB",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308729",
+              "name": "UI STYLISH TOTAL SILVER CTXA15CS WIF",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CS",
+              "catalog_page": 472
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "99793821",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXA20BT",
+      "name": "UI STYLISH REAL BLACKWOOD FTXA20BT",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 7000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 47,
+      "field_updates": {
+        "taglia_btu": 47,
+        "tag_btu": 47,
+        "tag_btu_display": 47,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 20,
+          "distribution": {
+            "7000": 3,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307524",
+              "name": "UI STYLISH TOTAL BCO FTXA20CW WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA20CW",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307487",
+              "name": "UI STYLISH TOTAL BLACK FTXA20CB WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA20CB",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307500",
+              "name": "UI STYLISH TOTAL SILVER FTXA20CS WIF",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA20CS",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "99793852",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXA42BT",
+      "name": "UI STYLISH REAL BLACKWOOD FTXA42BT",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 15000,
+      "applied_value": 15000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 53,
+      "field_updates": {
+        "taglia_btu": 53,
+        "tag_btu": 53,
+        "tag_btu_display": 53,
+        "tags": 7,
+        "kit_commerciali_inclusi.nome_kit": 7,
+        "kit_commerciali_inclusi.configurazione": 7,
+        "kit_name": 3,
+        "nome_kit": 3,
+        "configurazione": 3,
+        "configuration": 3
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 42,
+          "distribution": {
+            "15000": 3,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307661",
+              "name": "UI STYLISH TOTAL BCO FTXA42CW WIFI",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA42CW",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307630",
+              "name": "UI STYLISH TOTAL BLACK FTXA42CB WIFI",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA42CB",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307647",
+              "name": "UI STYLISH TOTAL SILVER FTXA42CS WIF",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA42CS",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 15000
+        }
+      ]
+    },
+    {
+      "pt_code": "99793869",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXA50BT",
+      "name": "UI STYLISH REAL BLACKWOOD FTXA50BT",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 18000,
+      "applied_value": 18000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 47,
+      "field_updates": {
+        "taglia_btu": 47,
+        "tag_btu": 47,
+        "tag_btu_display": 47,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 50,
+          "distribution": {
+            "18000": 3,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307746",
+              "name": "UI STYLISH TOTAL BCO FTXA50CW WIFI",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA50CW",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307692",
+              "name": "UI STYLISH TOTAL BLACK FTXA50CB WIFI",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA50CB",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307722",
+              "name": "UI STYLISH TOTAL SILVER FTXA50CS WIF",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA50CS",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 18000
+        }
+      ]
+    },
+    {
+      "pt_code": "99794071",
+      "brand": "DAIKIN",
+      "mfg_code": "CTXA15BB",
+      "name": "UI STYLISH TOTAL BLACK CTXA15BB",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 5000,
+      "status": "applied",
+      "decision_source": "user_override",
+      "occurrences_updated": 45,
+      "field_updates": {
+        "taglia_btu": 45,
+        "tag_btu": 45,
+        "tag_btu_display": 45,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 15,
+          "distribution": {
+            "7000": 3,
+            "9000": 4
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5714
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50308736",
+              "name": "UI STYLISH TOTAL BCO CTXA15CW WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CW",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308712",
+              "name": "UI STYLISH TOTAL BLACK CTXA15CB WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CB",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308729",
+              "name": "UI STYLISH TOTAL SILVER CTXA15CS WIF",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CS",
+              "catalog_page": 472
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "99793753",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXA42BB",
+      "name": "UI STYLISH TOTAL BLACK FTXA42BB",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 15000,
+      "applied_value": 15000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 47,
+      "field_updates": {
+        "taglia_btu": 47,
+        "tag_btu": 47,
+        "tag_btu_display": 47,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 42,
+          "distribution": {
+            "15000": 3,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307661",
+              "name": "UI STYLISH TOTAL BCO FTXA42CW WIFI",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA42CW",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307630",
+              "name": "UI STYLISH TOTAL BLACK FTXA42CB WIFI",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA42CB",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307647",
+              "name": "UI STYLISH TOTAL SILVER FTXA42CS WIF",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA42CS",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 15000
+        }
+      ]
+    },
+    {
+      "pt_code": "99794095",
+      "brand": "DAIKIN",
+      "mfg_code": "CTXA15BS",
+      "name": "UI STYLISH TOTAL SILVER CTXA15BS",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 5000,
+      "status": "applied",
+      "decision_source": "user_override",
+      "occurrences_updated": 45,
+      "field_updates": {
+        "taglia_btu": 45,
+        "tag_btu": 45,
+        "tag_btu_display": 45,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 15,
+          "distribution": {
+            "7000": 3,
+            "9000": 4
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5714
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50308736",
+              "name": "UI STYLISH TOTAL BCO CTXA15CW WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CW",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308712",
+              "name": "UI STYLISH TOTAL BLACK CTXA15CB WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CB",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308729",
+              "name": "UI STYLISH TOTAL SILVER CTXA15CS WIF",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CS",
+              "catalog_page": 472
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "99793777",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXA20BS",
+      "name": "UI STYLISH TOTAL SILVER FTXA20BS",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 7000,
+      "applied_value": 7000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 47,
+      "field_updates": {
+        "taglia_btu": 47,
+        "tag_btu": 47,
+        "tag_btu_display": 47,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 20,
+          "distribution": {
+            "7000": 3,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307524",
+              "name": "UI STYLISH TOTAL BCO FTXA20CW WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA20CW",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307487",
+              "name": "UI STYLISH TOTAL BLACK FTXA20CB WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA20CB",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307500",
+              "name": "UI STYLISH TOTAL SILVER FTXA20CS WIF",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA20CS",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 7000
+        }
+      ]
+    },
+    {
+      "pt_code": "99793807",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXA42BS",
+      "name": "UI STYLISH TOTAL SILVER FTXA42BS",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 15000,
+      "applied_value": 15000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 47,
+      "field_updates": {
+        "taglia_btu": 47,
+        "tag_btu": 47,
+        "tag_btu_display": 47,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 42,
+          "distribution": {
+            "15000": 3,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307661",
+              "name": "UI STYLISH TOTAL BCO FTXA42CW WIFI",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA42CW",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307630",
+              "name": "UI STYLISH TOTAL BLACK FTXA42CB WIFI",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA42CB",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307647",
+              "name": "UI STYLISH TOTAL SILVER FTXA42CS WIF",
+              "current_btu": 15000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA42CS",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 15000
+        }
+      ]
+    },
+    {
+      "pt_code": "99793814",
+      "brand": "DAIKIN",
+      "mfg_code": "FTXA50BS",
+      "name": "UI STYLISH TOTAL SILVER FTXA50BS",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 9000,
+      "audit_proposed_value": 18000,
+      "applied_value": 18000,
+      "status": "applied",
+      "decision_source": "user_approved_audit",
+      "occurrences_updated": 47,
+      "field_updates": {
+        "taglia_btu": 47,
+        "tag_btu": 47,
+        "tag_btu_display": 47,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 50,
+          "distribution": {
+            "18000": 3,
+            "9000": 3
+          },
+          "mode": 9000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50307746",
+              "name": "UI STYLISH TOTAL BCO FTXA50CW WIFI",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA50CW",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307692",
+              "name": "UI STYLISH TOTAL BLACK FTXA50CB WIFI",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA50CB",
+              "catalog_page": 468
+            },
+            {
+              "pt_code": "50307722",
+              "name": "UI STYLISH TOTAL SILVER FTXA50CS WIF",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. FTXA50CS",
+              "catalog_page": 469
+            }
+          ]
+        },
+        {
+          "source": "same_model_family_catalog_peer",
+          "proposed_btu": 18000
+        }
+      ]
+    },
+    {
+      "pt_code": "50308736",
+      "brand": "DAIKIN",
+      "mfg_code": "CTXA15CW",
+      "name": "UI STYLISH TOTAL BCO CTXA15CW WIFI",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 7000,
+      "audit_proposed_value": 7000,
+      "applied_value": 5000,
+      "status": "applied",
+      "decision_source": "user_override",
+      "occurrences_updated": 43,
+      "field_updates": {
+        "taglia_btu": 43,
+        "tag_btu": 43,
+        "tag_btu_display": 43,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "Knowledge/catalog_table_context.json",
+          "match": "pt_code",
+          "pt_code": "50308736",
+          "model": "CTXA15CW",
+          "mpn": "CTXA15CW",
+          "catalog_family": "PANNELLO BIANCO",
+          "page": 472,
+          "confidence": 1.0
+        },
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 15,
+          "distribution": {
+            "5000": 4,
+            "7000": 3
+          },
+          "mode": 5000,
+          "mode_ratio": 0.5714
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50308712",
+              "name": "UI STYLISH TOTAL BLACK CTXA15CB WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CB",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308729",
+              "name": "UI STYLISH TOTAL SILVER CTXA15CS WIF",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CS",
+              "catalog_page": 472
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pt_code": "50308712",
+      "brand": "DAIKIN",
+      "mfg_code": "CTXA15CB",
+      "name": "UI STYLISH TOTAL BLACK CTXA15CB WIFI",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 7000,
+      "audit_proposed_value": 7000,
+      "applied_value": 5000,
+      "status": "applied",
+      "decision_source": "user_override",
+      "occurrences_updated": 43,
+      "field_updates": {
+        "taglia_btu": 43,
+        "tag_btu": 43,
+        "tag_btu_display": 43,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "Knowledge/catalog_table_context.json",
+          "match": "pt_code",
+          "pt_code": "50308712",
+          "model": "CTXA15CB",
+          "mpn": "CTXA15CB",
+          "catalog_family": "PANNELLO TOTAL BLACK",
+          "page": 472,
+          "confidence": 1.0
+        },
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 15,
+          "distribution": {
+            "5000": 4,
+            "7000": 3
+          },
+          "mode": 5000,
+          "mode_ratio": 0.5714
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50308736",
+              "name": "UI STYLISH TOTAL BCO CTXA15CW WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CW",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308729",
+              "name": "UI STYLISH TOTAL SILVER CTXA15CS WIF",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CS",
+              "catalog_page": 472
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pt_code": "50308729",
+      "brand": "DAIKIN",
+      "mfg_code": "CTXA15CS",
+      "name": "UI STYLISH TOTAL SILVER CTXA15CS WIF",
+      "series": "STYLISH",
+      "field": "taglia_btu",
+      "old_value": 7000,
+      "audit_proposed_value": 7000,
+      "applied_value": 5000,
+      "status": "applied",
+      "decision_source": "user_override",
+      "occurrences_updated": 43,
+      "field_updates": {
+        "taglia_btu": 43,
+        "tag_btu": 43,
+        "tag_btu_display": 43,
+        "tags": 1
+      },
+      "evidence": [
+        {
+          "source": "Knowledge/catalog_table_context.json",
+          "match": "pt_code",
+          "pt_code": "50308729",
+          "model": "CTXA15CS",
+          "mpn": "CTXA15CS",
+          "catalog_family": "PANNELLO TOTAL SILVER",
+          "page": 472,
+          "confidence": 1.0
+        },
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "DAIKIN",
+          "serie": "STYLISH",
+          "model_capacity_class": 15,
+          "distribution": {
+            "5000": 4,
+            "7000": 3
+          },
+          "mode": 5000,
+          "mode_ratio": 0.5714
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50308736",
+              "name": "UI STYLISH TOTAL BCO CTXA15CW WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CW",
+              "catalog_page": 472
+            },
+            {
+              "pt_code": "50308712",
+              "name": "UI STYLISH TOTAL BLACK CTXA15CB WIFI",
+              "current_btu": 7000,
+              "current_kw": null,
+              "catalog_model": "CTXA15CB",
+              "catalog_page": 472
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pt_code": "50284078",
+      "brand": "HAIER",
+      "mfg_code": "AABF39E01",
+      "name": "UI REVIVE AS35RBAHRA-3",
+      "series": "REVIVE",
+      "field": "taglia_btu",
+      "old_value": 12000,
+      "audit_proposed_value": 18000,
+      "applied_value": 12000,
+      "status": "reviewed_no_change",
+      "decision_source": "user_override",
+      "occurrences_verified": 43,
+      "field_updates": {},
+      "evidence": [
+        {
+          "source": "Knowledge/catalog_table_context.json",
+          "match": "pt_code",
+          "pt_code": "50284078",
+          "model": "U.I. AS35RBAHRA-3",
+          "mpn": "AABF39E01",
+          "catalog_family": "REVIVE",
+          "page": 557,
+          "confidence": 1.0
+        },
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "HAIER",
+          "serie": "REVIVE",
+          "model_capacity_class": 35,
+          "distribution": {
+            "12000": 1,
+            "18000": 1
+          },
+          "mode": 18000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50284115",
+              "name": "UI MULTI REVIVE AS35RHBHRA-M",
+              "current_btu": 18000,
+              "current_kw": null,
+              "catalog_model": "U.I. AS35RHBHRA-M",
+              "catalog_page": 561
+            }
+          ]
+        },
+        {
+          "source": "single_model_family_catalog_peer",
+          "proposed_btu": 18000
+        }
+      ]
+    },
+    {
+      "pt_code": "50199075",
+      "brand": "HISENSE",
+      "mfg_code": "AUV140UR4RC8",
+      "name": "UI COMM PAV/SOFF 140 AUV140UR4RC8",
+      "series": "COMMERCIALE HISENSE (TURBO / CASSETTA / CANALIZZATO / COLONNA)",
+      "field": "taglia_btu",
+      "old_value": 48000,
+      "audit_proposed_value": 42000,
+      "applied_value": 48000,
+      "status": "reviewed_no_change",
+      "decision_source": "user_override",
+      "occurrences_verified": 5,
+      "field_updates": {},
+      "evidence": [
+        {
+          "source": "Knowledge/catalog_table_context.json",
+          "match": "pt_code",
+          "pt_code": "50199075",
+          "model": "U.I. AUV140UR4RC8",
+          "mpn": "AUV140UR4RC8",
+          "catalog_family": "SOFFITTO-PAVIMENTO",
+          "page": 552,
+          "confidence": 1.0
+        },
+        {
+          "source": "same_brand_series_class_consensus",
+          "brand": "HISENSE",
+          "serie": "COMMERCIALE HISENSE (TURBO / CASSETTA / CANALIZZATO / COLONNA)",
+          "model_capacity_class": 140,
+          "distribution": {
+            "42000": 1,
+            "48000": 1
+          },
+          "mode": 42000,
+          "mode_ratio": 0.5
+        },
+        {
+          "source": "same_model_family_catalog_peers",
+          "peers": [
+            {
+              "pt_code": "50368716",
+              "name": "UI A COLONNA 140 AUF140UR4RMPA8",
+              "current_btu": 42000,
+              "current_kw": null,
+              "catalog_model": "U.I. AUF140UR4RMPA8",
+              "catalog_page": 552
+            }
+          ]
+        },
+        {
+          "source": "single_model_family_catalog_peer",
+          "proposed_btu": 42000
+        }
+      ]
+    }
+  ]
+}

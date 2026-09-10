@@ -49,6 +49,58 @@ def _write_context(tmp_path: Path):
                         }
                     ],
                 },
+                "50283873": {
+                    "brand": "HAIER",
+                    "catalog_family": "EXPERT",
+                    "family_key": "HAIER_EXPERT",
+                    "table_title": "EXPERT",
+                    "table_id": "PDF_P0562_EXPERT",
+                    "page": 562,
+                    "source": "PDF_LAYOUT",
+                    "confidence": 1.0,
+                    "alternate_table_contexts": [
+                        {
+                            "brand": "HAIER",
+                            "catalog_family": "EXPERT BIANCO",
+                            "table_title": "EXPERT BIANCO",
+                            "table_id": "PDF_P0565_EXPERT_BIANCO",
+                            "page": 565,
+                            "source": "PDF_LAYOUT",
+                        }
+                    ],
+                },
+                "50283866": {
+                    "brand": "HAIER",
+                    "catalog_family": "EXPERT",
+                    "family_key": "HAIER_EXPERT",
+                    "table_title": "EXPERT",
+                    "table_id": "PDF_P0562_3545FC84D5",
+                    "page": 562,
+                    "source": "PDF_LAYOUT",
+                    "confidence": 1.0,
+                    "alternate_table_contexts": [
+                        {
+                            "brand": "HAIER",
+                            "catalog_family": "EXPERT BIANCO",
+                            "family_key": "HAIER_EXPERT_BIANCO",
+                            "table_title": "EXPERT BIANCO",
+                            "table_id": "PDF_P0557_8B6F027F86",
+                            "page": 557,
+                            "source": "PDF_LAYOUT",
+                        }
+                    ],
+                },
+                "50283899": {
+                    "brand": "HAIER",
+                    "catalog_family": "EXPERT",
+                    "family_key": "HAIER_EXPERT",
+                    "table_title": "EXPERT",
+                    "table_id": "PDF_P0562_EXPERT",
+                    "page": 562,
+                    "source": "PDF_LAYOUT",
+                    "confidence": 1.0,
+                    "alternate_table_contexts": [],
+                },
             }
         ),
         encoding="utf-8",
@@ -95,6 +147,66 @@ class TestCatalogTableContext(unittest.TestCase):
             },
         )
         self.assertEqual(self.index.codes_for_family_key("MIDEA_XTREME_PRO_GREEN"), ["50079599"])
+
+    def test_alternate_family_matches_without_replacing_primary_family(self):
+        from src.adapters.climate import ClimateCategoryAdapter
+
+        item = {"code": "50283873", "brand": "HAIER"}
+        self.index.enrich_item(item)
+
+        match = GenericEvidenceReranker.evaluate_catalog_family_match(
+            item,
+            {
+                "requested_brand": "HAIER",
+                "requested_family": "EXPERT BIANCO",
+                "requested_family_key": "HAIER_EXPERT_BIANCO",
+            },
+        )
+
+        self.assertEqual(match, "exact")
+        self.assertEqual(item["catalog_family"], "EXPERT")
+        self.assertEqual(item["family_key"], "HAIER_EXPERT")
+        self.assertEqual(
+            CatalogTableContextIndex.candidate_family_keys(item),
+            {"HAIER_EXPERT", "HAIER_EXPERT_BIANCO"},
+        )
+        self.assertEqual(
+            item["_matched_table_context"]["catalog_family"],
+            "EXPERT BIANCO",
+        )
+        climate_match = ClimateCategoryAdapter(
+            ac_master_path="__missing__",
+            pdf_specs_path="__missing__",
+            table_context_index=self.index,
+        ).evaluate_series_match(
+            item,
+            {
+                "requested_brand": "HAIER",
+                "requested_family_key": "HAIER_EXPERT_BIANCO",
+            },
+        )
+        self.assertEqual(climate_match, "exact")
+        self.assertEqual(item["catalog_family"], "EXPERT")
+
+    def test_parent_only_product_does_not_match_unproven_leaf(self):
+        item = {"code": "50283899", "brand": "HAIER"}
+        self.index.enrich_item(item)
+
+        match = GenericEvidenceReranker.evaluate_catalog_family_match(
+            item,
+            {
+                "requested_brand": "HAIER",
+                "requested_family": "EXPERT BIANCO",
+                "requested_family_key": "HAIER_EXPERT_BIANCO",
+            },
+        )
+
+        self.assertEqual(match, "mismatch")
+        self.assertEqual(item["catalog_family"], "EXPERT")
+        self.assertEqual(
+            CatalogTableContextIndex.candidate_family_keys(item),
+            {"HAIER_EXPERT"},
+        )
 
     def test_table_family_exact_is_strong_and_same_brand_mismatch_is_penalized(self):
         reranker = GenericEvidenceReranker()
@@ -254,6 +366,29 @@ class TestCatalogTableContext(unittest.TestCase):
         self.assertEqual(len(item["_relation_evidences"]), 1)
         self.assertEqual(item["_relation_evidences"][0]["relation_type"], "COMPATIBLE_WITH")
         self.assertIn(item, expanded)
+
+    def test_haier_50283866_candidate_family_keys_and_search_regression(self):
+        from catalog_search_engine import CATALOG_TABLE_CONTEXT_PATH, CatalogSearchEngine
+
+        real_index = CatalogTableContextIndex(CATALOG_TABLE_CONTEXT_PATH)
+        item = {"code": "50283866", "brand": "HAIER"}
+        real_index.enrich_item(item)
+        keys = CatalogTableContextIndex.candidate_family_keys(item)
+        self.assertIn("HAIER_EXPERT", keys)
+        self.assertIn("HAIER_EXPERT_BIANCO", keys)
+
+        engine = CatalogSearchEngine()
+        query = "Haier Unità Interna Expert Bianco AS42XCAHRA-1 R32"
+        res = engine.search(query, limit=5)
+        found = False
+        for r in res.get("results", []):
+            if str(r.get("code")) == "50283866":
+                found = True
+                self.assertEqual(r.get("family_match"), "exact")
+                self.assertEqual(r.get("catalog_family"), "EXPERT")
+                self.assertEqual(r.get("family_key"), "HAIER_EXPERT")
+                break
+        self.assertTrue(found, "PT 50283866 non trovato nei risultati di ricerca per la query Haier Expert Bianco")
 
 
 if __name__ == "__main__":

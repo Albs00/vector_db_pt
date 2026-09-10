@@ -1,0 +1,510 @@
+{
+  "total_annotations": 5013,
+  "pages_count": 920,
+  "tables_count": 3347,
+  "annotation_type_distribution": {
+    "OTHER": 1240,
+    "COMPONENT_INCLUDED": 986,
+    "COMPONENT_EXCLUDED": 748,
+    "FEATURE_INCLUDED": 458,
+    "COMPONENT_OPTIONAL": 401,
+    "SALE_QUANTITY": 354,
+    "INSTALLATION_REQUIREMENT": 279,
+    "FEATURE": 277,
+    "COMPATIBILITY_NOTE": 168,
+    "COMPONENT_REQUIRED": 67,
+    "USAGE_LIMITATION": 21,
+    "PACKAGE_QUANTITY": 14
+  },
+  "top_100_frequent_texts": [
+    {
+      "text": "OPTIONAL",
+      "count": 285
+    },
+    {
+      "text": "Comando escluso",
+      "count": 206
+    },
+    {
+      "text": "Vendita solo a rotolo",
+      "count": 187
+    },
+    {
+      "text": "Telecomando incluso",
+      "count": 137
+    },
+    {
+      "text": "AVVIAMENTO",
+      "count": 93
+    },
+    {
+      "text": "Pompa scarico condensa inclusa",
+      "count": 82
+    },
+    {
+      "text": "TRIFASE",
+      "count": 80
+    },
+    {
+      "text": "Vendita solo a barra",
+      "count": 76
+    },
+    {
+      "text": "Griglia esclusa da abbinare obbligatoriamente",
+      "count": 66
+    },
+    {
+      "text": "Accessori opzionali",
+      "count": 62
+    },
+    {
+      "text": "Privo di rubinetteria",
+      "count": 57
+    },
+    {
+      "text": "REVERSIBILE",
+      "count": 42
+    },
+    {
+      "text": "PRIMA ACCENSIONE GRATUITA",
+      "count": 41
+    },
+    {
+      "text": "Privo di sedile",
+      "count": 39
+    },
+    {
+      "text": "Vendita solo a confezione",
+      "count": 35
+    },
+    {
+      "text": "Comando incluso",
+      "count": 34
+    },
+    {
+      "text": "Privo di colonna e rubinetteria",
+      "count": 34
+    },
+    {
+      "text": "Completo di struttura a tetto piano e liquido solare",
+      "count": 33
+    },
+    {
+      "text": "AVVIAMENTO OBBLIGATORIO",
+      "count": 28
+    },
+    {
+      "text": "NON REVERSIBILE",
+      "count": 28
+    },
+    {
+      "text": "Avviamento OBBLIGATORIO",
+      "count": 26
+    },
+    {
+      "text": "struttura di fissaggio esclusa",
+      "count": 25
+    },
+    {
+      "text": "Prima accensione gratuita",
+      "count": 24
+    },
+    {
+      "text": "2 ANNI DI GARANZIA",
+      "count": 23
+    },
+    {
+      "text": "Griglia inox inclusa",
+      "count": 21
+    },
+    {
+      "text": "BATTERIA ESCLUSA",
+      "count": 21
+    },
+    {
+      "text": "ANCHE A NOLEGGIO",
+      "count": 20
+    },
+    {
+      "text": "Senza modulo WiFi integrato",
+      "count": 20
+    },
+    {
+      "text": "Piletta non inclusa",
+      "count": 20
+    },
+    {
+      "text": "RICHIEDERE IN AZIENDA EVENTUALI PROMOZIONI",
+      "count": 20
+    },
+    {
+      "text": "CONFEZIONE",
+      "count": 18
+    },
+    {
+      "text": "Comando a filo incluso",
+      "count": 16
+    },
+    {
+      "text": "AVVIAMENTO COMPRESO",
+      "count": 15
+    },
+    {
+      "text": "optional",
+      "count": 14
+    },
+    {
+      "text": "Conforme alla normativa EN 16510",
+      "count": 14
+    },
+    {
+      "text": "Completo di struttura a tetto a falda e liquido solare",
+      "count": 14
+    },
+    {
+      "text": "Completo di struttura a tetto piano e a falda",
+      "count": 14
+    },
+    {
+      "text": "POSSIBILITà DI ABBINARE UNO O DUE LATI FISSI",
+      "count": 14
+    },
+    {
+      "text": "COMPATIBILE",
+      "count": 13
+    },
+    {
+      "text": "comando escluso",
+      "count": 13
+    },
+    {
+      "text": "Griglia esclusa",
+      "count": 13
+    },
+    {
+      "text": "Vendita solo a pezzo",
+      "count": 13
+    },
+    {
+      "text": "AVVIAMENTO INCLUSO",
+      "count": 13
+    },
+    {
+      "text": "Cartuccia Ø 35 senza distributore ZA91104R",
+      "count": 13
+    },
+    {
+      "text": "PRODUZIONE integrata acs",
+      "count": 12
+    },
+    {
+      "text": "Incluso nella scatola:",
+      "count": 12
+    },
+    {
+      "text": "Compatibile con Econavi, con funzioni Data Navi",
+      "count": 12
+    },
+    {
+      "text": "Privo di sedile - Scarico a pavimento",
+      "count": 12
+    },
+    {
+      "text": "VENDITA SOLO A COPPIA",
+      "count": 12
+    },
+    {
+      "text": "FUMISTERIA COMPATIBILE PER CALDAIE A CONDENSAZIONE",
+      "count": 11
+    },
+    {
+      "text": "compatibile",
+      "count": 11
+    },
+    {
+      "text": "Solo per cassette meccaniche",
+      "count": 11
+    },
+    {
+      "text": "Produzione ed accumulo di acqua calda sanitaria.",
+      "count": 10
+    },
+    {
+      "text": "senza centralina",
+      "count": 10
+    },
+    {
+      "text": "Telecomando non incluso",
+      "count": 10
+    },
+    {
+      "text": "compatibilità",
+      "count": 10
+    },
+    {
+      "text": "Con modulo WiFi integrato",
+      "count": 10
+    },
+    {
+      "text": "Senza manometro",
+      "count": 10
+    },
+    {
+      "text": "Privo di rubinetteria, con fissaggi nascosti",
+      "count": 10
+    },
+    {
+      "text": "Con foro ø 90 mm senza coperchio",
+      "count": 10
+    },
+    {
+      "text": "Conforme alla normativa EN501/16",
+      "count": 9
+    },
+    {
+      "text": "Conforme alla normativa EN 501/16",
+      "count": 9
+    },
+    {
+      "text": "Completa di pompa scarico condensa",
+      "count": 9
+    },
+    {
+      "text": "KIT WI-FI optional",
+      "count": 9
+    },
+    {
+      "text": "Senza troppo pieno",
+      "count": 9
+    },
+    {
+      "text": "Comando a bordo incluso",
+      "count": 8
+    },
+    {
+      "text": "con pompa di calore integrata",
+      "count": 8
+    },
+    {
+      "text": "Senza ogiva",
+      "count": 8
+    },
+    {
+      "text": "da abbinare al termostato VMF-E19",
+      "count": 8
+    },
+    {
+      "text": "Installazione a muro completo di termostato e sonda temperatura",
+      "count": 8
+    },
+    {
+      "text": "Completo di struttura a tetto piano",
+      "count": 8
+    },
+    {
+      "text": "Con comando incluso a bordo macchina",
+      "count": 8
+    },
+    {
+      "text": "PUGLIA TERMICA SRL DECLINA OGNI ResPONSABILITÀ PER EVENTUALI VARIAZIONI DI PRODOTTI E PREZZI E SI RISERVA IL DIRITTO DI APPORTARE MODIFICHE SENZA DARNE PREAVVISO.",
+      "count": 8
+    },
+    {
+      "text": "Privo di sedile - Scarico a parete",
+      "count": 8
+    },
+    {
+      "text": "CARTUCCIA ø 35 SENZA DISTRIBUTORE ZA91104R",
+      "count": 8
+    },
+    {
+      "text": "Alimentazione a batteria completa di flessibile inox.",
+      "count": 8
+    },
+    {
+      "text": "Privo di comando",
+      "count": 7
+    },
+    {
+      "text": "privo di comando",
+      "count": 7
+    },
+    {
+      "text": "N.B. PER PREVENTIVI E PROGETTI ESECUTIVI SI RICHIEDE PIANTINA IN FORMATO DWG E MODULO PER IMPIANTO A PAVIMENTO COMPILATO IN OGNI SPECIFICO CAMPO CHE TROVERETE NELLE PAGINE INIZIALI DEL CATALOGO",
+      "count": 7
+    },
+    {
+      "text": "Completo di struttura a tetto piano/inclinato senza liquido solare",
+      "count": 7
+    },
+    {
+      "text": "Completo di coibentazione",
+      "count": 7
+    },
+    {
+      "text": "Contattare centro assistenza di zona",
+      "count": 7
+    },
+    {
+      "text": "5 anni di garanzia",
+      "count": 7
+    },
+    {
+      "text": "Cartuccia Ø 35 senza distributore ZA91103R",
+      "count": 7
+    },
+    {
+      "text": "Predisposto per gas metano trasformabile GPL (kit ugelli incluso)",
+      "count": 6
+    },
+    {
+      "text": "Telecomando escluso",
+      "count": 6
+    },
+    {
+      "text": "Completo di Kit tappi",
+      "count": 6
+    },
+    {
+      "text": "Completo di 1 valvola di sfiato da 1/2\" e 1 tappo nichelato da 1/2\"",
+      "count": 6
+    },
+    {
+      "text": "Cassetta per collettori con supporto incluso",
+      "count": 6
+    },
+    {
+      "text": "Comando a bordo incluso e sonda elettronica obbligatoria",
+      "count": 6
+    },
+    {
+      "text": "Installazione obbligatoria",
+      "count": 6
+    },
+    {
+      "text": "Avviamento facoltativo",
+      "count": 6
+    },
+    {
+      "text": "ACCESSORI OBBLIGATORI",
+      "count": 6
+    },
+    {
+      "text": "Completo di ghiera antisfilamento",
+      "count": 6
+    },
+    {
+      "text": "Senza vaso",
+      "count": 6
+    },
+    {
+      "text": "Privo di sedile, con fissaggi nascosti",
+      "count": 6
+    },
+    {
+      "text": "Cartuccia Ø 35 senza distributore ZA91193",
+      "count": 6
+    },
+    {
+      "text": "Cartuccia Ø 35 senza distributore ZA91151",
+      "count": 6
+    },
+    {
+      "text": "Batteria completa di sifone e galleggiante",
+      "count": 6
+    },
+    {
+      "text": "Completa di telaio e sportello",
+      "count": 6
+    }
+  ],
+  "annotations_without_table_id_count": 33,
+  "annotations_without_table_id_sample": [
+    "ANN_P0229_0767",
+    "ANN_P0229_0768",
+    "ANN_P0255_0780",
+    "ANN_P0255_0781",
+    "ANN_P0255_0782",
+    "ANN_P0382_1104",
+    "ANN_P0382_1105",
+    "ANN_P0471_1466",
+    "ANN_P1097_4065",
+    "ANN_P1254_4436",
+    "ANN_P1255_4437",
+    "ANN_P1256_4438",
+    "ANN_P1257_4439",
+    "ANN_P1257_4440",
+    "ANN_P1258_4441",
+    "ANN_P1258_4442",
+    "ANN_P1258_4443",
+    "ANN_P1296_4543",
+    "ANN_P1296_4544",
+    "ANN_P1296_4545",
+    "ANN_P1297_4546",
+    "ANN_P1300_4547",
+    "ANN_P1500_5003",
+    "ANN_P1500_5004",
+    "ANN_P1500_5005",
+    "ANN_P1500_5006",
+    "ANN_P1500_5007",
+    "ANN_P1500_5008",
+    "ANN_P1500_5009",
+    "ANN_P1500_5010",
+    "ANN_P1500_5011",
+    "ANN_P1500_5012",
+    "ANN_P1501_5013"
+  ],
+  "annotations_low_confidence_count": 527,
+  "annotations_low_confidence_sample": [
+    "ANN_P0029_0018",
+    "ANN_P0029_0019",
+    "ANN_P0029_0020",
+    "ANN_P0029_0021",
+    "ANN_P0029_0022",
+    "ANN_P0029_0023",
+    "ANN_P0029_0024",
+    "ANN_P0029_0027",
+    "ANN_P0036_0058",
+    "ANN_P0036_0059",
+    "ANN_P0053_0213",
+    "ANN_P0053_0214",
+    "ANN_P0053_0215",
+    "ANN_P0053_0216",
+    "ANN_P0058_0232",
+    "ANN_P0058_0233",
+    "ANN_P0058_0234",
+    "ANN_P0078_0364",
+    "ANN_P0078_0365",
+    "ANN_P0078_0366",
+    "ANN_P0078_0367",
+    "ANN_P0078_0368",
+    "ANN_P0078_0369",
+    "ANN_P0078_0370",
+    "ANN_P0126_0455",
+    "ANN_P0127_0457",
+    "ANN_P0141_0516",
+    "ANN_P0160_0554",
+    "ANN_P0160_0555",
+    "ANN_P0160_0562",
+    "ANN_P0160_0563",
+    "ANN_P0160_0564",
+    "ANN_P0161_0570",
+    "ANN_P0161_0571",
+    "ANN_P0161_0574",
+    "ANN_P0161_0575",
+    "ANN_P0161_0584",
+    "ANN_P0161_0585",
+    "ANN_P0162_0588",
+    "ANN_P0188_0727",
+    "ANN_P0188_0728",
+    "ANN_P0188_0729",
+    "ANN_P0192_0736",
+    "ANN_P0193_0737",
+    "ANN_P0194_0738",
+    "ANN_P0198_0741",
+    "ANN_P0211_0745",
+    "ANN_P0227_0761",
+    "ANN_P0227_0762",
+    "ANN_P0228_0765"
+  ]
+}

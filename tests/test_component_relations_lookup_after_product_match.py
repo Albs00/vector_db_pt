@@ -135,6 +135,54 @@ class TestComponentRelationsLookupAfterProductMatch(unittest.TestCase):
             {"FAMILY_PRODUCT_CONTEXT"}, {row["lookup_strategy"] for row in family}
         )
 
+    def test_component_lookup_respects_product_role_scope(self):
+        haier = self.engine.search(
+            "Haier Expert Nero AS42XCAHRA-MB", limit=20
+        )
+        self.assertEqual("UI_ONLY", haier["product_scope"])
+        self.assertEqual(
+            ["50224067"],
+            [str(product.get("code")) for product in haier["component_relation_products"]],
+        )
+        self.assertEqual(
+            {"UI"},
+            {product.get("role") for product in haier["component_relation_products"]},
+        )
+
+        monosplit = self.engine.search("Daikin RXM25A + FTXM25A", limit=20)
+        self.assertEqual("MONOSPLIT", monosplit["product_scope"])
+        # FTXM25A is always the primary UI context. RXM25A has no UE accessory
+        # relations in the approved dataset, so it must not become a context.
+        self.assertEqual(
+            [("50307791", "UI")],
+            [
+                (str(product.get("code")), product.get("role"))
+                for product in monosplit["component_relation_products"]
+            ],
+        )
+        self.assertEqual([], monosplit["component_relations"])
+
+        ffa = self.engine.search("Daikin FFA25A9", limit=20)
+        self.assertEqual(
+            [("99718206", "UI")],
+            [
+                (str(product.get("code")), product.get("role"))
+                for product in ffa["component_relation_products"]
+            ],
+        )
+        self.assertIn(("99718268", "BYFQ60CS"), self.accessory_pairs(ffa))
+        self.assertIn(("99718275", "BYFQ60CW"), self.accessory_pairs(ffa))
+
+        ftxm = self.engine.search("Daikin FTXM25A", limit=20)
+        self.assertEqual(
+            [("50307791", "UI")],
+            [
+                (str(product.get("code")), product.get("role"))
+                for product in ftxm["component_relation_products"]
+            ],
+        )
+        self.assertEqual([], ftxm["component_relations"])
+
     def test_expert_has_no_cassette_accessory(self):
         query = "Haier Expert AS25XCAHRA-MB Nero"
         result = self.engine.search(query, limit=20)

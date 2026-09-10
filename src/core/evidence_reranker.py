@@ -67,8 +67,9 @@ class GenericEvidenceReranker:
         requested_brand = str(ctx.get("requested_brand") or "").strip().upper()
         item_brand = str(item.get("brand") or "").strip().upper()
         candidate_keys = CatalogTableContextIndex.candidate_family_keys(item)
+        matched_context = CatalogTableContextIndex.matching_family_context(item, requested_key)
 
-        if requested_key and requested_key in candidate_keys:
+        if requested_key and matched_context is not None:
             item["_series_match"] = "exact"
             item["_series_match_source"] = "PDF_LAYOUT"
             item["_table_family_match"] = "exact"
@@ -76,14 +77,7 @@ class GenericEvidenceReranker:
             item["_table_family_evidence"] = "CATALOG_FAMILY_EXACT"
             item["family_evidence"] = "CATALOG_FAMILY_EXACT"
             item["_matched_table_family_key"] = requested_key
-            context = item.get("table_context") or {}
-            if context.get("family_key") == requested_key:
-                item["_matched_table_context"] = context
-            else:
-                for alternate in context.get("alternate_table_contexts") or []:
-                    if alternate.get("family_key") == requested_key:
-                        item["_matched_table_context"] = alternate
-                        break
+            item["_matched_table_context"] = matched_context
             return "exact"
         if (
             requested_key

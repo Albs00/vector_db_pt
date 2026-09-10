@@ -1,0 +1,5114 @@
+{
+  "generated_at": "2026-09-10T09:22:44+0200",
+  "mode": "SAFE_PREVIEW_V3_2_AIR_AIR_SCOPE_HARDENING",
+  "input_sha256": {
+    "catalog_component_relations_safe_preview_v3_1.json": "9f975be93353584e5408a70b99200906d0437d6bdc024a1bc16d63d9c72da2be",
+    "catalog_component_relations_safe_preview_v3_1_report.json": "3e78038944e372e04c304e381eee5618677b17e702bfceeab0c328c35dc9b2d0",
+    "Knowledge\\catalog_table_context.json": "2b168759e2641a42e348b7b9bf530ff40a1512205bc4c742abc2928dd7ee977b",
+    "Knowledge\\catalog_annotations.json": "bf1aaf55f3fe0759132893ebbb84038c7f413bc8136a128f3d19f1759157edc6",
+    "Knowledge\\catalogo_layout.jsonl.gz": "bafe1efbdf24d1449c66ff43f6aa85aeaff1470c3eebb50b3e071e1db5cb54b7",
+    "Knowledge\\catalog_component_relations.json": "39f4c074293b05fdca7a4ee15fc6df37ba09f590ab9dac50476d640017693780"
+  },
+  "incremental_from": "catalog_component_relations_safe_preview_v3_1.json",
+  "preserved_v3_1_production_ready": true,
+  "v3_1_total_records": 872,
+  "v3_2_total_records": 860,
+  "hydronic_records_removed": 12,
+  "hydronic_removed_records": [
+    {
+      "page": 719,
+      "table_id": "PDF_P0719_FA34D2E504",
+      "product_title": "Sistema PACKAGED",
+      "family_key": "MITSUBISHI_SISTEMA_PACKAGED",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "PAC-IF071B-E",
+        "U.E PUZ-WM 50VHA",
+        "U.E PUZ-WM112VAA"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "ARIA - ACQUA"
+    },
+    {
+      "page": 720,
+      "table_id": "PDF_P0720_010BC9DD07",
+      "product_title": "Sistema HYDROBOX S PACKAGED",
+      "family_key": "MITSUBISHI_SISTEMA_HYDROBOX_S_PACKAGED",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "U.E PUZ-WZ115VAA-W",
+        "U.E PUZ-WZ115YAA-W T",
+        "U.E PUZ-WZ140VAA-W",
+        "U.E PUZ-WZ140YAA-W - T",
+        "U.E PUZ-WZ90VAA-W",
+        "U.I ERPX-VM2E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROBOX"
+    },
+    {
+      "page": 723,
+      "table_id": "PDF_P0723_2C561EE06C",
+      "product_title": "Sistema HYDROBOX S REVERSIBILE",
+      "family_key": "MITSUBISHI_SISTEMA_HYDROBOX_S_REVERSIBILE",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "U.E SUZ-SWM100VA",
+        "U.E SUZ-SWM40VA2",
+        "U.E SUZ-SWM60VA2",
+        "U.E SUZ-SWM80VA2",
+        "U.I. ERSD-VM2D"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROBOX"
+    },
+    {
+      "page": 723,
+      "table_id": "PDF_P0723_72CC2B572E",
+      "product_title": "Sistema HYDROBOX S REVERSIBILE",
+      "family_key": "MITSUBISHI_SISTEMA_HYDROBOX_S_REVERSIBILE",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "U.E SUZ-SWM100VA",
+        "U.E SUZ-SWM40VA2",
+        "U.E SUZ-SWM60VA2",
+        "U.E SUZ-SWM80VA2",
+        "U.I. ERSD-VM2E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROBOX"
+    },
+    {
+      "page": 724,
+      "table_id": "PDF_P0724_CEAFF3294A",
+      "product_title": "Sistema HYDROBOX L REVERSIBILE",
+      "family_key": "MITSUBISHI_SISTEMA_HYDROBOX_L_REVERSIBILE",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "U.E PUHZ-SW160YKA - T",
+        "U.E PUHZ-SW200YKA - T",
+        "U.I. ERSE-MED"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROBOX"
+    },
+    {
+      "page": 724,
+      "table_id": "PDF_P0724_E62DFF9550",
+      "product_title": "Sistema HYDROBOX L REVERSIBILE",
+      "family_key": "MITSUBISHI_SISTEMA_HYDROBOX_L_REVERSIBILE",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "U.E PUHZ-SW160YKA - T",
+        "U.E PUHZ-SW200YKA - T",
+        "U.I. ERSE-MEE"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROBOX"
+    },
+    {
+      "page": 725,
+      "table_id": "PDF_P0725_196D54997A",
+      "product_title": "Sistema SPLIT HYDROBOX",
+      "family_key": "MITSUBISHI_SISTEMA_SPLIT_HYDROBOX",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "U.E PUZ-SHWM100VAA",
+        "U.E PUZ-SHWM100YAA-T",
+        "U.E PUZ-SHWM120VAA",
+        "U.E PUZ-SHWM120YAA-t",
+        "U.E PUZ-SHWM140VAA",
+        "U.E PUZ-SHWM80VAA",
+        "U.E PUZ-SHWM80VAA-T",
+        "U.EPUZ-SHWM140YAA-T",
+        "U.I. ERSD-VM2D"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROBOX"
+    },
+    {
+      "page": 725,
+      "table_id": "PDF_P0725_751D871D35",
+      "product_title": "Sistema HYDROBOX M REVERSIBILE",
+      "family_key": "MITSUBISHI_SISTEMA_HYDROBOX_M_REVERSIBILE",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "U.E PUZ-SHWM80VAA",
+        "U.I. ERSF-VM2E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROBOX"
+    },
+    {
+      "page": 725,
+      "table_id": "PDF_P0725_8125693F74",
+      "product_title": "Sistema HYDROBOX M REVERSIBILE",
+      "family_key": "MITSUBISHI_SISTEMA_HYDROBOX_M_REVERSIBILE",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "U.E PUHZ-SHW230YKA2 - T",
+        "U.I. ERSE-MED"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROBOX"
+    },
+    {
+      "page": 726,
+      "table_id": "PDF_P0726_3966CC11E6",
+      "product_title": "Sistema SPLIT HYDROBOX 68°",
+      "family_key": "MITSUBISHI_SISTEMA_SPLIT_HYDROBOX_68",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [
+        "U.E PUZ-SHWM100VAA",
+        "U.E PUZ-SHWM100YAA-T",
+        "U.E PUZ-SHWM120VAA",
+        "U.E PUZ-SHWM120YAA-t",
+        "U.E PUZ-SHWM140VAA",
+        "U.E PUZ-SHWM80VAA",
+        "U.E PUZ-SHWM80VAA-T",
+        "U.EPUZ-SHWM140YAA-T",
+        "U.I. ERSF-VM2E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROBOX"
+    },
+    {
+      "page": 727,
+      "table_id": "PDF_P0727_74070FB7B0",
+      "product_title": "Sistema HYDROTANK REVERSIBILE ACCUMULO DA LT 300",
+      "family_key": "MITSUBISHI_SISTEMA_HYDROTANK_REVERSIBILE_ACCUMULO_DA_LT_300",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROTANK"
+    },
+    {
+      "page": 727,
+      "table_id": "PDF_P0727_ECCE3ED829",
+      "product_title": "Sistema HYDROTANK REVERSIBILE ACCUMULO DA LT 300",
+      "family_key": "MITSUBISHI_SISTEMA_HYDROTANK_REVERSIBILE_ACCUMULO_DA_LT_300",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": null,
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "reason": "HYDRONIC_OUT_OF_SCOPE",
+      "matched_evidence": "HYDROTANK"
+    }
+  ],
+  "air_air_records_final": 860,
+  "attachment_target_distribution": {
+    "UI": 491,
+    "UE": 0,
+    "CASSETTE_UI": 247,
+    "SYSTEM": 0,
+    "UNKNOWN": 122
+  },
+  "records_with_mixed_ui_ue_before": 511,
+  "records_with_mixed_ui_ue_after": 0,
+  "ui_target_with_ue_violation_count": 0,
+  "cassette_ui_target_with_ue_violation_count": 0,
+  "ue_target_with_ui_violation_count": 0,
+  "unknown_target_count": 122,
+  "unknown_target_with_accessory_pt_count": 111,
+  "unknown_target_without_accessory_pt_count": 11,
+  "deduplicated_after_scope_count": 0,
+  "ui_only_scope_examples": [
+    {
+      "page": 468,
+      "table_id": "PDF_P0468_B64A03CF65",
+      "product_title": "gsi low",
+      "family_key": "DAIKIN_GSI_LOW",
+      "pt": "99648671",
+      "accessory_model": "BRP069B45",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FTXC25D",
+        "U.I. FTXC35D"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 469,
+      "table_id": "PDF_P0469_81BEEE854B",
+      "product_title": "URURU SARARA",
+      "family_key": "DAIKIN_URURU_SARARA",
+      "pt": "99638580",
+      "accessory_model": "BRP069B42",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FTXZ25N",
+        "U.I. FTXZ35N",
+        "U.I. FTXZ50N"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 470,
+      "table_id": "PDF_P0470_32B4C6D762",
+      "product_title": "SENSIRA",
+      "family_key": "DAIKIN_SENSIRA",
+      "pt": "99648671",
+      "accessory_model": "BRP069B45",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CTXF20f",
+        "CTXF25f",
+        "CTXF35f"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 472,
+      "table_id": "PDF_P0472_3C9936C5C1",
+      "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+      "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FNA25A9",
+        "FNA35A9",
+        "FNA50A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 472,
+      "table_id": "PDF_P0472_3C9936C5C1",
+      "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+      "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FNA25A9",
+        "FNA35A9",
+        "FNA50A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 472,
+      "table_id": "PDF_P0472_3C9936C5C1",
+      "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+      "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FNA25A9",
+        "FNA35A9",
+        "FNA50A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 472,
+      "table_id": "PDF_P0472_3C9936C5C1",
+      "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+      "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FNA25A9",
+        "FNA35A9",
+        "FNA50A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 472,
+      "table_id": "PDF_P0472_3C9936C5C1",
+      "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+      "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FNA25A9",
+        "FNA35A9",
+        "FNA50A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_270CCADE18",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FBA35A9",
+        "FBA50A9",
+        "FBA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_84E198812D",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_8FE1DA8388",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_8FE1DA8388",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "99791483",
+      "accessory_model": "BRC7GA53-9",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_CA481DB6FB",
+      "product_title": "canalizzata ULTRA PIATTA FDXM-F9",
+      "family_key": "DAIKIN_CANALIZZATA_ULTRA_PIATTA_FDXM_F9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FDXM25F9",
+        "FDXM35F9",
+        "FDXM50F9",
+        "FDXM60F9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50132690",
+      "accessory_model": "BRP069C82",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 476,
+      "table_id": "PDF_P0476_665977A8B3",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FBA35A9",
+        "FBA50A9",
+        "FBA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 476,
+      "table_id": "PDF_P0476_665977A8B3",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FBA35A9",
+        "FBA50A9",
+        "FBA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 476,
+      "table_id": "PDF_P0476_665977A8B3",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FBA35A9",
+        "FBA50A9",
+        "FBA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 476,
+      "table_id": "PDF_P0476_85A94A20E7",
+      "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+      "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FNA25A9",
+        "FNA35A9",
+        "FNA50A9",
+        "U.I. FNA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 476,
+      "table_id": "PDF_P0476_92943EA3E3",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 476,
+      "table_id": "PDF_P0476_92943EA3E3",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "99791483",
+      "accessory_model": "BRC7GA53-9",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 476,
+      "table_id": "PDF_P0476_92943EA3E3",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 476,
+      "table_id": "PDF_P0476_92943EA3E3",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 476,
+      "table_id": "PDF_P0476_D492974843",
+      "product_title": "canalizzata ULTRA PIATTA",
+      "family_key": "DAIKIN_CANALIZZATA_ULTRA_PIATTA",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FDXM25F9",
+        "FDXM35F9",
+        "FDXM50F9",
+        "FDXM60F9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50132690",
+      "accessory_model": "BRP069C82",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_5FE7C570D4",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_5FE7C570D4",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 478,
+      "table_id": "PDF_P0478_1876A76731",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FBA35A9",
+        "FBA50A9",
+        "FBA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 478,
+      "table_id": "PDF_P0478_1876A76731",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FBA35A9",
+        "FBA50A9",
+        "FBA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 478,
+      "table_id": "PDF_P0478_523876F94E",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 478,
+      "table_id": "PDF_P0478_523876F94E",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "99791483",
+      "accessory_model": "BRC7GA53-9",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 478,
+      "table_id": "PDF_P0478_523876F94E",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 478,
+      "table_id": "PDF_P0478_523876F94E",
+      "product_title": "PENSILE A SOFFITTO DC FHA-A (9)",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_DC_FHA_A_9",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 478,
+      "table_id": "PDF_P0478_D488CA36E5",
+      "product_title": "canalizzata ULTRA PIATTA",
+      "family_key": "DAIKIN_CANALIZZATA_ULTRA_PIATTA",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FDXM35F9",
+        "FDXM50F9",
+        "FDXM60F9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 478,
+      "table_id": "PDF_P0478_E683556EF9",
+      "product_title": "PAVIMENTO DA INCASSO FNA-A (9)",
+      "family_key": "DAIKIN_PAVIMENTO_DA_INCASSO_FNA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FNA35A9",
+        "FNA50A9",
+        "U.I. FNA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50132690",
+      "accessory_model": "BRP069C82",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_E80BCAA4FD",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 480,
+      "table_id": "PDF_P0480_071A7942AA",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 480,
+      "table_id": "PDF_P0480_071A7942AA",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50169634",
+      "accessory_model": "BRC7EA631",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 480,
+      "table_id": "PDF_P0480_071A7942AA",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50169641",
+      "accessory_model": "BRC7EA632",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 480,
+      "table_id": "PDF_P0480_071A7942AA",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 480,
+      "table_id": "PDF_P0480_071A7942AA",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 480,
+      "table_id": "PDF_P0480_071A7942AA",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 480,
+      "table_id": "PDF_P0480_2C18BA2BD8",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FBA100A",
+        "U.I. FBA125A",
+        "U.I. FBA140A",
+        "U.I. FBA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 480,
+      "table_id": "PDF_P0480_2C18BA2BD8",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "99500443",
+      "accessory_model": "BRC4C65",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FBA100A",
+        "U.I. FBA125A",
+        "U.I. FBA140A",
+        "U.I. FBA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 480,
+      "table_id": "PDF_P0480_2C18BA2BD8",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FBA100A",
+        "U.I. FBA125A",
+        "U.I. FBA140A",
+        "U.I. FBA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50132690",
+      "accessory_model": "BRP069C82",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 482,
+      "table_id": "PDF_P0482_57472F8A71",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 482,
+      "table_id": "PDF_P0482_57472F8A71",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50169634",
+      "accessory_model": "BRC7EA631",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 482,
+      "table_id": "PDF_P0482_57472F8A71",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50169641",
+      "accessory_model": "BRC7EA632",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 482,
+      "table_id": "PDF_P0482_57472F8A71",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 482,
+      "table_id": "PDF_P0482_57472F8A71",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 482,
+      "table_id": "PDF_P0482_57472F8A71",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 482,
+      "table_id": "PDF_P0482_57472F8A71",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 482,
+      "table_id": "PDF_P0482_B694410B19",
+      "product_title": "PENSILE A SOFFITTO FHA-A",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_FHA_A",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FHA100A",
+        "U.I. FHA125A",
+        "U.I. FHA140A",
+        "U.I. FHA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 482,
+      "table_id": "PDF_P0482_B694410B19",
+      "product_title": "PENSILE A SOFFITTO FHA-A",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_FHA_A",
+      "pt": "99791483",
+      "accessory_model": "BRC7GA53-9",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FHA100A",
+        "U.I. FHA125A",
+        "U.I. FHA140A",
+        "U.I. FHA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 483,
+      "table_id": "PDF_P0483_5AA041E4CE",
+      "product_title": "canalizzata DC FBA-A (9)",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A_9",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FBA100A",
+        "U.I. FBA125A",
+        "U.I. FBA140A",
+        "U.I. FBA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 483,
+      "table_id": "PDF_P0483_A0F02D8A65",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA125A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 483,
+      "table_id": "PDF_P0483_A0F02D8A65",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA125A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 483,
+      "table_id": "PDF_P0483_A0F02D8A65",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA125A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 483,
+      "table_id": "PDF_P0483_A0F02D8A65",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA125A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 483,
+      "table_id": "PDF_P0483_A0F02D8A65",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA125A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_379A606040",
+      "product_title": "CASSETTE PENSILI A SOFFITTO FUA-A",
+      "family_key": "DAIKIN_CASSETTE_PENSILI_A_SOFFITTO_FUA_A",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FUA100A",
+        "U.I. FUA125A",
+        "U.I. FUA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_AA718837D5",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50132690",
+      "accessory_model": "BRP069C82",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 485,
+      "table_id": "PDF_P0485_28F9526254",
+      "product_title": "UNITA' A COLONNA FVA-A",
+      "family_key": "DAIKIN_UNITA_A_COLONNA_FVA_A",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FVA100A",
+        "U.I. FVA125A",
+        "U.I. FVA140A",
+        "U.I. FVA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 485,
+      "table_id": "PDF_P0485_28F9526254",
+      "product_title": "UNITA' A COLONNA FVA-A",
+      "family_key": "DAIKIN_UNITA_A_COLONNA_FVA_A",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FVA100A",
+        "U.I. FVA125A",
+        "U.I. FVA140A",
+        "U.I. FVA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 485,
+      "table_id": "PDF_P0485_28F9526254",
+      "product_title": "UNITA' A COLONNA FVA-A",
+      "family_key": "DAIKIN_UNITA_A_COLONNA_FVA_A",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FVA100A",
+        "U.I. FVA125A",
+        "U.I. FVA140A",
+        "U.I. FVA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 485,
+      "table_id": "PDF_P0485_28F9526254",
+      "product_title": "UNITA' A COLONNA FVA-A",
+      "family_key": "DAIKIN_UNITA_A_COLONNA_FVA_A",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FVA100A",
+        "U.I. FVA125A",
+        "U.I. FVA140A",
+        "U.I. FVA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 485,
+      "table_id": "PDF_P0485_28F9526254",
+      "product_title": "UNITA' A COLONNA FVA-A",
+      "family_key": "DAIKIN_UNITA_A_COLONNA_FVA_A",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FVA100A",
+        "U.I. FVA125A",
+        "U.I. FVA140A",
+        "U.I. FVA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_7C84168771",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "50132690",
+      "accessory_model": "BRP069C82",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA200A",
+        "U.I. FDA250A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_7C84168771",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA200A",
+        "U.I. FDA250A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_7C84168771",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA200A",
+        "U.I. FDA250A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_844E6EB687",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_844E6EB687",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50169634",
+      "accessory_model": "BRC7EA631",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_844E6EB687",
+      "product_title": "PARETE FAA-B",
+      "family_key": "DAIKIN_PARETE_FAA_B",
+      "pt": "50169641",
+      "accessory_model": "BRC7EA632",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FAA100B",
+        "U.I. FAA71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_E960FC60DE",
+      "product_title": "PENSILE A SOFFITTO FHA-A",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_FHA_A",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FHA100A",
+        "U.I. FHA125A",
+        "U.I. FHA140A",
+        "U.I. FHA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_E960FC60DE",
+      "product_title": "PENSILE A SOFFITTO FHA-A",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_FHA_A",
+      "pt": "99791483",
+      "accessory_model": "BRC7GA53-9",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FHA100A",
+        "U.I. FHA125A",
+        "U.I. FHA140A",
+        "U.I. FHA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_E960FC60DE",
+      "product_title": "PENSILE A SOFFITTO FHA-A",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_FHA_A",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FHA100A",
+        "U.I. FHA125A",
+        "U.I. FHA140A",
+        "U.I. FHA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 486,
+      "table_id": "PDF_P0486_E960FC60DE",
+      "product_title": "PENSILE A SOFFITTO FHA-A",
+      "family_key": "DAIKIN_PENSILE_A_SOFFITTO_FHA_A",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FHA100A",
+        "U.I. FHA125A",
+        "U.I. FHA140A",
+        "U.I. FHA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_AB94C01AB8",
+      "product_title": "canalizzata DC FBA-A",
+      "family_key": "DAIKIN_CANALIZZATA_DC_FBA_A",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FBA100A",
+        "U.I. FBA125A",
+        "U.I. FBA140A",
+        "U.I. FBA71A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_B6A18BDC92",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA125A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_B6A18BDC92",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "99500443",
+      "accessory_model": "BRC4C65",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA125A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_B6A18BDC92",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "50413652",
+      "accessory_model": "BRC1H52W7",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA125A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_B6A18BDC92",
+      "product_title": "canalizzata FDA-A",
+      "family_key": "DAIKIN_CANALIZZATA_FDA_A",
+      "pt": "99843199",
+      "accessory_model": "BRC1H52W",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FDA125A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "50132690",
+      "accessory_model": "BRP069C82",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99848064",
+      "accessory_model": "BRC1H52S",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 488,
+      "table_id": "PDF_P0488_6904B6B417",
+      "product_title": "CASSETTA PENSILE A SOFFITTO FUA-A",
+      "family_key": "DAIKIN_CASSETTA_PENSILE_A_SOFFITTO_FUA_A",
+      "pt": "50132676",
+      "accessory_model": "BRP069C81",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FUA100A",
+        "U.I. FUA125A",
+        "U.I. FUA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 488,
+      "table_id": "PDF_P0488_6904B6B417",
+      "product_title": "CASSETTA PENSILE A SOFFITTO FUA-A",
+      "family_key": "DAIKIN_CASSETTA_PENSILE_A_SOFFITTO_FUA_A",
+      "pt": "99848071",
+      "accessory_model": "BRC1H52K",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. FUA100A",
+        "U.I. FUA125A",
+        "U.I. FUA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 491,
+      "table_id": "PDF_P0491_EEDD837A29",
+      "product_title": "SEZ-M Da2 canalizzata",
+      "family_key": "MITSUBISHI_SEZ_M_DA2_CANALIZZATA",
+      "pt": "50287970",
+      "accessory_model": "PAR-41MAA(B)",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "U.I. SEZ-M25DA2",
+        "U.I. SEZ-M35DA2",
+        "U.I. SEZ-M50DA2",
+        "U.I. SEZ-M60DA2",
+        "U.I. SEZ-M71DA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    }
+  ],
+  "cassette_ui_scope_examples": [
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_84E198812D",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718244",
+      "accessory_model": "BRC7F530S - silver",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_84E198812D",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718251",
+      "accessory_model": "BRC7F530W - bianco",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_84E198812D",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718268",
+      "accessory_model": "BYFQ60CS",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_84E198812D",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718275",
+      "accessory_model": "BYFQ60CW",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761073",
+      "accessory_model": "EWHAR1",
+      "component_type": "CAVO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99718312",
+      "accessory_model": "BRC7FA532F- Stand/Autop",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761004",
+      "accessory_model": "BRC7FB532F-Design",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761011",
+      "accessory_model": "BRC7FB532FB-Design Nera",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99759964",
+      "accessory_model": "BYCQ140E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761028",
+      "accessory_model": "BYCQ140EGF",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761035",
+      "accessory_model": "BYCQ140EP",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 474,
+      "table_id": "PDF_P0474_88C75EBCDD",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761042",
+      "accessory_model": "BYCQ140EPB",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761073",
+      "accessory_model": "EWHAR1",
+      "component_type": "CAVO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99718312",
+      "accessory_model": "BRC7FA532F- Stand/Autop",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761004",
+      "accessory_model": "BRC7FB532F-Design",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761011",
+      "accessory_model": "BRC7FB532FB-Design Nera",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99759964",
+      "accessory_model": "BYCQ140E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761028",
+      "accessory_model": "BYCQ140EGF",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761035",
+      "accessory_model": "BYCQ140EP",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_38A9E71F5B",
+      "product_title": "CASSETTA ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761042",
+      "accessory_model": "BYCQ140EPB",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_5FE7C570D4",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718244",
+      "accessory_model": "BRC7F530S - silver",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_5FE7C570D4",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718251",
+      "accessory_model": "BRC7F530W - bianco",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_5FE7C570D4",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718268",
+      "accessory_model": "BYFQ60CS",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 477,
+      "table_id": "PDF_P0477_5FE7C570D4",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718275",
+      "accessory_model": "BYFQ60CW",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761073",
+      "accessory_model": "EWHAR1",
+      "component_type": "CAVO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99718312",
+      "accessory_model": "BRC7FA532F- Stand/Autop",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761004",
+      "accessory_model": "BRC7FB532F-Design",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761011",
+      "accessory_model": "BRC7FB532FB-Design Nera",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99759964",
+      "accessory_model": "BYCQ140E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761028",
+      "accessory_model": "BYCQ140EGF",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761035",
+      "accessory_model": "BYCQ140EP",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_D517980039",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761042",
+      "accessory_model": "BYCQ140EPB",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_E80BCAA4FD",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718244",
+      "accessory_model": "BRC7F530S - silver",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_E80BCAA4FD",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718251",
+      "accessory_model": "BRC7F530W - bianco",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_E80BCAA4FD",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718268",
+      "accessory_model": "BYFQ60CS",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 479,
+      "table_id": "PDF_P0479_E80BCAA4FD",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": "99718275",
+      "accessory_model": "BYFQ60CW",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761073",
+      "accessory_model": "EWHAR1",
+      "component_type": "CAVO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99718312",
+      "accessory_model": "BRC7FA532F- Stand/Autop",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761004",
+      "accessory_model": "BRC7FB532F-Design",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761011",
+      "accessory_model": "BRC7FB532FB-Design Nera",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99759964",
+      "accessory_model": "BYCQ140E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761028",
+      "accessory_model": "BYCQ140EGF",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761035",
+      "accessory_model": "BYCQ140EP",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 481,
+      "table_id": "PDF_P0481_F8FD9D34C3",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90X90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761042",
+      "accessory_model": "BYCQ140EPB",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_379A606040",
+      "product_title": "CASSETTE PENSILI A SOFFITTO FUA-A",
+      "family_key": "DAIKIN_CASSETTE_PENSILI_A_SOFFITTO_FUA_A",
+      "pt": "99718770",
+      "accessory_model": "BRC7C58",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FUA100A",
+        "U.I. FUA125A",
+        "U.I. FUA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_AA718837D5",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761073",
+      "accessory_model": "EWHAR1",
+      "component_type": "CAVO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_AA718837D5",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99718312",
+      "accessory_model": "BRC7FA532F- Stand/Autop",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_AA718837D5",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761004",
+      "accessory_model": "BRC7FB532F-Design",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_AA718837D5",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761011",
+      "accessory_model": "BRC7FB532FB-Design Nera",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_AA718837D5",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99759964",
+      "accessory_model": "BYCQ140E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_AA718837D5",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761028",
+      "accessory_model": "BYCQ140EGF",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_AA718837D5",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761035",
+      "accessory_model": "BYCQ140EP",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 484,
+      "table_id": "PDF_P0484_AA718837D5",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761042",
+      "accessory_model": "BYCQ140EPB",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761073",
+      "accessory_model": "EWHAR1",
+      "component_type": "CAVO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99718312",
+      "accessory_model": "BRC7FA532F- Stand/Autop",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761004",
+      "accessory_model": "BRC7FB532F-Design",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761011",
+      "accessory_model": "BRC7FB532FB-Design Nera",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99759964",
+      "accessory_model": "BYCQ140E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761028",
+      "accessory_model": "BYCQ140EGF",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761035",
+      "accessory_model": "BYCQ140EP",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 487,
+      "table_id": "PDF_P0487_DFA38B58F6",
+      "product_title": "CASSETTA DA INCASSO ROUND FLOW FCAG-B 90x90",
+      "family_key": "DAIKIN_CASSETTA_DA_INCASSO_ROUND_FLOW_FCAG_B_90X90",
+      "pt": "99761042",
+      "accessory_model": "BYCQ140EPB",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 488,
+      "table_id": "PDF_P0488_6904B6B417",
+      "product_title": "CASSETTA PENSILE A SOFFITTO FUA-A",
+      "family_key": "DAIKIN_CASSETTA_PENSILE_A_SOFFITTO_FUA_A",
+      "pt": "99718770",
+      "accessory_model": "BRC7C58",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. FUA100A",
+        "U.I. FUA125A",
+        "U.I. FUA71A"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 492,
+      "table_id": "PDF_P0492_5551A0B531",
+      "product_title": "SLZ-M FA2 CASSETTA 60x60",
+      "family_key": "MITSUBISHI_SLZ_M_FA2_CASSETTA_60X60",
+      "pt": "50113309",
+      "accessory_model": "SLP-2FALM2",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. SLZ-M25FA2",
+        "U.I. SLZ-M35FA2",
+        "U.I. SLZ-M50FA2",
+        "U.I. SLZ-M60FA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 492,
+      "table_id": "PDF_P0492_A255E557B6",
+      "product_title": "MLZ-KP CASSETTA A 1 VIA",
+      "family_key": "MITSUBISHI_MLZ_KP_CASSETTA_A_1_VIA",
+      "pt": "99756550",
+      "accessory_model": "MLP-444W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. MLZ-KP25VG",
+        "U.I. MLZ-KP35VG",
+        "U.I. MLZ-KP50VG"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 497,
+      "table_id": "PDF_P0497_133163E86D",
+      "product_title": "CASSETTA SLZ-M FA2 60x60",
+      "family_key": "MITSUBISHI_CASSETTA_SLZ_M_FA2_60X60",
+      "pt": "50113309",
+      "accessory_model": "SLP-2FALM2",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. SLZ-M25FA2",
+        "U.I. SLZ-M35FA2",
+        "U.I. SLZ-M50FA2",
+        "U.I. SLZ-M60FA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 497,
+      "table_id": "PDF_P0497_23A09832D2",
+      "product_title": "CASSETTA A 1 VIA MLZ-KP",
+      "family_key": "MITSUBISHI_CASSETTA_A_1_VIA_MLZ_KP",
+      "pt": "50196036",
+      "accessory_model": "MLP-448W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "MLZ-KY20VG",
+        "U.I. MLZ-KP25VG",
+        "U.I. MLZ-KP35VG",
+        "U.I. MLZ-KP50VG"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 497,
+      "table_id": "PDF_P0497_23A09832D2",
+      "product_title": "CASSETTA A 1 VIA MLZ-KP",
+      "family_key": "MITSUBISHI_CASSETTA_A_1_VIA_MLZ_KP",
+      "pt": "99756550",
+      "accessory_model": "MLP-444W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "MLZ-KY20VG",
+        "U.I. MLZ-KP25VG",
+        "U.I. MLZ-KP35VG",
+        "U.I. MLZ-KP50VG"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 500,
+      "table_id": "PDF_P0500_8E1B958D77",
+      "product_title": "PLA-M EA2 CASSETTA 90x90",
+      "family_key": "MITSUBISHI_PLA_M_EA2_CASSETTA_90X90",
+      "pt": "50287451",
+      "accessory_model": "PLP-6EAB",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. PLA-M100EA2",
+        "U.I. PLA-M125EA2",
+        "U.I. PLA-M140EA2",
+        "U.I. PLA-M35EA2",
+        "U.I. PLA-M50EA2",
+        "U.I. PLA-M60EA2",
+        "U.I. PLA-M71EA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 500,
+      "table_id": "PDF_P0500_8E1B958D77",
+      "product_title": "PLA-M EA2 CASSETTA 90x90",
+      "family_key": "MITSUBISHI_PLA_M_EA2_CASSETTA_90X90",
+      "pt": "99795566",
+      "accessory_model": "PLP-6EA",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. PLA-M100EA2",
+        "U.I. PLA-M125EA2",
+        "U.I. PLA-M140EA2",
+        "U.I. PLA-M35EA2",
+        "U.I. PLA-M50EA2",
+        "U.I. PLA-M60EA2",
+        "U.I. PLA-M71EA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 503,
+      "table_id": "PDF_P0503_5767002AB5",
+      "product_title": "SLZ-M FA2 CASSETTA 60x60",
+      "family_key": "MITSUBISHI_SLZ_M_FA2_CASSETTA_60X60",
+      "pt": "50113309",
+      "accessory_model": "SLP-2FALM2",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. SLZ-M35FA2",
+        "U.I. SLZ-M50FA2",
+        "U.I. SLZ-M60FA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 504,
+      "table_id": "PDF_P0504_80EEE5AF85",
+      "product_title": "PLA-M EA2 CASSETTA 90x90",
+      "family_key": "MITSUBISHI_PLA_M_EA2_CASSETTA_90X90",
+      "pt": "50287451",
+      "accessory_model": "PLP-6EAB",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. PLA-M100EA2",
+        "U.I. PLA-M125EA2",
+        "U.I. PLA-M140EA2",
+        "U.I. PLA-M35EA2",
+        "U.I. PLA-M50EA2",
+        "U.I. PLA-M60EA2",
+        "U.I. PLA-M71EA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 504,
+      "table_id": "PDF_P0504_80EEE5AF85",
+      "product_title": "PLA-M EA2 CASSETTA 90x90",
+      "family_key": "MITSUBISHI_PLA_M_EA2_CASSETTA_90X90",
+      "pt": "99795566",
+      "accessory_model": "PLP-6EA",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. PLA-M100EA2",
+        "U.I. PLA-M125EA2",
+        "U.I. PLA-M140EA2",
+        "U.I. PLA-M35EA2",
+        "U.I. PLA-M50EA2",
+        "U.I. PLA-M60EA2",
+        "U.I. PLA-M71EA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 507,
+      "table_id": "PDF_P0507_597E236F0F",
+      "product_title": "SLZ-M CASSETTA 60x60",
+      "family_key": "MITSUBISHI_SLZ_M_CASSETTA_60X60",
+      "pt": "50113309",
+      "accessory_model": "SLP-2FALM2",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. SLZ-M35FA2",
+        "U.I. SLZ-M50FA2",
+        "U.I. SLZ-M60FA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 508,
+      "table_id": "PDF_P0508_73CB466D22",
+      "product_title": "PLA-M EA CASSETTA 90x90",
+      "family_key": "MITSUBISHI_PLA_M_EA_CASSETTA_90X90",
+      "pt": "99795566",
+      "accessory_model": "PLP-6EA",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. PLA-M100EA2",
+        "U.I. PLA-M125EA2",
+        "U.I. PLA-M35EA2",
+        "U.I. PLA-M50EA2",
+        "U.I. PLA-M60EA2",
+        "U.I. PLA-M71EA2"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_7AED244EFE",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "PANASONIC_CASSETTA_60X60",
+      "pt": "50117277",
+      "accessory_model": "CZ-KPY4",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_7AED244EFE",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "PANASONIC_CASSETTA_60X60",
+      "pt": "50459834",
+      "accessory_model": "CZ-KPY4W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50117277",
+      "accessory_model": "CZ-KPY4",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50459834",
+      "accessory_model": "CZ-KPY4W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_B29370AF86",
+      "product_title": "PACI NX STANDARD CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_90X90",
+      "pt": "99720759",
+      "accessory_model": "CZ-RWS3",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. S-1014PU3E",
+        "U.I. S-3650PU3E",
+        "U.I. S-6071PU3E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_B29370AF86",
+      "product_title": "PACI NX STANDARD CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_90X90",
+      "pt": "50449507",
+      "accessory_model": "CZ-KPU3",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. S-1014PU3E",
+        "U.I. S-3650PU3E",
+        "U.I. S-6071PU3E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_B29370AF86",
+      "product_title": "PACI NX STANDARD CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_90X90",
+      "pt": "99793364",
+      "accessory_model": "CZ-KPU3W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. S-1014PU3E",
+        "U.I. S-3650PU3E",
+        "U.I. S-6071PU3E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_B29370AF86",
+      "product_title": "PACI NX STANDARD CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_90X90",
+      "pt": "50460632",
+      "accessory_model": "CZ-RWRU3",
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. S-1014PU3E",
+        "U.I. S-3650PU3E",
+        "U.I. S-6071PU3E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50117277",
+      "accessory_model": "CZ-KPY4",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50459834",
+      "accessory_model": "CZ-KPY4W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_84E9316DCC",
+      "product_title": "PACI NX ELITE CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_90X90",
+      "pt": "99720759",
+      "accessory_model": "CZ-RWS3",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. S-1014PU3E",
+        "U.I. S-3650PU3E",
+        "U.I. S-6071PU3E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_84E9316DCC",
+      "product_title": "PACI NX ELITE CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_90X90",
+      "pt": "50449507",
+      "accessory_model": "CZ-KPU3",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. S-1014PU3E",
+        "U.I. S-3650PU3E",
+        "U.I. S-6071PU3E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_84E9316DCC",
+      "product_title": "PACI NX ELITE CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_90X90",
+      "pt": "99793364",
+      "accessory_model": "CZ-KPU3W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. S-1014PU3E",
+        "U.I. S-3650PU3E",
+        "U.I. S-6071PU3E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_84E9316DCC",
+      "product_title": "PACI NX ELITE CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_90X90",
+      "pt": "50460632",
+      "accessory_model": "CZ-RWRU3",
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. S-1014PU3E",
+        "U.I. S-3650PU3E",
+        "U.I. S-6071PU3E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50211319",
+      "accessory_model": "RBC-UM21PG(W)-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384174",
+      "accessory_model": "RBC-UM21P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50221721",
+      "accessory_model": "RBC-AXU31UM-E",
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384266",
+      "accessory_model": "RBC-AXU31UMP-E",
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_DA5C02614D",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384174",
+      "accessory_model": "RBC-UM21P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 528,
+      "table_id": "PDF_P0528_32CB61FB06",
+      "product_title": "CASSETTA 4 VIE 60x60",
+      "family_key": "TOSHIBA_CASSETTA_4_VIE_60X60",
+      "pt": "50211319",
+      "accessory_model": "RBC-UM21PG(W)-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. RAV-HM301MUT-E",
+        "U.I. RAV-HM401MUT-E",
+        "U.I. RAV-HM561MUT-E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 528,
+      "table_id": "PDF_P0528_32CB61FB06",
+      "product_title": "CASSETTA 4 VIE 60x60",
+      "family_key": "TOSHIBA_CASSETTA_4_VIE_60X60",
+      "pt": "50384174",
+      "accessory_model": "RBC-UM21P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. RAV-HM301MUT-E",
+        "U.I. RAV-HM401MUT-E",
+        "U.I. RAV-HM561MUT-E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 529,
+      "table_id": "PDF_P0529_E00CE8B3A0",
+      "product_title": "CASSETTA 4 VIE 60x60",
+      "family_key": "TOSHIBA_CASSETTA_4_VIE_60X60",
+      "pt": "50384174",
+      "accessory_model": "RBC-UM21P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. RAV-HM301MUTP-E",
+        "U.I. RAV-HM401MUTP-E",
+        "U.I. RAV-HM561MUTP-E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 531,
+      "table_id": "PDF_P0531_098014C713",
+      "product_title": "CASSETTA STANDARD 90x90",
+      "family_key": "TOSHIBA_CASSETTA_STANDARD_90X90",
+      "pt": "50212910",
+      "accessory_model": "RBC-AXU33UP-E",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. RAV-HM1101UTP-E",
+        "U.I. RAV-HM1401UTP-E",
+        "U.I. RAV-HM1601UTP-E",
+        "U.I. RAV-HM561UTP-E",
+        "U.I. RAV-HM801UTP-E",
+        "U.I. RAV-HM901UTP-E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 531,
+      "table_id": "PDF_P0531_098014C713",
+      "product_title": "CASSETTA STANDARD 90x90",
+      "family_key": "TOSHIBA_CASSETTA_STANDARD_90X90",
+      "pt": "50211685",
+      "accessory_model": "RBC-U33P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. RAV-HM1101UTP-E",
+        "U.I. RAV-HM1401UTP-E",
+        "U.I. RAV-HM1601UTP-E",
+        "U.I. RAV-HM561UTP-E",
+        "U.I. RAV-HM801UTP-E",
+        "U.I. RAV-HM901UTP-E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 534,
+      "table_id": "PDF_P0534_D05911D47A",
+      "product_title": "CASSETTA STANDARD 90x90",
+      "family_key": "TOSHIBA_CASSETTA_STANDARD_90X90",
+      "pt": "50212910",
+      "accessory_model": "RBC-AXU33UP-E",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. RAV-HM1101UTP-E",
+        "U.I. RAV-HM1401UTP-E",
+        "U.I. RAV-HM1601UTP-E",
+        "U.I. RAV-HM561UTP-E",
+        "U.I. RAV-HM801UTP-E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    },
+    {
+      "page": 534,
+      "table_id": "PDF_P0534_D05911D47A",
+      "product_title": "CASSETTA STANDARD 90x90",
+      "family_key": "TOSHIBA_CASSETTA_STANDARD_90X90",
+      "pt": "50211685",
+      "accessory_model": "RBC-U33P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. RAV-HM1101UTP-E",
+        "U.I. RAV-HM1401UTP-E",
+        "U.I. RAV-HM1601UTP-E",
+        "U.I. RAV-HM561UTP-E",
+        "U.I. RAV-HM801UTP-E"
+      ],
+      "scope_type": "TABLE_WIDE"
+    }
+  ],
+  "unknown_target_records": [
+    {
+      "page": 470,
+      "table_id": "PDF_P0470_754A09B748",
+      "product_title": "MXM-A9",
+      "family_key": "DAIKIN_MXM_A9",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMPATIBILITY_NOTE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 472,
+      "table_id": "PDF_P0472_C80AA0CE45",
+      "product_title": "PAVIMENTO FVXM-A9 PERFERA",
+      "family_key": "DAIKIN_PAVIMENTO_FVXM_A9_PERFERA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMPATIBILITY_NOTE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_84E198812D",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMPATIBILITY_NOTE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 495,
+      "table_id": "PDF_P0495_CAE6FA0FCA",
+      "product_title": "SMALL Y PUMY-SP",
+      "family_key": "MITSUBISHI_SMALL_Y_PUMY_SP",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 510,
+      "table_id": "PDF_P0510_7A8D92D451",
+      "product_title": "BZ",
+      "family_key": "PANASONIC_BZ",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 510,
+      "table_id": "PDF_P0510_98C2965100",
+      "product_title": "BZ",
+      "family_key": "PANASONIC_BZ",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 511,
+      "table_id": "PDF_P0511_78F2413270",
+      "product_title": "canalizzata",
+      "family_key": "PANASONIC_CANALIZZATA",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 511,
+      "table_id": "PDF_P0511_B1CD50DA10",
+      "product_title": "canalizzata",
+      "family_key": "PANASONIC_CANALIZZATA",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_31D8BF830B",
+      "product_title": "canalizzata",
+      "family_key": "PANASONIC_CANALIZZATA",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_7AED244EFE",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "PANASONIC_CASSETTA_60X60",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_AC476403A4",
+      "product_title": "canalizzata",
+      "family_key": "PANASONIC_CANALIZZATA",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 515,
+      "table_id": "PDF_P0515_149FCCB059",
+      "product_title": "PACI NX STANDARD SPLIT",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SPLIT",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 515,
+      "table_id": "PDF_P0515_149FCCB059",
+      "product_title": "PACI NX STANDARD SPLIT",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SPLIT",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 515,
+      "table_id": "PDF_P0515_30157670E1",
+      "product_title": "PACI NX STANDARD SPLIT",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SPLIT",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 515,
+      "table_id": "PDF_P0515_30157670E1",
+      "product_title": "PACI NX STANDARD SPLIT",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SPLIT",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_942184A6F9",
+      "product_title": "PACI NX STANDARD canalizzata",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CANALIZZATA",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_942184A6F9",
+      "product_title": "PACI NX STANDARD canalizzata",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CANALIZZATA",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_B29370AF86",
+      "product_title": "PACI NX STANDARD CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_90X90",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_B29370AF86",
+      "product_title": "PACI NX STANDARD CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_90X90",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_EDC11E6CA1",
+      "product_title": "PACI NX STANDARD SOFFITTO",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SOFFITTO",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_EDC11E6CA1",
+      "product_title": "PACI NX STANDARD SOFFITTO",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SOFFITTO",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 518,
+      "table_id": "PDF_P0518_A2F50FE25E",
+      "product_title": "PACI NX ELITE SPLIT",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SPLIT",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 518,
+      "table_id": "PDF_P0518_A2F50FE25E",
+      "product_title": "PACI NX ELITE SPLIT",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SPLIT",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 518,
+      "table_id": "PDF_P0518_E89B4627AF",
+      "product_title": "PACI NX ELITE SPLIT",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SPLIT",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 518,
+      "table_id": "PDF_P0518_E89B4627AF",
+      "product_title": "PACI NX ELITE SPLIT",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SPLIT",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_E758109F64",
+      "product_title": "PACI NX ELITE canalizzata",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CANALIZZATA",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_E758109F64",
+      "product_title": "PACI NX ELITE canalizzata",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CANALIZZATA",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_49B2C636EA",
+      "product_title": "PACI NX ELITE SOFFITTO",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SOFFITTO",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_49B2C636EA",
+      "product_title": "PACI NX ELITE SOFFITTO",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SOFFITTO",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_84E9316DCC",
+      "product_title": "PACI NX ELITE CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_90X90",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_84E9316DCC",
+      "product_title": "PACI NX ELITE CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_90X90",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 521,
+      "table_id": "PDF_P0521_E8BB61181C",
+      "product_title": "BIG PACI canalizzata",
+      "family_key": "PANASONIC_BIG_PACI_CANALIZZATA",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 521,
+      "table_id": "PDF_P0521_E8BB61181C",
+      "product_title": "BIG PACI canalizzata",
+      "family_key": "PANASONIC_BIG_PACI_CANALIZZATA",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 523,
+      "table_id": "PDF_P0523_76403E7A90",
+      "product_title": "SEIYA CLASSIC e2",
+      "family_key": "TOSHIBA_SEIYA_CLASSIC_E2",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 523,
+      "table_id": "PDF_P0523_FA12879F31",
+      "product_title": "SEIYA CLASSIC",
+      "family_key": "TOSHIBA_SEIYA_CLASSIC",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 524,
+      "table_id": "PDF_P0524_94BEBED70E",
+      "product_title": "HAORI BIANCO",
+      "family_key": "TOSHIBA_HAORI_BIANCO",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 524,
+      "table_id": "PDF_P0524_CACE274DF6",
+      "product_title": "CONSOLE",
+      "family_key": "TOSHIBA_CONSOLE",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 525,
+      "table_id": "PDF_P0525_4754305324",
+      "product_title": "SEIYA",
+      "family_key": "TOSHIBA_SEIYA",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 525,
+      "table_id": "PDF_P0525_B8B380DF88",
+      "product_title": "SEIYA CLASSIC",
+      "family_key": "TOSHIBA_SEIYA_CLASSIC",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 525,
+      "table_id": "PDF_P0525_F33670B18D",
+      "product_title": "HAORI",
+      "family_key": "TOSHIBA_HAORI",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 525,
+      "table_id": "PDF_P0525_F72C0CC00B",
+      "product_title": "SEIYA CLASSIC e2",
+      "family_key": "TOSHIBA_SEIYA_CLASSIC_E2",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_06E0FF2E6F",
+      "product_title": "CONSOLE",
+      "family_key": "TOSHIBA_CONSOLE",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 539,
+      "table_id": "PDF_P0539_92D71AC8F0",
+      "product_title": "ELEGANCE",
+      "family_key": "MIDEA_ELEGANCE",
+      "pt": "50131907",
+      "accessory_model": "EU-SK105",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 540,
+      "table_id": "PDF_P0540_D85AD5489B",
+      "product_title": "XTREME PRO",
+      "family_key": "MIDEA_XTREME_PRO",
+      "pt": "50131907",
+      "accessory_model": "EU-SK105",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_06ED3A74E9",
+      "product_title": "canalizzata",
+      "family_key": "MIDEA_CANALIZZATA",
+      "pt": "50131860",
+      "accessory_model": "WF-60B1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_83C213914D",
+      "product_title": "CASSETTA 57x57",
+      "family_key": "MIDEA_CASSETTA_57X57",
+      "pt": "50131877",
+      "accessory_model": "WF-60C1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_AFC4453B79",
+      "product_title": "CONSOLE",
+      "family_key": "MIDEA_CONSOLE",
+      "pt": "50131907",
+      "accessory_model": "EU-SK105",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 546,
+      "table_id": "PDF_P0546_D6C3DD71B4",
+      "product_title": "canalizzata",
+      "family_key": "MIDEA_CANALIZZATA",
+      "pt": "50131860",
+      "accessory_model": "WF-60B1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 546,
+      "table_id": "PDF_P0546_F141391039",
+      "product_title": "CASSETTA 57x57",
+      "family_key": "MIDEA_CASSETTA_57X57",
+      "pt": "50131877",
+      "accessory_model": "WF-60C1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 546,
+      "table_id": "PDF_P0546_F47902CBA1",
+      "product_title": "CASSETTA SUPER SLIM 90x90",
+      "family_key": "MIDEA_CASSETTA_SUPER_SLIM_90X90",
+      "pt": "50131877",
+      "accessory_model": "WF-60C1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 547,
+      "table_id": "PDF_P0547_DA48CAF524",
+      "product_title": "CONSOLE",
+      "family_key": "MIDEA_CONSOLE",
+      "pt": "50131907",
+      "accessory_model": "EU-SK105",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_6EB9848011",
+      "product_title": "canalizzata",
+      "family_key": "HISENSE_CANALIZZATA",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_6EB9848011",
+      "product_title": "canalizzata",
+      "family_key": "HISENSE_CANALIZZATA",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_8126A12BD9",
+      "product_title": "CONSOLE",
+      "family_key": "HISENSE_CONSOLE",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_8126A12BD9",
+      "product_title": "CONSOLE",
+      "family_key": "HISENSE_CONSOLE",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_E238DE25EF",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_E238DE25EF",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_181EB064D3",
+      "product_title": "CONSOLE",
+      "family_key": "HISENSE_CONSOLE",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_181EB064D3",
+      "product_title": "CONSOLE",
+      "family_key": "HISENSE_CONSOLE",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_2B6C7E7C76",
+      "product_title": "canalizzata",
+      "family_key": "HISENSE_CANALIZZATA",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_2B6C7E7C76",
+      "product_title": "canalizzata",
+      "family_key": "HISENSE_CANALIZZATA",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_9926436D7A",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_9926436D7A",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_D6588C56CD",
+      "product_title": "Cassetta round-flow 90x90",
+      "family_key": "HISENSE_CASSETTA_ROUND_FLOW_90X90",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_D6588C56CD",
+      "product_title": "Cassetta round-flow 90x90",
+      "family_key": "HISENSE_CASSETTA_ROUND_FLOW_90X90",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 552,
+      "table_id": "PDF_P0552_2408D9953A",
+      "product_title": "COLONNA",
+      "family_key": "HISENSE_COLONNA",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 552,
+      "table_id": "PDF_P0552_2408D9953A",
+      "product_title": "COLONNA",
+      "family_key": "HISENSE_COLONNA",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 552,
+      "table_id": "PDF_P0552_56B269AE6D",
+      "product_title": "SOFFITTO-PAVIMENTO",
+      "family_key": "HISENSE_SOFFITTO_PAVIMENTO",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 552,
+      "table_id": "PDF_P0552_56B269AE6D",
+      "product_title": "SOFFITTO-PAVIMENTO",
+      "family_key": "HISENSE_SOFFITTO_PAVIMENTO",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_043F13DA2D",
+      "product_title": "WINDFREE CASSETTA 4 VIE MINI",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_4_VIE_MINI",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_730CEAE340",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_94AE4C4F8F",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_D70E04CCC0",
+      "product_title": "WINDFREE CASSETTA 1 VIA",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_1_VIA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 576,
+      "table_id": "PDF_P0576_0635AC787C",
+      "product_title": "canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 576,
+      "table_id": "PDF_P0576_C1BFAF1EB0",
+      "product_title": "Parete WindFree Deluxe",
+      "family_key": "SAMSUNG_PARETE_WINDFREE_DELUXE",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 576,
+      "table_id": "PDF_P0576_EEEAE8851D",
+      "product_title": "PARETE",
+      "family_key": "SAMSUNG_PARETE",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 577,
+      "table_id": "PDF_P0577_82424209D4",
+      "product_title": "MINI CASSETTA 4 VIE WINDFREE 60x60",
+      "family_key": "SAMSUNG_MINI_CASSETTA_4_VIE_WINDFREE_60X60",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 577,
+      "table_id": "PDF_P0577_D5FE025D9C",
+      "product_title": "canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 578,
+      "table_id": "PDF_P0578_1B9AD2914D",
+      "product_title": "CASSETTA 360°",
+      "family_key": "SAMSUNG_CASSETTA_360",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 578,
+      "table_id": "PDF_P0578_BB15676375",
+      "product_title": "CASSETTA A 4 VIE WINDFREE 90x90",
+      "family_key": "SAMSUNG_CASSETTA_A_4_VIE_WINDFREE_90X90",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 578,
+      "table_id": "PDF_P0578_BB15676375",
+      "product_title": "CASSETTA A 4 VIE WINDFREE 90x90",
+      "family_key": "SAMSUNG_CASSETTA_A_4_VIE_WINDFREE_90X90",
+      "pt": "99685041",
+      "accessory_model": "MCR-SMC",
+      "component_type": "SONDA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 579,
+      "table_id": "PDF_P0579_28C4A2E1B5",
+      "product_title": "PAVIMENTO CONSOLE",
+      "family_key": "SAMSUNG_PAVIMENTO_CONSOLE",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 579,
+      "table_id": "PDF_P0579_85DFD74D46",
+      "product_title": "CASSETTA 1 VIA SLIM",
+      "family_key": "SAMSUNG_CASSETTA_1_VIA_SLIM",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 579,
+      "table_id": "PDF_P0579_C064448591",
+      "product_title": "SOFFITTO",
+      "family_key": "SAMSUNG_SOFFITTO",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 579,
+      "table_id": "PDF_P0579_CB3FA7C421",
+      "product_title": "SOFFITTO/PAVIMENTO",
+      "family_key": "SAMSUNG_SOFFITTO_PAVIMENTO",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 580,
+      "table_id": "PDF_P0580_9551725241",
+      "product_title": "Colonna",
+      "family_key": "SAMSUNG_COLONNA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 580,
+      "table_id": "PDF_P0580_E80BED3C48",
+      "product_title": "canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 585,
+      "table_id": "PDF_P0585_585929F016",
+      "product_title": "canalizzata",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 585,
+      "table_id": "PDF_P0585_A1A019EAF0",
+      "product_title": "canalizzata",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_39A53AF522",
+      "product_title": "CASSETTA 84x84",
+      "family_key": "LG_CASSETTA_84X84",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_9660927CC8",
+      "product_title": "CONSOLE",
+      "family_key": "LG_CONSOLE",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_F3A866276B",
+      "product_title": "CASSETTA 57x57",
+      "family_key": "LG_CASSETTA_57X57",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 587,
+      "table_id": "PDF_P0587_1980C4311A",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 587,
+      "table_id": "PDF_P0587_83BF5D487B",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 587,
+      "table_id": "PDF_P0587_83BF5D487B",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "99752071",
+      "accessory_model": "PQRSTA0",
+      "component_type": "SONDA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 587,
+      "table_id": "PDF_P0587_CA03965F25",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_1943A31A8D",
+      "product_title": "SOFFITTO",
+      "family_key": "LG_SOFFITTO",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_1943A31A8D",
+      "product_title": "SOFFITTO",
+      "family_key": "LG_SOFFITTO",
+      "pt": "99752071",
+      "accessory_model": "PQRSTA0",
+      "component_type": "SONDA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_8DAD06D630",
+      "product_title": "CASSETTA 4 VIE 84x84",
+      "family_key": "LG_CASSETTA_4_VIE_84X84",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_D1FC78C2A2",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 589,
+      "table_id": "PDF_P0589_21711284B1",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 589,
+      "table_id": "PDF_P0589_CE032D98F9",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 589,
+      "table_id": "PDF_P0589_F39E556283",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_0A27ADC7E8",
+      "product_title": "SOFFITTO",
+      "family_key": "LG_SOFFITTO",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_0D34AB15C4",
+      "product_title": "CONSOLE",
+      "family_key": "LG_CONSOLE",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_4E2BEF13AD",
+      "product_title": "CASSETTA 4 VIE 84x84",
+      "family_key": "LG_CASSETTA_4_VIE_84X84",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_D8C351DD50",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 591,
+      "table_id": "PDF_P0591_306F232771",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 591,
+      "table_id": "PDF_P0591_306F232771",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "99752071",
+      "accessory_model": "PQRSTA0",
+      "component_type": "SONDA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 591,
+      "table_id": "PDF_P0591_90B62B6245",
+      "product_title": "ROUND CASSETTE STANDARD",
+      "family_key": "LG_ROUND_CASSETTE_STANDARD",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 595,
+      "table_id": "PDF_P0595_CA6F4BA9BD",
+      "product_title": "GIADA-C PAVIMENTO E SOFFITTO",
+      "family_key": "FERROLI_GIADA_C_PAVIMENTO_E_SOFFITTO",
+      "pt": "50371013",
+      "accessory_model": "2CP005C0",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 613,
+      "table_id": "PDF_P0613_02DDDBDE73",
+      "product_title": "CANALIZZATA DUCT",
+      "family_key": "IMMERGAS_CANALIZZATA_DUCT",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_9FF198657C",
+      "product_title": "2.0 ELEC 2 KW - 15 HP DC",
+      "family_key": "INNOVA_2_0_ELEC_2_KW_15_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "FEATURE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_C7F7802792",
+      "product_title": "2.0 ELEC 2 KW - 12 HP DC",
+      "family_key": "INNOVA_2_0_ELEC_2_KW_12_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "FEATURE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_FEBB0D0A75",
+      "product_title": "2.0 CEILING - 12 HP ELEC",
+      "family_key": "INNOVA_2_0_CEILING_12_HP_ELEC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "FEATURE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 626,
+      "table_id": "PDF_P0626_4CC6B1CA63",
+      "product_title": "UNICO TWIN WALL S1 ON/OFF",
+      "family_key": "OLIMPIA_UNICO_TWIN_WALL_S1_ON_OFF",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "MACCHINA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 751,
+      "table_id": "PDF_P0751_B2D3DF7100",
+      "product_title": "PARETE WINDFREE DELUXE",
+      "family_key": "SAMSUNG_PARETE_WINDFREE_DELUXE",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    },
+    {
+      "page": 752,
+      "table_id": "PDF_P0752_BE38B41C38",
+      "product_title": "Canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN"
+    }
+  ],
+  "regression_results": {
+    "01_no_hydronic_families": {
+      "actual_records": [],
+      "forbidden_family_matches": [],
+      "PASS": true
+    },
+    "02_brp069b45_ui_only": {
+      "applies_to_models_all_contexts": [
+        "CTXF20f",
+        "CTXF25f",
+        "CTXF35f",
+        "U.I. FTXC25D",
+        "U.I. FTXC35D"
+      ],
+      "gsi_low_applies_to_models": [
+        "U.I. FTXC25D",
+        "U.I. FTXC35D"
+      ],
+      "PASS": true
+    },
+    "03_brp069c81_ui_only": {
+      "applies_to_models": [
+        "FBA35A9",
+        "FBA50A9",
+        "FBA60A9",
+        "FDXM25F9",
+        "FDXM35F9",
+        "FDXM50F9",
+        "FDXM60F9",
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9",
+        "FHA35A9",
+        "FHA50A9",
+        "FHA60A9",
+        "FNA25A9",
+        "FNA35A9",
+        "FNA50A9",
+        "U.I. FAA100B",
+        "U.I. FAA71B",
+        "U.I. FBA100A",
+        "U.I. FBA125A",
+        "U.I. FBA140A",
+        "U.I. FBA71A9",
+        "U.I. FDA125A",
+        "U.I. FHA100A",
+        "U.I. FHA125A",
+        "U.I. FHA140A",
+        "U.I. FHA71A9",
+        "U.I. FNA60A9",
+        "U.I. FUA100A",
+        "U.I. FUA125A",
+        "U.I. FUA71A",
+        "U.I. FVA100A",
+        "U.I. FVA125A",
+        "U.I. FVA140A",
+        "U.I. FVA71A"
+      ],
+      "PASS": true
+    },
+    "04_byfq60_only_ffa_ui": {
+      "applies_to_models": [
+        "FFA25A9",
+        "FFA35A9",
+        "FFA50A9",
+        "FFA60A9"
+      ],
+      "PASS": true
+    },
+    "05_bycq140_only_round_flow_ui": {
+      "applies_to_models": [
+        "FCAG35B",
+        "FCAG50B",
+        "FCAG60B",
+        "U.I. FCAG100B",
+        "U.I. FCAG125B",
+        "U.I. FCAG140B",
+        "U.I. FCAG71B"
+      ],
+      "PASS": true
+    },
+    "06_t_mbq4_03_only_mca4u": {
+      "applies_to_models": [
+        "MCA4U-09HRFNX(GA)",
+        "MCA4U-12HRFNX(GA)",
+        "MCA4U-18HRFNX(GA)"
+      ],
+      "PASS": true
+    },
+    "07_t_mbq4_04_only_super_slim_ui": {
+      "applies_to_models": [
+        "U.I. MCD1-42HRFNX(GA)",
+        "U.I. MCD1-48HRFNX(GA)",
+        "U.I. MCD1-55HRFNX(GA)",
+        "U.I. MCD2-24HRFNX(GA)",
+        "U.I. MCD2-30HRFNX(GA)",
+        "U.I. MCD2-36HRFN8(GA)",
+        "U.I. MCD2-42HRFNX(GA)",
+        "U.I. MCD2-48HRFNX(GA)",
+        "U.I. MCD2-55HRFNX(GA)"
+      ],
+      "PASS": true
+    },
+    "08_glg40_glg40s_only_aermec_cassette_ui": {
+      "applies_to_models": [
+        "MPG350CS",
+        "MPG500CS",
+        "MPG700C",
+        "U.I. LPG1000C",
+        "U.I. LPG1200C",
+        "U.I. LPG1400C",
+        "U.I. LPG1600C",
+        "U.I. LPG350CS",
+        "U.I. LPG500CS",
+        "U.I. LPG700C",
+        "U.I. LPG850C"
+      ],
+      "PASS": true
+    },
+    "09_haier_panels_only_cassette_ui": {
+      "applies_to_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "PASS": true
+    },
+    "10_no_ui_target_with_ue": {
+      "violation_count": 0,
+      "PASS": true
+    },
+    "11_no_cassette_ui_target_with_ue": {
+      "violation_count": 0,
+      "PASS": true
+    },
+    "12_no_ue_target_with_ui": {
+      "violation_count": 0,
+      "PASS": true
+    },
+    "13_total_white_black_silver_still_absent": {
+      "actual": [],
+      "PASS": true
+    },
+    "14_v3_1_aermec_daikin_midea_regressions_preserved": {
+      "prior_checks": {
+        "04_aermec_spg_kitwifi": true,
+        "05_aermec_sge_wifikey": true,
+        "06_aermec_mpg_c_separation": true,
+        "07_aermec_mpg_cs_separation": true,
+        "08_daikin_grid_dimension_separation": true,
+        "09_midea_grid_dimension_separation": true
+      },
+      "PASS": true
+    }
+  },
+  "production_ready_conditions": {
+    "zero_hydronic_heat_pump_records": true,
+    "zero_non_climate_records": true,
+    "zero_unknown_domain_records": true,
+    "zero_ui_target_with_ue": true,
+    "zero_cassette_ui_target_with_ue": true,
+    "zero_ue_target_with_ui": true,
+    "all_regressions_pass": true
+  },
+  "production_ready": true,
+  "elapsed_seconds": 0.39
+}

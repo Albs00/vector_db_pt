@@ -1,0 +1,5298 @@
+{
+  "generated_at": "2026-09-10T10:00:47+0200",
+  "mode": "SAFE_PREVIEW_V3_3_MODEL_SCOPED_ACCESSORY_RESOLUTION",
+  "incremental_from": "catalog_component_relations_safe_preview_v3_2.json",
+  "input_sha256": {
+    "catalog_component_relations_safe_preview_v3_2.json": "580489c7549a2c025b4f1cdb10f2038baa44d79ec28dd988d37632ab656c9870",
+    "catalog_component_relations_safe_preview_v3_2_report.json": "c09b6dad6b73dffb6f62528353d07be93ca3b55658eaf07286a2430c55374f2e",
+    "catalog_component_relations_safe_preview_v3_1_report.json": "3e78038944e372e04c304e381eee5618677b17e702bfceeab0c328c35dc9b2d0",
+    "Knowledge\\catalog_table_context.json": "2b168759e2641a42e348b7b9bf530ff40a1512205bc4c742abc2928dd7ee977b",
+    "Knowledge\\catalog_annotations.json": "bf1aaf55f3fe0759132893ebbb84038c7f413bc8136a128f3d19f1759157edc6",
+    "Knowledge\\catalogo_layout.jsonl.gz": "bafe1efbdf24d1449c66ff43f6aa85aeaff1470c3eebb50b3e071e1db5cb54b7",
+    "Knowledge\\catalog_component_relations.json": "39f4c074293b05fdca7a4ee15fc6df37ba09f590ab9dac50476d640017693780"
+  },
+  "v3_2_total_records": 860,
+  "v3_3_total_records": 859,
+  "scope_type_distribution_before": {
+    "TABLE_WIDE": 644,
+    "UNKNOWN": 216
+  },
+  "scope_type_distribution_after": {
+    "MODEL_SCOPED": 3,
+    "TABLE_WIDE": 724,
+    "UNKNOWN": 132
+  },
+  "model_scoped_before": 0,
+  "model_scoped_after": 3,
+  "table_wide_converted_to_model_scoped_count": 3,
+  "product_table_role_inference_count": 84,
+  "scope_resolution_reason_distribution": {
+    "EXPLICIT_COMPATIBLE_MODEL_REFERENCE": 3,
+    "EXPLICIT_ROW_REFERENCE": 0,
+    "PRODUCT_TABLE_ROLE_INFERENCE": 84,
+    "TABLE_WIDE_NO_MODEL_LIMIT": 640,
+    "UNKNOWN_REJECTED": 132
+  },
+  "scope_corrected_records_count": 87,
+  "scope_corrected_records": [
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_7AED244EFE",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "PANASONIC_CASSETTA_60X60",
+      "pt": "50117277",
+      "accessory_model": "CZ-KPY4",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E",
+        "S-M20PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E",
+        "S-M20PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_7AED244EFE",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "PANASONIC_CASSETTA_60X60",
+      "pt": "50459834",
+      "accessory_model": "CZ-KPY4W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E",
+        "S-M20PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E",
+        "S-M20PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50117277",
+      "accessory_model": "CZ-KPY4",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50459834",
+      "accessory_model": "CZ-KPY4W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50117277",
+      "accessory_model": "CZ-KPY4",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50459834",
+      "accessory_model": "CZ-KPY4W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50337309",
+      "accessory_model": "RBC-AMSU52-E",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384235",
+      "accessory_model": "RBC-ASCU32Y-E",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50211319",
+      "accessory_model": "RBC-UM21PG(W)-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384174",
+      "accessory_model": "RBC-UM21P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50221721",
+      "accessory_model": "RBC-AXU31UM-E",
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384266",
+      "accessory_model": "RBC-AXU31UMP-E",
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_DA5C02614D",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_DA5C02614D",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384235",
+      "accessory_model": "RBC-ASCU32Y-E",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_DA5C02614D",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384174",
+      "accessory_model": "RBC-UM21P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_DA5C02614D",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_E5C034B94E",
+      "product_title": "CANALIZZATA",
+      "family_key": "TOSHIBA_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RAS-M07U2DVG-E",
+        "RAS-M10U2DVG-E",
+        "RAS-M13U2DVG-E",
+        "RAS-M16U2DVG-E",
+        "RAS-M22U2DVG-E",
+        "RAS-M24U2DVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M07U2DVG-E",
+        "RAS-M10U2DVG-E",
+        "RAS-M13U2DVG-E",
+        "RAS-M16U2DVG-E",
+        "RAS-M22U2DVG-E",
+        "RAS-M24U2DVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_06ED3A74E9",
+      "product_title": "canalizzata",
+      "family_key": "MIDEA_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "MTIU-07HWFNX(GA)"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "MTIU-07HWFNX(GA)"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_06ED3A74E9",
+      "product_title": "canalizzata",
+      "family_key": "MIDEA_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "MTIU-07HWFNX(GA)"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "MTIU-07HWFNX(GA)"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_1E9CCFF16C",
+      "product_title": "canalizzata",
+      "family_key": "MIDEA_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "MTJ-09HWFNX(GA)",
+        "MTJ-12HWFNX(GA)",
+        "MTJ-18HWFNX(GA)"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "MTJ-09HWFNX(GA)",
+        "MTJ-12HWFNX(GA)",
+        "MTJ-18HWFNX(GA)"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_1E9CCFF16C",
+      "product_title": "canalizzata",
+      "family_key": "MIDEA_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "MTJ-09HWFNX(GA)",
+        "MTJ-12HWFNX(GA)",
+        "MTJ-18HWFNX(GA)"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "MTJ-09HWFNX(GA)",
+        "MTJ-12HWFNX(GA)",
+        "MTJ-18HWFNX(GA)"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_6EB9848011",
+      "product_title": "canalizzata",
+      "family_key": "HISENSE_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "ADT26UX4RBL8",
+        "ADT35UX4RBL8",
+        "ADT52UX4RCL8"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "ADT26UX4RBL8",
+        "ADT35UX4RBL8",
+        "ADT52UX4RCL8"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_E238DE25EF",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50115952",
+      "accessory_model": "PE-QEA-LD",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_E238DE25EF",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_9926436D7A",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50115952",
+      "accessory_model": "PE-QEA-LD",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_9926436D7A",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 563,
+      "table_id": "PDF_P0563_C17CE33993",
+      "product_title": "CASSETTA A 1 VIA",
+      "family_key": "HAIER_CASSETTA_A_1_VIA",
+      "pt": "50370139",
+      "accessory_model": "AB25S2SA1FA - AB35S2SA1FA",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)"
+      ],
+      "scope_type": "MODEL_SCOPED",
+      "before_scope_type": "TABLE_WIDE",
+      "before_applies_to_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "after_scope_type": "MODEL_SCOPED",
+      "after_applies_to_models": [
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)"
+      ],
+      "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+      "accessory_model_reference": [
+        "AB25S2SA1FA",
+        "AB35S2SA1FA"
+      ]
+    },
+    {
+      "page": 563,
+      "table_id": "PDF_P0563_C17CE33993",
+      "product_title": "CASSETTA A 1 VIA",
+      "family_key": "HAIER_CASSETTA_A_1_VIA",
+      "pt": "50370160",
+      "accessory_model": "AB50S2SA1FA - AB71S2SA1FA",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "scope_type": "MODEL_SCOPED",
+      "before_scope_type": "TABLE_WIDE",
+      "before_applies_to_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "after_scope_type": "MODEL_SCOPED",
+      "after_applies_to_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+      "accessory_model_reference": [
+        "AB50S2SA1FA",
+        "AB71S2SA1FA"
+      ]
+    },
+    {
+      "page": 567,
+      "table_id": "PDF_P0567_BDA221FF11",
+      "product_title": "CASSETTA A 1 VIA",
+      "family_key": "HAIER_CASSETTA_A_1_VIA",
+      "pt": "50370160",
+      "accessory_model": "AB50S2SA1FA - AB71S2SA1FA",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AB71S2SA1FA(H)"
+      ],
+      "scope_type": "MODEL_SCOPED",
+      "before_scope_type": "TABLE_WIDE",
+      "before_applies_to_models": [
+        "AB71S2SA1FA(H)"
+      ],
+      "after_scope_type": "MODEL_SCOPED",
+      "after_applies_to_models": [
+        "AB71S2SA1FA(H)"
+      ],
+      "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+      "accessory_model_reference": [
+        "AB50S2SA1FA",
+        "AB71S2SA1FA"
+      ]
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_043F13DA2D",
+      "product_title": "WINDFREE CASSETTA 4 VIE MINI",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_4_VIE_MINI",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AJ016TNNDKG/EU",
+        "AJ020TNNDKG/EU",
+        "AJ026TNNDKG/EU",
+        "AJ035TNNDKG/EU",
+        "AJ052TNNDKG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ016TNNDKG/EU",
+        "AJ020TNNDKG/EU",
+        "AJ026TNNDKG/EU",
+        "AJ035TNNDKG/EU",
+        "AJ052TNNDKG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_043F13DA2D",
+      "product_title": "WINDFREE CASSETTA 4 VIE MINI",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_4_VIE_MINI",
+      "pt": "99786342",
+      "accessory_model": "PC4SUFMAN",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AJ016TNNDKG/EU",
+        "AJ020TNNDKG/EU",
+        "AJ026TNNDKG/EU",
+        "AJ035TNNDKG/EU",
+        "AJ052TNNDKG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ016TNNDKG/EU",
+        "AJ020TNNDKG/EU",
+        "AJ026TNNDKG/EU",
+        "AJ035TNNDKG/EU",
+        "AJ052TNNDKG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_730CEAE340",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99487195",
+      "accessory_model": "MRK-A10N",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_730CEAE340",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99682125",
+      "accessory_model": "AR-EH03E",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_730CEAE340",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_94AE4C4F8F",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AJ026TNLPEG/EU",
+        "AJ035TNLPEG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ026TNLPEG/EU",
+        "AJ035TNLPEG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_94AE4C4F8F",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AJ026TNLPEG/EU",
+        "AJ035TNLPEG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ026TNLPEG/EU",
+        "AJ035TNLPEG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_D70E04CCC0",
+      "product_title": "WINDFREE CASSETTA 1 VIA",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_1_VIA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AJ026TN1DKG/EU",
+        "AJ035TN1DKG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ026TN1DKG/EU",
+        "AJ035TN1DKG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_D70E04CCC0",
+      "product_title": "WINDFREE CASSETTA 1 VIA",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_1_VIA",
+      "pt": "99786427",
+      "accessory_model": "PC1NWFMAN",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AJ026TN1DKG/EU",
+        "AJ035TN1DKG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ026TN1DKG/EU",
+        "AJ035TN1DKG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 585,
+      "table_id": "PDF_P0585_585929F016",
+      "product_title": "canalizzata",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50008063",
+      "accessory_model": "PWLSSB21H",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 585,
+      "table_id": "PDF_P0585_585929F016",
+      "product_title": "canalizzata",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "99490270",
+      "accessory_model": "PREMTB001",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 585,
+      "table_id": "PDF_P0585_A1A019EAF0",
+      "product_title": "canalizzata",
+      "family_key": "LG_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CM18F.NA0",
+        "CM24F.NA0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CM18F.NA0",
+        "CM24F.NA0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_39A53AF522",
+      "product_title": "CASSETTA 84x84",
+      "family_key": "LG_CASSETTA_84X84",
+      "pt": "50008063",
+      "accessory_model": "PWLSSB21H",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_39A53AF522",
+      "product_title": "CASSETTA 84x84",
+      "family_key": "LG_CASSETTA_84X84",
+      "pt": "99490270",
+      "accessory_model": "PREMTB001",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_39A53AF522",
+      "product_title": "CASSETTA 84x84",
+      "family_key": "LG_CASSETTA_84X84",
+      "pt": "99796570",
+      "accessory_model": "PT-AAGW0",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_39A53AF522",
+      "product_title": "CASSETTA 84x84",
+      "family_key": "LG_CASSETTA_84X84",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_F3A866276B",
+      "product_title": "CASSETTA 57x57",
+      "family_key": "LG_CASSETTA_57X57",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_F3A866276B",
+      "product_title": "CASSETTA 57x57",
+      "family_key": "LG_CASSETTA_57X57",
+      "pt": "99799311",
+      "accessory_model": "PT-QAGW0",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 587,
+      "table_id": "PDF_P0587_1980C4311A",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_D1FC78C2A2",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_D1FC78C2A2",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "99799311",
+      "accessory_model": "PT-QAGW0",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 589,
+      "table_id": "PDF_P0589_F39E556283",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_D8C351DD50",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "50008063",
+      "accessory_model": "PWLSSB21H",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_D8C351DD50",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "99490270",
+      "accessory_model": "PREMTB001",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_D8C351DD50",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "99799311",
+      "accessory_model": "PT-QAGW0",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_D8C351DD50",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_CD596AD0D5",
+      "product_title": "CANALIZZATA",
+      "family_key": "BAXI_CANALIZZATA",
+      "pt": "50374007",
+      "accessory_model": "KIT WI-FI",
+      "component_type": "WIFI",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "LSGND25-XM",
+        "LSGND35-XM",
+        "RZ2GND35",
+        "RZ2GND50"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "LSGND25-XM",
+        "LSGND35-XM",
+        "RZ2GND35",
+        "RZ2GND50"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_FD73F17948",
+      "product_title": "CASSETTA",
+      "family_key": "BAXI_CASSETTA",
+      "pt": "50320486",
+      "accessory_model": "TXW3AC",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_FD73F17948",
+      "product_title": "CASSETTA",
+      "family_key": "BAXI_CASSETTA",
+      "pt": "99804336",
+      "accessory_model": "PKR50",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_FD73F17948",
+      "product_title": "CASSETTA",
+      "family_key": "BAXI_CASSETTA",
+      "pt": "99804343",
+      "accessory_model": "PKR160",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_FD73F17948",
+      "product_title": "CASSETTA",
+      "family_key": "BAXI_CASSETTA",
+      "pt": "50374007",
+      "accessory_model": "KIT WI-FI",
+      "component_type": "WIFI",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 599,
+      "table_id": "PDF_P0599_447DCF346B",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "BAXI_CASSETTA_60X60",
+      "pt": "99804336",
+      "accessory_model": "PKR50",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 599,
+      "table_id": "PDF_P0599_447DCF346B",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "BAXI_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 599,
+      "table_id": "PDF_P0599_447DCF346B",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "BAXI_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 599,
+      "table_id": "PDF_P0599_447DCF346B",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "BAXI_CASSETTA_60X60",
+      "pt": "50374007",
+      "accessory_model": "KIT WI-FI",
+      "component_type": "WIFI",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 601,
+      "table_id": "PDF_P0601_1666C6E63A",
+      "product_title": "Compact Cassetta 60x60",
+      "family_key": "ARISTON_COMPACT_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CCA R32 025 U-I N",
+        "CCA R32 035 U-I N",
+        "CCA R32 050 U-I N"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CCA R32 025 U-I N",
+        "CCA R32 035 U-I N",
+        "CCA R32 050 U-I N"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 601,
+      "table_id": "PDF_P0601_22E43724F4",
+      "product_title": "Slim Cassetta 90x90",
+      "family_key": "ARISTON_SLIM_CASSETTA_90X90",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "SCA R32 070 U-I"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "SCA R32 070 U-I"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 601,
+      "table_id": "PDF_P0601_F3F3F110AE",
+      "product_title": "DUCT CANALIZZATA",
+      "family_key": "ARISTON_DUCT_CANALIZZATA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "DUC R32 025 U-I N",
+        "DUC R32 035 U-I N",
+        "DUC R32 050 U-I N",
+        "DUC R32 070 U-I N"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "DUC R32 025 U-I N",
+        "DUC R32 035 U-I N",
+        "DUC R32 050 U-I N",
+        "DUC R32 070 U-I N"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 603,
+      "table_id": "PDF_P0603_554B6E483F",
+      "product_title": "Compact Cassetta 60x60",
+      "family_key": "ARISTON_COMPACT_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CCA R32 035 U-I N",
+        "CCA R32 050 U-I N"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CCA R32 035 U-I N",
+        "CCA R32 050 U-I N"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 613,
+      "table_id": "PDF_P0613_02DDDBDE73",
+      "product_title": "CANALIZZATA DUCT",
+      "family_key": "IMMERGAS_CANALIZZATA_DUCT",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "DUCT 12",
+        "DUCT 18",
+        "DUCT 9"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "DUCT 12",
+        "DUCT 18",
+        "DUCT 9"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 613,
+      "table_id": "PDF_P0613_A117E2207F",
+      "product_title": "CASSETTA 60X60",
+      "family_key": "IMMERGAS_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CAS 12",
+        "CAS 18",
+        "CAS 9"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CAS 12",
+        "CAS 18",
+        "CAS 9"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 613,
+      "table_id": "PDF_P0613_A117E2207F",
+      "product_title": "CASSETTA 60X60",
+      "family_key": "IMMERGAS_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CAS 12",
+        "CAS 18",
+        "CAS 9"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CAS 12",
+        "CAS 18",
+        "CAS 9"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 613,
+      "table_id": "PDF_P0613_A117E2207F",
+      "product_title": "CASSETTA 60X60",
+      "family_key": "IMMERGAS_CASSETTA_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CAS 12",
+        "CAS 18",
+        "CAS 9"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CAS 12",
+        "CAS 18",
+        "CAS 9"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 616,
+      "table_id": "PDF_P0616_5D12FBD97B",
+      "product_title": "CANALIZZATO VIVAIR",
+      "family_key": "HSD_CANALIZZATO_VIVAIR",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "SDH1-035 MNDI"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "SDH1-035 MNDI"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 616,
+      "table_id": "PDF_P0616_E2CCFCBD62",
+      "product_title": "CASSETTA VIVAIR",
+      "family_key": "HSD_CASSETTA_VIVAIR",
+      "pt": "50322329",
+      "accessory_model": "SDH 1M",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "SDH1-035 MNKI",
+        "SDH1-050 MNKI"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "SDH1-035 MNKI",
+        "SDH1-050 MNKI"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 616,
+      "table_id": "PDF_P0616_E2CCFCBD62",
+      "product_title": "CASSETTA VIVAIR",
+      "family_key": "HSD_CASSETTA_VIVAIR",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "SDH1-035 MNKI",
+        "SDH1-050 MNKI"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "SDH1-035 MNKI",
+        "SDH1-050 MNKI"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 621,
+      "table_id": "PDF_P0621_34535A2826",
+      "product_title": "canalizzata MPG_DH",
+      "family_key": "AERMEC_CANALIZZATA_MPG_DH",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "MPG250DH",
+        "MPG350DH",
+        "MPG500DH",
+        "MPG700DH"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "MPG250DH",
+        "MPG350DH",
+        "MPG500DH",
+        "MPG700DH"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 621,
+      "table_id": "PDF_P0621_34535A2826",
+      "product_title": "canalizzata MPG_DH",
+      "family_key": "AERMEC_CANALIZZATA_MPG_DH",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "MPG250DH",
+        "MPG350DH",
+        "MPG500DH",
+        "MPG700DH"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "MPG250DH",
+        "MPG350DH",
+        "MPG500DH",
+        "MPG700DH"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 621,
+      "table_id": "PDF_P0621_71C5D3AF55",
+      "product_title": "canalizzata MPG_D",
+      "family_key": "AERMEC_CANALIZZATA_MPG_D",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "POMPA SCARICO CONDENSA",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "MPG250D",
+        "MPG350D",
+        "MPG500D",
+        "MPG700D"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "MPG250D",
+        "MPG350D",
+        "MPG500D",
+        "MPG700D"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 621,
+      "table_id": "PDF_P0621_71C5D3AF55",
+      "product_title": "canalizzata MPG_D",
+      "family_key": "AERMEC_CANALIZZATA_MPG_D",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "MPG250D",
+        "MPG350D",
+        "MPG500D",
+        "MPG700D"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "MPG250D",
+        "MPG350D",
+        "MPG500D",
+        "MPG700D"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 752,
+      "table_id": "PDF_P0752_BE38B41C38",
+      "product_title": "Canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99487195",
+      "accessory_model": "MRK-A10N",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AE022ANLDEH/EU",
+        "AE028ANLDEH/EU",
+        "AE036ANLDEH/EU",
+        "AE056ANLDEH/EU",
+        "AE071ANMPEH/EU",
+        "AE090ANMPEH/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AE022ANLDEH/EU",
+        "AE028ANLDEH/EU",
+        "AE036ANLDEH/EU",
+        "AE056ANLDEH/EU",
+        "AE071ANMPEH/EU",
+        "AE090ANMPEH/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 752,
+      "table_id": "PDF_P0752_BE38B41C38",
+      "product_title": "Canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99682125",
+      "accessory_model": "AR-EH03E",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AE022ANLDEH/EU",
+        "AE028ANLDEH/EU",
+        "AE036ANLDEH/EU",
+        "AE056ANLDEH/EU",
+        "AE071ANMPEH/EU",
+        "AE090ANMPEH/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AE022ANLDEH/EU",
+        "AE028ANLDEH/EU",
+        "AE036ANLDEH/EU",
+        "AE056ANLDEH/EU",
+        "AE071ANMPEH/EU",
+        "AE090ANMPEH/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    }
+  ],
+  "corrected_accessories_count": 43,
+  "corrected_accessories": [
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_7AED244EFE",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "PANASONIC_CASSETTA_60X60",
+      "pt": "50117277",
+      "accessory_model": "CZ-KPY4",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E",
+        "S-M20PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E",
+        "S-M20PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_7AED244EFE",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "PANASONIC_CASSETTA_60X60",
+      "pt": "50459834",
+      "accessory_model": "CZ-KPY4W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E",
+        "S-M20PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E",
+        "S-M20PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50117277",
+      "accessory_model": "CZ-KPY4",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50459834",
+      "accessory_model": "CZ-KPY4W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50117277",
+      "accessory_model": "CZ-KPY4",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50459834",
+      "accessory_model": "CZ-KPY4W",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50337309",
+      "accessory_model": "RBC-AMSU52-E",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384235",
+      "accessory_model": "RBC-ASCU32Y-E",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50211319",
+      "accessory_model": "RBC-UM21PG(W)-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384174",
+      "accessory_model": "RBC-UM21P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50221721",
+      "accessory_model": "RBC-AXU31UM-E",
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_771CFA1699",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384266",
+      "accessory_model": "RBC-AXU31UMP-E",
+      "component_type": "TELECOMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10U2MUVG-E",
+        "RAS-M13U2MUVG-E",
+        "RAS-M16U2MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_DA5C02614D",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384235",
+      "accessory_model": "RBC-ASCU32Y-E",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_DA5C02614D",
+      "product_title": "CASSETTA COMPATTA 60x60",
+      "family_key": "TOSHIBA_CASSETTA_COMPATTA_60X60",
+      "pt": "50384174",
+      "accessory_model": "RBC-UM21P-E",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RAS-M10S4MUVG-E",
+        "RAS-M13S4MUVG-E",
+        "RAS-M16S4MUVG-E"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_E238DE25EF",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50115952",
+      "accessory_model": "PE-QEA-LD",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_9926436D7A",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50115952",
+      "accessory_model": "PE-QEA-LD",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "ACT26UR4RCC8",
+        "ACT35UR4RCC8",
+        "ACT52UR4RCC8"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 563,
+      "table_id": "PDF_P0563_C17CE33993",
+      "product_title": "CASSETTA A 1 VIA",
+      "family_key": "HAIER_CASSETTA_A_1_VIA",
+      "pt": "50370139",
+      "accessory_model": "AB25S2SA1FA - AB35S2SA1FA",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)"
+      ],
+      "scope_type": "MODEL_SCOPED",
+      "before_scope_type": "TABLE_WIDE",
+      "before_applies_to_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "after_scope_type": "MODEL_SCOPED",
+      "after_applies_to_models": [
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)"
+      ],
+      "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+      "accessory_model_reference": [
+        "AB25S2SA1FA",
+        "AB35S2SA1FA"
+      ]
+    },
+    {
+      "page": 563,
+      "table_id": "PDF_P0563_C17CE33993",
+      "product_title": "CASSETTA A 1 VIA",
+      "family_key": "HAIER_CASSETTA_A_1_VIA",
+      "pt": "50370160",
+      "accessory_model": "AB50S2SA1FA - AB71S2SA1FA",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "scope_type": "MODEL_SCOPED",
+      "before_scope_type": "TABLE_WIDE",
+      "before_applies_to_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "after_scope_type": "MODEL_SCOPED",
+      "after_applies_to_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+      "accessory_model_reference": [
+        "AB50S2SA1FA",
+        "AB71S2SA1FA"
+      ]
+    },
+    {
+      "page": 567,
+      "table_id": "PDF_P0567_BDA221FF11",
+      "product_title": "CASSETTA A 1 VIA",
+      "family_key": "HAIER_CASSETTA_A_1_VIA",
+      "pt": "50370160",
+      "accessory_model": "AB50S2SA1FA - AB71S2SA1FA",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AB71S2SA1FA(H)"
+      ],
+      "scope_type": "MODEL_SCOPED",
+      "before_scope_type": "TABLE_WIDE",
+      "before_applies_to_models": [
+        "AB71S2SA1FA(H)"
+      ],
+      "after_scope_type": "MODEL_SCOPED",
+      "after_applies_to_models": [
+        "AB71S2SA1FA(H)"
+      ],
+      "scope_resolution_reason": "EXPLICIT_COMPATIBLE_MODEL_REFERENCE",
+      "accessory_model_reference": [
+        "AB50S2SA1FA",
+        "AB71S2SA1FA"
+      ]
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_043F13DA2D",
+      "product_title": "WINDFREE CASSETTA 4 VIE MINI",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_4_VIE_MINI",
+      "pt": "99786342",
+      "accessory_model": "PC4SUFMAN",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AJ016TNNDKG/EU",
+        "AJ020TNNDKG/EU",
+        "AJ026TNNDKG/EU",
+        "AJ035TNNDKG/EU",
+        "AJ052TNNDKG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ016TNNDKG/EU",
+        "AJ020TNNDKG/EU",
+        "AJ026TNNDKG/EU",
+        "AJ035TNNDKG/EU",
+        "AJ052TNNDKG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_730CEAE340",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99487195",
+      "accessory_model": "MRK-A10N",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_730CEAE340",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99682125",
+      "accessory_model": "AR-EH03E",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ052BNMDEG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_D70E04CCC0",
+      "product_title": "WINDFREE CASSETTA 1 VIA",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_1_VIA",
+      "pt": "99786427",
+      "accessory_model": "PC1NWFMAN",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AJ026TN1DKG/EU",
+        "AJ035TN1DKG/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AJ026TN1DKG/EU",
+        "AJ035TN1DKG/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 585,
+      "table_id": "PDF_P0585_585929F016",
+      "product_title": "canalizzata",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50008063",
+      "accessory_model": "PWLSSB21H",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 585,
+      "table_id": "PDF_P0585_585929F016",
+      "product_title": "canalizzata",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "99490270",
+      "accessory_model": "PREMTB001",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CL09F.N50",
+        "CL12F.N50",
+        "CL18F.N60",
+        "CL24F.N30"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_39A53AF522",
+      "product_title": "CASSETTA 84x84",
+      "family_key": "LG_CASSETTA_84X84",
+      "pt": "50008063",
+      "accessory_model": "PWLSSB21H",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_39A53AF522",
+      "product_title": "CASSETTA 84x84",
+      "family_key": "LG_CASSETTA_84X84",
+      "pt": "99490270",
+      "accessory_model": "PREMTB001",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_39A53AF522",
+      "product_title": "CASSETTA 84x84",
+      "family_key": "LG_CASSETTA_84X84",
+      "pt": "99796570",
+      "accessory_model": "PT-AAGW0",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT24F.NB0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_F3A866276B",
+      "product_title": "CASSETTA 57x57",
+      "family_key": "LG_CASSETTA_57X57",
+      "pt": "99799311",
+      "accessory_model": "PT-QAGW0",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_D1FC78C2A2",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "99799311",
+      "accessory_model": "PT-QAGW0",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_D8C351DD50",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "50008063",
+      "accessory_model": "PWLSSB21H",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_D8C351DD50",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "99490270",
+      "accessory_model": "PREMTB001",
+      "component_type": "COMANDO A FILO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_D8C351DD50",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "99799311",
+      "accessory_model": "PT-QAGW0",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "CT09F.NR0",
+        "CT12F.NR0",
+        "CT18F.NQ0"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_CD596AD0D5",
+      "product_title": "CANALIZZATA",
+      "family_key": "BAXI_CANALIZZATA",
+      "pt": "50374007",
+      "accessory_model": "KIT WI-FI",
+      "component_type": "WIFI",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "LSGND25-XM",
+        "LSGND35-XM",
+        "RZ2GND35",
+        "RZ2GND50"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "LSGND25-XM",
+        "LSGND35-XM",
+        "RZ2GND35",
+        "RZ2GND50"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_FD73F17948",
+      "product_title": "CASSETTA",
+      "family_key": "BAXI_CASSETTA",
+      "pt": "50320486",
+      "accessory_model": "TXW3AC",
+      "component_type": "COMANDO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_FD73F17948",
+      "product_title": "CASSETTA",
+      "family_key": "BAXI_CASSETTA",
+      "pt": "99804336",
+      "accessory_model": "PKR50",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_FD73F17948",
+      "product_title": "CASSETTA",
+      "family_key": "BAXI_CASSETTA",
+      "pt": "99804343",
+      "accessory_model": "PKR160",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 597,
+      "table_id": "PDF_P0597_FD73F17948",
+      "product_title": "CASSETTA",
+      "family_key": "BAXI_CASSETTA",
+      "pt": "50374007",
+      "accessory_model": "KIT WI-FI",
+      "component_type": "WIFI",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK25",
+        "RZ2GBK35",
+        "RZ2GBK50",
+        "RZ2GBK70"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 599,
+      "table_id": "PDF_P0599_447DCF346B",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "BAXI_CASSETTA_60X60",
+      "pt": "99804336",
+      "accessory_model": "PKR50",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 599,
+      "table_id": "PDF_P0599_447DCF346B",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "BAXI_CASSETTA_60X60",
+      "pt": "50374007",
+      "accessory_model": "KIT WI-FI",
+      "component_type": "WIFI",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "RZ2GBK35",
+        "RZ2GBK50"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 616,
+      "table_id": "PDF_P0616_E2CCFCBD62",
+      "product_title": "CASSETTA VIVAIR",
+      "family_key": "HSD_CASSETTA_VIVAIR",
+      "pt": "50322329",
+      "accessory_model": "SDH 1M",
+      "component_type": "GRIGLIA",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "SDH1-035 MNKI",
+        "SDH1-050 MNKI"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "SDH1-035 MNKI",
+        "SDH1-050 MNKI"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 752,
+      "table_id": "PDF_P0752_BE38B41C38",
+      "product_title": "Canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99487195",
+      "accessory_model": "MRK-A10N",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AE022ANLDEH/EU",
+        "AE028ANLDEH/EU",
+        "AE036ANLDEH/EU",
+        "AE056ANLDEH/EU",
+        "AE071ANMPEH/EU",
+        "AE090ANMPEH/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AE022ANLDEH/EU",
+        "AE028ANLDEH/EU",
+        "AE036ANLDEH/EU",
+        "AE056ANLDEH/EU",
+        "AE071ANMPEH/EU",
+        "AE090ANMPEH/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    },
+    {
+      "page": 752,
+      "table_id": "PDF_P0752_BE38B41C38",
+      "product_title": "Canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99682125",
+      "accessory_model": "AR-EH03E",
+      "component_type": "COMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [
+        "AE022ANLDEH/EU",
+        "AE028ANLDEH/EU",
+        "AE036ANLDEH/EU",
+        "AE056ANLDEH/EU",
+        "AE071ANMPEH/EU",
+        "AE090ANMPEH/EU"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "before_scope_type": "UNKNOWN",
+      "before_applies_to_models": [],
+      "after_scope_type": "TABLE_WIDE",
+      "after_applies_to_models": [
+        "AE022ANLDEH/EU",
+        "AE028ANLDEH/EU",
+        "AE036ANLDEH/EU",
+        "AE056ANLDEH/EU",
+        "AE071ANMPEH/EU",
+        "AE090ANMPEH/EU"
+      ],
+      "scope_resolution_reason": "PRODUCT_TABLE_ROLE_INFERENCE",
+      "accessory_model_reference": []
+    }
+  ],
+  "relations_eliminated_for_wrong_propagation_count": 1,
+  "relations_eliminated_for_wrong_propagation": [
+    {
+      "page": 567,
+      "table_id": "PDF_P0567_BDA221FF11",
+      "product_title": "CASSETTA A 1 VIA",
+      "family_key": "HAIER_CASSETTA_A_1_VIA",
+      "pt": "50370139",
+      "accessory_model": "AB25S2SA1FA - AB35S2SA1FA",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "CASSETTE_UI",
+      "applies_to_models": [
+        "AB71S2SA1FA(H)"
+      ],
+      "scope_type": "TABLE_WIDE",
+      "reason": "EXPLICIT_COMPATIBLE_MODELS_NOT_IN_PRODUCT_TABLE",
+      "accessory_model_reference": [
+        "AB25S2SA1FA",
+        "AB35S2SA1FA"
+      ],
+      "before_scope_type": "TABLE_WIDE",
+      "before_applies_to_models": [
+        "AB71S2SA1FA(H)"
+      ],
+      "match_method": "EXACT_NORMALIZED_MODEL_CODE"
+    }
+  ],
+  "deduplicated_after_scope_count": 0,
+  "unknown_relations_count": 132,
+  "unknown_relations": [
+    {
+      "page": 470,
+      "table_id": "PDF_P0470_754A09B748",
+      "product_title": "MXM-A9",
+      "family_key": "DAIKIN_MXM_A9",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMPATIBILITY_NOTE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 472,
+      "table_id": "PDF_P0472_C80AA0CE45",
+      "product_title": "PAVIMENTO FVXM-A9 PERFERA",
+      "family_key": "DAIKIN_PAVIMENTO_FVXM_A9_PERFERA",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMPATIBILITY_NOTE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 473,
+      "table_id": "PDF_P0473_84E198812D",
+      "product_title": "CASSETTA A 4 VIE FFA-A (9) 60x60",
+      "family_key": "DAIKIN_CASSETTA_A_4_VIE_FFA_A_9_60X60",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "COMPATIBILITY_NOTE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 495,
+      "table_id": "PDF_P0495_CAE6FA0FCA",
+      "product_title": "SMALL Y PUMY-SP",
+      "family_key": "MITSUBISHI_SMALL_Y_PUMY_SP",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "INSTALLATION_REQUIREMENT",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 510,
+      "table_id": "PDF_P0510_7A8D92D451",
+      "product_title": "BZ",
+      "family_key": "PANASONIC_BZ",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 510,
+      "table_id": "PDF_P0510_98C2965100",
+      "product_title": "BZ",
+      "family_key": "PANASONIC_BZ",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 511,
+      "table_id": "PDF_P0511_78F2413270",
+      "product_title": "canalizzata",
+      "family_key": "PANASONIC_CANALIZZATA",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 511,
+      "table_id": "PDF_P0511_B1CD50DA10",
+      "product_title": "canalizzata",
+      "family_key": "PANASONIC_CANALIZZATA",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_31D8BF830B",
+      "product_title": "canalizzata",
+      "family_key": "PANASONIC_CANALIZZATA",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_7AED244EFE",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "PANASONIC_CASSETTA_60X60",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 514,
+      "table_id": "PDF_P0514_AC476403A4",
+      "product_title": "canalizzata",
+      "family_key": "PANASONIC_CANALIZZATA",
+      "pt": "50473823",
+      "accessory_model": "ACXA88-00010",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 515,
+      "table_id": "PDF_P0515_149FCCB059",
+      "product_title": "PACI NX STANDARD SPLIT",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SPLIT",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 515,
+      "table_id": "PDF_P0515_149FCCB059",
+      "product_title": "PACI NX STANDARD SPLIT",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SPLIT",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 515,
+      "table_id": "PDF_P0515_30157670E1",
+      "product_title": "PACI NX STANDARD SPLIT",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SPLIT",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 515,
+      "table_id": "PDF_P0515_30157670E1",
+      "product_title": "PACI NX STANDARD SPLIT",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SPLIT",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_942184A6F9",
+      "product_title": "PACI NX STANDARD canalizzata",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CANALIZZATA",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_942184A6F9",
+      "product_title": "PACI NX STANDARD canalizzata",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CANALIZZATA",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 516,
+      "table_id": "PDF_P0516_BA2CE9E5D7",
+      "product_title": "PACI NX STANDARD CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_60X60",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_B29370AF86",
+      "product_title": "PACI NX STANDARD CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_90X90",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_B29370AF86",
+      "product_title": "PACI NX STANDARD CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_CASSETTA_90X90",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_EDC11E6CA1",
+      "product_title": "PACI NX STANDARD SOFFITTO",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SOFFITTO",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 517,
+      "table_id": "PDF_P0517_EDC11E6CA1",
+      "product_title": "PACI NX STANDARD SOFFITTO",
+      "family_key": "PANASONIC_PACI_NX_STANDARD_SOFFITTO",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 518,
+      "table_id": "PDF_P0518_A2F50FE25E",
+      "product_title": "PACI NX ELITE SPLIT",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SPLIT",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 518,
+      "table_id": "PDF_P0518_A2F50FE25E",
+      "product_title": "PACI NX ELITE SPLIT",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SPLIT",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 518,
+      "table_id": "PDF_P0518_E89B4627AF",
+      "product_title": "PACI NX ELITE SPLIT",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SPLIT",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 518,
+      "table_id": "PDF_P0518_E89B4627AF",
+      "product_title": "PACI NX ELITE SPLIT",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SPLIT",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_6EC79E154F",
+      "product_title": "PACI NX ELITE CASSETTA 60x60",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_60X60",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_E758109F64",
+      "product_title": "PACI NX ELITE canalizzata",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CANALIZZATA",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 519,
+      "table_id": "PDF_P0519_E758109F64",
+      "product_title": "PACI NX ELITE canalizzata",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CANALIZZATA",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_49B2C636EA",
+      "product_title": "PACI NX ELITE SOFFITTO",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SOFFITTO",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_49B2C636EA",
+      "product_title": "PACI NX ELITE SOFFITTO",
+      "family_key": "PANASONIC_PACI_NX_ELITE_SOFFITTO",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_84E9316DCC",
+      "product_title": "PACI NX ELITE CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_90X90",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 520,
+      "table_id": "PDF_P0520_84E9316DCC",
+      "product_title": "PACI NX ELITE CASSETTA 90x90",
+      "family_key": "PANASONIC_PACI_NX_ELITE_CASSETTA_90X90",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 521,
+      "table_id": "PDF_P0521_E8BB61181C",
+      "product_title": "BIG PACI canalizzata",
+      "family_key": "PANASONIC_BIG_PACI_CANALIZZATA",
+      "pt": "50072477",
+      "accessory_model": "CZ-CAPWFC1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 521,
+      "table_id": "PDF_P0521_E8BB61181C",
+      "product_title": "BIG PACI canalizzata",
+      "family_key": "PANASONIC_BIG_PACI_CANALIZZATA",
+      "pt": "50463022",
+      "accessory_model": "CZ-CAPWFC2",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 523,
+      "table_id": "PDF_P0523_76403E7A90",
+      "product_title": "SEIYA CLASSIC e2",
+      "family_key": "TOSHIBA_SEIYA_CLASSIC_E2",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 523,
+      "table_id": "PDF_P0523_FA12879F31",
+      "product_title": "SEIYA CLASSIC",
+      "family_key": "TOSHIBA_SEIYA_CLASSIC",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 524,
+      "table_id": "PDF_P0524_94BEBED70E",
+      "product_title": "HAORI BIANCO",
+      "family_key": "TOSHIBA_HAORI_BIANCO",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 524,
+      "table_id": "PDF_P0524_CACE274DF6",
+      "product_title": "CONSOLE",
+      "family_key": "TOSHIBA_CONSOLE",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 525,
+      "table_id": "PDF_P0525_4754305324",
+      "product_title": "SEIYA",
+      "family_key": "TOSHIBA_SEIYA",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 525,
+      "table_id": "PDF_P0525_B8B380DF88",
+      "product_title": "SEIYA CLASSIC",
+      "family_key": "TOSHIBA_SEIYA_CLASSIC",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 525,
+      "table_id": "PDF_P0525_F33670B18D",
+      "product_title": "HAORI",
+      "family_key": "TOSHIBA_HAORI",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 525,
+      "table_id": "PDF_P0525_F72C0CC00B",
+      "product_title": "SEIYA CLASSIC e2",
+      "family_key": "TOSHIBA_SEIYA_CLASSIC_E2",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 527,
+      "table_id": "PDF_P0527_06E0FF2E6F",
+      "product_title": "CONSOLE",
+      "family_key": "TOSHIBA_CONSOLE",
+      "pt": "50215416",
+      "accessory_model": "RB-N106S-G",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 539,
+      "table_id": "PDF_P0539_92D71AC8F0",
+      "product_title": "ELEGANCE",
+      "family_key": "MIDEA_ELEGANCE",
+      "pt": "50131907",
+      "accessory_model": "EU-SK105",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 540,
+      "table_id": "PDF_P0540_D85AD5489B",
+      "product_title": "XTREME PRO",
+      "family_key": "MIDEA_XTREME_PRO",
+      "pt": "50131907",
+      "accessory_model": "EU-SK105",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_06ED3A74E9",
+      "product_title": "canalizzata",
+      "family_key": "MIDEA_CANALIZZATA",
+      "pt": "50131860",
+      "accessory_model": "WF-60B1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_83C213914D",
+      "product_title": "CASSETTA 57x57",
+      "family_key": "MIDEA_CASSETTA_57X57",
+      "pt": "50131877",
+      "accessory_model": "WF-60C1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 541,
+      "table_id": "PDF_P0541_AFC4453B79",
+      "product_title": "CONSOLE",
+      "family_key": "MIDEA_CONSOLE",
+      "pt": "50131907",
+      "accessory_model": "EU-SK105",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 546,
+      "table_id": "PDF_P0546_D6C3DD71B4",
+      "product_title": "canalizzata",
+      "family_key": "MIDEA_CANALIZZATA",
+      "pt": "50131860",
+      "accessory_model": "WF-60B1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 546,
+      "table_id": "PDF_P0546_F141391039",
+      "product_title": "CASSETTA 57x57",
+      "family_key": "MIDEA_CASSETTA_57X57",
+      "pt": "50131877",
+      "accessory_model": "WF-60C1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 546,
+      "table_id": "PDF_P0546_F47902CBA1",
+      "product_title": "CASSETTA SUPER SLIM 90x90",
+      "family_key": "MIDEA_CASSETTA_SUPER_SLIM_90X90",
+      "pt": "50131877",
+      "accessory_model": "WF-60C1-C",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 547,
+      "table_id": "PDF_P0547_DA48CAF524",
+      "product_title": "CONSOLE",
+      "family_key": "MIDEA_CONSOLE",
+      "pt": "50131907",
+      "accessory_model": "EU-SK105",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_6EB9848011",
+      "product_title": "canalizzata",
+      "family_key": "HISENSE_CANALIZZATA",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_6EB9848011",
+      "product_title": "canalizzata",
+      "family_key": "HISENSE_CANALIZZATA",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_8126A12BD9",
+      "product_title": "CONSOLE",
+      "family_key": "HISENSE_CONSOLE",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_8126A12BD9",
+      "product_title": "CONSOLE",
+      "family_key": "HISENSE_CONSOLE",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_E238DE25EF",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 549,
+      "table_id": "PDF_P0549_E238DE25EF",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_181EB064D3",
+      "product_title": "CONSOLE",
+      "family_key": "HISENSE_CONSOLE",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_181EB064D3",
+      "product_title": "CONSOLE",
+      "family_key": "HISENSE_CONSOLE",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_2B6C7E7C76",
+      "product_title": "canalizzata",
+      "family_key": "HISENSE_CANALIZZATA",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_2B6C7E7C76",
+      "product_title": "canalizzata",
+      "family_key": "HISENSE_CANALIZZATA",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_9926436D7A",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_9926436D7A",
+      "product_title": "CASSETTA 60x60",
+      "family_key": "HISENSE_CASSETTA_60X60",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_D6588C56CD",
+      "product_title": "Cassetta round-flow 90x90",
+      "family_key": "HISENSE_CASSETTA_ROUND_FLOW_90X90",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 551,
+      "table_id": "PDF_P0551_D6588C56CD",
+      "product_title": "Cassetta round-flow 90x90",
+      "family_key": "HISENSE_CASSETTA_ROUND_FLOW_90X90",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 552,
+      "table_id": "PDF_P0552_2408D9953A",
+      "product_title": "COLONNA",
+      "family_key": "HISENSE_COLONNA",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 552,
+      "table_id": "PDF_P0552_2408D9953A",
+      "product_title": "COLONNA",
+      "family_key": "HISENSE_COLONNA",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 552,
+      "table_id": "PDF_P0552_56B269AE6D",
+      "product_title": "SOFFITTO-PAVIMENTO",
+      "family_key": "HISENSE_SOFFITTO_PAVIMENTO",
+      "pt": "50116041",
+      "accessory_model": "AEH-W4GX",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 552,
+      "table_id": "PDF_P0552_56B269AE6D",
+      "product_title": "SOFFITTO-PAVIMENTO",
+      "family_key": "HISENSE_SOFFITTO_PAVIMENTO",
+      "pt": "50458707",
+      "accessory_model": "AEH-W41H1",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_043F13DA2D",
+      "product_title": "WINDFREE CASSETTA 4 VIE MINI",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_4_VIE_MINI",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_730CEAE340",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_94AE4C4F8F",
+      "product_title": "CANALIZZATA",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 574,
+      "table_id": "PDF_P0574_D70E04CCC0",
+      "product_title": "WINDFREE CASSETTA 1 VIA",
+      "family_key": "SAMSUNG_WINDFREE_CASSETTA_1_VIA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 576,
+      "table_id": "PDF_P0576_0635AC787C",
+      "product_title": "canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 576,
+      "table_id": "PDF_P0576_C1BFAF1EB0",
+      "product_title": "Parete WindFree Deluxe",
+      "family_key": "SAMSUNG_PARETE_WINDFREE_DELUXE",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 576,
+      "table_id": "PDF_P0576_EEEAE8851D",
+      "product_title": "PARETE",
+      "family_key": "SAMSUNG_PARETE",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 577,
+      "table_id": "PDF_P0577_82424209D4",
+      "product_title": "MINI CASSETTA 4 VIE WINDFREE 60x60",
+      "family_key": "SAMSUNG_MINI_CASSETTA_4_VIE_WINDFREE_60X60",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 577,
+      "table_id": "PDF_P0577_D5FE025D9C",
+      "product_title": "canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 578,
+      "table_id": "PDF_P0578_1B9AD2914D",
+      "product_title": "CASSETTA 360°",
+      "family_key": "SAMSUNG_CASSETTA_360",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 578,
+      "table_id": "PDF_P0578_BB15676375",
+      "product_title": "CASSETTA A 4 VIE WINDFREE 90x90",
+      "family_key": "SAMSUNG_CASSETTA_A_4_VIE_WINDFREE_90X90",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 578,
+      "table_id": "PDF_P0578_BB15676375",
+      "product_title": "CASSETTA A 4 VIE WINDFREE 90x90",
+      "family_key": "SAMSUNG_CASSETTA_A_4_VIE_WINDFREE_90X90",
+      "pt": "99685041",
+      "accessory_model": "MCR-SMC",
+      "component_type": "SONDA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 579,
+      "table_id": "PDF_P0579_28C4A2E1B5",
+      "product_title": "PAVIMENTO CONSOLE",
+      "family_key": "SAMSUNG_PAVIMENTO_CONSOLE",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 579,
+      "table_id": "PDF_P0579_85DFD74D46",
+      "product_title": "CASSETTA 1 VIA SLIM",
+      "family_key": "SAMSUNG_CASSETTA_1_VIA_SLIM",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 579,
+      "table_id": "PDF_P0579_C064448591",
+      "product_title": "SOFFITTO",
+      "family_key": "SAMSUNG_SOFFITTO",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 579,
+      "table_id": "PDF_P0579_CB3FA7C421",
+      "product_title": "SOFFITTO/PAVIMENTO",
+      "family_key": "SAMSUNG_SOFFITTO_PAVIMENTO",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 580,
+      "table_id": "PDF_P0580_9551725241",
+      "product_title": "Colonna",
+      "family_key": "SAMSUNG_COLONNA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 580,
+      "table_id": "PDF_P0580_E80BED3C48",
+      "product_title": "canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 585,
+      "table_id": "PDF_P0585_585929F016",
+      "product_title": "canalizzata",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 585,
+      "table_id": "PDF_P0585_A1A019EAF0",
+      "product_title": "canalizzata",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_39A53AF522",
+      "product_title": "CASSETTA 84x84",
+      "family_key": "LG_CASSETTA_84X84",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_9660927CC8",
+      "product_title": "CONSOLE",
+      "family_key": "LG_CONSOLE",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 586,
+      "table_id": "PDF_P0586_F3A866276B",
+      "product_title": "CASSETTA 57x57",
+      "family_key": "LG_CASSETTA_57X57",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 587,
+      "table_id": "PDF_P0587_1980C4311A",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 587,
+      "table_id": "PDF_P0587_83BF5D487B",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 587,
+      "table_id": "PDF_P0587_83BF5D487B",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "99752071",
+      "accessory_model": "PQRSTA0",
+      "component_type": "SONDA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 587,
+      "table_id": "PDF_P0587_CA03965F25",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_1943A31A8D",
+      "product_title": "SOFFITTO",
+      "family_key": "LG_SOFFITTO",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_1943A31A8D",
+      "product_title": "SOFFITTO",
+      "family_key": "LG_SOFFITTO",
+      "pt": "99752071",
+      "accessory_model": "PQRSTA0",
+      "component_type": "SONDA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_8DAD06D630",
+      "product_title": "CASSETTA 4 VIE 84x84",
+      "family_key": "LG_CASSETTA_4_VIE_84X84",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 588,
+      "table_id": "PDF_P0588_D1FC78C2A2",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 589,
+      "table_id": "PDF_P0589_21711284B1",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 589,
+      "table_id": "PDF_P0589_CE032D98F9",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 589,
+      "table_id": "PDF_P0589_F39E556283",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_0A27ADC7E8",
+      "product_title": "SOFFITTO",
+      "family_key": "LG_SOFFITTO",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_0D34AB15C4",
+      "product_title": "CONSOLE",
+      "family_key": "LG_CONSOLE",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_4E2BEF13AD",
+      "product_title": "CASSETTA 4 VIE 84x84",
+      "family_key": "LG_CASSETTA_4_VIE_84X84",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 590,
+      "table_id": "PDF_P0590_D8C351DD50",
+      "product_title": "CASSETTA 4 VIE 57x57",
+      "family_key": "LG_CASSETTA_4_VIE_57X57",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 591,
+      "table_id": "PDF_P0591_306F232771",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 591,
+      "table_id": "PDF_P0591_306F232771",
+      "product_title": "CANALIZZATA",
+      "family_key": "LG_CANALIZZATA",
+      "pt": "99752071",
+      "accessory_model": "PQRSTA0",
+      "component_type": "SONDA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 591,
+      "table_id": "PDF_P0591_90B62B6245",
+      "product_title": "ROUND CASSETTE STANDARD",
+      "family_key": "LG_ROUND_CASSETTE_STANDARD",
+      "pt": "50426461",
+      "accessory_model": "PWFMDD202",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 595,
+      "table_id": "PDF_P0595_CA6F4BA9BD",
+      "product_title": "GIADA-C PAVIMENTO E SOFFITTO",
+      "family_key": "FERROLI_GIADA_C_PAVIMENTO_E_SOFFITTO",
+      "pt": "50371013",
+      "accessory_model": "2CP005C0",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 613,
+      "table_id": "PDF_P0613_02DDDBDE73",
+      "product_title": "CANALIZZATA DUCT",
+      "family_key": "IMMERGAS_CANALIZZATA_DUCT",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_36DE3D3E3E",
+      "product_title": "2.0 - 12 HP DC",
+      "family_key": "INNOVA_2_0_12_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_43F8B1FFA5",
+      "product_title": "2.0 - MAXI 15 HP DC",
+      "family_key": "INNOVA_2_0_MAXI_15_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_52226E50CF",
+      "product_title": "2.0 - MINI 09 HP DC",
+      "family_key": "INNOVA_2_0_MINI_09_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_9FF198657C",
+      "product_title": "2.0 ELEC 2 KW - 15 HP DC",
+      "family_key": "INNOVA_2_0_ELEC_2_KW_15_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "FEATURE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_9FF198657C",
+      "product_title": "2.0 ELEC 2 KW - 15 HP DC",
+      "family_key": "INNOVA_2_0_ELEC_2_KW_15_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_A64A0C0D07",
+      "product_title": "2.0 CEILING - 12 HP",
+      "family_key": "INNOVA_2_0_CEILING_12_HP",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_B4D14241FF",
+      "product_title": "2.0 VERTICALE 12 HP",
+      "family_key": "INNOVA_2_0_VERTICALE_12_HP",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_BAC00EB6DD",
+      "product_title": "2.0 - 10 HP DC",
+      "family_key": "INNOVA_2_0_10_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_C7F7802792",
+      "product_title": "2.0 ELEC 2 KW - 12 HP DC",
+      "family_key": "INNOVA_2_0_ELEC_2_KW_12_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "FEATURE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_C7F7802792",
+      "product_title": "2.0 ELEC 2 KW - 12 HP DC",
+      "family_key": "INNOVA_2_0_ELEC_2_KW_12_HP_DC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_F1F177AC8A",
+      "product_title": "2.0 VERTICALE 15 HP",
+      "family_key": "INNOVA_2_0_VERTICALE_15_HP",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_FEBB0D0A75",
+      "product_title": "2.0 CEILING - 12 HP ELEC",
+      "family_key": "INNOVA_2_0_CEILING_12_HP_ELEC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "FEATURE",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 624,
+      "table_id": "PDF_P0624_FEBB0D0A75",
+      "product_title": "2.0 CEILING - 12 HP ELEC",
+      "family_key": "INNOVA_2_0_CEILING_12_HP_ELEC",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "TELECOMANDO",
+      "attachment_target": "UI",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 626,
+      "table_id": "PDF_P0626_4CC6B1CA63",
+      "product_title": "UNICO TWIN WALL S1 ON/OFF",
+      "family_key": "OLIMPIA_UNICO_TWIN_WALL_S1_ON_OFF",
+      "pt": null,
+      "accessory_model": null,
+      "component_type": "MACCHINA",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 751,
+      "table_id": "PDF_P0751_B2D3DF7100",
+      "product_title": "PARETE WINDFREE DELUXE",
+      "family_key": "SAMSUNG_PARETE_WINDFREE_DELUXE",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    },
+    {
+      "page": 752,
+      "table_id": "PDF_P0752_BE38B41C38",
+      "product_title": "Canalizzata",
+      "family_key": "SAMSUNG_CANALIZZATA",
+      "pt": "99788322",
+      "accessory_model": "MIM-H04EN",
+      "component_type": "ACCESSORIO",
+      "attachment_target": "UNKNOWN",
+      "applies_to_models": [],
+      "scope_type": "UNKNOWN",
+      "scope_resolution_reason": "UNKNOWN_REJECTED"
+    }
+  ],
+  "regression_results": {
+    "01_haier_50370139_only_ab25_ab35": {
+      "actual_models": [
+        "U.I. AB25S2SA1FA(H)",
+        "U.I. AB35S2SA1FA(H)"
+      ],
+      "expected_signatures": [
+        "AB25S2SA1FA",
+        "AB35S2SA1FA"
+      ],
+      "PASS": true
+    },
+    "02_haier_50370160_only_ab50_ab71": {
+      "actual_models": [
+        "AB71S2SA1FA(H)",
+        "U.I. AB50S2SA1FA(H)"
+      ],
+      "expected_signatures": [
+        "AB50S2SA1FA",
+        "AB71S2SA1FA"
+      ],
+      "PASS": true
+    },
+    "03_page_567_haier_row_resolution": {
+      "pt_50370139_records": [],
+      "pt_50370160_records": [
+        {
+          "page": 567,
+          "table_id": "PDF_P0567_BDA221FF11",
+          "product_title": "CASSETTA A 1 VIA",
+          "family_key": "HAIER_CASSETTA_A_1_VIA",
+          "pt": "50370160",
+          "accessory_model": "AB50S2SA1FA - AB71S2SA1FA",
+          "component_type": "ACCESSORIO",
+          "attachment_target": "CASSETTE_UI",
+          "applies_to_models": [
+            "AB71S2SA1FA(H)"
+          ],
+          "scope_type": "MODEL_SCOPED"
+        }
+      ],
+      "PASS": true
+    },
+    "04_cz_kpy4_panasonic_cassette_only": {
+      "record_count": 3,
+      "bad_contexts": [],
+      "standard_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "elite_models": [
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E"
+      ],
+      "generic_models": [
+        "S-25PY3E",
+        "S-36PY3E",
+        "S-50PY3E",
+        "S-60PY3E",
+        "S-M20PY3E"
+      ],
+      "PASS": true
+    },
+    "05_explicit_model_reference_never_table_wide": {
+      "checked_records": 3,
+      "violations": [],
+      "PASS": true
+    },
+    "06_no_similarity_matching_for_model_references": {
+      "match_method": "EXACT_NORMALIZED_MODEL_CODE",
+      "violations": [],
+      "PASS": true
+    },
+    "07_layout_ground_truth_present": {
+      "page_563_has_haier_rows": true,
+      "page_567_has_ab71_and_both_accessory_rows": true,
+      "panasonic_pages_have_explicit_grid_section": true,
+      "PASS": true
+    },
+    "08_v3_2_regressions_preserved": {
+      "prior_failures": [],
+      "PASS": true
+    },
+    "09_no_ui_ue_scope_regression": {
+      "ui_target_with_ue": 0,
+      "cassette_ui_target_with_ue": 0,
+      "ue_target_with_ui": 0,
+      "PASS": true
+    }
+  },
+  "production_ready_conditions": {
+    "v3_2_was_production_ready": true,
+    "only_air_air_climate_domain": true,
+    "zero_ui_target_with_ue": true,
+    "zero_cassette_ui_target_with_ue": true,
+    "zero_ue_target_with_ui": true,
+    "all_v3_3_regressions_pass": true
+  },
+  "production_ready": true,
+  "elapsed_seconds": 1.14
+}
