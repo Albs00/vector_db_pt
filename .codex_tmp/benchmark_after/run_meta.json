@@ -1,0 +1,15 @@
+{
+  "started_at": "2026-09-11T13:13:52.680797+00:00",
+  "shard_count": 4,
+  "input_assertions": {
+    "rows_after_expected": 4453,
+    "unique_row_ids": 4453,
+    "row_id_sequence_equal": true,
+    "titles_equal": true,
+    "original_reference_fields_equal": true,
+    "original_columns_present": true,
+    "clima_master_runtime_enabled": true,
+    "frozen_sha256": "5dc37e253b7382df289ea1013f656ea2c5cac359fea311414a4925f0679eacda",
+    "before_sha256": "2f93bc4f333059a3a1100c0c943e1d41934eb6d911cd35fa00a533cbab4cf10b"
+  }
+}

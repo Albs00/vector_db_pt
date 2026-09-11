@@ -1,0 +1,1282 @@
+{
+  "schema_version": "1.0.0",
+  "titolo": "Specifica Completa di Mapping Taglia-UI Multisplit Puglia Termica 2026",
+  "descrizione": "Mapping formale tra gli indici di taglia numerici (7, 9, 12, 18, 24) delle 688 sequenze già estratte da catalogo e i codici PT univoci delle unità interne documentate. Pronto per iniettare 'ui_by_capacity' nelle configuration_rules del master multisplit e promuovere le regole a CONFIRMED.",
+  "policy": "FAIL_CLOSED_DOCUMENTED_ONLY",
+  "riepilogo_operativo": {
+    "sequenze_taglie_pronte": 688,
+    "ue_interessate": 20,
+    "ui_mappate": {
+      "BAXI": 16,
+      "BOSCH": 40,
+      "MIDEA": 32
+    },
+    "totale_ui_mappate": 88,
+    "righe_benchmark_sbloccabili": 1320
+  },
+  "brands": {
+    "BAXI": {
+      "fonte_catalogo": {
+        "anagrafica_ui_pagina": 571,
+        "tabella_combinazioni_pagina": 572
+      },
+      "regola_tipologie": "Ammesse tutte le tipologie documentate a pag. 571: parete Moonlight (JSGNW), console (RZGNP), cassetta (RZ2GBK), canalizzato (RZ2GND, LSGND-XM).",
+      "anomalia_isolata": "Cella penta malformata '7+7--7' isolata formalmente; le restanti 170 sequenze sono valide al 100%.",
+      "sistemi_ue": [
+        {
+          "ue_pt": "99725303",
+          "family": "MULTI",
+          "ports": 2,
+          "rules_count": 1,
+          "allowed_multisets_count": 6,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0049",
+            "U0050"
+          ]
+        },
+        {
+          "ue_pt": "50124121",
+          "family": "MULTI",
+          "ports": 2,
+          "rules_count": 1,
+          "allowed_multisets_count": 8,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0051",
+            "U0052"
+          ]
+        },
+        {
+          "ue_pt": "99725310",
+          "family": "MULTI",
+          "ports": 3,
+          "rules_count": 1,
+          "allowed_multisets_count": 14,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0053",
+            "U0054"
+          ]
+        },
+        {
+          "ue_pt": "99652425",
+          "family": "MULTI",
+          "ports": 3,
+          "rules_count": 1,
+          "allowed_multisets_count": 20,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0055",
+            "U0056"
+          ]
+        },
+        {
+          "ue_pt": "99725334",
+          "family": "MULTI",
+          "ports": 4,
+          "rules_count": 1,
+          "allowed_multisets_count": 47,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0057",
+            "U0058"
+          ]
+        },
+        {
+          "ue_pt": "99725327",
+          "family": "MULTI",
+          "ports": 5,
+          "rules_count": 1,
+          "allowed_multisets_count": 75,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0059",
+            "U0060"
+          ]
+        }
+      ],
+      "ui_by_capacity": {
+        "7": [
+          "50124138"
+        ],
+        "9": [
+          "50124329",
+          "50225613",
+          "50225637",
+          "50225644"
+        ],
+        "12": [
+          "50373963",
+          "50225262",
+          "50225316",
+          "50225477",
+          "50225651"
+        ],
+        "18": [
+          "50124336",
+          "50225293",
+          "50225323",
+          "50225507"
+        ],
+        "24": [
+          "50373970",
+          "50225347"
+        ]
+      },
+      "ui_products": [
+        {
+          "pt": "50124138",
+          "model": "JSGNW20",
+          "type": "WALL",
+          "capacity_index": 7,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50124329",
+          "model": "JSGNW25",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50124336",
+          "model": "JSGNW50",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50373963",
+          "model": "JSGNW35",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50373970",
+          "model": "JSGNW70",
+          "type": "WALL",
+          "capacity_index": 24,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225477",
+          "model": "RZ2GND35",
+          "type": "DUCTED",
+          "capacity_index": 12,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225507",
+          "model": "RZ2GND50",
+          "type": "DUCTED",
+          "capacity_index": 18,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225644",
+          "model": "LSGND25-XM",
+          "type": "DUCTED",
+          "capacity_index": 9,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225651",
+          "model": "LSGND35-XM",
+          "type": "DUCTED",
+          "capacity_index": 12,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225262",
+          "model": "RZGNP35",
+          "type": "FLOOR",
+          "capacity_index": 12,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225293",
+          "model": "RZGNP50",
+          "type": "FLOOR",
+          "capacity_index": 18,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225613",
+          "model": "RZGNP25",
+          "type": "FLOOR",
+          "capacity_index": 9,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225316",
+          "model": "RZ2GBK35",
+          "type": "CASSETTE",
+          "capacity_index": 12,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225323",
+          "model": "RZ2GBK50",
+          "type": "CASSETTE",
+          "capacity_index": 18,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225347",
+          "model": "RZ2GBK70",
+          "type": "CASSETTE",
+          "capacity_index": 24,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        },
+        {
+          "pt": "50225637",
+          "model": "RZ2GBK25",
+          "type": "CASSETTE",
+          "capacity_index": 9,
+          "source_page": 571,
+          "notes": "Serie Moonlight Multisplit documentata a pag. 571"
+        }
+      ]
+    },
+    "BOSCH": {
+      "fonte_catalogo": {
+        "anagrafica_ui_pagina": 585,
+        "tabella_combinazioni_pagina": 586
+      },
+      "regola_tipologie": "Ammesse le serie multisplit documentate a pag. 585: Climate 3000i, 3200i, 4000i, 6000i, 7000i, cassette 4CC/4C, canalizzati D, console CN.",
+      "sistemi_ue": [
+        {
+          "ue_pt": "50250516",
+          "family": "MULTI CLIMATE 5000 M",
+          "ports": 4,
+          "rules_count": 1,
+          "allowed_multisets_count": 54,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0061",
+            "U0062"
+          ]
+        },
+        {
+          "ue_pt": "50252374",
+          "family": "MULTI CLIMATE 5000 M",
+          "ports": 5,
+          "rules_count": 1,
+          "allowed_multisets_count": 107,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0063",
+            "U0064"
+          ]
+        },
+        {
+          "ue_pt": "50195626",
+          "family": "MULTI CLIMATE 5000 M",
+          "ports": 2,
+          "rules_count": 1,
+          "allowed_multisets_count": 5,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0065",
+            "U0066"
+          ]
+        },
+        {
+          "ue_pt": "50195633",
+          "family": "MULTI CLIMATE 5000 M",
+          "ports": 2,
+          "rules_count": 1,
+          "allowed_multisets_count": 10,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0067",
+            "U0068"
+          ]
+        },
+        {
+          "ue_pt": "50195640",
+          "family": "MULTI CLIMATE 5000 M",
+          "ports": 3,
+          "rules_count": 1,
+          "allowed_multisets_count": 14,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0069",
+            "U0070"
+          ]
+        },
+        {
+          "ue_pt": "50252343",
+          "family": "MULTI CLIMATE 5000 M",
+          "ports": 3,
+          "rules_count": 1,
+          "allowed_multisets_count": 21,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0071",
+            "U0072"
+          ]
+        },
+        {
+          "ue_pt": "50195657",
+          "family": "MULTI CLIMATE 5000 M",
+          "ports": 4,
+          "rules_count": 1,
+          "allowed_multisets_count": 34,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0073",
+            "U0074"
+          ]
+        }
+      ],
+      "ui_by_capacity": {
+        "7": [
+          "50416219",
+          "50276394",
+          "50276547",
+          "50276684",
+          "50252718",
+          "50252770"
+        ],
+        "9": [
+          "50009381",
+          "50418718",
+          "50279784",
+          "50113040",
+          "50276462",
+          "50276561",
+          "50276707",
+          "50252725",
+          "50252787",
+          "50252817"
+        ],
+        "12": [
+          "50418725",
+          "50279807",
+          "50113064",
+          "50276486",
+          "50276615",
+          "50276714",
+          "50252732",
+          "50252794",
+          "50252824"
+        ],
+        "18": [
+          "50381531",
+          "50113071",
+          "50276523",
+          "50276653",
+          "50276851",
+          "50252749",
+          "50252800",
+          "50252831"
+        ],
+        "24": [
+          "50009442",
+          "50113088",
+          "50244645",
+          "50252756"
+        ]
+      },
+      "ui_products": [
+        {
+          "pt": "50009381",
+          "model": "CLIMATE 3000i 26WE",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50009442",
+          "model": "CLIMATE 3000i 70WE",
+          "type": "WALL",
+          "capacity_index": 24,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50416219",
+          "model": "CLIMATE 3200i 20 WE",
+          "type": "WALL",
+          "capacity_index": 7,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50418718",
+          "model": "CLIMATE 3200i 26 WE",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50418725",
+          "model": "CLIMATE 3200i 35 WE",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50279784",
+          "model": "CLIMATE 4000i 26WE",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50279807",
+          "model": "CLIMATE 4000i 35WE",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50381531",
+          "model": "CLIMATE 4000i 52E",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50113040",
+          "model": "CLIMATE 6000i 26WE",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50113064",
+          "model": "CLIMATE 6000i 35WE",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50113071",
+          "model": "CLIMATE 6000i 53WE",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50113088",
+          "model": "CLIMATE 6000i 70WE",
+          "type": "WALL",
+          "capacity_index": 24,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276394",
+          "model": "CL7000iU W 20 E",
+          "type": "WALL",
+          "capacity_index": 7,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276462",
+          "model": "CL7000iU W 26 E",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276486",
+          "model": "CL7000iU W 35 E",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276509",
+          "model": "CL7000iU W 41 E",
+          "type": "WALL",
+          "capacity_index": null,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276523",
+          "model": "CL7000iU W 53 E",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276547",
+          "model": "CL7000iU W 20 ES",
+          "type": "WALL",
+          "capacity_index": 7,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276561",
+          "model": "CL7000iU W 26 ES",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276615",
+          "model": "CL7000iU W 35 ES",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276639",
+          "model": "CL7000iU W 41 ES",
+          "type": "WALL",
+          "capacity_index": null,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276653",
+          "model": "CL7000iU W 53 ES",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276684",
+          "model": "CL7000iU W 20 EB",
+          "type": "WALL",
+          "capacity_index": 7,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276707",
+          "model": "CL7000iU W 26 EB",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276714",
+          "model": "CL7000iU W 35 EB",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276820",
+          "model": "CL7000iU W 41 EB",
+          "type": "WALL",
+          "capacity_index": null,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50276851",
+          "model": "CL7000iU W 53 EB",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50244645",
+          "model": "CL5000iU D 70 E",
+          "type": "DUCTED",
+          "capacity_index": 24,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252770",
+          "model": "CL5000iM D 21 E",
+          "type": "DUCTED",
+          "capacity_index": 7,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252787",
+          "model": "CL5000iM D 26 E",
+          "type": "DUCTED",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252794",
+          "model": "CL5000iU D 35 E",
+          "type": "DUCTED",
+          "capacity_index": 12,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252800",
+          "model": "CL5000iU D 53 E",
+          "type": "DUCTED",
+          "capacity_index": 18,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252718",
+          "model": "CL5000iM 4CC 21 E",
+          "type": "CASSETTE",
+          "capacity_index": 7,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252725",
+          "model": "CL5000iM 4CC 26 E",
+          "type": "CASSETTE",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252732",
+          "model": "CL5000iU 4CC 35 E",
+          "type": "CASSETTE",
+          "capacity_index": 12,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252749",
+          "model": "CL5000iU 4CC 53 E",
+          "type": "CASSETTE",
+          "capacity_index": 18,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252756",
+          "model": "CL5000iU 4C 70 E",
+          "type": "CASSETTE",
+          "capacity_index": 24,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252817",
+          "model": "CL5000iM CN 26E",
+          "type": "FLOOR",
+          "capacity_index": 9,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252824",
+          "model": "CL5000iU CN 35E",
+          "type": "FLOOR",
+          "capacity_index": 12,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        },
+        {
+          "pt": "50252831",
+          "model": "CL5000iU CN 50E",
+          "type": "FLOOR",
+          "capacity_index": 18,
+          "source_page": 585,
+          "notes": "Gamma Multisplit Climate (3000i, 3200i, 4000i, 5000i, 6000i, 7000i) documentata a pag. 585"
+        }
+      ]
+    },
+    "MIDEA": {
+      "fonte_catalogo": {
+        "anagrafica_ui_pagine": [
+          514,
+          515
+        ],
+        "tabella_combinazioni_pagine": [
+          516,
+          517,
+          518,
+          519
+        ]
+      },
+      "regola_tipologie": "Ammesse le serie multisplit documentate alle pagg. 514-515: parete BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette MCA4U, console MFA2U, canalizzati MTJ/MTIU, soffitto MUEU2.",
+      "sistemi_ue": [
+        {
+          "ue_pt": "50131136",
+          "family": "UNITA' ESTERNA MULTI",
+          "ports": 2,
+          "rules_count": 1,
+          "allowed_multisets_count": 8,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0135",
+            "U0136"
+          ]
+        },
+        {
+          "ue_pt": "50131129",
+          "family": "UNITA' ESTERNA MULTI",
+          "ports": 2,
+          "rules_count": 1,
+          "allowed_multisets_count": 5,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0137",
+            "U0138"
+          ]
+        },
+        {
+          "ue_pt": "50131150",
+          "family": "UNITA' ESTERNA MULTI",
+          "ports": 3,
+          "rules_count": 1,
+          "allowed_multisets_count": 21,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0139",
+            "U0140"
+          ]
+        },
+        {
+          "ue_pt": "50131143",
+          "family": "UNITA' ESTERNA MULTI",
+          "ports": 3,
+          "rules_count": 1,
+          "allowed_multisets_count": 15,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0141",
+            "U0142"
+          ]
+        },
+        {
+          "ue_pt": "99649173",
+          "family": "UNITA' ESTERNA MULTI",
+          "ports": 4,
+          "rules_count": 1,
+          "allowed_multisets_count": 67,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0143",
+            "U0144"
+          ]
+        },
+        {
+          "ue_pt": "99717094",
+          "family": "UNITA' ESTERNA MULTI",
+          "ports": 4,
+          "rules_count": 1,
+          "allowed_multisets_count": 37,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0145",
+            "U0146"
+          ]
+        },
+        {
+          "ue_pt": "50131174",
+          "family": "UNITA' ESTERNA MULTI",
+          "ports": 5,
+          "rules_count": 1,
+          "allowed_multisets_count": 120,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0147",
+            "U0148"
+          ]
+        }
+      ],
+      "ui_by_capacity": {
+        "7": [
+          "50227556"
+        ],
+        "9": [
+          "50467532",
+          "50129683",
+          "99793098",
+          "50128662",
+          "50227518",
+          "50158188",
+          "50376698",
+          "50377985",
+          "50227549"
+        ],
+        "12": [
+          "50467563",
+          "50129751",
+          "50129577",
+          "99793104",
+          "50129492",
+          "50227525",
+          "50157068",
+          "50377954",
+          "50377947",
+          "50223671"
+        ],
+        "18": [
+          "50467587",
+          "50129768",
+          "99793128",
+          "50129515",
+          "50474202",
+          "50359745",
+          "50377923",
+          "50223688",
+          "50377930"
+        ],
+        "24": [
+          "50129812",
+          "99793135",
+          "50129553"
+        ]
+      },
+      "ui_products": [
+        {
+          "pt": "50467532",
+          "model": "MSGPAU-09HRFN8-QRD1GW",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50467563",
+          "model": "MSGPBU-12HRFN8-QRD1GW",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50467587",
+          "model": "MSGPCU-18HRFN8-QRD1GW",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50129683",
+          "model": "MSAGXAU-09HRDN8",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50129751",
+          "model": "MSAGXBU-12HRDN8",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50129768",
+          "model": "MSAGXCU-18HRFN8",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50129812",
+          "model": "MSAGXDU-24HRFN8",
+          "type": "WALL",
+          "capacity_index": 24,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50129577",
+          "model": "MSAGBU-12HRFN8/WR",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "99793098",
+          "model": "MSAGBU-09HRFN8",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "99793104",
+          "model": "MSAGBU-12HRFN8",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "99793128",
+          "model": "MSAGCU-18HRFN8",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "99793135",
+          "model": "MSAGDU-24HRFN8",
+          "type": "WALL",
+          "capacity_index": 24,
+          "source_page": 514,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50128662",
+          "model": "MSAGBU-09HRFN8/GR",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50129492",
+          "model": "MSAGBU-12HRFN8/GR",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50129515",
+          "model": "MSAGCU-18HRFN8/GR",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50129553",
+          "model": "MSAGDU-24HRFN8/GR",
+          "type": "WALL",
+          "capacity_index": 24,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50227518",
+          "model": "MSCB1BU-09HRFN8",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50227525",
+          "model": "MSCB1BU-12HRFN8",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50474202",
+          "model": "CB1-18HRFN8-I",
+          "type": "WALL",
+          "capacity_index": 18,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50157068",
+          "model": "MSFAAU-12HRFN8B",
+          "type": "WALL",
+          "capacity_index": 12,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50158188",
+          "model": "MSFAAU-09HRFN8B",
+          "type": "WALL",
+          "capacity_index": 9,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50227556",
+          "model": "MTIU-07HWFNX(GA)",
+          "type": "DUCTED",
+          "capacity_index": 7,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50359745",
+          "model": "MTJ-18HWFNX(GA)",
+          "type": "DUCTED",
+          "capacity_index": 18,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50376698",
+          "model": "MTJ-09HWFNX(GA)",
+          "type": "DUCTED",
+          "capacity_index": 9,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50377954",
+          "model": "MTJ-12HWFNX(GA)",
+          "type": "DUCTED",
+          "capacity_index": 12,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50377923",
+          "model": "MCA4U-18HRFNX(GA)",
+          "type": "CASSETTE",
+          "capacity_index": 18,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50377947",
+          "model": "MCA4U-12HRFNX(GA)",
+          "type": "CASSETTE",
+          "capacity_index": 12,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50377985",
+          "model": "MCA4U-09HRFNX(GA)",
+          "type": "CASSETTE",
+          "capacity_index": 9,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50223671",
+          "model": "MFA2U-12HRFNX(GA)",
+          "type": "FLOOR",
+          "capacity_index": 12,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50223688",
+          "model": "MFA2U-17HRFNX(GA)",
+          "type": "FLOOR",
+          "capacity_index": 18,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50227549",
+          "model": "MFA2U-09HRFNX(GA)",
+          "type": "FLOOR",
+          "capacity_index": 9,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        },
+        {
+          "pt": "50377930",
+          "model": "MUEU2-18HRFNX(GA)",
+          "type": "CEILING_FLOOR",
+          "capacity_index": 18,
+          "source_page": 515,
+          "notes": "Gamma Multisplit Midea (BreezeleSS+, All Easy Pro, Xtreme Pro, Gaia, cassette, console, canalizzati) documentata a pagg. 514-515"
+        }
+      ]
+    },
+    "LG": {
+      "fonte_catalogo": {
+        "anagrafica_ui_pagina": 558,
+        "tabella_combinazioni_pagina": 560
+      },
+      "stato": "NOMINAL_AND_MIN_MAX_TABLES_PRESENT_REVISION_SEPARATION_REQUIRED",
+      "nota": "Nel PDF a pag. 560 sono presenti tabelle nominali e tavole min/max. Richiede la separazione rigorosa per revisione (es. U23 PT 50287659 vs U24A0 PT 50459148).",
+      "sistemi_ue": [
+        {
+          "ue_pt": "50287680",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 2,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0122"
+          ]
+        },
+        {
+          "ue_pt": "50459124",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 2,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0123"
+          ]
+        },
+        {
+          "ue_pt": "50287727",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 2,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0124"
+          ]
+        },
+        {
+          "ue_pt": "50459131",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 2,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0125"
+          ]
+        },
+        {
+          "ue_pt": "50287659",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 3,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0126"
+          ]
+        },
+        {
+          "ue_pt": "50459148",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 3,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0127"
+          ]
+        },
+        {
+          "ue_pt": "50287673",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 3,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0128"
+          ]
+        },
+        {
+          "ue_pt": "50459155",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 3,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0129"
+          ]
+        },
+        {
+          "ue_pt": "50188826",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 4,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0130"
+          ]
+        },
+        {
+          "ue_pt": "50459162",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 4,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0131"
+          ]
+        },
+        {
+          "ue_pt": "50459179",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 4,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0132"
+          ]
+        },
+        {
+          "ue_pt": "50459209",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 5,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0133"
+          ]
+        },
+        {
+          "ue_pt": "50459216",
+          "family": "UNITÀ ESTERNA MULTI",
+          "ports": 5,
+          "rules_count": 0,
+          "allowed_multisets_count": 0,
+          "current_status": "NOT_CONFIRMED",
+          "unresolved_refs": [
+            "U0134"
+          ]
+        }
+      ]
+    }
+  },
+  "template_aggiornamento_master": {
+    "istruzione_ai": "Per ciascun sistema UE dei marchi BAXI, BOSCH e MIDEA, valorizzare il dizionario 'ui_by_capacity' con il rispettivo mapping 'ui_by_capacity', impostare 'status': 'CONFIRMED' sulla regola e su allowed_ui inserire l'unione dei PT con provenance 'PDF_CONFIRMED'."
+  }
+}

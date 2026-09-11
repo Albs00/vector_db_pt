@@ -1,0 +1,40 @@
+{
+  "phase": "BEFORE",
+  "captured_runtime": "LEGACY_CURRENT_RUNTIME",
+  "git_commit": "1a2cd79495c177e7951faeebb3bb2c095cad2760",
+  "git_dirty": true,
+  "workspace_freeze": "reports/clima_ab/workspace_freeze.json",
+  "excel_path": "audit_da_compilare_MPN.xlsx",
+  "excel_sha256": "644507728147160950f8a1aec6e93b06b9a5d2125198e7b80db02f20d0b8c55b",
+  "benchmark_input_frozen": "reports/clima_ab/benchmark_input_frozen.jsonl",
+  "benchmark_input_frozen_sha256": "5dc37e253b7382df289ea1013f656ea2c5cac359fea311414a4925f0679eacda",
+  "before": "reports/clima_ab/before.jsonl",
+  "before_sha256": "2f93bc4f333059a3a1100c0c943e1d41934eb6d911cd35fa00a533cbab4cf10b",
+  "rows": 4453,
+  "started_at": "2026-09-11T10:48:32.422178+00:00",
+  "completed_at": "2026-09-11T11:23:19.629607+00:00",
+  "new_master_files_present_but_not_loaded": true,
+  "new_clima_master_runtime_active": false,
+  "source_shards": [
+    {
+      "path": ".codex_tmp/benchmark_before_v3/part_0.jsonl",
+      "sha256": "4f4977c7fd7e7f5b46458e57830e87c1478f5170c5dcc73a76369ae064f625fd",
+      "rows": 1114
+    },
+    {
+      "path": ".codex_tmp/benchmark_before_v3/part_1.jsonl",
+      "sha256": "51443c6b7459ea8e3c0d99754586bbc4841d613c87543a083a6aa10467396627",
+      "rows": 1113
+    },
+    {
+      "path": ".codex_tmp/benchmark_before_v3/part_2.jsonl",
+      "sha256": "a429aff5d8e5c138295a7bd5f7dc29a98d769af72d5a9cdadfa3f22cd98c8858",
+      "rows": 1113
+    },
+    {
+      "path": ".codex_tmp/benchmark_before_v3/part_3.jsonl",
+      "sha256": "cd5c71ce17a89442ee00f40be22b19e595bf08bce260a6ee7cc0cc1589f823c9",
+      "rows": 1113
+    }
+  ]
+}

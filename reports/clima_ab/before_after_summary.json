@@ -1,0 +1,1142 @@
+{
+  "dataset_release": "PT26_CLIMA_PROD_1",
+  "rows_compared": 4453,
+  "diff_classification_counts": {
+    "UNCHANGED": 26,
+    "CHANGED": 4427,
+    "AFTER_ONLY": 0,
+    "BEFORE_ONLY": 0
+  },
+  "quality_classification_counts": {
+    "CHANGED_UNVERIFIED": 4419,
+    "NOT_ASSESSED": 26,
+    "UNCHANGED_CORRECT": 6,
+    "IMPROVED": 2
+  },
+  "reason_counts": {
+    "LEGACY_FALLBACK": 3816,
+    "MASTER_QUANTITY_RESOLUTION": 39,
+    "MASTER_EXACT_PAIR": 234,
+    "MASTER_REVISION_RESOLUTION": 103,
+    "MASTER_EXACT_CONFIGURATION": 20,
+    "MASTER_VARIANT_RESOLUTION": 199,
+    "MASTER_EXACT_IDENTITY": 4,
+    "MASTER_ACCESSORY": 12
+  },
+  "rows_with_mpn_changed": 79,
+  "rows_with_main_unit_mpn_changed": 67,
+  "rows_with_ui_quantity_changed": 39,
+  "rows_with_color_changed": 218,
+  "rows_with_revision_or_model_changed": 195,
+  "verified_improvements": 2,
+  "verified_regressions": 0,
+  "changed_unverified": 4419,
+  "before_indicators": {
+    "rows": 4453,
+    "automatic_mpn": 4440,
+    "failed": 0,
+    "main_unit_status_counts": {
+      "DISCOVERY_ONLY": 1142,
+      "EXACT": 2914,
+      "REVISION_CANDIDATE": 360,
+      "AMBIGUOUS_REVISION": 30,
+      "NO_MAIN_UNIT_SELECTED": 7
+    },
+    "configuration_status_counts": {
+      "NOT_VERIFIED": 693,
+      "PAIRWISE_ONLY": 2088,
+      "NOT_APPLICABLE": 40,
+      "CONFLICT": 1623,
+      "VERIFIED_FULL_COMBINATION": 9
+    }
+  },
+  "after_indicators": {
+    "rows": 4453,
+    "automatic_mpn": 4440,
+    "failed": 0,
+    "main_unit_status_counts": {
+      "DISCOVERY_ONLY": 846,
+      "EXACT": 3207,
+      "REVISION_CANDIDATE": 357,
+      "AMBIGUOUS_REVISION": 30,
+      "NO_MAIN_UNIT_SELECTED": 13
+    },
+    "configuration_status_counts": {
+      "CONFIGURAZIONE_NON_CONFERMATA": 3924,
+      "VERIFIED_MASTER_PAIR": 449,
+      "NOT_APPLICABLE": 29,
+      "VERIFIED_FULL_COMBINATION": 44,
+      "NOT_APPLICABLE_EXACT_IDENTITY": 7
+    }
+  },
+  "performance_comparison": {
+    "before": {
+      "runtime_cumulative_seconds": 8251.366,
+      "runtime_mean_ms": 1852.99,
+      "runtime_median_ms": 1740.23,
+      "runtime_p95_ms": 2840.348,
+      "runtime_p99_ms": 3202.679,
+      "wall_clock_seconds": 2087.207
+    },
+    "after": {
+      "runtime_cumulative_seconds": 7454.468,
+      "runtime_mean_ms": 1674.033,
+      "runtime_median_ms": 1663.78,
+      "runtime_p95_ms": 2560.21,
+      "runtime_p99_ms": 3080.107,
+      "wall_clock_seconds": 1905.876
+    },
+    "delta": {
+      "runtime_p95_ms": -280.138,
+      "runtime_p99_ms": -122.572,
+      "runtime_mean_ms": -178.957,
+      "runtime_cumulative_seconds": -796.898,
+      "runtime_median_ms": -76.45,
+      "wall_clock_seconds": -181.331
+    }
+  },
+  "named_regressions": [
+    {
+      "name": "TOSHIBA_HAORI",
+      "query": "TOSHIBA HAORI BIANCO 9000",
+      "expected": [
+        "50383573",
+        "50213924"
+      ],
+      "actual": [
+        "50383573",
+        "50213924"
+      ],
+      "passed": true,
+      "configuration_status": "VERIFIED_MASTER_PAIR",
+      "mpn_final_allowed": true
+    },
+    {
+      "name": "PANASONIC_STANDARD_21000",
+      "query": "PANASONIC PACI NX STANDARD CASSETTA 21000",
+      "expected": [
+        "50117260",
+        "50003952"
+      ],
+      "actual": [
+        "50117260",
+        "50003952"
+      ],
+      "passed": true,
+      "configuration_status": "VERIFIED_MASTER_PAIR",
+      "mpn_final_allowed": true
+    },
+    {
+      "name": "MITSUBISHI_WHITE_12_12_18",
+      "query": "MITSUBISHI WHITE 12+12+18",
+      "expected": [
+        "99788605",
+        "99788605",
+        "99788636",
+        "50196142"
+      ],
+      "actual": [
+        "99788605",
+        "99788605",
+        "99788636",
+        "50196142"
+      ],
+      "passed": true,
+      "configuration_status": "VERIFIED_FULL_COMBINATION",
+      "mpn_final_allowed": true
+    },
+    {
+      "name": "DAIKIN_FFA25A9",
+      "query": "DAIKIN FFA25A9",
+      "expected": [
+        "99718206"
+      ],
+      "actual": [
+        "99718206"
+      ],
+      "passed": true,
+      "configuration_status": "NOT_APPLICABLE_EXACT_IDENTITY",
+      "mpn_final_allowed": true
+    },
+    {
+      "name": "HAIER_FLEXIS_WHITE",
+      "query": "HAIER FLEXIS WHITE 9000",
+      "expected": [
+        "50026470",
+        "50131273"
+      ],
+      "actual": [
+        "50026470",
+        "50131273"
+      ],
+      "passed": true,
+      "configuration_status": "VERIFIED_MASTER_PAIR",
+      "mpn_final_allowed": true
+    },
+    {
+      "name": "HAIER_FLEXIS_BLACK",
+      "query": "HAIER FLEXIS BLACK 9000",
+      "expected": [
+        "50021635",
+        "50131273"
+      ],
+      "actual": [
+        "50021635",
+        "50131273"
+      ],
+      "passed": true,
+      "configuration_status": "VERIFIED_MASTER_PAIR",
+      "mpn_final_allowed": true
+    },
+    {
+      "name": "PAROS_WHITE",
+      "query": "KOSAMI PAROS WHITE 9000",
+      "expected": [
+        "50453016",
+        "50452965"
+      ],
+      "actual": [
+        "50453016",
+        "50452965"
+      ],
+      "passed": true,
+      "configuration_status": "VERIFIED_MASTER_PAIR",
+      "mpn_final_allowed": true
+    },
+    {
+      "name": "PAROS_BLACK",
+      "query": "KOSAMI PAROS BLACK 9000",
+      "expected": [
+        "50453054",
+        "50452965"
+      ],
+      "actual": [
+        "50453054",
+        "50452965"
+      ],
+      "passed": true,
+      "configuration_status": "VERIFIED_MASTER_PAIR",
+      "mpn_final_allowed": true
+    },
+    {
+      "name": "VENUS_MONO_IDENTITY",
+      "query": "50282814",
+      "expected": [
+        "50282814"
+      ],
+      "actual": [
+        "50282814"
+      ],
+      "passed": true,
+      "configuration_status": "NOT_APPLICABLE_EXACT_IDENTITY",
+      "mpn_final_allowed": true
+    },
+    {
+      "name": "VENUS_MULTI_IDENTITY",
+      "query": "50282883",
+      "expected": [
+        "50282883"
+      ],
+      "actual": [
+        "50282883"
+      ],
+      "passed": true,
+      "configuration_status": "NOT_APPLICABLE_EXACT_IDENTITY",
+      "mpn_final_allowed": true
+    }
+  ],
+  "top_50_suspicious_changes": [
+    {
+      "row_id": "Foglio1!10",
+      "title": "4XE Climatizzatore Mono split serie Winter 24000 Btu Inverter R-32 Wi-Fi Optional Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50369430 + 50193370",
+      "after_main_unit_mpn": "50369430 + 50193370",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1047",
+      "title": "Haier Climatizzatore Monosplit Expert Nero 15000 BTU AS42XCAHRA-MB + 1U42S2SM1FA R-32 WI-FI Incluso Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50224067 + 99715779",
+      "after_main_unit_mpn": "50224067 + 99715779",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1048",
+      "title": "Haier Climatizzatore Monosplit Expert Nero 15000 BTU AS42XCAHRA-MB + 1U42S2SM1FA R-32 WI-FI Incluso Classe A++ con Staffe",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50224067 + 99715779",
+      "after_main_unit_mpn": "50224067 + 99715779",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1113",
+      "title": "Haier Climatizzatore Monosplit Flexis Plus White 24000 btu R-32 Wi-Fi Classe A+++ Cod. AS71S2SF1FA-MW3",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "POSSIBLE_CROSS_COLOR",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50026104 + 50199242",
+      "after_main_unit_mpn": "50026104 + 50199242",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1114",
+      "title": "Haier Climatizzatore Monosplit Flexis Plus White 24000 btu R-32 Wi-Fi Classe A+++ Cod. AS71S2SF1FA-MW3 con Staffe",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "POSSIBLE_CROSS_COLOR",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50026104 + 50199242",
+      "after_main_unit_mpn": "50026104 + 50199242",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1970",
+      "title": "Hitachi Climatizzatore Monosplit AirHome 400 12000 btu RAK-DJ35RHAE  Inverter Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50293810 + 50295852",
+      "after_main_unit_mpn": "50293810 + 50295852",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1971",
+      "title": "Hitachi Climatizzatore Monosplit AirHome 400 18000 btu RAK-DJ50RHAE Inverter Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50293827 + 50295852",
+      "after_main_unit_mpn": "50293827 + 50295852",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1972",
+      "title": "Hitachi Climatizzatore Monosplit AirHome 400 9000 btu RAK-DJ25RHAE Inverter Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50293773 + 50380855",
+      "after_main_unit_mpn": "50293773 + 50380855",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1973",
+      "title": "Hitachi Climatizzatore Monosplit Akebono FrostWash 12000 btu RAK-35RXE Inverter Wi-Fi Optional Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50293810 + 50295852",
+      "after_main_unit_mpn": "50293810 + 50295852",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1974",
+      "title": "Hitachi Climatizzatore Monosplit Dodai Frost Wash 12000 btu RAK-35REF Inverter Wi-Fi Optional Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50293810 + 50295852",
+      "after_main_unit_mpn": "50293810 + 50295852",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1975",
+      "title": "Hitachi Climatizzatore Monosplit Dodai Frost Wash 18000 btu RAK-50REF Inverter Wi-Fi Optional Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50293827 + 50295852",
+      "after_main_unit_mpn": "50293827 + 50295852",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1976",
+      "title": "Hitachi Climatizzatore Monosplit Akebono FrostWash 18000 btu RAK-50RXE Inverter Wi-Fi Optional Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50293827 + 50295852",
+      "after_main_unit_mpn": "50293827 + 50295852",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1977",
+      "title": "Hitachi Climatizzatore Monosplit Akebono FrostWash 9000 btu RAK-25RXE Inverter Wi-Fi Optional Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99760885 + 99768706",
+      "after_main_unit_mpn": "99760885 + 99768706",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1979",
+      "title": "Hitachi Climatizzatore Monosplit AirHome 600 12000 BTU RAK-VJ35RHAE+ RAC-VJ35WHAE Inverter Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50288687 + 50288779",
+      "after_main_unit_mpn": "50288687 + 50288779",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1980",
+      "title": "Hitachi Climatizzatore Monosplit AirHome 600 15000 BTU RAK-VJ42RHAE + RAC-VJ42WHAE Inverter Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50288700 + 50288786",
+      "after_main_unit_mpn": "50288700 + 50288786",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1981",
+      "title": "Hitachi Climatizzatore Monosplit AirHome 600 18000 BTU RAK-VJ50RHAE + RAC-VJ50WHAE Inverter Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50288717 + 50288809",
+      "after_main_unit_mpn": "50288717 + 50288809",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1982",
+      "title": "Hitachi Climatizzatore Monosplit AirHome 600 21000 BTU RAK-VJ60RHAE + RAC-VJ60WHAE Inverter Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50288731 + 50288816",
+      "after_main_unit_mpn": "50288731 + 50288816",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1983",
+      "title": "Hitachi Climatizzatore Monosplit AirHome 600 24000 BTU RAK-VJ70RHAE + RAC-VJ70WHAE Inverter Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50288755 + 50288823",
+      "after_main_unit_mpn": "50288755 + 50288823",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1984",
+      "title": "Hitachi Climatizzatore Monosplit AirHome 600 9000 BTU RAK-VJ25RHAE + RAC-VJ25WHAE Inverter Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50288656 + 50288762",
+      "after_main_unit_mpn": "50288656 + 50288762",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!2001",
+      "title": "Lamborghini Climatizzatore Monosplit Rubino S 18000 BTU Inverter R-32 Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50229901 + 50229994",
+      "after_main_unit_mpn": "50229901 + 50229994",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!2002",
+      "title": "Lamborghini Climatizzatore Monosplit Rubino S 24000 BTU Inverter R-32 Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50229918 + 50229994",
+      "after_main_unit_mpn": "50229918 + 50229994",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!4310",
+      "title": "Samsung Climatizzatore Monosplit Cebu WiFi 18000 btu AR18BXFYAWK Inverter R-32 Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50109302 + 50367979",
+      "after_main_unit_mpn": "50109302 + 50367979",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!4327",
+      "title": "Sendo Climatizzatore Monosplit AEOLOS 9000 btu Cod. SND-09ALSI2-ID R-32 Inverter WIFI classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50264155 + 50264162",
+      "after_main_unit_mpn": "50264155 + 50264162",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!4369",
+      "title": "TCL Climatizzatore Monosplit a Cassetta 90x90 42000 btu MN42SS1 + MT4211 Inverter R-32 Wi-FI A+",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99796709 + 50469055",
+      "after_main_unit_mpn": "99796709 + 50469055",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!4370",
+      "title": "TCL Climatizzatore Monosplit a Cassetta 90x90 48000 btu MN48SS1 + MT4831 Inverter R-32 Wi-FI A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99796716 + 50469055",
+      "after_main_unit_mpn": "99796716 + 50469055",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!4478",
+      "title": "TCL Climatizzatore Monosplit Inverter BreezeIN P5 12000 btu serie SN12P5S0 Wi-Fi Classe A++ Con Staffa",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50468867 + 50468850",
+      "after_main_unit_mpn": "50468867 + 50468850",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!4556",
+      "title": "TCL Climatizzatore Monosplit Canalizzato 9000 btu MN09DW1 + ST09P0 Wi-Fi Inverter R-32 A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50469017 + 50468850",
+      "after_main_unit_mpn": "50469017 + 50468850",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!715",
+      "title": "Daikin Climatizzatore Monosplit Bluevolution Emura III 12000 btu FTXJ35AW Bianco R-32 Wi-Fi Classe A+++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50148943 + 50134908",
+      "after_main_unit_mpn": "50148943 + 50134908",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!737",
+      "title": "Daikin Climatizzatore Monosplit Siesta 12000 BTU ATXF35F Pro Era R-32 Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50367719 + 50367726",
+      "after_main_unit_mpn": "50367719 + 50367726",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!779",
+      "title": "Diloc Climatizzatore Serie Sky Plus 9000 btu D.SKY9000 Inverter R-32 Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50033645 + 50033676",
+      "after_main_unit_mpn": "50033645 + 50033676",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!8",
+      "title": "4XE Climatizzatore Mono split serie Winter 12000 Btu Inverter R-32 Wi-Fi Optional Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50193332 + 50193356",
+      "after_main_unit_mpn": "50193332 + 50193356",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!809",
+      "title": "Ferroli Climatizzatore Monosplit Serie Ambra S 24000 btu Inverter R-32 Wi-Fi Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99802080 + 99802455",
+      "after_main_unit_mpn": "99802080 + 99802455",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!9",
+      "title": "4XE Climatizzatore Mono split serie Winter 18000 Btu Inverter R-32 Wi-Fi Optional Classe A++",
+      "suspicion_score": 155,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "MPN_FINAL_BECAME_BLOCKED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50367948 + 50193356",
+      "after_main_unit_mpn": "50367948 + 50193356",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!239",
+      "title": "Beretta Climatizzatore Quadri split Breva 9+9+9+9 con EX24000-4 R-32 Inverter Wi-Fi Optional Classe A++",
+      "suspicion_score": 125,
+      "suspicion_reasons": [
+        "MPN_FINAL_BECAME_BLOCKED",
+        "CONFIGURATION_CONFIRMATION_LOST",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99840730 + 99840730 + 99840730 + 99840730 + 50215232",
+      "after_main_unit_mpn": "99840730 + 99840730 + 99840730 + 99840730 + 50215232",
+      "before_configuration_status": "VERIFIED_FULL_COMBINATION",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!248",
+      "title": "Beretta Climatizzatore Trial split Breva 9+9+12 con EX18000-3 R-32 Inverter Wi-Fi Optional Classe A++",
+      "suspicion_score": 125,
+      "suspicion_reasons": [
+        "MPN_FINAL_BECAME_BLOCKED",
+        "CONFIGURATION_CONFIRMATION_LOST",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99840730 + 99840730 + 50019380 + 50215218",
+      "after_main_unit_mpn": "99840730 + 99840730 + 50019380 + 50215218",
+      "before_configuration_status": "VERIFIED_FULL_COMBINATION",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!251",
+      "title": "Beretta Climatizzatore Trial split Breva 9+9+9 con EX18000-3 R-32 Inverter Wi-Fi Optional Classe A++",
+      "suspicion_score": 125,
+      "suspicion_reasons": [
+        "MPN_FINAL_BECAME_BLOCKED",
+        "CONFIGURATION_CONFIRMATION_LOST",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99840730 + 99840730 + 99840730 + 50215218",
+      "after_main_unit_mpn": "99840730 + 99840730 + 99840730 + 50215218",
+      "before_configuration_status": "VERIFIED_FULL_COMBINATION",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!2997",
+      "title": "Mitsubishi Climatizzatore Dual Split Kirigamine MSZ-LN Nero+Bianco 12+12 con MXZ-2F53VF Inverter R-32 Wi-Fi Classe A+++",
+      "suspicion_score": 115,
+      "suspicion_reasons": [
+        "POSSIBLE_CROSS_COLOR",
+        "COLOR_CHANGED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "MASTER_VARIANT_RESOLUTION",
+      "before_main_unit_mpn": "99788575 + 99788575",
+      "after_main_unit_mpn": "99788575 + 99788575",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!3106",
+      "title": "Mitsubishi Climatizzatore Trial Split Kirigamine MSZ-LN Bianco+Nero+Nero 9+9+12 con MXZ-3F54VF3 Inverter R-32 Wi-Fi Classe A+++",
+      "suspicion_score": 115,
+      "suspicion_reasons": [
+        "POSSIBLE_CROSS_COLOR",
+        "COLOR_CHANGED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "MASTER_VARIANT_RESOLUTION",
+      "before_main_unit_mpn": "99788568 + 99788568 + 99788605 + 50196135",
+      "after_main_unit_mpn": "99788568 + 99788568 + 99788605 + 50196135",
+      "before_configuration_status": "PAIRWISE_ONLY",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!3358",
+      "title": "Mitsubishi Climatizzatore Quadri Split Kirigamine MSZ-LN Nero 9+9 Bianco 9+12 con MXZ-4F72VF4 Inverter R-32 Wi-Fi Classe A++",
+      "suspicion_score": 115,
+      "suspicion_reasons": [
+        "POSSIBLE_CROSS_COLOR",
+        "COLOR_CHANGED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "MASTER_VARIANT_RESOLUTION",
+      "before_main_unit_mpn": "99788544 + 99788544 + 50196166",
+      "after_main_unit_mpn": "99788544 + 99788544 + 50196166",
+      "before_configuration_status": "CONFLICT",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!4554",
+      "title": "TCL Climatizzatore Monosplit Canalizzato 48000 Btu MN48DW2 + MT4831 Wi-Fi Inverter R-32 A++",
+      "suspicion_score": 115,
+      "suspicion_reasons": [
+        "MPN_FINAL_BECAME_BLOCKED",
+        "UI_QUANTITY_CHANGED",
+        "REVISION_OR_MODEL_CHANGED",
+        "MAIN_MPN_CHANGED",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "MASTER_QUANTITY_RESOLUTION",
+      "before_main_unit_mpn": "99797164 + 50119080",
+      "after_main_unit_mpn": "99797171 + 50119080",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1089",
+      "title": "Haier Climatizzatore Dual Split Serie Expert Nero 12+15 Con 2U50S2SM1FA-3 Inverter Wi-Fi Classe A+++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50224029 + 50224067 + 50125265",
+      "after_main_unit_mpn": "50224029 + 50224067 + 50125265",
+      "before_configuration_status": "PAIRWISE_ONLY",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1090",
+      "title": "Haier Climatizzatore Dual Split Serie Expert Nero 15+15 Con 2U50S2SM1FA-3 Inverter Wi-Fi Classe A+++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50224067 + 50224067 + 50125265",
+      "after_main_unit_mpn": "50224067 + 50224067 + 50125265",
+      "before_configuration_status": "PAIRWISE_ONLY",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1092",
+      "title": "Haier Climatizzatore Dual Split Serie Expert Nero 7+15 Con 2U50S2SM1FA-3 Inverter Wi-Fi Classe A+++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50224050 + 50224067 + 50125265",
+      "after_main_unit_mpn": "50224050 + 50224067 + 50125265",
+      "before_configuration_status": "PAIRWISE_ONLY",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1097",
+      "title": "Haier Climatizzatore Dual Split Serie Expert Nero 9+15 Con 2U50S2SM1FA-3 Inverter Wi-Fi Classe A+++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "50224012 + 50224067 + 50125265",
+      "after_main_unit_mpn": "50224012 + 50224067 + 50125265",
+      "before_configuration_status": "PAIRWISE_ONLY",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1230",
+      "title": "Hec by Haier Climatizzatore Dual Split a Cassetta 620 Freematch 12+12 BTU con 2H24WEAFRA Wi-Fi Inverter R-32 Classe A++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99642334 + 99642334 + 50371990",
+      "after_main_unit_mpn": "99642334 + 99642334 + 50371990",
+      "before_configuration_status": "PAIRWISE_ONLY",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1231",
+      "title": "Hec by Haier Climatizzatore Dual Split a Cassetta 620 Freematch 12+12 BTU con 3H28WEAFRA Wi-Fi Inverter R-32 Classe A++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99642334 + 99642334 + 50371990",
+      "after_main_unit_mpn": "99642334 + 99642334 + 50371990",
+      "before_configuration_status": "PAIRWISE_ONLY",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1232",
+      "title": "Hec by Haier Climatizzatore Dual Split a Cassetta 620 Freematch 12+18 BTU con 3H28WEAFRA Wi-Fi Inverter R-32 Classe A++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99642334 + 50370252 + 50371990",
+      "after_main_unit_mpn": "99642334 + 50370252 + 50371990",
+      "before_configuration_status": "PAIRWISE_ONLY",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1234",
+      "title": "Hec by Haier Climatizzatore Dual Split a Cassetta Freematch 12+12+12 BTU con 3H28WEAFRA Wi-Fi Inverter R-32 Classe A++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99642334 + 99642334 + 99642334 + 50106264",
+      "after_main_unit_mpn": "99642334 + 99642334 + 99642334 + 50106264",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1235",
+      "title": "Hec by Haier Climatizzatore Dual Split a Cassetta Freematch 12+12+18 BTU con 3H28WEAFRA Wi-Fi Inverter R-32 Classe A++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99642334 + 99642334 + 50371976 + 50106264",
+      "after_main_unit_mpn": "99642334 + 99642334 + 50371976 + 50106264",
+      "before_configuration_status": "NOT_VERIFIED",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    },
+    {
+      "row_id": "Foglio1!1236",
+      "title": "Hec by Haier Climatizzatore Dual Split a Cassetta Freematch 12+24 BTU con 3H28WEAFRA Wi-Fi Inverter R-32 Classe A++",
+      "suspicion_score": 95,
+      "suspicion_reasons": [
+        "MAIN_PT_NOT_IN_PRODUCTION_MASTER",
+        "LEGACY_FALLBACK_USED"
+      ],
+      "quality_classification": "CHANGED_UNVERIFIED",
+      "reason": "LEGACY_FALLBACK",
+      "before_main_unit_mpn": "99642334 + 50370283 + 50371990",
+      "after_main_unit_mpn": "99642334 + 50370283 + 50371990",
+      "before_configuration_status": "PAIRWISE_ONLY",
+      "after_configuration_status": "CONFIGURAZIONE_NON_CONFERMATA",
+      "legacy_fallback_used": true,
+      "master_resolution_type": "LEGACY_FALLBACK"
+    }
+  ]
+}

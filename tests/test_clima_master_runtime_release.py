@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Standalone runtime release gate for PT26_CLIMA_PROD_1.
+"""Standalone runtime release gate for PT26_CLIMA_PROD_2_CAPACITY_MAPPING_FIX1.
 
 This suite validates only delivered production artifacts.  It deliberately has
 no dependency on the historical offline generator, PDF tooling, or parsers.
@@ -18,8 +18,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 KNOWLEDGE = ROOT / "Knowledge"
 EXPECTED = {
-    "clima_monosplit_master.json": "05f56077cc1254025bc995ca2cfcdcf374ce8529846cba023f3898e1b0bbd81b",
-    "clima_multisplit_master.json": "0cf07f4e71768af267c81b1dd64171604a72432ea796f159245991af9a0c1e9b",
+    "clima_monosplit_master.json": "e574156a33b9db8068175970aa789daad6de69b7db1eb6bbfd76f5f0d3429e3c",
+    "clima_multisplit_master.json": "87523b02548d6dfa812a250a41ddf212ae1d7796c7f28d3a51d9c621f439790a",
     "manual_overrides_clima.json": "ce4eb075c46717276835e18219ba36c5a59879befe11bca32b97709403a9ba68",
     "clima_accessori_master.json": "134bb387c70211376d782d46debe0e90d5a91b71d7a87a746d00993866a49425",
 }
@@ -79,8 +79,8 @@ class RuntimeReleaseGate(unittest.TestCase):
             self.assertEqual(document["schema_version"], "3.0.0")
 
     def test_e_dataset_version(self):
-        for document in self.documents:
-            self.assertEqual(document["dataset_version"], "PT26_CLIMA_PROD_1")
+        self.assertEqual(self.mono["dataset_version"], "PT26_CLIMA_PROD_2_CAPACITY_MAPPING")
+        self.assertEqual(self.multi["dataset_version"], "PT26_CLIMA_PROD_2_CAPACITY_MAPPING_FIX1")
 
     def test_f_release_status(self):
         for document in self.documents:
@@ -92,7 +92,7 @@ class RuntimeReleaseGate(unittest.TestCase):
 
     def test_h_manifest_is_production_approved(self):
         self.assertEqual(self.manifest["release_status"], "PRODUCTION_APPROVED")
-        self.assertEqual(self.manifest["dataset_version"], "PT26_CLIMA_PROD_1")
+        self.assertEqual(self.manifest["dataset_version"], "PT26_CLIMA_PROD_2_CAPACITY_MAPPING_FIX1")
         self.assertTrue(self.manifest["fail_closed"])
         for key, filename in (("monosplit", "clima_monosplit_master.json"), ("multisplit", "clima_multisplit_master.json"), ("manual_overrides", "manual_overrides_clima.json")):
             self.assertEqual(self.manifest["files"][key]["sha256"], EXPECTED[filename])
@@ -106,8 +106,8 @@ class RuntimeReleaseGate(unittest.TestCase):
 
     def test_k_multisplit_counts(self):
         self.assertEqual(len(self.multi["systems"]), 200)
-        self.assertEqual(sum(len(system["allowed_ui"]) for system in self.multi["systems"]), 2391)
-        self.assertEqual(len(self.multi["combination_master"]), 13127)
+        self.assertEqual(sum(len(system["allowed_ui"]) for system in self.multi["systems"]), 2898)
+        self.assertEqual(len(self.multi["combination_master"]), 506773)
 
     def test_l_all_pt_are_eight_digits(self):
         pt_pattern = re.compile(r"^\d{8}$")

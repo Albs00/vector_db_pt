@@ -1,5 +1,5 @@
 {
-  "dataset_release": "PT26_CLIMA_PROD_1",
+  "dataset_release": "PT26_CLIMA_PROD_2_CAPACITY_MAPPING_FIX1",
   "schema_version": "3.0.0",
   "policy": "FAIL_CLOSED",
   "status": "READY",
@@ -26,11 +26,11 @@
   },
   "master_hash_validation": {
     "clima_monosplit_master.json": {
-      "sha256": "05f56077cc1254025bc995ca2cfcdcf374ce8529846cba023f3898e1b0bbd81b",
+      "sha256": "e574156a33b9db8068175970aa789daad6de69b7db1eb6bbfd76f5f0d3429e3c",
       "status": "PASS"
     },
     "clima_multisplit_master.json": {
-      "sha256": "0cf07f4e71768af267c81b1dd64171604a72432ea796f159245991af9a0c1e9b",
+      "sha256": "87523b02548d6dfa812a250a41ddf212ae1d7796c7f28d3a51d9c621f439790a",
       "status": "PASS"
     },
     "manual_overrides_clima.json": {
@@ -47,8 +47,8 @@
     "monosplit_pairs": 1480,
     "monosplit_combinations": 1480,
     "multisplit_systems": 200,
-    "multisplit_allowed_ui": 2391,
-    "multisplit_combinations": 13127
+    "multisplit_allowed_ui": 2898,
+    "multisplit_combinations": 506773
   },
   "historical_non_runtime_artifacts": [
     {

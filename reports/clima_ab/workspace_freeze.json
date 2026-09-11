@@ -1,0 +1,50 @@
+{
+  "phase": "FASE_0_FREEZE_WORKSPACE",
+  "captured_at_local": "2026-09-11T14:21:14.7341527+02:00",
+  "git_commit": "1a2cd79495c177e7951faeebb3bb2c095cad2760",
+  "git_branch": "master",
+  "git_upstream": "origin/master",
+  "git_status_porcelain": [
+    " M catalog_search_engine.py",
+    " M manual_retrieval_qa.py",
+    " M src/adapters/climate.py",
+    " M src/core/token_parser.py",
+    " M tests/test_climate_commercial_pairing_priority.py",
+    " M tests/test_requested_family_validation.py",
+    "?? .codex_tmp/",
+    "?? IGNORE-TEST/",
+    "?? benchmark_clima_before_v3.jsonl",
+    "?? benchmark_clima_input_frozen.jsonl",
+    "?? src/core/model_identity.py",
+    "?? tests/test_model_identity.py"
+  ],
+  "runtime_config": {
+    "engine": "catalog_search_engine.CatalogSearchEngine",
+    "climate_adapter": "src.adapters.climate.ClimateCategoryAdapter",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "legacy_climate_master": "Knowledge/climatizzatori_compatibilita_master.json",
+    "legacy_combination_provenance": "Knowledge/climatizzatori_combinazioni_provenance.json",
+    "legacy_component_relations": "catalog_component_relations_safe_preview_v3_4.json",
+    "catalog_master": "Knowledge/unified_catalog_master.json",
+    "exact_lookup": "Knowledge/vector_db/exact_code_lookup.json",
+    "vector_store": "Knowledge/vector_db/lancedb_store",
+    "catalog_table_context": "Knowledge/catalog_table_context.json",
+    "pdf_specs": "Knowledge/catalog_pdf_extracted_specs.json",
+    "new_clima_masters_active": false
+  },
+  "sha256": {
+    "catalog_search_engine.py": "158407bb101f8ee43df2190f18e3124e274d27093c7c1d67566b850835715e16",
+    "manual_retrieval_qa.py": "c94086a53e12981164dbfba1f1f949a14fdde7b212334d897379b77409a8ccdd",
+    "src/adapters/climate.py": "92785a777d4d43cb5ab581505677e2dc45c047ead2f5f7223b88283a3bb5408d",
+    "src/core/token_parser.py": "a23e0fc7e1f75752b939e85daeea5222c0af42a395551ffc70d1457458bc1a56",
+    "src/core/model_identity.py": "b094d1d1e56c9859ec89fb7c5af706dea8583e26da3fc33b24ef1cec736e2435",
+    "Knowledge/climatizzatori_compatibilita_master.json": "cee170555d584228e73a97b8595d26a74a7b4277e8cfb7a6aea62e3f5553450f",
+    "Knowledge/climatizzatori_combinazioni_provenance.json": "54c6160cbed153f3e5a518b26daa0612e75866c6eb9f044201a14366eb07e648",
+    "Knowledge/unified_catalog_master.json": "a068805d468e9def62c2457fe648ea9bd5105fef02b4fab4eea9fa76e24ca47f",
+    "Knowledge/vector_db/exact_code_lookup.json": "15d0150f1d9150a8534f1c34818d12510288d81772091dd07530b54d1889cec7",
+    "Knowledge/catalog_pdf_extracted_specs.json": "9d6629a41e6c76dd040641359f6fc1d1378af2bd5914697a79654b9901d8979b",
+    "Knowledge/catalog_table_context.json": "2b168759e2641a42e348b7b9bf530ff40a1512205bc4c742abc2928dd7ee977b",
+    "catalog_component_relations_safe_preview_v3_4.json": "535ec0207526b5322fa467b5ca79f4ab8adc78e101b58086d889523e9f2210a6",
+    "audit_da_compilare_MPN.xlsx": "644507728147160950f8a1aec6e93b06b9a5d2125198e7b80db02f20d0b8c55b"
+  }
+}

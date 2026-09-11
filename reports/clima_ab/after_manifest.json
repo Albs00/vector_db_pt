@@ -1,0 +1,59 @@
+{
+  "phase": "AFTER",
+  "captured_runtime": "NEW_CLIMA_MASTER_RUNTIME",
+  "git_commit": "0105f0da95b28e98f1318bef17df200c9cf65771",
+  "git_dirty": true,
+  "benchmark_input_frozen": "reports/clima_ab/benchmark_input_frozen.jsonl",
+  "benchmark_input_frozen_sha256": "5dc37e253b7382df289ea1013f656ea2c5cac359fea311414a4925f0679eacda",
+  "before": "reports/clima_ab/before.jsonl",
+  "before_sha256": "2f93bc4f333059a3a1100c0c943e1d41934eb6d911cd35fa00a533cbab4cf10b",
+  "after": "reports/clima_ab/after.jsonl",
+  "after_sha256": "8b50d586a2d8915c426523a94f720f52f2858cd5f8dd65b493156332ef13de45",
+  "rows": 4453,
+  "input_assertions": {
+    "rows_after_expected": 4453,
+    "unique_row_ids": 4453,
+    "row_id_sequence_equal": true,
+    "titles_equal": true,
+    "original_reference_fields_equal": true,
+    "original_columns_present": true,
+    "clima_master_runtime_enabled": true,
+    "frozen_sha256": "5dc37e253b7382df289ea1013f656ea2c5cac359fea311414a4925f0679eacda",
+    "before_sha256": "2f93bc4f333059a3a1100c0c943e1d41934eb6d911cd35fa00a533cbab4cf10b"
+  },
+  "started_at": "2026-09-11T13:13:52.680797+00:00",
+  "completed_at": "2026-09-11T13:45:38.556947+00:00",
+  "artifacts_completed_at": "2026-09-11T13:52:29.866363+00:00",
+  "clima_master_runtime_enabled": true,
+  "dataset_release": "PT26_CLIMA_PROD_1",
+  "schema_version": "3.0.0",
+  "policy": "FAIL_CLOSED",
+  "runtime_files": [
+    {
+      "path": "catalog_search_engine.py",
+      "sha256": "4453760f6dd03e3f585a6e185c424630b612bbebf8519b82dda5ba43dbed64d3"
+    },
+    {
+      "path": "src/core/clima_master_resolver.py",
+      "sha256": "5b468e5e67e29f1f3c7c8a321d337ad435df020f0240eb72fb6146bfd66ebc4d"
+    },
+    {
+      "path": "Knowledge/clima_monosplit_master.json",
+      "sha256": "05f56077cc1254025bc995ca2cfcdcf374ce8529846cba023f3898e1b0bbd81b"
+    },
+    {
+      "path": "Knowledge/clima_multisplit_master.json",
+      "sha256": "0cf07f4e71768af267c81b1dd64171604a72432ea796f159245991af9a0c1e9b"
+    },
+    {
+      "path": "Knowledge/manual_overrides_clima.json",
+      "sha256": "ce4eb075c46717276835e18219ba36c5a59879befe11bca32b97709403a9ba68"
+    },
+    {
+      "path": "Knowledge/clima_accessori_master.json",
+      "sha256": "134bb387c70211376d782d46debe0e90d5a91b71d7a87a746d00993866a49425"
+    }
+  ],
+  "source_excel_read": false,
+  "notes": "AFTER used only benchmark_input_frozen.jsonl; production runtime and master artifacts were not modified."
+}

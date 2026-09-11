@@ -1,0 +1,23 @@
+{
+  "rows": 2000,
+  "mpn_final_allowed": 599,
+  "with_candidate_pt": 1999,
+  "errors": 0,
+  "configuration_status": {
+    "CONFIGURAZIONE_NON_CONFERMATA": 1391,
+    "VERIFIED_MASTER_PAIR": 238,
+    "NOT_APPLICABLE": 10,
+    "VERIFIED_FULL_COMBINATION": 357,
+    "NOT_APPLICABLE_EXACT_IDENTITY": 4
+  },
+  "master_resolution_type": {
+    "LEGACY_CANDIDATE_NOT_CONFIRMED": 1401,
+    "MASTER_EXACT_PAIR": 238,
+    "MASTER_EXACT_CONFIGURATION": 357,
+    "MASTER_EXACT_IDENTITY": 4
+  },
+  "legacy_fallback_used": 1813,
+  "runtime_ms_total": 3633817.67,
+  "runtime_ms_mean": 1816.91,
+  "dataset_release": "PT26_CLIMA_PROD_2_CAPACITY_MAPPING_FIX1"
+}

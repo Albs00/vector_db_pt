@@ -23,12 +23,16 @@ class ClimaMasterError(RuntimeError):
 
 
 class ClimaMasterResolver:
-    DATASET_VERSION = "PT26_CLIMA_PROD_1"
+    DATASET_VERSION = "PT26_CLIMA_PROD_2_CAPACITY_MAPPING_FIX1"
+    EXPECTED_DATASET_VERSIONS = {
+        "clima_monosplit_master.json": "PT26_CLIMA_PROD_2_CAPACITY_MAPPING",
+        "clima_multisplit_master.json": "PT26_CLIMA_PROD_2_CAPACITY_MAPPING_FIX1",
+    }
     SCHEMA_VERSION = "3.0.0"
     POLICY = "FAIL_CLOSED"
     EXPECTED_SHA256 = {
-        "clima_monosplit_master.json": "05f56077cc1254025bc995ca2cfcdcf374ce8529846cba023f3898e1b0bbd81b",
-        "clima_multisplit_master.json": "0cf07f4e71768af267c81b1dd64171604a72432ea796f159245991af9a0c1e9b",
+        "clima_monosplit_master.json": "e574156a33b9db8068175970aa789daad6de69b7db1eb6bbfd76f5f0d3429e3c",
+        "clima_multisplit_master.json": "87523b02548d6dfa812a250a41ddf212ae1d7796c7f28d3a51d9c621f439790a",
         "manual_overrides_clima.json": "ce4eb075c46717276835e18219ba36c5a59879befe11bca32b97709403a9ba68",
         "clima_accessori_master.json": "134bb387c70211376d782d46debe0e90d5a91b71d7a87a746d00993866a49425",
     }
@@ -124,7 +128,8 @@ class ClimaMasterResolver:
         if release_contract:
             if document.get("schema_version") != self.SCHEMA_VERSION:
                 raise ClimaMasterError(f"Unsupported schema for {filename}")
-            if document.get("dataset_version") != self.DATASET_VERSION:
+            expected_dataset = self.EXPECTED_DATASET_VERSIONS.get(filename, self.DATASET_VERSION)
+            if document.get("dataset_version") != expected_dataset:
                 raise ClimaMasterError(f"Unexpected dataset release for {filename}")
             if document.get("production_policy") != self.POLICY:
                 raise ClimaMasterError(f"Non fail-closed master: {filename}")

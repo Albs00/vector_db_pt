@@ -1,0 +1,35 @@
+{
+  "phase": "BEFORE",
+  "runtime": "LEGACY_CURRENT_RUNTIME",
+  "rows_processed": 4453,
+  "rows_with_automatic_mpn": 4440,
+  "rows_without_automatic_mpn": 13,
+  "rows_failed": 0,
+  "main_unit_status_counts": {
+    "DISCOVERY_ONLY": 1142,
+    "EXACT": 2914,
+    "REVISION_CANDIDATE": 360,
+    "AMBIGUOUS_REVISION": 30,
+    "NO_MAIN_UNIT_SELECTED": 7
+  },
+  "configuration_status_counts": {
+    "NOT_VERIFIED": 693,
+    "PAIRWISE_ONLY": 2088,
+    "NOT_APPLICABLE": 40,
+    "CONFLICT": 1623,
+    "VERIFIED_FULL_COMBINATION": 9
+  },
+  "scope_counts": {
+    "MULTISPLIT": 3859,
+    "MONOSPLIT": 554,
+    "UI_ONLY": 19,
+    "UE_ONLY": 15,
+    "GENERAL": 6
+  },
+  "runtime_total_seconds": 8251.366,
+  "runtime_mean_ms": 1852.99,
+  "runtime_median_ms": 1740.23,
+  "excel_rows_total": 4615,
+  "clima_rows": 4453,
+  "non_clima_rows": 162
+}
