@@ -150,6 +150,8 @@ def format_qa_single_report(
     lines.append(subsep)
     lines.append("3. BOM CANDIDATA RECUPERATA")
     lines.append(subsep)
+    lines.append(f"  • QUERY_COLOR          : {q_ctx.get('query_color') or '-'}")
+    lines.append("")
 
     # Identifica i componenti primari della BOM dal motore o fallback
     bom_items = []
@@ -202,6 +204,9 @@ def format_qa_single_report(
         lines.append(f"    Family Context      : Key: {item.get('family_key', '-')}, Match: {item.get('family_match', '-')}, Family: {item.get('catalog_family', '-')}")
         lines.append(f"    Identity Evidence   : {ident_desc}")
         lines.append(f"    Relation Evidence   : {rel_desc}")
+        lines.append(f"    CANDIDATE_COLOR     : {item.get('candidate_color') or '-'}")
+        lines.append(f"    VARIANT_FULL        : {item.get('variant_full') or '-'}")
+        lines.append(f"    VARIANT_CONFLICT    : {bool(item.get('variant_conflict'))}")
         if rel_evs and len(rel_evs) > 1:
             rel_summary = ", ".join(f"{r.get('relation_type')} (src:{r.get('source_code')})" for r in rel_evs)
             lines.append(f"    Relation Evidences  : {rel_summary}")
@@ -477,6 +482,9 @@ def run_batch_qa(engine: CatalogSearchEngine, input_file: str, output_file: str)
         rec["CANDIDATE_UE_MFG"] = ue_item.get("mfg_code")
         rec["CANDIDATE_UE_NAME"] = ue_item.get("name")
         rec["CANDIDATE_UE_TIER"] = ue_item.get("evidence_tier")
+        rec["QUERY_COLOR"] = q_ctx.get("query_color")
+        rec["CANDIDATE_UE_COLOR"] = ue_item.get("candidate_color")
+        rec["CANDIDATE_UE_VARIANT_CONFLICT"] = bool(ue_item.get("variant_conflict"))
 
         for u_idx, ui_it in enumerate(ui_items, 1):
             rec[f"CANDIDATE_UI{u_idx}_PT"] = ui_it.get("code")
@@ -484,6 +492,10 @@ def run_batch_qa(engine: CatalogSearchEngine, input_file: str, output_file: str)
             rec[f"CANDIDATE_UI{u_idx}_NAME"] = ui_it.get("name")
             rec[f"CANDIDATE_UI{u_idx}_BTU"] = ui_it.get("taglia_btu")
             rec[f"CANDIDATE_UI{u_idx}_TIER"] = ui_it.get("evidence_tier")
+            rec[f"CANDIDATE_UI{u_idx}_COLOR"] = ui_it.get("candidate_color")
+            rec[f"CANDIDATE_UI{u_idx}_VARIANT_CONFLICT"] = bool(
+                ui_it.get("variant_conflict")
+            )
 
         out_records.append(rec)
 

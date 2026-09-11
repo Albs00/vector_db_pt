@@ -575,6 +575,25 @@ class ClimateCommercialPairingPriorityTests(unittest.TestCase):
             )
         )
 
+    def test_mitsubishi_kirigamine_white_multisplit_never_selects_ruby_red_ui(self):
+        result = self.engine.search(
+            "Mitsubishi Climatizzatore Trial Split Kirigamine MSZ-LN Bianco "
+            "12+12+18 con MXZ-3F68VF4",
+            limit=30,
+        )
+
+        self.assertEqual(self._role(result, "UE")["code"], "50196142")
+        self.assertEqual(
+            self._role_codes(result, "UI"),
+            ["99788605", "99788605", "99788636"],
+        )
+        self.assertNotIn("99788599", self._role_codes(result, "UI"))
+        self.assertEqual(result["query_analysis"]["query_context"]["query_color"], "WHITE")
+        for item in result["bom"]:
+            if item.get("role") == "UI":
+                self.assertEqual(item.get("color_base"), "WHITE")
+                self.assertFalse(item.get("variant_conflict"))
+
 
 if __name__ == "__main__":
     unittest.main()

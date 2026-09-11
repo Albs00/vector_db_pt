@@ -20,6 +20,11 @@ from src.adapters.base import BaseCategoryAdapter
 from src.core.relation_types import TypedRelation, RelationType
 from src.core.candidate_pool import SlotConfig
 from src.core.catalog_table_context import CatalogTableContextIndex
+from src.core.color_variants import (
+    candidate_color_variant,
+    color_neutral_variant_key,
+    normalize_color_variant,
+)
 from build_full_ac_matrix import extract_btu_and_kw
 
 
@@ -731,12 +736,8 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             matched_series.sort(key=len, reverse=True)
             requested_series = matched_series[0]
 
-        # Rilevamento colore
-        requested_color = None
-        for col in ["NERO", "BLACK", "BIANCO", "WHITE", "BCO", "SILVER", "GRIGIO"]:
-            if re.search(r'\b' + col + r'\b', q_u):
-                requested_color = col
-                break
+        query_variant = normalize_color_variant(query)
+        requested_color = query_variant["color_base"]
 
         # Rilevamento attributi tecnici / feature (NON possono mai creare family)
         phase = None
@@ -756,6 +757,8 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             "requested_btus": btus,
             "requested_series": requested_series,
             "requested_color": requested_color,
+            "query_color": requested_color,
+            "query_variant_full": query_variant["variant_full"],
             "phase": phase,
             "feature_wifi": feature_wifi,
             "feature_inverter": feature_inverter,
@@ -901,32 +904,56 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         elif series_match == "mismatch":
             boost -= 50.0
 
-        # Colore
+        # Colore/variante: identità canonica, senza distruggere la variante completa.
         req_color = query_context.get("requested_color")
+        candidate_variant = candidate_color_variant(item)
+        item["color_base"] = candidate_variant["color_base"]
+        item["variant_full"] = candidate_variant["variant_full"]
+        item["candidate_color"] = candidate_variant["color_base"]
+        item["variant_conflict"] = False
+        item.pop("_color_match", None)
+        item.pop("_color_mismatch", None)
         if req_color:
-            name_u = (item.get("name") or "").upper()
-            colour_groups = {
-                "BLACK": {"BLACK", "NERO", "NER"},
-                "WHITE": {"WHITE", "BIANCO", "BCO"},
-                "SILVER": {"SILVER", "ARGENTO", "GRIGIO"},
-            }
-            requested_group = next(
-                (group for group, tokens in colour_groups.items() if req_color in tokens),
-                req_color,
-            )
-            item_groups = {
-                group
-                for group, tokens in colour_groups.items()
-                if any(token in name_u for token in tokens)
-            }
-            if requested_group in item_groups:
+            candidate_color = candidate_variant["color_base"]
+            if candidate_color == req_color:
                 item["_color_match"] = True
                 boost += 15.0
-            elif item_groups:
+            elif candidate_color:
                 item["_color_mismatch"] = True
+                item["variant_conflict"] = True
                 boost -= 40.0
 
         return boost
+
+    @staticmethod
+    def apply_color_variant_guard(
+        candidates: List[Dict[str, Any]], query_context: Dict[str, Any]
+    ) -> None:
+        """Block conflicting colors only when a coherent same-series candidate exists."""
+        requested = query_context.get("requested_color")
+        if not requested:
+            return
+        coherent = [item for item in candidates if item.get("color_base") == requested]
+        if not coherent:
+            return
+        coherent_keys = {
+            color_neutral_variant_key(item)
+            for item in coherent
+            if color_neutral_variant_key(item)
+        }
+        for item in candidates:
+            explicit_series_match = (
+                item.get("_series_match") in ("exact", "alias")
+                or item.get("_table_family_match") == "exact"
+                or item.get("family_match") == "exact"
+            )
+            neutral_key = color_neutral_variant_key(item)
+            same_series = explicit_series_match or bool(
+                neutral_key and neutral_key in coherent_keys
+            )
+            item["_variant_conflict_guard"] = bool(
+                same_series and item.get("variant_conflict")
+            )
 
     def expand_relations(
         self,
@@ -1576,17 +1603,10 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         requested = str(query_context.get("requested_color") or "").upper()
         if not requested:
             return 0.0
-        groups = {
-            "BLACK": {"BLACK", "NERO", "NER"},
-            "WHITE": {"WHITE", "BIANCO", "BCO"},
-            "SILVER": {"SILVER", "ARGENTO"},
-        }
-        requested_group = next((group for group, tokens in groups.items() if requested in tokens), requested)
-        text = " ".join(str(ue_item.get(key) or "") for key in ("name", "serie", "famiglia_catalogo", "catalog_family")).upper()
-        present_groups = {group for group, tokens in groups.items() if any(token in text for token in tokens)}
-        if not present_groups:
+        candidate = candidate_color_variant(ue_item)["color_base"]
+        if not candidate:
             return 0.0
-        return 40.0 if requested_group in present_groups else -120.0
+        return 40.0 if requested == candidate else -120.0
 
     def pairing_score_breakdown(
         self,

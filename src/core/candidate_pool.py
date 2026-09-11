@@ -5,8 +5,8 @@ Principi architetturali:
 - Struttura interna: candidate_pools[slot_id].
 - Il core non conosce ruoli specifici (es. UI, UE, Caldaia, Fumi, ecc.).
 - I nomi e la semantica degli slot_id sono definiti ESCLUSIVAMENTE dai CategoryAdapter.
-- Supporta l'ordinamento strutturale per Evidence Tiers:
-    (evidence_tier, -tier_score)
+- Supporta l'ordinamento strutturale per guard variante ed Evidence Tiers:
+    (variant_conflict_guard, evidence_tier, -tier_score)
 """
 
 from dataclasses import dataclass
@@ -60,14 +60,16 @@ class CandidatePoolManager:
 
     def sort_pools(self) -> None:
         """
-        Ordina ciascun pool applicando la precedenza strutturale degli Evidence Tiers:
-        1. _evidence_tier (crescente: 1 prima di 9)
-        2. -_tier_score (decrescente: punteggi più alti prima all'interno dello stesso tier)
-        Preserva l'ordine naturale di inserimento come terzo criterio stabile.
+        Ordina ciascun pool applicando prima il guard colore e poi gli Evidence Tiers:
+        1. _variant_conflict_guard (False prima di True)
+        2. _evidence_tier (crescente: 1 prima di 9)
+        3. -_tier_score (decrescente: punteggi più alti prima all'interno dello stesso tier)
+        Preserva l'ordine naturale di inserimento come criterio stabile finale.
         """
         for slot_id, pool in self._pools.items():
             pool.sort(
                 key=lambda x: (
+                    bool(x.get("_variant_conflict_guard", False)),
                     x.get("_evidence_tier", 9),
                     -x.get("_tier_score", 0.0)
                 )

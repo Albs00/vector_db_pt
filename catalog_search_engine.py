@@ -1814,6 +1814,12 @@ class CatalogSearchEngine:
             )
             pool_manager.add_candidate(slot_id, it)
 
+        if adapter.name == "CLIMA" and hasattr(adapter, "apply_color_variant_guard"):
+            for slot_id in pool_manager.get_all_slots():
+                adapter.apply_color_variant_guard(
+                    pool_manager.get_pool(slot_id), query_context
+                )
+
         # STADIO 6.2: INTERLEAVED COMPOSITE RESULT ASSEMBLY
         # Verifica se esiste un anchor affidabile per abilitare la riserva prioritaria
         # (La riserva è ammessa solo per EXACT_PT, EXACT_MFG, EXACT_CATALOG_MODEL_LABEL univoco o kit verified/derived)
@@ -1891,6 +1897,9 @@ class CatalogSearchEngine:
             ]:
                 if key in r:
                     res_item[key] = r[key]
+            for key in ["color_base", "variant_full", "candidate_color", "variant_conflict"]:
+                if key in r:
+                    res_item[key] = r[key]
 
             evidence_tags = []
             f_match = r.get("family_match") or r.get("_table_family_match")
@@ -1948,6 +1957,10 @@ class CatalogSearchEngine:
                     "family_match": c.get("family_match") or c.get("_table_family_match", "none"),
                     "family_evidence": c.get("family_evidence") or c.get("_table_family_evidence"),
                     "table_title": c.get("table_title"),
+                    "color_base": c.get("color_base"),
+                    "variant_full": c.get("variant_full"),
+                    "candidate_color": c.get("candidate_color"),
+                    "variant_conflict": bool(c.get("variant_conflict")),
                     "table_page": c.get("table_page"),
                     "table_source": c.get("table_source"),
                     "table_context": c.get("table_context"),
