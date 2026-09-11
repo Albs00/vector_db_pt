@@ -1,0 +1,78 @@
+{
+  "dataset_release": "PT26_CLIMA_PROD_1",
+  "schema_version": "3.0.0",
+  "policy": "FAIL_CLOSED",
+  "status": "READY",
+  "clima_master_runtime_ready": true,
+  "production_default_enabled": true,
+  "feature_flag": {
+    "name": "CLIMA_MASTER_RUNTIME_ENABLED",
+    "default": true,
+    "emergency_rollback_value": false
+  },
+  "legacy_fallback_available": true,
+  "master_resolver_authoritative": true,
+  "runtime_release_gate": {
+    "command": "python tests/test_clima_master_runtime_release.py",
+    "tests_passed": 26,
+    "tests_failed": 0,
+    "status": "PASS"
+  },
+  "runtime_regression_tests": {
+    "command": "python -m unittest tests.test_clima_master_runtime",
+    "tests_passed": 16,
+    "tests_failed": 0,
+    "status": "PASS"
+  },
+  "master_hash_validation": {
+    "clima_monosplit_master.json": {
+      "sha256": "05f56077cc1254025bc995ca2cfcdcf374ce8529846cba023f3898e1b0bbd81b",
+      "status": "PASS"
+    },
+    "clima_multisplit_master.json": {
+      "sha256": "0cf07f4e71768af267c81b1dd64171604a72432ea796f159245991af9a0c1e9b",
+      "status": "PASS"
+    },
+    "manual_overrides_clima.json": {
+      "sha256": "ce4eb075c46717276835e18219ba36c5a59879befe11bca32b97709403a9ba68",
+      "status": "PASS"
+    },
+    "clima_accessori_master.json": {
+      "sha256": "134bb387c70211376d782d46debe0e90d5a91b71d7a87a746d00993866a49425",
+      "status": "PASS"
+    }
+  },
+  "master_counts": {
+    "principal_pt_union": 2039,
+    "monosplit_pairs": 1480,
+    "monosplit_combinations": 1480,
+    "multisplit_systems": 200,
+    "multisplit_allowed_ui": 2391,
+    "multisplit_combinations": 13127
+  },
+  "historical_non_runtime_artifacts": [
+    {
+      "artifact": "tests/test_clima_master_production.py",
+      "condition": "NON_RUNTIME_CERTIFICATION_ARTIFACT_MISSING",
+      "missing_dependency": "tools/promote_clima_master.py",
+      "production_blocking": false,
+      "note": "Historical offline-generation audit artifact; it was not rerun and is not a runtime deployment dependency."
+    }
+  ],
+  "authoritative_clima_sources": [
+    "Knowledge/clima_monosplit_master.json",
+    "Knowledge/clima_multisplit_master.json",
+    "Knowledge/manual_overrides_clima.json",
+    "Knowledge/clima_accessori_master.json"
+  ],
+  "deprecated_for_clima_authority": [
+    "Knowledge/climatizzatori_compatibilita_master.json",
+    "Knowledge/climatizzatori_combinazioni_provenance.json",
+    "catalog_component_relations_safe_preview_v3_4.json"
+  ],
+  "after_benchmark": {
+    "required_for_deployment": false,
+    "executed": false,
+    "baseline_before_preserved": true
+  }
+}

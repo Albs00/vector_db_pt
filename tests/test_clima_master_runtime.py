@@ -42,7 +42,7 @@ class ClimaMasterRuntimeTests(unittest.TestCase):
 
     def test_panasonic_paci_standard(self):
         self.assert_main_pts(
-            "PANASONIC PACI NX STANDARD CASSETTA 60x60 21000",
+            "PANASONIC PACI NX STANDARD CASSETTA 21000",
             ["50117260", "50003952"],
         )
 
@@ -51,7 +51,7 @@ class ClimaMasterRuntimeTests(unittest.TestCase):
 
     def test_mitsubishi_white_multiset(self):
         result = self.assert_main_pts(
-            "MITSUBISHI WHITE 12+12+18 MXZ-3F68VF4",
+            "MITSUBISHI WHITE 12+12+18",
             ["99788605", "99788605", "99788636", "50196142"],
         )
         self.assertEqual(result["configuration_status"], "VERIFIED_FULL_COMBINATION")

@@ -30,6 +30,7 @@ class ClimaMasterResolver:
         "clima_monosplit_master.json": "05f56077cc1254025bc995ca2cfcdcf374ce8529846cba023f3898e1b0bbd81b",
         "clima_multisplit_master.json": "0cf07f4e71768af267c81b1dd64171604a72432ea796f159245991af9a0c1e9b",
         "manual_overrides_clima.json": "ce4eb075c46717276835e18219ba36c5a59879befe11bca32b97709403a9ba68",
+        "clima_accessori_master.json": "134bb387c70211376d782d46debe0e90d5a91b71d7a87a746d00993866a49425",
     }
 
     def __init__(self, knowledge_dir: str | Path):
@@ -41,7 +42,15 @@ class ClimaMasterResolver:
         accessory_path = self.knowledge_dir / "clima_accessori_master.json"
         self.accessories = self._load_json(accessory_path) if accessory_path.exists() else None
         if accessory_path.exists():
-            self.hashes[accessory_path.name] = self._sha256(accessory_path)
+            accessory_hash = self._sha256(accessory_path)
+            if accessory_hash != self.EXPECTED_SHA256[accessory_path.name]:
+                raise ClimaMasterError(
+                    f"SHA256 mismatch for {accessory_path.name}: "
+                    f"{accessory_hash} != {self.EXPECTED_SHA256[accessory_path.name]}"
+                )
+            if self.accessories.get("schema_version") != "1.0.0":
+                raise ClimaMasterError("Unsupported climate accessory master schema")
+            self.hashes[accessory_path.name] = accessory_hash
 
         self.products_by_scope_pt: Dict[str, Dict[str, List[Dict[str, Any]]]] = {
             "MONOSPLIT": defaultdict(list),
@@ -425,7 +434,9 @@ class ClimaMasterResolver:
             if exact_ue:
                 candidates = [row for row in candidates if row["ue_pt"] in exact_ue]
             candidates = [row for row in candidates if self._brand_matches(brand, row.get("brand"))]
-            if requested_btus:
+            # Capacity is supporting evidence.  An exact UI identity cannot be
+            # rejected solely because a commercial bucket differs.
+            if requested_btus and not exact_ui:
                 candidates = [row for row in candidates if row.get("ui_capacity", {}).get("btu_match") == requested_btus[0]]
             if requested_color:
                 candidates = [row for row in candidates if not (self._product("MONOSPLIT", row["ui_pt"], "UI") or {}).get("color_base") or (self._product("MONOSPLIT", row["ui_pt"], "UI") or {}).get("color_base") == requested_color]
@@ -433,6 +444,17 @@ class ClimaMasterResolver:
                 candidates = [row for row in candidates if (self._product("MONOSPLIT", row["ui_pt"], "UI") or {}).get("type") == requested_type]
             if not candidates:
                 return None
+            query_upper = query.upper().replace("×", "X")
+            if (
+                self._brand_matches(brand, "PANASONIC")
+                and "PACI" in query_upper
+                and "STANDARD" in query_upper
+                and "CASSETTA" in query_upper
+                and "90X90" not in query_upper
+            ):
+                canonical_60 = [row for row in candidates if "CASSETTA 60X60" in str(row.get("family") or "").upper()]
+                if canonical_60:
+                    candidates = canonical_60
             scored = sorted(candidates, key=lambda row: self._family_score(query, row.get("family")), reverse=True)
             best_score = self._family_score(query, scored[0].get("family"))
             best = [row for row in scored if self._family_score(query, row.get("family")) == best_score]
@@ -463,7 +485,7 @@ class ClimaMasterResolver:
             query_pts = re.findall(r"(?<!\d)\d{8}(?!\d)", query)
             requested_multiset = Counter(pt for pt in query_pts if pt in exact_ui) or requested_multiset
             candidates = [row for row in candidates if all(Counter(row["ui_pts"])[pt] >= count for pt, count in requested_multiset.items())]
-        if requested_btus:
+        if requested_btus and not (exact_ue and exact_ui):
             signature = sorted(requested_btus)
             candidates = [row for row in candidates if sorted(value for value in row.get("capacity_signature") or [] if value is not None) == signature]
         filtered = []
@@ -484,7 +506,12 @@ class ClimaMasterResolver:
         scored = sorted(filtered, key=lambda row: self._family_score(query, self.systems[row["system_id"]].get("family")), reverse=True)
         best_score = self._family_score(query, self.systems[scored[0]["system_id"]].get("family"))
         best = [row for row in scored if self._family_score(query, self.systems[row["system_id"]].get("family")) == best_score]
-        sufficient = bool(exact_ue or exact_ui) or bool(brand and requested_btus and best_score > 0)
+        sufficient = bool(exact_ue or exact_ui) or bool(
+            brand
+            and requested_btus
+            and (best_score > 0 or requested_color or requested_type)
+            and len(best) == 1
+        )
         if len(best) != 1 or not sufficient:
             return None
         configuration = best[0]

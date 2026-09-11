@@ -940,7 +940,7 @@ class CatalogSearchEngine:
         self.lookup_path = lookup_path
         self.master_path = master_path
         self._clima_master_runtime_enabled = os.environ.get(
-            "CLIMA_MASTER_RUNTIME_ENABLED", "0"
+            "CLIMA_MASTER_RUNTIME_ENABLED", "1"
         ).strip().lower() in {"1", "true", "yes", "on"}
 
         self._table = None
