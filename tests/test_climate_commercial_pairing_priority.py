@@ -1,4 +1,6 @@
 import unittest
+import json
+from pathlib import Path
 
 from catalog_search_engine import CatalogSearchEngine
 from src.adapters.climate import validate_multisplit_combination
@@ -351,15 +353,15 @@ class ClimateCommercialPairingPriorityTests(unittest.TestCase):
         )
         self.assertFalse(result["mpn_final_allowed"])
 
-    def test_microfix_2_beretta_quadri_equal_capacities_stays_pairwise_only(self):
+    def test_microfix_2_beretta_quadri_equal_capacities_uses_direct_table(self):
         result = self.engine.search(
             "Beretta Climatizzatore Quadri split Breva 9+9+9+9 con EX24000-4 R32",
             limit=30,
         )
         self.assertEqual(self._role(result, "UE")["code"], "50215232")
         self.assertEqual(self._role_codes(result, "UI"), ["99840730"] * 4)
-        self.assertEqual(result["configuration_status"], "PAIRWISE_ONLY")
-        self.assertFalse(result["mpn_final_allowed"])
+        self.assertEqual(result["configuration_status"], "VERIFIED_FULL_COMBINATION")
+        self.assertTrue(result["mpn_final_allowed"])
 
     def test_microfix_3_daikin_a_exact_token_has_full_model_boundary(self):
         result = self.engine.search(
@@ -398,17 +400,17 @@ class ClimateCommercialPairingPriorityTests(unittest.TestCase):
         self.assertEqual(diag["EXPLICIT_UE_TOKEN"], "EX18000-2 E")
         self.assertEqual(diag["EXPLICIT_UE_MATCH_TYPE"], "EXPLICIT_MODEL_EXACT_MATCH")
         self.assertEqual(result["product_identity_status"], "EXACT")
-        self.assertEqual(result["configuration_status"], "PAIRWISE_ONLY")
-        self.assertFalse(result["mpn_final_allowed"])
+        self.assertEqual(result["configuration_status"], "VERIFIED_FULL_COMBINATION")
+        self.assertTrue(result["mpn_final_allowed"])
 
-    def test_microfix_7_beretta_trial_exact_identity_stays_pairwise_only(self):
+    def test_microfix_7_beretta_trial_exact_identity_uses_direct_combination_evidence(self):
         result = self.engine.search(
             "Beretta Trial Split Breva 9+9+12 con EX18000-3", limit=30
         )
         self.assertEqual(self._role(result, "UE")["code"], "50215218")
         self.assertEqual(result["product_identity_status"], "EXACT")
-        self.assertEqual(result["configuration_status"], "PAIRWISE_ONLY")
-        self.assertFalse(result["mpn_final_allowed"])
+        self.assertEqual(result["configuration_status"], "VERIFIED_FULL_COMBINATION")
+        self.assertTrue(result["mpn_final_allowed"])
 
     def test_microfix_8_haier_trial_revision_topology_conflict_is_preserved(self):
         result = self.engine.search(
@@ -483,7 +485,7 @@ class ClimateCommercialPairingPriorityTests(unittest.TestCase):
             "test-only explicit table-row provenance",
         )
 
-    def test_full_combination_match_is_wired_to_gate_without_unlocking_unknown_provenance(self):
+    def test_full_combination_match_is_wired_to_gate_with_direct_sidecar_provenance(self):
         result = self.engine.search(
             "Beretta Trial Split Breva 9+9+12 con EX18000-3", limit=30
         )
@@ -494,10 +496,10 @@ class ClimateCommercialPairingPriorityTests(unittest.TestCase):
         self.assertEqual(diag["FULL_CONFIGURATION_CATALOG"], "25+25+35")
         self.assertEqual(
             diag["FULL_CONFIGURATION_EVIDENCE_STRENGTH"],
-            "UNKNOWN_PROVENANCE",
+            "CATALOG_TABLE_VERIFIED",
         )
-        self.assertEqual(result["configuration_status"], "PAIRWISE_ONLY")
-        self.assertFalse(result["mpn_final_allowed"])
+        self.assertEqual(result["configuration_status"], "VERIFIED_FULL_COMBINATION")
+        self.assertTrue(result["mpn_final_allowed"])
 
     def test_missing_full_combination_is_not_promoted_or_marked_conflict(self):
         result = self.engine.search(
@@ -510,6 +512,68 @@ class ClimateCommercialPairingPriorityTests(unittest.TestCase):
         self.assertIsNone(diag["FULL_CONFIGURATION_CATALOG"])
         self.assertEqual(result["configuration_status"], "PAIRWISE_ONLY")
         self.assertFalse(result["mpn_final_allowed"])
+
+    def test_per_combination_sidecar_has_direct_beretta_layout_evidence(self):
+        sidecar_path = Path("Knowledge/climatizzatori_combinazioni_provenance.json")
+        sidecar = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        evidence = sidecar["50215218"]["25+25+35"]
+
+        self.assertEqual(evidence["evidence_strength"], "CATALOG_TABLE_VERIFIED")
+        self.assertEqual(evidence["page"], 604)
+        self.assertEqual(evidence["source"], "PDF_LAYOUT")
+        self.assertEqual(evidence["normalized_configuration"], "25+25+35")
+        self.assertTrue(evidence["layout_evidence"])
+
+    def test_direct_per_combination_evidence_unlocks_exact_beretta_trial(self):
+        result = self.engine.search(
+            "Beretta Trial Split Breva 9+9+12 con EX18000-3", limit=30
+        )
+        diag = result["pairing_diagnostics"]
+
+        self.assertEqual(result["product_identity_status"], "EXACT")
+        self.assertEqual(result["configuration_status"], "VERIFIED_FULL_COMBINATION")
+        self.assertEqual(
+            diag["FULL_CONFIGURATION_EVIDENCE_STRENGTH"],
+            "CATALOG_TABLE_VERIFIED",
+        )
+        self.assertTrue(result["mpn_final_allowed"])
+
+    def test_matrix_only_daikin_combination_remains_master_derived(self):
+        result = self.engine.search(
+            "Daikin Dual Split Perfera 9000+9000 con 2MXM40A", limit=30
+        )
+        diag = result["pairing_diagnostics"]
+
+        self.assertTrue(diag["FULL_CONFIGURATION_MATCHED"])
+        self.assertEqual(
+            diag["FULL_CONFIGURATION_EVIDENCE_STRENGTH"], "MASTER_DERIVED"
+        )
+        self.assertEqual(result["configuration_status"], "PAIRWISE_ONLY")
+        self.assertFalse(result["mpn_final_allowed"])
+
+    def test_haier_matrix_does_not_promote_generated_full_combinations(self):
+        sidecar = json.loads(
+            Path("Knowledge/climatizzatori_combinazioni_provenance.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        combinations = sidecar["50125319"]
+
+        self.assertEqual(
+            set(combinations),
+            {
+                "20+20+20+20+20",
+                "20+20+20+20+25",
+                "20+20+20+25+25",
+                "25+25+25+25+25",
+            },
+        )
+        self.assertTrue(
+            all(
+                evidence["evidence_strength"] == "MASTER_DERIVED"
+                for evidence in combinations.values()
+            )
+        )
 
 
 if __name__ == "__main__":

@@ -40,17 +40,21 @@ _MULTISPLIT_CANONICAL_BTU_TOKEN = {
 
 
 def _combination_provenance(
-    ue_rec: Dict[str, Any], source_field: Optional[str], combination: Optional[str] = None
+    ue_rec: Dict[str, Any], source_field: Optional[str], combination: Optional[str] = None,
+    external_metadata: Optional[Dict[str, Any]] = None,
 ) -> Tuple[str, str]:
     """Classify only explicit source metadata; page/table labels are not proof."""
-    metadata = (
+    metadata = external_metadata or (
         ue_rec.get(f"{source_field}_provenance") if source_field else None
     ) or ue_rec.get("combination_provenance") or ue_rec.get("combinazioni_provenance")
     if isinstance(metadata, dict) and combination and combination in metadata:
         metadata = metadata[combination]
     if isinstance(metadata, dict):
         strength = str(metadata.get("evidence_strength") or metadata.get("strength") or "").upper()
-        provenance = str(metadata.get("provenance") or metadata.get("source") or "")
+        provenance = str(
+            metadata.get("evidence_details") or metadata.get("provenance")
+            or metadata.get("source") or ""
+        )
     else:
         strength = str(metadata or "").upper()
         provenance = str(metadata or "")
@@ -65,7 +69,8 @@ def _combination_provenance(
 
 
 def validate_multisplit_combination(
-    ue_rec: Dict[str, Any], uis_in_bom: List[Dict[str, Any]]
+    ue_rec: Dict[str, Any], uis_in_bom: List[Dict[str, Any]],
+    provenance_by_configuration: Optional[Dict[str, Dict[str, Any]]] = None,
 ) -> Dict[str, Any]:
     """Canonical, multiset-preserving full-combination matcher."""
     source_field = None
@@ -104,6 +109,7 @@ def validate_multisplit_combination(
         "catalog_page": ue_rec.get("pagina_catalogo"),
         "catalog_combination_page": ue_rec.get("pagina_combinazioni_catalogo"),
         "catalog_table": ue_rec.get("nome_tabella_combinazioni"),
+        "table_id": None,
         "evidence_strength": strength,
         "evidence_provenance": provenance,
     }
@@ -132,11 +138,22 @@ def validate_multisplit_combination(
         if not unmatched:
             result["matched"] = True
             result["matched_configuration"] = str(combination)
+            external_metadata = (provenance_by_configuration or {}).get(
+                str(combination).replace(" ", "")
+            )
             strength, provenance = _combination_provenance(
-                ue_rec, source_field, str(combination)
+                ue_rec, source_field, str(combination), external_metadata
             )
             result["evidence_strength"] = strength
             result["evidence_provenance"] = provenance
+            if external_metadata:
+                result["raw_configuration"] = external_metadata.get("raw_configuration")
+                result["provenance_source"] = external_metadata.get("source")
+                result["catalog_combination_page"] = external_metadata.get("page")
+                result["catalog_table"] = external_metadata.get("table_title")
+                result["table_id"] = external_metadata.get("table_id")
+                result["evidence_confidence"] = external_metadata.get("confidence")
+                result["layout_evidence"] = external_metadata.get("layout_evidence") or []
             return result
     return result
 
@@ -201,10 +218,12 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         ac_master_path: Optional[str] = None,
         pdf_specs_path: Optional[str] = None,
         table_context_index: Optional[CatalogTableContextIndex] = None,
+        combination_provenance_path: Optional[str] = None,
     ):
         self._ac_master_uis: Dict[str, Any] = {}
         self._ac_master_ues: Dict[str, Any] = {}
         self._pdf_specs: Dict[str, Any] = {}
+        self._combination_provenance_by_ue: Dict[str, Dict[str, Any]] = {}
         self._dynamic_capacity_class_map: Dict[Tuple[str, str], int] = {}
         self._series_vocab: List[str] = []
         self._series_aliases: Dict[str, List[str]] = {}
@@ -224,6 +243,23 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
                     ac_data = json.load(f)
                     self._ac_master_uis = ac_data.get("unita_interne", {})
                     self._ac_master_ues = ac_data.get("unita_esterne", {})
+            except Exception:
+                pass
+
+        if combination_provenance_path is None:
+            default_provenance = os.path.join(
+                base_dir, "Knowledge", "climatizzatori_combinazioni_provenance.json"
+            )
+            if os.path.exists(default_provenance):
+                combination_provenance_path = default_provenance
+        if combination_provenance_path and os.path.exists(combination_provenance_path):
+            try:
+                with open(combination_provenance_path, "r", encoding="utf-8") as f:
+                    provenance_data = json.load(f)
+                    self._combination_provenance_by_ue = {
+                        str(key): value for key, value in provenance_data.items()
+                        if key != "_metadata" and isinstance(value, dict)
+                    }
             except Exception:
                 pass
 
@@ -1514,7 +1550,9 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
     def _multisplit_configuration_verified(self, ui_items: List[Dict[str, Any]], ue_code: str) -> bool:
         """Require a full catalog combination, never only pairwise UI links."""
         ue_master = self._ac_master_ues.get(ue_code) or {}
-        return bool(validate_multisplit_combination(ue_master, ui_items)["matched"])
+        return bool(validate_multisplit_combination(
+            ue_master, ui_items, self._combination_provenance_by_ue.get(str(ue_code))
+        )["matched"])
 
     @staticmethod
     def _commercial_family_match(ui_items: List[Dict[str, Any]], ue_item: Dict[str, Any], query_context: Dict[str, Any]) -> bool:
@@ -1810,7 +1848,8 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             selected_code = str(selected.get("code") or "")
             ue_master = self._ac_master_ues.get(selected_code) or {}
             full_combination_validation = validate_multisplit_combination(
-                ue_master, ui_items
+                ue_master, ui_items,
+                self._combination_provenance_by_ue.get(selected_code),
             )
             if full_combination_validation["matched"]:
                 full_configuration_evidence = [dict(full_combination_validation)]
