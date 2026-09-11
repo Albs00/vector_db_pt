@@ -46,6 +46,41 @@ class TestRequestedFamilyValidation(unittest.TestCase):
 
         self.assertEqual(qa.get("requested_family_key"), "MIDEA_ELEGANCE")
 
+    def test_midea_xtreme_pro_descriptive_query_uses_current_wifi_family(self):
+        res = self.engine.search(
+            "Midea Climatizzatore Dual Split Xtreme Pro 9+9",
+            limit=20,
+        )
+        qa = res.get("query_analysis", {})
+        q_ctx = qa.get("query_context", {})
+        ui_items = [item for item in res.get("bom", []) if item.get("role") == "UI"]
+
+        self.assertEqual(qa.get("requested_family_key"), "MIDEA_XTREME_PRO_WIFI")
+        self.assertEqual(q_ctx.get("commercial_family_override_from"), "MIDEA_XTREME_PRO")
+        self.assertEqual([item.get("code") for item in ui_items], ["99793098", "99793098"])
+        self.assertTrue(all("XTREME PRO" in str(item.get("name")) for item in ui_items))
+        self.assertTrue(all(
+            token not in str(item.get("name") or "").upper()
+            for item in ui_items
+            for token in ("CANALIZZ", "CASSETTA", "COMMERCIALE")
+        ))
+
+    def test_midea_xtreme_pro_exact_legacy_model_bypasses_commercial_override(self):
+        for query in (
+            "Midea Xtreme Pro MSAGBU-12HRFN8/WR",
+            "Midea Xtreme Pro 50129577",
+        ):
+            with self.subTest(query=query):
+                res = self.engine.search(query, limit=10)
+                qa = res.get("query_analysis", {})
+                exact_codes = {
+                    item.get("code") for item in qa.get("exact_token_candidates", [])
+                }
+
+                self.assertEqual(qa.get("requested_family_key"), "MIDEA_XTREME_PRO")
+                self.assertIn("50129577", exact_codes)
+                self.assertEqual(res.get("bom", [])[0].get("code"), "50129577")
+
     def test_haier_expert_matches_family(self):
         query = "Haier Climatizzatore Monosplit serie Expert 12000"
         res = self.engine.search(query, limit=5)

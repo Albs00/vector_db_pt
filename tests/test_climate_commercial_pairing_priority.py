@@ -594,6 +594,38 @@ class ClimateCommercialPairingPriorityTests(unittest.TestCase):
                 self.assertEqual(item.get("color_base"), "WHITE")
                 self.assertFalse(item.get("variant_conflict"))
 
+    def test_mitsubishi_explicit_near_revision_ue_beats_master_fallback(self):
+        result = self.engine.search(
+            "Mitsubishi Climatizzatore Trial Split Kirigamine MSZ-LN Rosso "
+            "9+12+18 con MXZ-3F68VF3",
+            limit=30,
+        )
+
+        self.assertEqual(self._role(result, "UE")["code"], "50196142")
+        self.assertEqual(
+            self._role_codes(result, "UI"),
+            ["99788551", "99788599", "99788629"],
+        )
+        diag = result["pairing_diagnostics"]
+        self.assertEqual(diag["QUERY_MODEL_TOKEN"], "MXZ-3F68VF3")
+        self.assertEqual(diag["NEAR_MODEL_CANDIDATE"], "MXZ-3F68VF4")
+        self.assertEqual(diag["MODEL_STRUCTURAL_STEM"], "MXZ-3F68VF")
+        self.assertEqual(diag["MODEL_DIFF_TYPE"], "REVISION_ONLY")
+        self.assertEqual(diag["EXPLICIT_UE_MATCH_TYPE"], "EXPLICIT_MODEL_NEAR_REVISION")
+        self.assertEqual(result["product_identity_status"], "REVISION_CANDIDATE")
+        self.assertFalse(result["mpn_final_allowed"])
+
+    def test_terminal_color_variant_is_not_near_model_revision(self):
+        adapter = self.engine._climate_adapter
+        candidate = {
+            "mfg_code": "MSZ-LN35VG2R",
+            "name": "UI PARETE MSZ-LN35VG2R RUBY RED",
+            "variant": "RUBY RED",
+        }
+        self.assertIsNone(
+            adapter._ue_candidate_token_match(candidate, "MSZ-LN35VG2V")
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

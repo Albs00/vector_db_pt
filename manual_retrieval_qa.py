@@ -236,6 +236,11 @@ def format_qa_single_report(
     pairing_diag = search_res.get("pairing_diagnostics") or {}
     lines.append(f"  • EXPLICIT_UE_TOKEN     : {pairing_diag.get('EXPLICIT_UE_TOKEN') or '-'}")
     lines.append(f"  • EXPLICIT_UE_MATCH_TYPE: {pairing_diag.get('EXPLICIT_UE_MATCH_TYPE') or '-'}")
+    lines.append(f"  • QUERY_MODEL_TOKEN      : {pairing_diag.get('QUERY_MODEL_TOKEN') or '-'}")
+    lines.append(f"  • NEAR_MODEL_CANDIDATE   : {pairing_diag.get('NEAR_MODEL_CANDIDATE') or '-'}")
+    lines.append(f"  • MODEL_STRUCTURAL_STEM  : {pairing_diag.get('MODEL_STRUCTURAL_STEM') or '-'}")
+    lines.append(f"  • MODEL_DIFF_TYPE        : {pairing_diag.get('MODEL_DIFF_TYPE') or '-'}")
+    lines.append(f"  • MODEL_DIFF_DETAILS     : {pairing_diag.get('MODEL_DIFF_DETAILS') or '-'}")
     lines.append(
         "  • EXPLICIT_UE_CANDIDATES: "
         f"{json.dumps(pairing_diag.get('EXPLICIT_UE_CANDIDATES') or [], ensure_ascii=False)}"
@@ -442,6 +447,14 @@ def run_batch_qa(engine: CatalogSearchEngine, input_file: str, output_file: str)
         rec["CONFIGURATION_STATUS"] = pairing_diag.get("CONFIGURATION_STATUS")
         rec["EXPLICIT_UE_TOKEN"] = pairing_diag.get("EXPLICIT_UE_TOKEN")
         rec["EXPLICIT_UE_MATCH_TYPE"] = pairing_diag.get("EXPLICIT_UE_MATCH_TYPE")
+        for key in (
+            "QUERY_MODEL_TOKEN",
+            "NEAR_MODEL_CANDIDATE",
+            "MODEL_STRUCTURAL_STEM",
+            "MODEL_DIFF_TYPE",
+            "MODEL_DIFF_DETAILS",
+        ):
+            rec[key] = pairing_diag.get(key)
         rec["EXPLICIT_UE_CANDIDATES"] = json.dumps(
             pairing_diag.get("EXPLICIT_UE_CANDIDATES") or [], ensure_ascii=False
         )

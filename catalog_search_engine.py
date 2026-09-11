@@ -44,6 +44,7 @@ from src.core.catalog_table_context import (
     normalize_family_key_part,
 )
 from src.core.component_relations import ClimateComponentRelationIndex
+from src.core.clima_master_resolver import ClimaMasterResolver
 
 # Category Adapters
 from src.adapters.climate import (
@@ -938,6 +939,9 @@ class CatalogSearchEngine:
         self.db_dir = db_dir
         self.lookup_path = lookup_path
         self.master_path = master_path
+        self._clima_master_runtime_enabled = os.environ.get(
+            "CLIMA_MASTER_RUNTIME_ENABLED", "0"
+        ).strip().lower() in {"1", "true", "yes", "on"}
 
         self._table = None
         self._lookup = None
@@ -955,6 +959,7 @@ class CatalogSearchEngine:
         self._relation_expander = TypedRelationExpander()
         self._catalog_table_context: Optional[CatalogTableContextIndex] = None
         self._component_relation_index: Optional[ClimateComponentRelationIndex] = None
+        self._clima_master_resolver: Optional[ClimaMasterResolver] = None
 
         # Adapters e Router
         self._climate_adapter: Optional[ClimateCategoryAdapter] = None
@@ -1016,6 +1021,11 @@ class CatalogSearchEngine:
             )
             self._ac_master_uis = self._climate_adapter._ac_master_uis
             self._ac_master_ues = self._climate_adapter._ac_master_ues
+
+        if self._clima_master_runtime_enabled and self._clima_master_resolver is None:
+            self._clima_master_resolver = ClimaMasterResolver(
+                os.path.join(BASE_DIR, "Knowledge")
+            )
 
         if self._token_parser is None:
             extractors = self._climate_adapter.get_catalog_label_extractors() if self._climate_adapter else []
@@ -1525,6 +1535,18 @@ class CatalogSearchEngine:
                 self._reconcile_product_scope(query_context, [item], query)
                 if is_climate_product else None
             )
+            if is_climate_product and self._clima_master_resolver is not None:
+                master_result = self._clima_master_resolver.resolve(
+                    query,
+                    {**query_context, "product_scope": product_scope},
+                    [item],
+                    include_accessories=include_accessories,
+                )
+                if master_result is not None:
+                    master_result["execution_time_ms"] = round((time.time() - t0) * 1000, 2)
+                    master_result["query_analysis"]["query_context"].update(query_context)
+                    master_result["query_analysis"]["query_context"]["product_scope"] = master_result["product_scope"]
+                    return master_result
             if include_accessories:
                 rel = self._acc_engine.get_relations(item)
                 item["product_type"] = rel["product_type"]
@@ -1610,6 +1632,28 @@ class CatalogSearchEngine:
         if not target_brand:
             target_brand = self._brand_detector.detect_brand(query)
 
+        # A production-master family/model may itself be the strongest CLIMA
+        # domain signal (for example "TOSHIBA HAORI BIANCO 9000").  Evaluate
+        # the authoritative resolver before generic category routing so such
+        # requests cannot fall into the default-domain legacy path.
+        if self._clima_master_resolver is not None:
+            pre_master_context = self._climate_adapter.extract_query_context(query)
+            pre_master_context["detected_brand"] = target_brand
+            pre_master_result = self._clima_master_resolver.resolve(
+                query,
+                pre_master_context,
+                exact_token_candidates,
+                include_accessories=include_accessories,
+            )
+            if pre_master_result is not None:
+                pre_master_result["execution_time_ms"] = round((time.time() - t0) * 1000, 2)
+                pre_context = pre_master_result["query_analysis"]["query_context"]
+                master_scope = pre_master_result["product_scope"]
+                pre_context.update(pre_master_context)
+                pre_context["product_scope"] = master_scope
+                pre_master_result["query_analysis"]["product_scope"] = master_scope
+                return pre_master_result
+
         # STADIO 3: CATEGORY ROUTING (Ranked Domain Candidates, Brand come weak prior)
         domain_candidates = self._router.rank_domains(query, exact_token_candidates, target_brand)
         primary_domain = domain_candidates[0]
@@ -1621,6 +1665,34 @@ class CatalogSearchEngine:
             target_brand,
             fallback_family=query_context.get("requested_series"),
         )
+        # Midea XTREME PRO without an exact legacy identity is a commercial
+        # request for the currently sold XTREME PRO WIFI family.  The legacy
+        # family remains indexed and wins whenever its exact PT/model is present.
+        if (
+            adapter.name == "CLIMA"
+            and normalize_family_key_part(target_brand) == "MIDEA"
+            and family_request.get("requested_family_key") == "MIDEA_XTREME_PRO"
+        ):
+            legacy_codes = set(
+                self._catalog_table_context.codes_for_family_key("MIDEA_XTREME_PRO")
+            )
+            has_exact_legacy_identity = any(
+                str(item.get("code") or "") in legacy_codes
+                for item in exact_token_candidates
+            )
+            if (
+                not has_exact_legacy_identity
+                and self._catalog_table_context.codes_for_family_key(
+                    "MIDEA_XTREME_PRO_WIFI"
+                )
+            ):
+                family_request = dict(family_request)
+                family_request.update({
+                    "requested_family": "XTREME PRO WIFI",
+                    "requested_family_key": "MIDEA_XTREME_PRO_WIFI",
+                    "commercial_family_override_from": "MIDEA_XTREME_PRO",
+                    "commercial_family_override_reason": "LEGACY_FAMILY_NOT_SOLD",
+                })
         gen_family_key = family_request.get("requested_family_key")
         if gen_family_key:
             brand_norm = normalize_family_key_part(target_brand)
@@ -1643,6 +1715,25 @@ class CatalogSearchEngine:
         elif not family_request.get("requested_family_key"):
             query_context["requested_series"] = None
         target_category = category or primary_domain.category_filter
+
+        # Production CLIMA masters are authoritative and are evaluated before
+        # vector/BM25 discovery.  Only an exact identity, exact pair, or exact
+        # full configuration can short-circuit the legacy candidate path.
+        if adapter.name == "CLIMA" and self._clima_master_resolver is not None:
+            master_result = self._clima_master_resolver.resolve(
+                query,
+                query_context,
+                exact_token_candidates,
+                include_accessories=include_accessories,
+            )
+            if master_result is not None:
+                master_result["execution_time_ms"] = round((time.time() - t0) * 1000, 2)
+                master_context = master_result["query_analysis"]["query_context"]
+                master_scope = master_result["product_scope"]
+                master_context.update(query_context)
+                master_context["product_scope"] = master_scope
+                master_result["query_analysis"]["product_scope"] = master_scope
+                return master_result
 
         fts_query = expand_technical_query(query)
 
@@ -2068,6 +2159,36 @@ class CatalogSearchEngine:
                 query,
             )
         )
+        master_validation = None
+        accessory_bom = []
+        accessory_status = "NOT_APPLICABLE"
+        accessory_ambiguous = []
+        component_relation_source = ClimateComponentRelationIndex.SOURCE_NAME
+        if adapter.name == "CLIMA" and self._clima_master_resolver is not None:
+            master_validation = self._clima_master_resolver.validate_legacy_bom(
+                product_scope, bom
+            )
+            if product_scope in ("MONOSPLIT", "MULTISPLIT"):
+                if master_validation.get("confirmed"):
+                    pairing_diagnostics["CONFIGURATION_STATUS"] = master_validation["configuration_status"]
+                    pairing_diagnostics["PAIRING_STATUS"] = "PAIRING_CONFIRMED"
+                    pairing_diagnostics["MPN_FINAL_ALLOWED"] = True
+                else:
+                    pairing_diagnostics["CONFIGURATION_STATUS"] = "CONFIGURAZIONE_NON_CONFERMATA"
+                    pairing_diagnostics["PAIRING_STATUS"] = "CONFIGURAZIONE_NON_CONFERMATA"
+                    pairing_diagnostics["MPN_FINAL_ALLOWED"] = False
+                    pairing_diagnostics["MPN_FINAL_BLOCK_REASON"] = "MASTER_CONFIGURATION_NOT_CONFIRMED"
+                    compat_status = "NOT_VERIFIED"
+            accessory_resolution = self._clima_master_resolver.resolve_accessories(query, bom)
+            accessory_bom = accessory_resolution["bom"]
+            accessory_status = accessory_resolution["status"]
+            accessory_ambiguous = accessory_resolution["ambiguous"]
+            bom = bom + accessory_bom
+            # The climate accessory master is the sole CLIMA relation source.
+            # V3.4 remains available to other domains but cannot override it.
+            component_relations = accessory_resolution["evidence"]
+            component_lookup_status = "CLIMA_ACCESSORY_MASTER"
+            component_relation_source = "clima_accessori_master.json"
 
         query_analysis_data = {
             "query_context": query_context,
@@ -2086,7 +2207,14 @@ class CatalogSearchEngine:
                 for it in exact_token_candidates
             ],
             "near_model_candidates": [
-                {"code": str(it.get("code")), "mfg_code": it.get("mfg_code")}
+                {
+                    "code": str(it.get("code")),
+                    "mfg_code": it.get("mfg_code"),
+                    "query_model_token": it.get("_matched_token"),
+                    "model_structural_stem": it.get("_model_structural_stem"),
+                    "model_diff_type": it.get("_model_diff_type"),
+                    "model_diff_details": it.get("_model_diff_details"),
+                }
                 for it in near_model_candidates
             ],
             "component_relation_lookup_status": component_lookup_status,
@@ -2098,6 +2226,8 @@ class CatalogSearchEngine:
             "product_identity_status": pairing_diagnostics.get("PRODUCT_IDENTITY_STATUS"),
             "configuration_status": pairing_diagnostics.get("CONFIGURATION_STATUS"),
             "mpn_final_block_reason": pairing_diagnostics.get("MPN_FINAL_BLOCK_REASON"),
+            "master_validation": master_validation,
+            "accessory_status": accessory_status,
         }
 
         return {
@@ -2122,7 +2252,16 @@ class CatalogSearchEngine:
             "component_relations": component_relations,
             "component_relation_products": component_products,
             "component_relation_lookup_status": component_lookup_status,
-            "component_relation_source": ClimateComponentRelationIndex.SOURCE_NAME,
+            "component_relation_source": component_relation_source,
+            "accessory_bom": accessory_bom,
+            "accessory_status": accessory_status,
+            "accessory_ambiguous": accessory_ambiguous,
+            "master_validation": master_validation,
+            "dataset_release": (
+                self._clima_master_resolver.DATASET_VERSION
+                if adapter.name == "CLIMA" and self._clima_master_resolver is not None
+                else None
+            ),
             "pairing_reason": pairing_diagnostics.get("PAIRING_REASON"),
             "pairing_score_breakdown": pairing_diagnostics.get("PAIRING_SCORE_BREAKDOWN"),
             "pairing_status": pairing_diagnostics.get("PAIRING_STATUS"),

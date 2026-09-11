@@ -25,6 +25,7 @@ from src.core.color_variants import (
     color_neutral_variant_key,
     normalize_color_variant,
 )
+from src.core.model_identity import classify_structural_model_diff
 from build_full_ac_matrix import extract_btu_and_kw
 
 
@@ -1435,6 +1436,19 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
                     "match_type": "EXPLICIT_MODEL_EXACT_MATCH",
                 }
 
+            structural_diff = classify_structural_model_diff(token_text, label)
+            if structural_diff["diff_type"] == "REVISION_ONLY":
+                revision_matches.append({
+                    "token": token,
+                    "label": label,
+                    "catalog_model": str(item.get("mfg_code") or label).strip(),
+                    "match_type": "EXPLICIT_MODEL_NEAR_REVISION",
+                    "model_structural_stem": structural_diff["structural_stem"],
+                    "model_diff_type": structural_diff["diff_type"],
+                    "model_diff_details": structural_diff["diff_details"],
+                })
+                continue
+
             same_delimited_revision = (
                 self._revision_base(label)
                 and self._revision_base(label) == self._revision_base(token_text)
@@ -1506,7 +1520,7 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             token, matches = token_matches[0]
             status = "REVISION_CANDIDATE" if len(matches) == 1 else "AMBIGUOUS_REVISION"
             match_type = (
-                "EXPLICIT_MODEL_REVISION_MATCH"
+                matches[0]["match_type"]
                 if status == "REVISION_CANDIDATE"
                 else "AMBIGUOUS_REVISION"
             )
@@ -1523,13 +1537,25 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
                 "pt": code,
                 "catalog_model": match.get("catalog_model") or match.get("label"),
                 "match_type": match.get("match_type"),
+                "model_structural_stem": match.get("model_structural_stem"),
+                "model_diff_type": match.get("model_diff_type"),
+                "model_diff_details": match.get("model_diff_details"),
             })
+        selected_match = matches[0] if len(matches) == 1 else {}
         return {
             "status": status,
             "token": token,
             "match_type": match_type,
             "matches": matches,
             "candidates": diagnostic_candidates,
+            "model_structural_stem": selected_match.get("model_structural_stem"),
+            "model_diff_type": selected_match.get("model_diff_type"),
+            "model_diff_details": selected_match.get("model_diff_details"),
+            "near_model_candidate": (
+                selected_match.get("catalog_model")
+                if selected_match.get("match_type") == "EXPLICIT_MODEL_NEAR_REVISION"
+                else None
+            ),
         }
 
     def _has_pdf_pairing(self, ui_codes: List[str], ue_code: str) -> bool:
@@ -1639,7 +1665,9 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         explicit_label = explicit_match.get("label")
         explicit_match_type = explicit_match.get("match_type")
         explicit_model = 90.0 if explicit_match_type == "EXPLICIT_MODEL_EXACT_MATCH" else 0.0
-        explicit_revision = 85.0 if explicit_match_type == "EXPLICIT_MODEL_REVISION_MATCH" else 0.0
+        explicit_revision = 85.0 if explicit_match_type in {
+            "EXPLICIT_MODEL_REVISION_MATCH", "EXPLICIT_MODEL_NEAR_REVISION"
+        } else 0.0
         family = 80.0 if self._commercial_family_match(ui_items, ue_item, query_context) else 0.0
         master_compatible_ui_codes = self._master_compatible_selected_ui_codes(ui_items, ue_code)
         master = 70.0 if len(master_compatible_ui_codes) == len(ui_items) else 0.0
@@ -1727,6 +1755,11 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
                     "EXPLICIT_UE_TOKEN": identity_analysis["token"],
                     "EXPLICIT_UE_MATCH_TYPE": identity_analysis["match_type"],
                     "EXPLICIT_UE_CANDIDATES": identity_analysis["candidates"],
+                    "QUERY_MODEL_TOKEN": identity_analysis["token"],
+                    "NEAR_MODEL_CANDIDATE": identity_analysis.get("near_model_candidate"),
+                    "MODEL_STRUCTURAL_STEM": identity_analysis.get("model_structural_stem"),
+                    "MODEL_DIFF_TYPE": identity_analysis.get("model_diff_type"),
+                    "MODEL_DIFF_DETAILS": identity_analysis.get("model_diff_details"),
                     "SELECTED_UI_EVIDENCE_PT": selected_ui_context,
                     "REJECTED_NON_BOM_UI_EVIDENCE": [],
                     "FULL_CONFIGURATION_EVIDENCE": [],
@@ -1780,6 +1813,11 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
                 "EXPLICIT_UE_TOKEN": identity_analysis["token"],
                 "EXPLICIT_UE_MATCH_TYPE": identity_analysis["match_type"],
                 "EXPLICIT_UE_CANDIDATES": identity_analysis["candidates"],
+                "QUERY_MODEL_TOKEN": identity_analysis["token"],
+                "NEAR_MODEL_CANDIDATE": identity_analysis.get("near_model_candidate"),
+                "MODEL_STRUCTURAL_STEM": identity_analysis.get("model_structural_stem"),
+                "MODEL_DIFF_TYPE": identity_analysis.get("model_diff_type"),
+                "MODEL_DIFF_DETAILS": identity_analysis.get("model_diff_details"),
                 "SELECTED_UI_EVIDENCE_PT": selected_ui_context,
                 "REJECTED_NON_BOM_UI_EVIDENCE": [],
                 "FULL_CONFIGURATION_EVIDENCE": [],
@@ -1829,7 +1867,11 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
         if query_context.get("is_multisplit"):
             reason = (
                 "EXPLICIT_MODEL_IN_QUERY" if breakdown["EXPLICIT_MODEL"] else
-                "EXPLICIT_MODEL_REVISION_MATCH" if breakdown["EXPLICIT_MODEL_REVISION"] else
+                (
+                    "EXPLICIT_MODEL_NEAR_REVISION"
+                    if breakdown.get("explicit_ue_match_type") == "EXPLICIT_MODEL_NEAR_REVISION"
+                    else "EXPLICIT_MODEL_REVISION_MATCH"
+                ) if breakdown["EXPLICIT_MODEL_REVISION"] else
                 "PDF_TABLE_PAIRING" if breakdown["PDF_PAIRING"] else
                 "MASTER_COMPATIBILITY_FALLBACK" if breakdown["MASTER"] else
                 "MASTER_PAIRWISE_DIAGNOSTIC_FALLBACK"
@@ -1996,6 +2038,11 @@ class ClimateCategoryAdapter(BaseCategoryAdapter):
             "EXPLICIT_UE_TOKEN": identity_analysis.get("token") or breakdown.get("explicit_ue_token"),
             "EXPLICIT_UE_MATCH_TYPE": identity_analysis.get("match_type") or breakdown.get("explicit_ue_match_type"),
             "EXPLICIT_UE_CANDIDATES": identity_analysis.get("candidates") or [],
+            "QUERY_MODEL_TOKEN": identity_analysis.get("token") or breakdown.get("explicit_ue_token"),
+            "NEAR_MODEL_CANDIDATE": identity_analysis.get("near_model_candidate"),
+            "MODEL_STRUCTURAL_STEM": identity_analysis.get("model_structural_stem"),
+            "MODEL_DIFF_TYPE": identity_analysis.get("model_diff_type"),
+            "MODEL_DIFF_DETAILS": identity_analysis.get("model_diff_details"),
             "SELECTED_UI_EVIDENCE_PT": selected_ui_context,
             "MASTER_COMPATIBLE_SELECTED_UI_PT": breakdown.get(
                 "MASTER_COMPATIBLE_SELECTED_UI_PT"

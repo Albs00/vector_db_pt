@@ -21,6 +21,8 @@ import re
 from enum import Enum
 from typing import List, Dict, Any, Optional, Set, Tuple
 
+from src.core.model_identity import classify_structural_model_diff
+
 
 class MatchType(str, Enum):
     EXACT_RAW = "EXACT_RAW"
@@ -378,6 +380,27 @@ class ExactTokenParser:
 
             # 3. NEAR_MODEL_CANDIDATE (stessa radice >= 6 char con suffisso diverso o mancante)
             # MAI classificato come exact match!
+            if len(nt) >= 6:
+                revision_root = nt[:-1]
+                for it in self._near_model_prefix_map.get(revision_root, []):
+                    code = it["code"]
+                    diff = classify_structural_model_diff(raw_tok, it.get("mfg_code") or "")
+                    if (
+                        diff["diff_type"] == "REVISION_ONLY"
+                        and code not in seen_exact_codes
+                        and code not in seen_near_codes
+                    ):
+                        seen_near_codes.add(code)
+                        c_it = dict(it)
+                        c_it["_is_near_model_candidate"] = True
+                        c_it["_exact_match_type"] = MatchType.NEAR_MODEL_CANDIDATE.value
+                        c_it["_matched_token"] = raw_tok
+                        c_it["_near_model_detail"] = diff["diff_details"]
+                        c_it["_model_structural_stem"] = diff["structural_stem"]
+                        c_it["_model_diff_type"] = diff["diff_type"]
+                        c_it["_model_diff_details"] = diff["diff_details"]
+                        near_model_candidates.append(c_it)
+
             if nt in self._near_model_prefix_map:
                 for it in self._near_model_prefix_map[nt]:
                     code = it["code"]
